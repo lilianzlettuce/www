@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import { getAllProjects } from '@/lib/mdx';
+import { getAllProjects, ProjectFrontmatter } from '@/lib/mdx';
+import { ExternalLinkIcon } from '@/components/Icons';
 
-export default async function Work() {
+export default async function WorkPage() {
   const projects = await getAllProjects();
 
   const experiences = [
@@ -26,75 +27,78 @@ export default async function Work() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <section className="bg-white border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+    <div className="min-h-screen bg-background">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             My Work
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl">
-            Here's a collection of projects I've worked on and my professional experience.
+          <p className="text-xl text-mutedForeground max-w-2xl mx-auto">
+            A collection of projects I've worked on, from web applications to creative experiments.
           </p>
         </div>
-      </section>
 
-      {/* Projects */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12">Featured Projects</h2>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((project) => (
-              <Link 
-                key={project.slug}
-                href={`/work/${project.slug}`}
-                className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
-              >
-                <div className="h-48 bg-gray-200 flex items-center justify-center">
-                  <span className="text-gray-500">Project Image</span>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project: ProjectFrontmatter) => (
+            <Link
+              key={project.slug}
+              href={`/work/${project.slug}`}
+              className="group block bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+            >
+              <div className="aspect-video bg-muted flex items-center justify-center">
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="text-mutedForeground text-4xl font-bold">
+                    {project.title.charAt(0)}
+                  </div>
+                )}
+              </div>
+              
+              <div className="p-6">
+                <div className="flex items-start justify-between mb-2">
+                  <h3 className="text-xl font-semibold text-cardForeground group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  <ExternalLinkIcon className="w-4 h-4 text-mutedForeground group-hover:text-primary transition-colors" />
                 </div>
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm text-blue-600 font-medium">
-                      {project.featured ? 'Featured' : 'Project'}
+                
+                <p className="text-mutedForeground mb-4 line-clamp-2">
+                  {project.description}
+                </p>
+                
+                <div className="flex flex-wrap gap-2">
+                  {project.tags?.slice(0, 3).map((tag: string) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded"
+                    >
+                      {tag}
                     </span>
-                    <span className="text-sm text-gray-500">
-                      {new Date(project.date).toLocaleDateString()}
+                  ))}
+                  {project.tags && project.tags.length > 3 && (
+                    <span className="px-2 py-1 text-xs font-medium bg-muted text-mutedForeground rounded">
+                      +{project.tags.length - 3}
                     </span>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{project.title}</h3>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.slice(0, 3).map((tech) => (
-                      <span key={tech} className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">
-                        {tech}
-                      </span>
-                    ))}
-                    {project.tags.length > 3 && (
-                      <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">
-                        +{project.tags.length - 3} more
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex gap-3">
-                    {project.live && (
-                      <span className="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                        View Live →
-                      </span>
-                    )}
-                    {project.github && (
-                      <span className="text-gray-600 hover:text-gray-700 text-sm font-medium">
-                        GitHub →
-                      </span>
-                    )}
-                  </div>
+                  )}
                 </div>
-              </Link>
-            ))}
-          </div>
+              </div>
+            </Link>
+          ))}
         </div>
-      </section>
+
+        {projects.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-mutedForeground text-lg">
+              No projects found. Check back soon for updates!
+            </p>
+          </div>
+        )}
+      </div>
 
       {/* Experience */}
       <section className="py-16 bg-white">
