@@ -1,3 +1,13 @@
-export function mapTo(val: number, min: number, max: number, newMin: number, newMax: number) {
+export function mapTo(
+    val: number, 
+    min: number, 
+    max: number, 
+    newMin: number, 
+    newMax: number
+) {
+    // Maps val to a range of 0 - 1
+    let ratio = (val - min) / (max - min);
 
+    // Map to new given range
+    return newMin + ratio * (newMax - newMin); 
 }
