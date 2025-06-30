@@ -31,6 +31,8 @@ export function useCanvas(options: CanvasOptions = {}): CanvasProps {
         setCtx(context);
 
         const resize = () => {
+            console.log("resizing");
+
             const dpr = window.devicePixelRatio || 1;
             const width = options.width || canvas.clientWidth;
             const height = options.height || canvas.clientHeight;

@@ -1,9 +1,19 @@
 "use client";
 
-import { useEffect } from "react";
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
+
+type Point = {
+    originalX: number;
+    originalY: number;
+    x: number;
+    y: number;
+    lastX: number;
+    lastY: number;
+    vx: number;
+    vy: number;
+};
 
 function draw(
     ctx: CanvasRenderingContext2D, 
@@ -18,7 +28,7 @@ function draw(
     // Calculate relative mouse position
     const relMousePos = {
         x: mousePosition.x - left,
-        y: mousePosition.y - top
+        y: mousePosition.y - top + window.scrollY
     }
     //console.log(relMousePos.x, relMousePos.y);
 
@@ -39,31 +49,23 @@ function draw(
             //r = defaultRadius * dist * 0.01;
             //r = defaultRadius * Math.pow(500 - dist, 1.4) * 0.001
 
-            // Draw circle
+            // Draw square
             ctx.beginPath();
-            ctx.arc(x, y, r, 0, 2 * Math.PI);
+            //ctx.arc(x, y, r, 0, 2 * Math.PI);
+            ctx.rect(x, y, r, r);
             ctx.fill();
             ctx.closePath();
         }
     }
 }
 
-const CirclesCanvas = ({ numRows = 10, numCols = 20 }: { numRows?: number, numCols?: number }) => {
+const Squares = ({ numRows = 10, numCols = 20 }: { numRows?: number, numCols?: number }) => {
     // Actual canvas size
     const ogWidth = 800;
     const ogHeight = 400;
 
     const mousePosition = useMousePosition(); // Get mouse position
     const { canvasRef, ctx, width, height, top, left } = useCanvas({ width: ogWidth, height: ogHeight }); // Create canvas
-
-    /*if (mousePosition && ctx) {
-        draw(ctx, mousePosition, width, height, top, left, numRows, numCols);
-    }*/
-
-    /*useEffect(() => {
-        if (!ctx) return;
-        draw(ctx, mousePosition, width, height, top, left, numRows, numCols);
-    }, [ctx, mousePosition, width, height, top, left]);*/
 
     useAnimationFrame((t) => {
         if (!ctx) return;
@@ -76,4 +78,4 @@ const CirclesCanvas = ({ numRows = 10, numCols = 20 }: { numRows?: number, numCo
     )
 }
 
-export default CirclesCanvas;
+export default Squares;
