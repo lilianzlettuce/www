@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect } from "react";
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
+import { useAnimationFrame } from "@/hooks/useAnimationFrame";
 
 function draw(
     ctx: CanvasRenderingContext2D, 
@@ -47,21 +49,27 @@ function draw(
 }
 
 const CirclesCanvas = ({ numRows = 10, numCols = 20 }: { numRows?: number, numCols?: number }) => {
+    // Actual canvas size
     const ogWidth = 800;
     const ogHeight = 400;
 
     const mousePosition = useMousePosition(); // Get mouse position
     const { canvasRef, ctx, width, height, top, left } = useCanvas({ width: ogWidth, height: ogHeight }); // Create canvas
 
-    const circles = Array.from({ length: 100 }, (_, index) => ({
-        id: index,
-        x: mousePosition.x + Math.random() * 100 - 50,
-        y: mousePosition.y + Math.random() * 100 - 50,
-    }));
-
-    if (mousePosition && ctx) {
+    /*if (mousePosition && ctx) {
         draw(ctx, mousePosition, width, height, top, left, numRows, numCols);
-    }
+    }*/
+
+    /*useEffect(() => {
+        if (!ctx) return;
+        draw(ctx, mousePosition, width, height, top, left, numRows, numCols);
+    }, [ctx, mousePosition, width, height, top, left]);*/
+
+    useAnimationFrame((t) => {
+        if (!ctx) return;
+        draw(ctx, mousePosition, width, height, top, left, numRows, numCols);
+    });
+      
     
     return (
         <canvas ref={canvasRef} className="w-full h-full" />
