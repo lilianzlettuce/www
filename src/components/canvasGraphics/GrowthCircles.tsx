@@ -3,7 +3,7 @@
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
-import { useRef, useCallback, useMemo } from "react";
+import { useRef, useCallback, useMemo, useEffect } from "react";
 
 type RadiusPoint = {
   originalRadius: number;
@@ -15,8 +15,7 @@ type RadiusPoint = {
 };
 
 interface GrowthCirclesProps {
-  numRows?: number;
-  numCols?: number;
+  gridGap?: number;
   defaultRadius?: number;
   circleColor?: string;
   attractionDistance?: number;
@@ -28,8 +27,7 @@ interface GrowthCirclesProps {
 }
 
 const GrowthCircles = ({
-  numRows = 20,
-  numCols = 40,
+  gridGap = 30,
   defaultRadius = 3,
   circleColor = "black",
   attractionDistance = 200,
@@ -49,8 +47,41 @@ const GrowthCircles = ({
     const animationRadius = useRef(1);
     const isDragging = useRef(false);
 
-    // Create grid of radius points
-    const radiusPoints = useMemo(() => {
+    const radiusPoints = useRef<RadiusPoint[]>([]); // store point grid
+
+    // Create grid of points
+    useEffect(() => {
+        console.log("Generating grid", width, height);
+        
+        if (width === 0 || height === 0) return;
+
+        // Calculate number of rows and columns
+        const numRows = Math.floor(height / gridGap);
+        const numCols = Math.floor(width / gridGap);
+
+        // Populate grid
+        const points: RadiusPoint[] = [];
+        
+        for (let i = 0; i < numRows; i++) {
+            const y = i * height / numRows + 10;
+            
+            for (let j = 0; j < numCols; j++) {
+                const x = j * width / numCols + 10;
+                
+                points.push({
+                    originalRadius: defaultRadius,
+                    radius: defaultRadius,
+                    lastRadius: defaultRadius,
+                    vr: 0,
+                    x: x,
+                    y: y,
+                });
+            }
+        }
+        
+        radiusPoints.current = points;
+    }, [width, height, gridGap, defaultRadius]);
+    /*const radiusPoints = useMemo(() => {
         const points: RadiusPoint[] = [];
         
         for (let i = 0; i < numRows; i++) {
@@ -71,14 +102,15 @@ const GrowthCircles = ({
         }
         
         return points;
-    }, [numRows, numCols, width, height, defaultRadius]);
+    }, [numRows, numCols, width, height, defaultRadius]);*/
 
     // Update radius values based on mouse position and animation state
     const updateRadiusPoints = useCallback((mouseX: number, mouseY: number) => {
         const now = Date.now();
         mouseActive.current = (now - lastMouseMoveTime.current) < debounceTime;
 
-        for (const point of radiusPoints) {
+        for (const point of radiusPoints.current) {
+            //console.log(point);
             if (mouseActive.current) {
                 // Calculate distance from mouse to circle center
                 const dx = point.x - mouseX;
@@ -131,7 +163,7 @@ const GrowthCircles = ({
             autoAnimPhase.current = 0;
             animationRadius.current = 1;
         }
-    }, [radiusPoints, debounceTime, attractionDistance, growthFactor, defaultRadius, minRadius, autoAnimStep, easeInFactor]);
+    }, [radiusPoints.current, debounceTime, attractionDistance, growthFactor, defaultRadius, minRadius, autoAnimStep, easeInFactor]);
 
     // Draw circles on canvas
     const drawCircles = useCallback(() => {
@@ -140,13 +172,13 @@ const GrowthCircles = ({
         ctx.clearRect(0, 0, width, height);
         ctx.fillStyle = circleColor;
 
-        for (const point of radiusPoints) {
+        for (const point of radiusPoints.current) {
             ctx.beginPath();
             ctx.arc(point.x, point.y, point.radius, 0, 2 * Math.PI);
             ctx.fill();
             ctx.closePath();
         }
-    }, [ctx, width, height, circleColor, radiusPoints]);
+    }, [ctx, width, height, circleColor, radiusPoints.current]);
 
     // Handle mouse events
     const handleMouseMove = useCallback(() => {
@@ -198,8 +230,8 @@ const GrowthCircles = ({
         updateRadiusPoints(-100, -100);
     }, [updateRadiusPoints]);
 
-    // Animation frame callback
-    const animate = useCallback(() => {
+    // Animation frame 
+    const animate = () => {
         if (!ctx) return;
         
         // Calculate relative mouse position
@@ -207,10 +239,11 @@ const GrowthCircles = ({
             x: mousePosition.x - left,
             y: mousePosition.y - top + (typeof window !== 'undefined' ? window.scrollY : 0)
         };
+        console.log(relMousePos);
         
         updateRadiusPoints(relMousePos.x, relMousePos.y);
         drawCircles();
-    }, [ctx, mousePosition, left, top, updateRadiusPoints, drawCircles]);
+    };
 
     useAnimationFrame(animate);
 

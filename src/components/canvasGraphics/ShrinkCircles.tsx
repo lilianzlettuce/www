@@ -153,8 +153,15 @@ const ShrinkCircles = ({
 
   // Handle mouse events
   const handleMouseMove = useCallback(() => {
-    const mouseX = mousePosition.x - left;
-    const mouseY = mousePosition.y - top + (typeof window !== 'undefined' ? window.scrollY : 0);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = mousePosition.x - rect.left;
+    const mouseY = mousePosition.y - rect.top;
+
+    //const mouseX = mousePosition.x - left;
+    //const mouseY = mousePosition.y - top + (typeof window !== 'undefined' ? window.scrollY : 0);
     
     lastMouseMoveTime.current = Date.now();
     updateRadiusPoints(mouseX, mouseY);
@@ -202,18 +209,18 @@ const ShrinkCircles = ({
   }, [updateRadiusPoints]);
 
   // Animation frame callback
-  const animate = useCallback(() => {
+  const animate = () => {
     if (!ctx) return;
     
     // Calculate relative mouse position
     const relMousePos = {
       x: mousePosition.x - left,
-      y: mousePosition.y - top + (typeof window !== 'undefined' ? window.scrollY : 0)
+      y: mousePosition.y - top //+ (typeof window !== 'undefined' ? window.scrollY : 0)
     };
     
     updateRadiusPoints(relMousePos.x, relMousePos.y);
     drawCircles();
-  }, [ctx, mousePosition, left, top, updateRadiusPoints, drawCircles]);
+  };
 
   useAnimationFrame(animate);
 

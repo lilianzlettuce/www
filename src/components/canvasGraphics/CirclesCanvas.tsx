@@ -70,9 +70,12 @@ const CirclesCanvas = ({ numRows = 20, numCols = 40 }: { numRows?: number, numCo
         if (!ctx) return;
 
         // Calculate relative mouse position
+        /*const rect = canvas.getBoundingClientRect();
+        const relX = event.clientX - rect.left;
+        const relY = event.clientY - rect.top;*/
         let relMousePos = {
             x: mousePosition.x - left,
-            y: mousePosition.y - top + window.scrollY
+            y: mousePosition.y - top //+ window.scrollY
         }
         // animated curve
         if (!mouseActive.current) {
