@@ -6,7 +6,7 @@ export function mapTo(
     newMax: number
 ) {
     // Maps val to a range of 0 - 1
-    let ratio = (val - min) / (max - min);
+    const ratio = (val - min) / (max - min);
 
     // Map to new given range
     return newMin + ratio * (newMax - newMin); 

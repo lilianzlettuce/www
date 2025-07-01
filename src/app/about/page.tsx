@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function About() {
   const skills = [
@@ -33,7 +33,7 @@ export default function About() {
             About Me
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl">
-            I'm a passionate developer who loves creating meaningful digital experiences.
+            I&apos;m a passionate developer who loves creating meaningful digital experiences.
           </p>
         </div>
       </section>
@@ -79,17 +79,17 @@ export default function About() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">My Story</h2>
                 <div className="prose prose-gray max-w-none">
                   <p className="text-gray-600 mb-4">
-                    I'm a passionate developer with over 5 years of experience building web applications 
+                    I&apos;m a passionate developer with over 5 years of experience building web applications 
                     and digital experiences. My journey in tech started when I built my first website 
-                    in high school, and I've been hooked ever since.
+                    in high school, and I&apos;ve been hooked ever since.
                   </p>
                   <p className="text-gray-600 mb-4">
                     I believe in creating software that not only works well but also provides a 
-                    delightful user experience. Whether it's a simple landing page or a complex 
+                    delightful user experience. Whether it&apos;s a simple landing page or a complex 
                     web application, I approach every project with the same level of care and attention to detail.
                   </p>
                   <p className="text-gray-600">
-                    When I'm not coding, you can find me reading tech blogs, experimenting with new 
+                    When I&apos;m not coding, you can find me reading tech blogs, experimenting with new 
                     technologies, or exploring the outdoors for inspiration.
                   </p>
                 </div>
@@ -185,10 +185,10 @@ export default function About() {
 
               {/* CTA */}
               <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-8 text-white text-center">
-                <h2 className="text-2xl font-bold mb-4">Let's Work Together</h2>
+                <h2 className="text-2xl font-bold mb-4">Let&apos;s Work Together</h2>
                 <p className="text-blue-100 mb-6">
-                  I'm always interested in new opportunities and exciting projects. 
-                  Let's discuss how we can bring your ideas to life.
+                  I&apos;m always interested in new opportunities and exciting projects. 
+                  Let&apos;s discuss how we can bring your ideas to life.
                 </p>
                 <Link 
                   href="mailto:hello@yourname.com" 

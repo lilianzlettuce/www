@@ -54,20 +54,20 @@ const GrowthCircles = ({
         const points: RadiusPoint[] = [];
         
         for (let i = 0; i < numRows; i++) {
-        const y = i * height / numRows + 10;
-        
-        for (let j = 0; j < numCols; j++) {
-            const x = j * width / numCols + 10;
+            const y = i * height / numRows + 10;
             
-                    points.push({
-          originalRadius: defaultRadius,
-          radius: defaultRadius,
-          lastRadius: defaultRadius,
-          vr: 0,
-          x: x,
-          y: y,
-        });
-        }
+            for (let j = 0; j < numCols; j++) {
+                const x = j * width / numCols + 10;
+                
+                points.push({
+                    originalRadius: defaultRadius,
+                    radius: defaultRadius,
+                    lastRadius: defaultRadius,
+                    vr: 0,
+                    x: x,
+                    y: y,
+                });
+            }
         }
         
         return points;
@@ -124,12 +124,12 @@ const GrowthCircles = ({
 
         // Update auto-anim phase for the next frame
         if (!mouseActive.current && !isDragging.current) {
-        autoAnimPhase.current += autoAnimStep;
-        animationRadius.current = Math.min(animationRadius.current * 1.01, 5);
+            autoAnimPhase.current += autoAnimStep;
+            animationRadius.current = Math.min(animationRadius.current * 1.01, 5);
         } else {
-        // Reset
-        autoAnimPhase.current = 0;
-        animationRadius.current = 1;
+            // Reset
+            autoAnimPhase.current = 0;
+            animationRadius.current = 1;
         }
     }, [radiusPoints, debounceTime, attractionDistance, growthFactor, defaultRadius, minRadius, autoAnimStep, easeInFactor]);
 
@@ -199,13 +199,13 @@ const GrowthCircles = ({
     }, [updateRadiusPoints]);
 
     // Animation frame callback
-    const animate = useCallback((timestamp: number) => {
+    const animate = useCallback(() => {
         if (!ctx) return;
         
         // Calculate relative mouse position
         const relMousePos = {
-        x: mousePosition.x - left,
-        y: mousePosition.y - top + (typeof window !== 'undefined' ? window.scrollY : 0)
+            x: mousePosition.x - left,
+            y: mousePosition.y - top + (typeof window !== 'undefined' ? window.scrollY : 0)
         };
         
         updateRadiusPoints(relMousePos.x, relMousePos.y);

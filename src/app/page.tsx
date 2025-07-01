@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -8,7 +8,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6">
-            Hi, I'm <span className="text-primary">Lilian Zhao</span>
+            Hi, I&apos;m <span className="text-primary">Lilian Zhao</span>
           </h1>
           <p className="text-xl md:text-2xl text-mutedForeground mb-8 max-w-2xl mx-auto">
             I create digital experiences that matter. From web applications to creative projects, 
@@ -90,7 +90,7 @@ export default function Home() {
             Ready to work together?
           </h2>
           <p className="text-xl text-mutedForeground mb-8">
-            Let's discuss your next project and bring your vision to life.
+            Let&apos;s discuss your next project and bring your vision to life.
           </p>
           <Link 
             href="/about" 

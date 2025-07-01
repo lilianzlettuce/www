@@ -58,7 +58,7 @@ const StarCanvas = ({
   const scaledLineLength = lineLength * scale;
   const scaledPointSize = pointSize * scale;
   const scaledGridSize = gridSize * scale;
-  const scaledRadius = radius.current * scale;
+  //const scaledRadius = radius.current * scale;
   const scaledMaxRadius = maxRadius * scale;
   
   const centerX = Math.round(width / 2);
@@ -245,7 +245,7 @@ const StarCanvas = ({
   }, [updatePoints]);
 
   // Animation frame callback
-  const animate = useCallback((timestamp: number) => {
+  const animate = useCallback(() => {
     if (!ctx) return;
     
     // Calculate relative mouse position

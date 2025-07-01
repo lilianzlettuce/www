@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import { getAllProjects, ProjectFrontmatter } from '@/lib/mdx';
-import { ExternalLinkIcon } from '@/components/Icons';
+import Link from "next/link";
+import { getAllProjects, ProjectFrontmatter } from "@/lib/mdx";
+import { ExternalLinkIcon } from "@/components/Icons";
 
 export default async function WorkPage() {
   const projects = await getAllProjects();
@@ -34,7 +34,7 @@ export default async function WorkPage() {
             My Work
           </h1>
           <p className="text-xl text-mutedForeground max-w-2xl mx-auto">
-            A collection of projects I've worked on, from web applications to creative experiments.
+            A collection of projects I&apos;ve worked on, from web applications to creative experiments.
           </p>
         </div>
 

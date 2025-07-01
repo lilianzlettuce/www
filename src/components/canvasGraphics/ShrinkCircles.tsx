@@ -202,7 +202,7 @@ const ShrinkCircles = ({
   }, [updateRadiusPoints]);
 
   // Animation frame callback
-  const animate = useCallback((timestamp: number) => {
+  const animate = useCallback(() => {
     if (!ctx) return;
     
     // Calculate relative mouse position

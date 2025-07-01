@@ -2,14 +2,14 @@ import CirclesCanvas from "@/components/canvasGraphics/CirclesCanvas";
 import StarCanvas from "@/components/canvasGraphics/StarCanvas";
 import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import GrowthCircles from "@/components/canvasGraphics/GrowthCircles";
-import Link from "next/link";
+/*import Link from "next/link";
 
 const contactInfo = [
   { label: "Email", value: "hello@yourname.com", link: "mailto:hello@yourname.com" },
   { label: "LinkedIn", value: "linkedin.com/in/yourname", link: "https://linkedin.com/in/yourname" },
   { label: "GitHub", value: "github.com/yourname", link: "https://github.com/yourname" },
   { label: "Twitter", value: "@yourname", link: "https://twitter.com/yourname" }
-];
+];*/
 
 export default async function ExperimentsPage() {
   return (
@@ -23,7 +23,7 @@ export default async function ExperimentsPage() {
           defaultRadius={45}
           circleColor="#000000"
           attractionDistance={900}
-          shrinkFactor={1.1}
+          shrinkFactor={1}
           minRadius={0.5}
           easeInFactor={0.85}
         />

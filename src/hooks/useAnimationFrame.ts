@@ -7,11 +7,20 @@ import { useEffect, useRef } from "react";
 export function useAnimationFrame(callback: (time: number) => void) {
     // Store animation frame IDs
     const requestRef = useRef<number>(0);
+
+    // Store ref to callback
+    const callbackRef = useRef(callback);
+
+    // Update ref with most current callback 
+    useEffect(() => {
+        callbackRef.current = callback;
+    }, [callback])
   
+    // Set up animation
     useEffect(() => {
         // time param: timestamp, ms since the page loaded
         const animate = (time: number) => {
-            callback(time);
+            callbackRef.current(time);
             requestRef.current = requestAnimationFrame(animate);
         };
 
@@ -20,5 +29,5 @@ export function useAnimationFrame(callback: (time: number) => void) {
 
         // Clean up function
         return () => cancelAnimationFrame(requestRef.current!);
-    }, [callback]);
+    }, []);
 }
