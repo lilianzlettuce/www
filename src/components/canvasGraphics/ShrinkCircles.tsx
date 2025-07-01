@@ -20,6 +20,7 @@ interface ShrinkCirclesProps {
   defaultRadius?: number;
   circleColor?: string;
   attractionDistance?: number;
+  shrinkFactor?: number;
   debounceTime?: number;
   autoAnimStep?: number;
   maxRadius?: number;
@@ -33,6 +34,7 @@ const ShrinkCircles = ({
   defaultRadius = 3,
   circleColor = "black",
   attractionDistance = 200,
+  shrinkFactor = 1,
   debounceTime = 5500,
   autoAnimStep = 0.02,
   maxRadius = 50,
@@ -96,7 +98,7 @@ const ShrinkCircles = ({
 
         // Calculate target radius based on force (inverse of GrowthCircles)
         // Closer mouse = smaller radius
-        const targetRadius = defaultRadius * (1 - force * 0.8); // Scale factor for shrinking effect
+        const targetRadius = defaultRadius * (1 - force * shrinkFactor); // Scale factor for shrinking effect
         
         // Apply physics to radius with ease-in
         const radiusDiff = targetRadius - point.radius;
@@ -218,7 +220,7 @@ const ShrinkCircles = ({
   return (
     <canvas
       ref={canvasRef}
-      className="w-full h-full"
+      className="w-screen h-screen"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onTouchStart={handleTouchStart}

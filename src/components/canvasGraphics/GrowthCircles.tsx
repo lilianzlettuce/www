@@ -20,9 +20,9 @@ interface GrowthCirclesProps {
   defaultRadius?: number;
   circleColor?: string;
   attractionDistance?: number;
+  growthFactor?: number;
   debounceTime?: number;
   autoAnimStep?: number;
-  maxRadius?: number;
   minRadius?: number;
   easeInFactor?: number;
 }
@@ -33,9 +33,9 @@ const GrowthCircles = ({
   defaultRadius = 3,
   circleColor = "black",
   attractionDistance = 200,
+  growthFactor = 15,
   debounceTime = 5500,
   autoAnimStep = 0.02,
-  maxRadius = 50,
   minRadius = 0.5,
   easeInFactor = 0.85,
 }: GrowthCirclesProps) => {
@@ -95,7 +95,7 @@ const GrowthCircles = ({
                 }
 
                 // Calculate target radius based on force
-                const targetRadius = defaultRadius * (1 + force * 10); // Scale factor for dramatic effect
+                const targetRadius = defaultRadius * (1 + force * growthFactor); // Scale factor for dramatic effect
                 
                 // Apply physics to radius with ease-in
                 const radiusDiff = targetRadius - point.radius;
@@ -111,14 +111,14 @@ const GrowthCircles = ({
                 point.radius += point.vr;
                 
                 // Clamp radius to bounds
-                point.radius = Math.max(minRadius, Math.min(maxRadius, point.radius));
+                point.radius = Math.max(minRadius, point.radius);
                 
                 point.lastRadius = point.radius;
             } else {
                 // Auto-animate radius in a wave pattern
                 const waveOffset = Math.sin(autoAnimPhase.current + point.x * 0.01 + point.y * 0.01);
                 point.radius = point.lastRadius + waveOffset * animationRadius.current;
-                point.radius = Math.max(minRadius, Math.min(maxRadius, point.radius));
+                point.radius = Math.max(minRadius, point.radius);
             }
         }
 
@@ -131,7 +131,7 @@ const GrowthCircles = ({
         autoAnimPhase.current = 0;
         animationRadius.current = 1;
         }
-    }, [radiusPoints, debounceTime, attractionDistance, defaultRadius, minRadius, maxRadius, autoAnimStep, easeInFactor]);
+    }, [radiusPoints, debounceTime, attractionDistance, growthFactor, defaultRadius, minRadius, autoAnimStep, easeInFactor]);
 
     // Draw circles on canvas
     const drawCircles = useCallback(() => {
