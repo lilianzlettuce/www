@@ -3,7 +3,7 @@
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
-import { useRef, useCallback, useMemo, useEffect } from "react";
+import { useRef, useCallback, useEffect } from "react";
 
 type RadiusPoint = {
   originalRadius: number;

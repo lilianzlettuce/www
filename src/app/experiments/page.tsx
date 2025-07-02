@@ -29,8 +29,7 @@ export default async function ExperimentsPage() {
         />
 
         <GrowthCircles 
-          numRows={15}
-          numCols={30}
+          gridGap={30}
           defaultRadius={1}
           circleColor="#000000"
           attractionDistance={450}

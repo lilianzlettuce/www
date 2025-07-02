@@ -56,7 +56,7 @@ import { useRef } from "react";
 
 const CirclesCanvas = ({ numRows = 20, numCols = 40 }: { numRows?: number, numCols?: number }) => {
     const mousePosition = useMousePosition(); // Get mouse position
-    const { canvasRef, ctx, width, height, top, left } = useCanvas(); // Create canvas
+    const { canvasRef, ctx, width, height } = useCanvas(); // Create canvas
 
     // Animation state refs
     //const lastMouseMoveTime = useRef(Date.now());
