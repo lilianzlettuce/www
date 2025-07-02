@@ -4,7 +4,7 @@ import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
 import { useRef, useCallback, useEffect } from "react";
-import { Color, mapTo, parseColorString, mapColor, colorToString, getRandomGlitchColor } from "@/lib/utils";
+import { Color, parseColorString, colorToString, getRandomGlitchColor } from "@/lib/utils";
 
 type Pixel = {
   originalColor: Color;
@@ -52,7 +52,6 @@ const GlitchCircle = ({
 
     // Convert color string to color object, fallback to black
     const defaultColor = parseColorString(circleColor) || { r: 0, g: 0, b: 0, a: 1};
-    const endColor = parseColorString(circleEndColor) || { r: 255, g: 255, b: 255, a: 1};;
 
     // Create grid of pixels
     useEffect(() => {
@@ -86,7 +85,7 @@ const GlitchCircle = ({
     }, [width, height, pixelSize, circleColor, circleEndColor]);
 
     // Update radius values based on mouse position and animation state
-    const updatePixels = useCallback((mouseX: number, mouseY: number, timestamp?: number) => {
+    const updatePixels = useCallback((mouseX: number, mouseY: number) => {
         const now = Date.now();
         mouseActive.current = (now - lastMouseMoveTime.current) < debounceTime;
 
@@ -108,7 +107,7 @@ const GlitchCircle = ({
                     pixel.lastColor = pixel.color;
                 } else if (now - pixel.lastTouched < glitchDebounceTime) {
                     // Chance of glitch change, higher near center
-                    let glitchChance = 1 - (now - pixel.lastTouched) / glitchDebounceTime;
+                    const glitchChance = 1 - (now - pixel.lastTouched) / glitchDebounceTime;
 
                     if (Math.random() < Math.pow(glitchChance, 3.5)) {
                       pixel.color = getRandomGlitchColor();
@@ -224,7 +223,7 @@ const GlitchCircle = ({
     }, [updatePixels]);
 
     // Animation frame callback
-    const animate = (timestamp: number) => {
+    const animate = () => {
         if (!canvasRef.current || !ctx) return;
         
         // Calculate mouse position relative to canvas on viewport
@@ -232,11 +231,11 @@ const GlitchCircle = ({
         const mouseX = mousePosition.x - rect.left;
         const mouseY = mousePosition.y - rect.top;
         
-        updatePixels(mouseX, mouseY, timestamp);
+        updatePixels(mouseX, mouseY);
         drawCircles();
     };
 
-    useAnimationFrame((t) => animate(t));
+    useAnimationFrame(animate);
 
     return (
         <canvas
