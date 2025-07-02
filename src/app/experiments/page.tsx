@@ -2,6 +2,7 @@ import CirclesCanvas from "@/components/canvasGraphics/CirclesCanvas";
 import StarCanvas from "@/components/canvasGraphics/StarCanvas";
 import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import GrowthCircles from "@/components/canvasGraphics/GrowthCircles";
+import DitherCircle from "@/components/canvasGraphics/PixelCircle";
 /*import Link from "next/link";
 
 const contactInfo = [
@@ -16,6 +17,17 @@ export default async function ExperimentsPage() {
     <div className="min-h-screen bg-background p-20">
       <div className="flex flex-col items-center justify-center gap-0">
         <CirclesCanvas />
+
+        <DitherCircle 
+          pixelSize={50}
+          defaultRadius={50}
+          circleColor="rgb(255, 255, 0)"
+          circleEndColor="rgb(255, 0, 255)"
+          attractionDistance={100}
+          shrinkFactor={1.1}
+          minRadius={0.5}
+          easeInFactor={20}
+        />
 
         <ShrinkCircles 
           gridGap={25}
@@ -51,8 +63,8 @@ export default async function ExperimentsPage() {
           numLines={12}
           lineLength={100}
           starColor="#ff6b6b"
-          pointSize={20}
-          gridSize={5}
+          pointSize={10}
+          gridSize={10}
           lineThickness={5.5}
           debounceTime={5500}
         />
@@ -64,6 +76,16 @@ export default async function ExperimentsPage() {
           pointSize={10}
           gridSize={1}
           lineThickness={5.5}
+          debounceTime={5500}
+        />
+
+        <StarCanvas 
+          numLines={12}
+          lineLength={100}
+          starColor="#ff6b6b"
+          pointSize={1}
+          gridSize={1}
+          lineThickness={20}
           debounceTime={5500}
         />
 

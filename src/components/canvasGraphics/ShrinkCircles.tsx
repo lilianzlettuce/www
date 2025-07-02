@@ -62,26 +62,23 @@ const ShrinkCircles = ({
     const numCols = Math.floor(width / gridGap);
 
     // Populate grid
-    const points: RadiusPoint[] = [];
-    
     for (let i = 0; i < numRows; i++) {
-        const y = i * height / numRows + 10;
+      const y = i * height / numRows + 10;
+      
+      for (let j = 0; j < numCols; j++) {
+        const x = j * width / numCols + 10;
         
-        for (let j = 0; j < numCols; j++) {
-            const x = j * width / numCols + 10;
-            
-            points.push({
-                originalRadius: defaultRadius,
-                radius: defaultRadius,
-                lastRadius: defaultRadius,
-                vr: 0,
-                x: x,
-                y: y,
-            });
-        }
+        radiusPoints.current.push({
+          originalRadius: defaultRadius,
+          radius: defaultRadius,
+          lastRadius: defaultRadius,
+          vr: 0,
+          x: x,
+          y: y,
+        });
+      }
     }
     
-    radiusPoints.current = points;
   }, [width, height, gridGap, defaultRadius]);
 
   // Update radius values based on mouse position and animation state
@@ -168,8 +165,6 @@ const ShrinkCircles = ({
     const rect = canvasRef.current.getBoundingClientRect();
     const mouseX = mousePosition.x - rect.left;
     const mouseY = mousePosition.y - rect.top;
-
-    //console.log(mouseX, mouseY);
     
     lastMouseMoveTime.current = Date.now();
     updateRadiusPoints(mouseX, mouseY);
