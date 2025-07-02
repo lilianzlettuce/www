@@ -3,6 +3,7 @@ import StarCanvas from "@/components/canvasGraphics/StarCanvas";
 import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import GrowthCircles from "@/components/canvasGraphics/GrowthCircles";
 import DitherCircle from "@/components/canvasGraphics/PixelCircle";
+import GlitchCircle from "@/components/canvasGraphics/GlitchCircle";
 /*import Link from "next/link";
 
 const contactInfo = [
@@ -18,9 +19,18 @@ export default async function ExperimentsPage() {
       <div className="flex flex-col items-center justify-center gap-0">
         <CirclesCanvas />
 
+        <GlitchCircle 
+          pixelSize={20}
+          circleColor="rgb(0, 0, 0, 0)"
+          circleEndColor="rgb(255, 0, 255)"
+          attractionDistance={200}
+          shrinkFactor={1.1}
+          minRadius={0.5}
+          easeInFactor={0}
+        />
+
         <DitherCircle 
           pixelSize={50}
-          defaultRadius={50}
           circleColor="rgb(255, 255, 0)"
           circleEndColor="rgb(255, 0, 255)"
           attractionDistance={100}

@@ -4,19 +4,19 @@ import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
 import { useRef, useCallback, useEffect } from "react";
-import { Color, mapTo, parseColorString, mapColor, colorToString } from "@/lib/utils";
+import { Color, mapTo, parseColorString, mapColor, colorToString, getRandomGlitchColor } from "@/lib/utils";
 
 type Pixel = {
   originalColor: Color;
   color: Color;
-  lastColor: Color;
+  lastColor: Color | null;
   vc: Color; // velocity in color change
   vr: number; // velocity for radius
   x: number; // fixed position
   y: number; // fixed position
 };
 
-interface DitherCircleProps {
+interface GlitchCircleProps {
   pixelSize?: number;
   circleColor?: string;
   circleEndColor?: string;
@@ -29,7 +29,7 @@ interface DitherCircleProps {
   easeInFactor?: number;
 }
 
-const DitherCircle = ({
+const GlitchCircle = ({
   pixelSize = 30,
   circleColor = "rgb(0, 0, 0)",
   circleEndColor = "rgb(255, 255, 255)",
@@ -40,7 +40,7 @@ const DitherCircle = ({
   maxRadius = 50,
   minRadius = 0.5,
   easeInFactor = 0.85,
-}: DitherCircleProps) => {
+}: GlitchCircleProps) => {
     const mousePosition = useMousePosition();
     const { canvasRef, ctx, width, height } = useCanvas();
     
@@ -77,7 +77,7 @@ const DitherCircle = ({
                 pixels.current.push({
                     originalColor: defaultColor,
                     color: defaultColor,
-                    lastColor: defaultColor,
+                    lastColor: null,
                     vc: { r: 0, g: 0, b: 0, a: 0},
                     vr: 0,
                     x: x,
@@ -88,7 +88,7 @@ const DitherCircle = ({
     }, [width, height, pixelSize, circleColor, circleEndColor]);
 
     // Update radius values based on mouse position and animation state
-    const updatePixels = useCallback((mouseX: number, mouseY: number) => {
+    const updatePixels = useCallback((mouseX: number, mouseY: number, timestamp?: number) => {
         const now = Date.now();
         mouseActive.current = (now - lastMouseMoveTime.current) < debounceTime;
 
@@ -99,65 +99,30 @@ const DitherCircle = ({
                 const dy = pixel.y - mouseY;
                 const distance = Math.sqrt(dx * dx + dy * dy);
 
-                // Calculate force based on distance (inverse relationship)
-                let force = 0;
                 if (distance < attractionDistance) {
-                    // Direct relationship: closer = smaller radius
-                    // Value between 0 and 1
-                    force = (attractionDistance - distance) / attractionDistance;
-                    // Apply power curve for more dramatic effect
-                    //force = Math.pow(force, 2);
-                    force = 1 - Math.pow(1 - force, 3);
-                    //force = force * force * (3 - 2 * force);
+                    // Chance of glitch change, higher near center
+                    const glitchChance = 1 - (distance / attractionDistance); 
+                    if (Math.random() < Math.pow(glitchChance, 2)) {
+                      pixel.color = getRandomGlitchColor();
+                    }
+
+                    pixel.lastColor = pixel.color;
+                } else if (pixel.lastColor != null) {
+                    // Chance of glitch change, higher near center
+                    const glitchChance = 1 - (distance / (attractionDistance * 2)); ; 
+                    if (Math.random() < glitchChance * 0.5) {
+                      pixel.color = getRandomGlitchColor();
+                    }
+
+                    pixel.lastColor = pixel.color;
                 }
+            } else {
+                const t = performance.now() * 0.002;
+                const wave = Math.sin(pixel.x * 0.1 + t); // use y or both
 
-                /// **************
-
-                // Ignore force and shrinkfactor for now
-                // Calculate target color (in between start and end colors)
-
-                const targetColor = mapColor(defaultColor, (defaultVal, channel) =>
-                    //mapTo(distance, attractionDistance, 0, defaultVal, endColor[channel])
-                    //mapTo(defaultVal * (1 - force * shrinkFactor), 0, defaultVal, defaultVal, endColor[channel])
-                    //mapTo(distance, attractionDistance, 0, defaultVal, endColor[channel])
-                    mapTo(force, 0, 1, defaultVal, endColor[channel])
-                );
-                const colorDiff = mapColor(targetColor, (targetVal, channel) => 
-                    targetVal - pixel.color[channel]
-                );
-                const colorForce = mapColor(colorDiff, (diffVal) => 
-                    //Math.min(2, Math.abs(diffVal) / 10)
-                    Math.abs(diffVal) / easeInFactor
-                );
-
-                // Update velocity to tween between colors
-                pixel.vc = mapColor(pixel.vc, (velocity, channel) => {
-                    const diff = colorDiff[channel];
-                    const force = colorForce[channel];
-                    // use just force (not color force for glitch effect)
-                    return diff > 0
-                      ? (velocity + force) * shrinkFactor
-                      : (velocity - force) * shrinkFactor;
-                });
-                  
-                // Update radius with velocity
-                /*pixel.color = mapColor(pixel.color, (colorVal, channel) => 
-                    colorVal + pixel.vc[channel]
-                )*/
-
-                pixel.color = mapColor(pixel.color, (colorVal, channel) => {
-                    const diff = colorDiff[channel];
-                    const force = colorForce[channel];
-                    return diff > 0
-                      ? colorVal + force * 5
-                      : colorVal - force * 5;
-                });
-                  
-                
-                // Clamp colorto bounds
-                pixel.color = mapColor(pixel.color, (colorVal) => Math.max(0, Math.min(255, colorVal)));
-                
-                pixel.lastColor = pixel.color;
+                if (wave > 0.95) {
+                    pixel.color = getRandomGlitchColor();
+                }
             }
         }
 
@@ -247,7 +212,7 @@ const DitherCircle = ({
     }, [updatePixels]);
 
     // Animation frame callback
-    const animate = () => {
+    const animate = (timestamp: number) => {
         if (!canvasRef.current || !ctx) return;
         
         // Calculate mouse position relative to canvas on viewport
@@ -255,11 +220,11 @@ const DitherCircle = ({
         const mouseX = mousePosition.x - rect.left;
         const mouseY = mousePosition.y - rect.top;
         
-        updatePixels(mouseX, mouseY);
+        updatePixels(mouseX, mouseY, timestamp);
         drawCircles();
     };
 
-    useAnimationFrame(animate);
+    useAnimationFrame((t) => animate(t));
 
     return (
         <canvas
@@ -274,4 +239,4 @@ const DitherCircle = ({
     );
 };
 
-export default DitherCircle; 
+export default GlitchCircle; 

@@ -60,3 +60,18 @@ export function mapColor(
     });
     return result;
 }
+
+export function getRandomGlitchColor(): Color {
+    const palette = [
+      { r: 255, g: 0, b: 0, a: 1 },      // red
+      { r: 0, g: 255, b: 0, a: 1 },      // green
+      { r: 0, g: 0, b: 255, a: 1 },      // blue
+      { r: 255, g: 255, b: 0, a: 1 },    // yellow
+      { r: 0, g: 255, b: 255, a: 1 },    // cyan
+      { r: 255, g: 0, b: 255, a: 1 },    // magenta
+      { r: 255, g: 255, b: 255, a: 1 },  // white
+      { r: 0, g: 0, b: 0, a: 1 },        // black
+    ];
+    return palette[Math.floor(Math.random() * palette.length)];
+}
+  
