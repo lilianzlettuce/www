@@ -14,6 +14,7 @@ type Pixel = {
   vr: number; // velocity for radius
   x: number; // fixed position
   y: number; // fixed position
+  lastTouched: number;
 };
 
 interface GlitchCircleProps {
@@ -21,12 +22,10 @@ interface GlitchCircleProps {
   circleColor?: string;
   circleEndColor?: string;
   attractionDistance?: number;
-  shrinkFactor?: number;
+  glitchDebounceTime?: number;
   debounceTime?: number;
   autoAnimStep?: number;
-  maxRadius?: number;
-  minRadius?: number;
-  easeInFactor?: number;
+  fillMode?: boolean;
 }
 
 const GlitchCircle = ({
@@ -34,12 +33,10 @@ const GlitchCircle = ({
   circleColor = "rgb(0, 0, 0)",
   circleEndColor = "rgb(255, 255, 255)",
   attractionDistance = 200,
-  shrinkFactor = 1,
+  glitchDebounceTime = 500,
   debounceTime = 5500,
   autoAnimStep = 0.02,
-  maxRadius = 50,
-  minRadius = 0.5,
-  easeInFactor = 0.85,
+  fillMode = false
 }: GlitchCircleProps) => {
     const mousePosition = useMousePosition();
     const { canvasRef, ctx, width, height } = useCanvas();
@@ -82,6 +79,7 @@ const GlitchCircle = ({
                     vr: 0,
                     x: x,
                     y: y,
+                    lastTouched: 0
                 });
             }
         }
@@ -102,27 +100,41 @@ const GlitchCircle = ({
                 if (distance < attractionDistance) {
                     // Chance of glitch change, higher near center
                     const glitchChance = 1 - (distance / attractionDistance); 
-                    if (Math.random() < Math.pow(glitchChance, 2)) {
+                    if (Math.random() < Math.pow(glitchChance, 3.5)) {
                       pixel.color = getRandomGlitchColor();
                     }
 
+                    pixel.lastTouched = now;
                     pixel.lastColor = pixel.color;
-                } else if (pixel.lastColor != null) {
+                } else if (now - pixel.lastTouched < glitchDebounceTime) {
                     // Chance of glitch change, higher near center
-                    const glitchChance = 1 - (distance / (attractionDistance * 2)); ; 
-                    if (Math.random() < glitchChance * 0.5) {
+                    let glitchChance = 1 - (now - pixel.lastTouched) / glitchDebounceTime;
+
+                    if (Math.random() < Math.pow(glitchChance, 3.5)) {
                       pixel.color = getRandomGlitchColor();
                     }
 
                     pixel.lastColor = pixel.color;
+                } else {
+                    if (!fillMode) pixel.color = defaultColor;
                 }
             } else {
                 const t = performance.now() * 0.002;
-                const wave = Math.sin(pixel.x * 0.1 + t); // use y or both
+                /*const wave = Math.sin((pixel.y) * 0.1 + t * 0.9); // use y or both
 
                 if (wave > 0.95) {
                     pixel.color = getRandomGlitchColor();
+                }*/
+
+                const dx = pixel.x - 500;
+                const dy = pixel.y - 500;
+                const d = Math.sqrt(dx * dx + dy * dy);
+                const ripple = Math.sin(d * 0.2 - t * 0.9);
+
+                if (ripple > 0.95) {
+                    pixel.color = getRandomGlitchColor();
                 }
+
             }
         }
 
@@ -135,7 +147,7 @@ const GlitchCircle = ({
             autoAnimPhase.current = 0;
             animationRadius.current = 1;
         }
-    }, [pixels, , circleColor, circleEndColor, debounceTime, attractionDistance, minRadius, maxRadius, autoAnimStep, easeInFactor]);
+    }, [pixels, , circleColor, circleEndColor, debounceTime, attractionDistance, autoAnimStep]);
 
     // Draw circles on canvas
     const drawCircles = useCallback(() => {

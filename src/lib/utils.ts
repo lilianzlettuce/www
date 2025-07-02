@@ -71,6 +71,7 @@ export function getRandomGlitchColor(): Color {
       { r: 255, g: 0, b: 255, a: 1 },    // magenta
       { r: 255, g: 255, b: 255, a: 1 },  // white
       { r: 0, g: 0, b: 0, a: 1 },        // black
+      { r: 0, g: 0, b: 0, a: 0 },        // clear
     ];
     return palette[Math.floor(Math.random() * palette.length)];
 }

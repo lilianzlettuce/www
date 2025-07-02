@@ -23,10 +23,7 @@ export default async function ExperimentsPage() {
           pixelSize={20}
           circleColor="rgb(0, 0, 0, 0)"
           circleEndColor="rgb(255, 0, 255)"
-          attractionDistance={200}
-          shrinkFactor={1.1}
-          minRadius={0.5}
-          easeInFactor={0}
+          attractionDistance={30}
         />
 
         <DitherCircle 
