@@ -18,8 +18,7 @@ export default async function ExperimentsPage() {
         <CirclesCanvas />
 
         <ShrinkCircles 
-          numRows={20}
-          numCols={40}
+          gridGap={25}
           defaultRadius={45}
           circleColor="#000000"
           attractionDistance={900}
@@ -29,11 +28,11 @@ export default async function ExperimentsPage() {
         />
 
         <GrowthCircles 
-          gridGap={30}
+          gridGap={25}
           defaultRadius={1}
           circleColor="#000000"
-          attractionDistance={450}
-          growthFactor={25}
+          attractionDistance={500}
+          growthFactor={18}
           minRadius={1}
           easeInFactor={0.7}
         />  

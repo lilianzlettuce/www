@@ -3,7 +3,7 @@
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
-import { useRef, useCallback, useMemo } from "react";
+import { useRef, useCallback, useEffect } from "react";
 
 type RadiusPoint = {
   originalRadius: number;
@@ -15,8 +15,7 @@ type RadiusPoint = {
 };
 
 interface ShrinkCirclesProps {
-  numRows?: number;
-  numCols?: number;
+  gridGap?: number;
   defaultRadius?: number;
   circleColor?: string;
   attractionDistance?: number;
@@ -29,8 +28,7 @@ interface ShrinkCirclesProps {
 }
 
 const ShrinkCircles = ({
-  numRows = 20,
-  numCols = 40,
+  gridGap = 30,
   defaultRadius = 3,
   circleColor = "black",
   attractionDistance = 200,
@@ -42,7 +40,7 @@ const ShrinkCircles = ({
   easeInFactor = 0.85,
 }: ShrinkCirclesProps) => {
   const mousePosition = useMousePosition();
-  const { canvasRef, ctx, width, height, top, left } = useCanvas();
+  const { canvasRef, ctx, width, height } = useCanvas();
   
   // Animation state refs
   const lastMouseMoveTime = useRef(Date.now());
@@ -51,36 +49,47 @@ const ShrinkCircles = ({
   const animationRadius = useRef(1);
   const isDragging = useRef(false);
 
-  // Create grid of radius points
-  const radiusPoints = useMemo(() => {
+  const radiusPoints = useRef<RadiusPoint[]>([]); // store point grid
+
+  // Create grid of points
+  useEffect(() => {
+    console.log("Generating grid", width, height);
+    
+    if (width === 0 || height === 0) return;
+
+    // Calculate number of rows and columns
+    const numRows = Math.floor(height / gridGap);
+    const numCols = Math.floor(width / gridGap);
+
+    // Populate grid
     const points: RadiusPoint[] = [];
     
     for (let i = 0; i < numRows; i++) {
-      const y = i * height / numRows + 10;
-      
-      for (let j = 0; j < numCols; j++) {
-        const x = j * width / numCols + 10;
+        const y = i * height / numRows + 10;
         
-        points.push({
-          originalRadius: defaultRadius,
-          radius: defaultRadius,
-          lastRadius: defaultRadius,
-          vr: 0,
-          x: x,
-          y: y,
-        });
-      }
+        for (let j = 0; j < numCols; j++) {
+            const x = j * width / numCols + 10;
+            
+            points.push({
+                originalRadius: defaultRadius,
+                radius: defaultRadius,
+                lastRadius: defaultRadius,
+                vr: 0,
+                x: x,
+                y: y,
+            });
+        }
     }
     
-    return points;
-  }, [numRows, numCols, width, height, defaultRadius]);
+    radiusPoints.current = points;
+  }, [width, height, gridGap, defaultRadius]);
 
   // Update radius values based on mouse position and animation state
   const updateRadiusPoints = useCallback((mouseX: number, mouseY: number) => {
     const now = Date.now();
     mouseActive.current = (now - lastMouseMoveTime.current) < debounceTime;
 
-    for (const point of radiusPoints) {
+    for (const point of radiusPoints.current) {
       if (mouseActive.current) {
         // Calculate distance from mouse to circle center
         const dx = point.x - mouseX;
@@ -143,7 +152,7 @@ const ShrinkCircles = ({
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = circleColor;
 
-    for (const point of radiusPoints) {
+    for (const point of radiusPoints.current) {
       ctx.beginPath();
       ctx.arc(point.x, point.y, point.radius, 0, 2 * Math.PI);
       ctx.fill();
@@ -153,21 +162,18 @@ const ShrinkCircles = ({
 
   // Handle mouse events
   const handleMouseMove = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvasRef.current) return;
 
-    const rect = canvas.getBoundingClientRect();
+    // Calculate mouse position relative to canvas on viewport
+    const rect = canvasRef.current.getBoundingClientRect();
     const mouseX = mousePosition.x - rect.left;
     const mouseY = mousePosition.y - rect.top;
 
-    console.log(mouseX, mouseY);
-
-    //const mouseX = mousePosition.x - left;
-    //const mouseY = mousePosition.y - top + (typeof window !== 'undefined' ? window.scrollY : 0);
+    //console.log(mouseX, mouseY);
     
     lastMouseMoveTime.current = Date.now();
     updateRadiusPoints(mouseX, mouseY);
-  }, [mousePosition, left, top, updateRadiusPoints]);
+  }, [mousePosition, updateRadiusPoints]);
 
   const handleMouseLeave = useCallback(() => {
     lastMouseMoveTime.current = Date.now();
@@ -212,19 +218,14 @@ const ShrinkCircles = ({
 
   // Animation frame callback
   const animate = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    if (!ctx) return;
-
-    const rect = canvas.getBoundingClientRect();
+    if (!canvasRef.current || !ctx) return;
     
-    // Calculate relative mouse position
-    const relMousePos = {
-      x: mousePosition.x - rect.left,
-      y: mousePosition.y - rect.top //+ (typeof window !== 'undefined' ? window.scrollY : 0)
-    };
+    // Calculate mouse position relative to canvas on viewport
+    const rect = canvasRef.current.getBoundingClientRect();
+    const mouseX = mousePosition.x - rect.left;
+    const mouseY = mousePosition.y - rect.top;
     
-    updateRadiusPoints(relMousePos.x, relMousePos.y);
+    updateRadiusPoints(mouseX, mouseY);
     drawCircles();
   };
 

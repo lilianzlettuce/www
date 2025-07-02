@@ -189,15 +189,12 @@ const StarCanvas = ({
   }, [ctx, width, height, starColor, lines, snapToGrid, scaledGridSize, scaledPointSize]);
 
   // Handle mouse events
-  const handleMouseMove = useCallback((/*event: React.MouseEvent<HTMLCanvasElement>*/) => {
-    /*const rect = canvasRef.current?.getBoundingClientRect();
+  const handleMouseMove = useCallback(() => {
+    const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect) return;
-    
-    const mouseX = event.clientX - rect.left;
-    const mouseY = event.clientY - rect.top;*/
 
-    const mouseX = mousePosition.x - left;
-    const mouseY = mousePosition.y - top;
+    const mouseX = mousePosition.x - rect.left;
+    const mouseY = mousePosition.y - rect.top;
     
     lastMouseMoveTime.current = Date.now();
     updatePoints(mouseX, mouseY);
@@ -246,15 +243,14 @@ const StarCanvas = ({
 
   // Animation frame callback
   const animate = useCallback(() => {
-    if (!ctx) return;
+    const rect = canvasRef.current?.getBoundingClientRect();
+    if (!ctx || !rect) return;
     
-    // Calculate relative mouse position
-    const relMousePos = {
-      x: mousePosition.x - left,
-      y: mousePosition.y - top + (typeof window !== 'undefined' ? window.scrollY : 0)
-    };
+    // Calculate mouse position relative to canvas on viewport
+    const mouseX = mousePosition.x - rect.left;
+    const mouseY = mousePosition.y - rect.top;
     
-    updatePoints(relMousePos.x, relMousePos.y);
+    updatePoints(mouseX, mouseY);
     drawLines();
   }, [ctx, mousePosition, left, top, updatePoints, drawLines]);
 

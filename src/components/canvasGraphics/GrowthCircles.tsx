@@ -81,28 +81,6 @@ const GrowthCircles = ({
         
         radiusPoints.current = points;
     }, [width, height, gridGap, defaultRadius]);
-    /*const radiusPoints = useMemo(() => {
-        const points: RadiusPoint[] = [];
-        
-        for (let i = 0; i < numRows; i++) {
-            const y = i * height / numRows + 10;
-            
-            for (let j = 0; j < numCols; j++) {
-                const x = j * width / numCols + 10;
-                
-                points.push({
-                    originalRadius: defaultRadius,
-                    radius: defaultRadius,
-                    lastRadius: defaultRadius,
-                    vr: 0,
-                    x: x,
-                    y: y,
-                });
-            }
-        }
-        
-        return points;
-    }, [numRows, numCols, width, height, defaultRadius]);*/
 
     // Update radius values based on mouse position and animation state
     const updateRadiusPoints = useCallback((mouseX: number, mouseY: number) => {
@@ -243,17 +221,13 @@ const GrowthCircles = ({
     const animate = () => {
         if (!canvasRef.current) return;
         if (!ctx) return;
-    
+        
+        // Calculate mouse position relative to canvas on viewport
         const rect = canvasRef.current.getBoundingClientRect();
+        const mouseX = mousePosition.x - rect.left;
+        const mouseY = mousePosition.y - rect.top;
         
-        // Calculate relative mouse position
-        const relMousePos = {
-            x: mousePosition.x - rect.left,
-            y: mousePosition.y - rect.top + (typeof window !== 'undefined' ? window.scrollY : 0)
-        };
-        //console.log(relMousePos);
-        
-        updateRadiusPoints(relMousePos.x, relMousePos.y);
+        updateRadiusPoints(mouseX, mouseY);
         drawCircles();
     };
 
