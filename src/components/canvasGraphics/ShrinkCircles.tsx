@@ -160,6 +160,8 @@ const ShrinkCircles = ({
     const mouseX = mousePosition.x - rect.left;
     const mouseY = mousePosition.y - rect.top;
 
+    console.log(mouseX, mouseY);
+
     //const mouseX = mousePosition.x - left;
     //const mouseY = mousePosition.y - top + (typeof window !== 'undefined' ? window.scrollY : 0);
     
@@ -210,12 +212,16 @@ const ShrinkCircles = ({
 
   // Animation frame callback
   const animate = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
     if (!ctx) return;
+
+    const rect = canvas.getBoundingClientRect();
     
     // Calculate relative mouse position
     const relMousePos = {
-      x: mousePosition.x - left,
-      y: mousePosition.y - top //+ (typeof window !== 'undefined' ? window.scrollY : 0)
+      x: mousePosition.x - rect.left,
+      y: mousePosition.y - rect.top //+ (typeof window !== 'undefined' ? window.scrollY : 0)
     };
     
     updateRadiusPoints(relMousePos.x, relMousePos.y);

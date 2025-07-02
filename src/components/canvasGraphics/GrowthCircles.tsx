@@ -182,8 +182,17 @@ const GrowthCircles = ({
 
     // Handle mouse events
     const handleMouseMove = useCallback(() => {
-        const mouseX = mousePosition.x - left;
-        const mouseY = mousePosition.y - top + (typeof window !== 'undefined' ? window.scrollY : 0);
+        if (!canvasRef.current) return;
+    
+        // Get relative mouse position
+        const rect = canvasRef.current.getBoundingClientRect();
+        const mouseX = mousePosition.x - rect.left;
+        const mouseY = mousePosition.y - rect.top;
+    
+        console.log(mouseX, mouseY);
+
+        /*const mouseX = mousePosition.x - left;
+        const mouseY = mousePosition.y - top + (typeof window !== 'undefined' ? window.scrollY : 0);*/
         
         lastMouseMoveTime.current = Date.now();
         updateRadiusPoints(mouseX, mouseY);
@@ -232,14 +241,17 @@ const GrowthCircles = ({
 
     // Animation frame 
     const animate = () => {
+        if (!canvasRef.current) return;
         if (!ctx) return;
+    
+        const rect = canvasRef.current.getBoundingClientRect();
         
         // Calculate relative mouse position
         const relMousePos = {
-            x: mousePosition.x - left,
-            y: mousePosition.y - top + (typeof window !== 'undefined' ? window.scrollY : 0)
+            x: mousePosition.x - rect.left,
+            y: mousePosition.y - rect.top + (typeof window !== 'undefined' ? window.scrollY : 0)
         };
-        console.log(relMousePos);
+        //console.log(relMousePos);
         
         updateRadiusPoints(relMousePos.x, relMousePos.y);
         drawCircles();
