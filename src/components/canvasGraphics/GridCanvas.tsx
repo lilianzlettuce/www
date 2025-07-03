@@ -4,7 +4,7 @@ import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
 import { useRef, useCallback, useEffect } from "react";
-import { Color, colorToString, getRandomGlitchColor } from "@/lib/utils";
+import { Color, colorToString, getRandomGlitchColor } from "@/lib/colorProcessing";
 
 type Point = {
   originalX: number;

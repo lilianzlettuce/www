@@ -1,10 +1,10 @@
 /*import CirclesCanvas from "@/components/canvasGraphics/CirclesCanvas";
 import StarCanvas from "@/components/canvasGraphics/StarCanvas";
-import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import GrowthCircles from "@/components/canvasGraphics/GrowthCircles";
-import DitherCircle from "@/components/canvasGraphics/PixelCircle";
+import PixelCircle from "@/components/canvasGraphics/PixelCircle";
 import GlitchCircle from "@/components/canvasGraphics/GlitchCircle";
 import GridCanvas from "@/components/canvasGraphics/GridCanvas";*/
+import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import ImagePixelCanvas from "@/components/canvasGraphics/ImagePixelCanvas";
 import Image from "next/image";
 /*import Link from "next/link";
@@ -28,7 +28,7 @@ export default async function ExperimentsPage() {
             pointSize={2}           // Size of each point
             gridSize={2}            // Grid spacing (affects resolution)
             attractionDistance={20} // Mouse influence range
-            debounceTime={3000}     // Auto-animation delay
+            debounceTime={3000000}     // Auto-animation delay
             autoAnimStep={0.01}
             maxRadius={55}
             animSpeed={1.1}
@@ -40,6 +40,17 @@ export default async function ExperimentsPage() {
           alt="" 
           width={100}
           height={0}/>
+
+        <ShrinkCircles 
+          gridGap={25}
+          defaultRadius={45}
+          circleColor="#000000"
+          attractionDistance={900}
+          shrinkFactor={1}
+          minRadius={0.5}
+          delayFactor={0.85}
+          delayCap={0.1}
+        />
         
 
         {/*<GridCanvas 
@@ -56,7 +67,7 @@ export default async function ExperimentsPage() {
           attractionDistance={30}
         />
 
-        <DitherCircle 
+        <PixelCircle 
           pixelSize={50}
           circleColor="rgb(255, 255, 0)"
           circleEndColor="rgb(255, 0, 255)"

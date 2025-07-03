@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Color } from "@/lib/utils";
+import { Color } from "@/lib/colorProcessing";
 
 interface UseImagePixelsResult {
   pixels: Color[];
@@ -18,6 +18,7 @@ export function useImagePixels(src: string): UseImagePixelsResult {
     const [isImageLoaded, setisImageLoaded] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    // Load and process image
     useEffect(() => {
         if (!src) return;
 
@@ -25,6 +26,7 @@ export function useImagePixels(src: string): UseImagePixelsResult {
         image.crossOrigin = "anonymous";
 
         image.onload = () => {
+            // Draw image to ghost canvas to get the image data (pixels)
             const canvas = document.createElement("canvas");
             const ctx = canvas.getContext("2d");
             if (!ctx) {
@@ -37,10 +39,12 @@ export function useImagePixels(src: string): UseImagePixelsResult {
             setimageWidth(image.width);
             setimageHeight(image.height);
 
+            // Get img data array (each element is 1 val)
             ctx.drawImage(image, 0, 0);
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             const data = imageData.data;
 
+            // Convert data array to pixel color array
             const rgbPixels: Color[] = [];
             for (let i = 0; i < data.length; i += 4) {
                 rgbPixels.push({

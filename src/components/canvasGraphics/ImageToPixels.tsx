@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Color } from "@/lib/utils";
+import { Color } from "@/lib/colorProcessing";
 
 interface ImageToPixelsProps {
   src: string;

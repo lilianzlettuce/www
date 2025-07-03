@@ -4,7 +4,8 @@ import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
 import { useRef, useCallback, useEffect } from "react";
-import { Color, mapTo, parseColorString, mapColor, colorToString } from "@/lib/utils";
+import { Color, parseColorString, mapColor, colorToString } from "@/lib/colorProcessing";
+import { mapTo } from "@/lib/utils";
 
 type Pixel = {
   originalColor: Color;
@@ -16,7 +17,7 @@ type Pixel = {
   y: number; // fixed position
 };
 
-interface DitherCircleProps {
+interface PixelCircleProps {
   pixelSize?: number;
   circleColor?: string;
   circleEndColor?: string;
@@ -29,7 +30,7 @@ interface DitherCircleProps {
   easeInFactor?: number;
 }
 
-const DitherCircle = ({
+const PixelCircle = ({
   pixelSize = 30,
   circleColor = "rgb(0, 0, 0)",
   circleEndColor = "rgb(255, 255, 255)",
@@ -40,7 +41,7 @@ const DitherCircle = ({
   maxRadius = 50,
   minRadius = 0.5,
   easeInFactor = 0.85,
-}: DitherCircleProps) => {
+}: PixelCircleProps) => {
     const mousePosition = useMousePosition();
     const { canvasRef, ctx, width, height } = useCanvas();
     
@@ -274,4 +275,4 @@ const DitherCircle = ({
     );
 };
 
-export default DitherCircle; 
+export default PixelCircle; 

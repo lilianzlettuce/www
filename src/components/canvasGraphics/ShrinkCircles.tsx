@@ -24,7 +24,8 @@ interface ShrinkCirclesProps {
   autoAnimStep?: number;
   maxRadius?: number;
   minRadius?: number;
-  easeInFactor?: number;
+  delayFactor?: number;
+  delayCap?: number;
 }
 
 const ShrinkCircles = ({
@@ -37,7 +38,8 @@ const ShrinkCircles = ({
   autoAnimStep = 0.02,
   maxRadius = 50,
   minRadius = 0.5,
-  easeInFactor = 0.85,
+  delayFactor = 100,
+  delayCap = 0.1,
 }: ShrinkCirclesProps) => {
   const mousePosition = useMousePosition();
   const { canvasRef, ctx, width, height } = useCanvas();
@@ -108,12 +110,12 @@ const ShrinkCircles = ({
         
         // Apply physics to radius with ease-in
         const radiusDiff = targetRadius - point.radius;
-        const radiusForce = Math.min(0.1, Math.abs(radiusDiff) / 100);
+        const radiusForce = Math.min(delayCap, Math.abs(radiusDiff) / delayFactor);
 
         if (radiusDiff > 0) {
-          point.vr = (point.vr + radiusForce) * easeInFactor;
+          point.vr = (point.vr + radiusForce) * 0.85;
         } else {
-          point.vr = (point.vr - radiusForce) * easeInFactor;
+          point.vr = (point.vr - radiusForce) * 0.85;
         }
         
         // Update radius with velocity
@@ -140,7 +142,7 @@ const ShrinkCircles = ({
       autoAnimPhase.current = 0;
       animationRadius.current = 1;
     }
-  }, [radiusPoints, debounceTime, attractionDistance, defaultRadius, minRadius, maxRadius, autoAnimStep, easeInFactor]);
+  }, [radiusPoints, debounceTime, attractionDistance, defaultRadius, minRadius, maxRadius, autoAnimStep, delayFactor]);
 
   // Draw circles on canvas
   const drawCircles = useCallback(() => {

@@ -3,8 +3,8 @@
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
-import { useRef, useCallback, useEffect, useState, useMemo } from "react";
-import { Color, colorToString, getBrightness } from "@/lib/utils";
+import { useRef, useCallback, useEffect, useMemo } from "react";
+import { Color, colorToString } from "@/lib/colorProcessing";
 import { useImagePixels } from "@/hooks/useImagePixels";
 
 type Point = {
@@ -29,7 +29,6 @@ interface ImagePixelCanvasProps {
     autoAnimStep?: number;
     maxRadius?: number;
     animSpeed?: number;
-    onPixelsExtracted?: (pixels: Color[], width: number, height: number) => void;
 }
 
 const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
@@ -42,7 +41,6 @@ const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
     autoAnimStep = 0.02,
     maxRadius = 95,
     animSpeed = 1.1,
-    onPixelsExtracted
 }) => {
     const mousePosition = useMousePosition();
     
