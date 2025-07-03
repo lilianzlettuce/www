@@ -40,7 +40,7 @@ const StarCanvas = ({
   maxRadius = 95,
 }: StarCanvasProps) => {
   const mousePosition = useMousePosition();
-  const { canvasRef, ctx, width, height, top, left } = useCanvas();
+  const { canvasRef, ctx, width, height } = useCanvas();
   
   // Animation state refs
   const lastMouseMoveTime = useRef(Date.now());

@@ -41,7 +41,7 @@ const ImageToPixels: React.FC<ImageToPixelsProps> = ({ src, onPixelsExtracted })
         setPixels(rgbPixels);
 
         if (onPixelsExtracted) {
-            onPixelsExtracted(rgbPixels, canvas.width, canvas.height);
+            onPixelsExtracted(pixels, canvas.width, canvas.height);
         }
     };
 
