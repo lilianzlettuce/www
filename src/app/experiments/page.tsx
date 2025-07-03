@@ -5,6 +5,7 @@ import GrowthCircles from "@/components/canvasGraphics/GrowthCircles";
 import DitherCircle from "@/components/canvasGraphics/PixelCircle";
 import GlitchCircle from "@/components/canvasGraphics/GlitchCircle";
 import GridCanvas from "@/components/canvasGraphics/GridCanvas";
+import ImagePixelCanvas from "@/components/canvasGraphics/ImagePixelCanvas";
 /*import Link from "next/link";
 
 const contactInfo = [
@@ -18,9 +19,20 @@ export default async function ExperimentsPage() {
   return (
     <div className="min-h-screen bg-background p-20">
       <div className="flex flex-col items-center justify-center gap-0">
-        <CirclesCanvas />
+        
+        <ImagePixelCanvas 
+          src="/img/lowRes/jieg.jpeg"
+          pointSize={4}           // Size of each point
+          gridSize={4.5}            // Grid spacing (affects resolution)
+          attractionDistance={30} // Mouse influence range
+          debounceTime={1000}     // Auto-animation delay
+          autoAnimStep={0.1}
+          maxRadius={95}
+          animSpeed={1.1}
+        />
+        
 
-        <GridCanvas 
+        {/*<GridCanvas 
           gridSize={5}
           pointColor="#000000"
           pointSize={5}
@@ -63,6 +75,8 @@ export default async function ExperimentsPage() {
           minRadius={1}
           easeInFactor={0.7}
         />  
+
+        <CirclesCanvas />
 
         <StarCanvas 
           numLines={8}
@@ -112,7 +126,7 @@ export default async function ExperimentsPage() {
           gridSize={1}
           lineThickness={1}
           debounceTime={5500}
-        />
+        />*/}
 
         {/* Use below to test if html elements work on top of canvas. */}
         {/*<div className="absolute z-0">
