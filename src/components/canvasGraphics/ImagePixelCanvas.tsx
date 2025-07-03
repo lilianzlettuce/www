@@ -20,6 +20,7 @@ type Point = {
 
 interface ImagePixelCanvasProps {
     src: string;
+    scaleFactor?: number;
     pointSize?: number;
     gridSize?: number;
     attractionDistance?: number;
@@ -32,6 +33,7 @@ interface ImagePixelCanvasProps {
 
 const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
     src,
+    scaleFactor = 1.2,
     pointSize = 3,
     gridSize = 5,
     attractionDistance = 200,
@@ -80,7 +82,7 @@ const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
         // Calculate scale to fit image within viewport
         const scaleX = maxWidth / imageWidth;
         const scaleY = maxHeight / imageHeight;
-        const scale = Math.min(scaleX, scaleY, 1) * 1.2; // scale down
+        const scale = Math.min(scaleX, scaleY, 1) * scaleFactor; // scale down
         
         return {
             width: Math.floor(imageWidth * scale),

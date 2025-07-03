@@ -1,11 +1,12 @@
-import CirclesCanvas from "@/components/canvasGraphics/CirclesCanvas";
+/*import CirclesCanvas from "@/components/canvasGraphics/CirclesCanvas";
 import StarCanvas from "@/components/canvasGraphics/StarCanvas";
 import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import GrowthCircles from "@/components/canvasGraphics/GrowthCircles";
 import DitherCircle from "@/components/canvasGraphics/PixelCircle";
 import GlitchCircle from "@/components/canvasGraphics/GlitchCircle";
-import GridCanvas from "@/components/canvasGraphics/GridCanvas";
+import GridCanvas from "@/components/canvasGraphics/GridCanvas";*/
 import ImagePixelCanvas from "@/components/canvasGraphics/ImagePixelCanvas";
+import Image from "next/image";
 /*import Link from "next/link";
 
 const contactInfo = [
@@ -20,16 +21,25 @@ export default async function ExperimentsPage() {
     <div className="min-h-screen bg-background p-20">
       <div className="flex flex-col items-center justify-center gap-0">
         
-        <ImagePixelCanvas 
-          src="/img/lowRes/jieg.jpeg"
-          pointSize={4}           // Size of each point
-          gridSize={4.5}            // Grid spacing (affects resolution)
-          attractionDistance={30} // Mouse influence range
-          debounceTime={1000}     // Auto-animation delay
-          autoAnimStep={0.1}
-          maxRadius={95}
-          animSpeed={1.1}
-        />
+        <div className="z-10">
+          <ImagePixelCanvas
+            src="/img/lowRes/rick.jpg"
+            scaleFactor={1.4}
+            pointSize={2}           // Size of each point
+            gridSize={2}            // Grid spacing (affects resolution)
+            attractionDistance={20} // Mouse influence range
+            debounceTime={3000}     // Auto-animation delay
+            autoAnimStep={0.01}
+            maxRadius={55}
+            animSpeed={1.1}
+          />
+        </div>
+
+        <Image className="z-0 relative top-[-170px] left-[-20px]"
+          src="/img/lowRes/rick.jpg" 
+          alt="" 
+          width={100}
+          height={0}/>
         
 
         {/*<GridCanvas 
