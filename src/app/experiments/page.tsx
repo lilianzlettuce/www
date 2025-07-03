@@ -4,6 +4,7 @@ import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import GrowthCircles from "@/components/canvasGraphics/GrowthCircles";
 import DitherCircle from "@/components/canvasGraphics/PixelCircle";
 import GlitchCircle from "@/components/canvasGraphics/GlitchCircle";
+import GridCanvas from "@/components/canvasGraphics/GridCanvas";
 /*import Link from "next/link";
 
 const contactInfo = [
@@ -18,6 +19,13 @@ export default async function ExperimentsPage() {
     <div className="min-h-screen bg-background p-20">
       <div className="flex flex-col items-center justify-center gap-0">
         <CirclesCanvas />
+
+        <GridCanvas 
+          gridSize={5}
+          pointColor="#000000"
+          pointSize={5}
+          attractionDistance={50}
+        />
 
         <GlitchCircle 
           pixelSize={20}

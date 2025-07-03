@@ -242,7 +242,7 @@ const StarCanvas = ({
   }, [updatePoints]);
 
   // Animation frame callback
-  const animate = useCallback(() => {
+  const animate = () => {
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!ctx || !rect) return;
     
@@ -252,7 +252,7 @@ const StarCanvas = ({
     
     updatePoints(mouseX, mouseY);
     drawLines();
-  }, [ctx, mousePosition, left, top, updatePoints, drawLines]);
+  };
 
   useAnimationFrame(animate);
 
