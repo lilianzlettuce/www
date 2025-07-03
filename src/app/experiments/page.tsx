@@ -21,7 +21,7 @@ export default async function ExperimentsPage() {
     <div className="min-h-screen bg-background p-20">
       <div className="flex flex-col items-center justify-center gap-0">
         
-        <div className="z-10">
+        {/*<div className="z-10">
           <ImagePixelCanvas
             src="/img/lowRes/pineapple.jpg"
             scaleFactor={1.4}
@@ -42,18 +42,92 @@ export default async function ExperimentsPage() {
           height={0}/>
 
         <ShrinkCircles 
-          gridGap={25}
-          defaultRadius={45}
+          imageSrc="/img/lowRes/pineapple.jpg"
+          scaleFactor={1.8}
+          gridGap={2}
           circleColor="#000000"
-          attractionDistance={900}
+          attractionDistance={200}
           shrinkFactor={1}
           minRadius={0.5}
+          maxRadius={15}
+          delayFactor={0.85}
+          delayCap={0.1}
+          debounceTime={3000}
+        />*/}
+
+        <ShrinkCircles 
+          imageSrc="/img/lowRes/pineapple4.jpg"
+          scaleFactor={1.8}
+          gridGap={2}
+          circleColor="#000000"
+          attractionDistance={200}
+          shrinkFactor={1}
+          minRadius={0.5}
+          maxRadius={4}
+          delayFactor={0.85}
+          delayCap={0.1}
+          debounceTime={3000}
+        />
+
+        {/*
+
+        <ShrinkCircles 
+          imageSrc="/img/lowRes/jieg.jpeg"
+          scaleFactor={0.8}
+          gridGap={10}
+          circleColor="#000000"
+          attractionDistance={200}
+          shrinkFactor={1}
+          minRadius={0.5}
+          maxRadius={4}
+          delayFactor={0.85}
+          delayCap={0.1}
+          debounceTime={3000}
+        />
+
+        <ShrinkCircles 
+          imageSrc="/img/lowRes/pineapple.jpg"
+          scaleFactor={1.8}
+          gridGap={2}
+          circleColor="#000000"
+          attractionDistance={200}
+          shrinkFactor={1}
+          minRadius={0.5}
+          maxRadius={5}
+          delayFactor={0.85}
+          delayCap={0.1}
+          debounceTime={3000000}
+        />
+
+        <ShrinkCircles 
+          imageSrc="/img/lowRes/rick.jpg"
+          scaleFactor={0.8}
+          gridGap={6}
+          defaultRadius={25}
+          circleColor="#000000"
+          attractionDistance={400}
+          shrinkFactor={0.7}
+          minRadius={0.5}
+          maxRadius={11}
           delayFactor={0.85}
           delayCap={0.1}
         />
-        
 
-        {/*<GridCanvas 
+        <ShrinkCircles 
+          imageSrc="/img/lowRes/pineapple3.jpg"
+          scaleFactor={1}
+          gridGap={10}
+          circleColor="#000000"
+          attractionDistance={200}
+          shrinkFactor={1}
+          minRadius={0.5}
+          maxRadius={4}
+          delayFactor={0.85}
+          delayCap={0.1}
+          debounceTime={3000000}
+        />
+
+        <GridCanvas 
           gridSize={5}
           pointColor="#000000"
           pointSize={5}

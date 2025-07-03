@@ -3,7 +3,10 @@
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
-import { useRef, useCallback, useEffect } from "react";
+import { useRef, useCallback, useEffect, useMemo } from "react";
+import { useImagePixels } from "@/hooks/useImagePixels";
+import { getBrightness } from "@/lib/colorProcessing";
+import { mapTo } from "@/lib/utils";
 
 type RadiusPoint = {
   originalRadius: number;
@@ -15,6 +18,8 @@ type RadiusPoint = {
 };
 
 interface ShrinkCirclesProps {
+  imageSrc?: string;
+  scaleFactor?: number;
   gridGap?: number;
   defaultRadius?: number;
   circleColor?: string;
@@ -29,6 +34,8 @@ interface ShrinkCirclesProps {
 }
 
 const ShrinkCircles = ({
+  imageSrc, 
+  scaleFactor = 1.2,
   gridGap = 30,
   defaultRadius = 3,
   circleColor = "black",
@@ -42,7 +49,43 @@ const ShrinkCircles = ({
   delayCap = 0.1,
 }: ShrinkCirclesProps) => {
   const mousePosition = useMousePosition();
-  const { canvasRef, ctx, width, height } = useCanvas();
+  const { pixels, imageWidth, imageHeight, isImageLoaded } = useImagePixels(imageSrc || "");
+
+  const scale = useMemo(() => {
+    const breakpointMobile = 640;
+    const isMobile = typeof window !== 'undefined' ? window.innerWidth < breakpointMobile : false;
+    return isMobile ? 1.5 : 3;
+  }, []);
+
+  const canvasDimensions = useMemo(() => {
+    if (!imageSrc || !isImageLoaded || imageWidth === 0 || imageHeight === 0) {
+      return { width: undefined, height: undefined };
+    }
+
+    // Get viewport dimensions
+    const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 800;
+    const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 600;
+    
+    // Calculate max dimensions that fit in viewport
+    const maxWidth = viewportWidth * 0.9;
+    const maxHeight = viewportHeight * 0.9;
+
+    // Calculate scale to fit image within viewport
+    const scaleX = maxWidth / imageWidth;
+    const scaleY = maxHeight / imageHeight;
+    const imgScale = Math.min(scaleX, scaleY, 1) * scaleFactor; // scale down
+
+    // Calculate canvas dimensions based on image size
+    return {
+      width: Math.floor(imageWidth * imgScale),
+      height: Math.floor(imageHeight * imgScale),
+      imgScale,
+    };
+  }, [imageSrc, isImageLoaded, imageWidth, imageHeight, scale]);
+
+  const { canvasRef, ctx, width, height } = useCanvas(
+    { width: canvasDimensions.width, height: canvasDimensions.height }
+  );
   
   // Animation state refs
   const lastMouseMoveTime = useRef(Date.now());
@@ -53,35 +96,56 @@ const ShrinkCircles = ({
 
   const radiusPoints = useRef<RadiusPoint[]>([]); // store point grid
 
-  // Create grid of points
+  // Create grid of points (image or default)
   useEffect(() => {
-    console.log("Generating grid", width, height);
-    
     if (width === 0 || height === 0) return;
+    if (imageSrc && !isImageLoaded) return;
 
-    // Calculate number of rows and columns
-    const numRows = Math.floor(height / gridGap);
-    const numCols = Math.floor(width / gridGap);
+    // Clear existing points
+    radiusPoints.current = [];
 
-    // Populate grid
+    // Calculate number of rows, columns, and gap btw points
+    let numRows, numCols, gap;
+    if (imageSrc && isImageLoaded && canvasDimensions.imgScale) {
+      // Scale to image dimensions
+      gap = gridGap * canvasDimensions.imgScale;
+    } else {
+      // Default canvas
+      gap = gridGap;
+    }
+    numRows = Math.floor(height / gap);
+    numCols = Math.floor(width / gap);
+
     for (let i = 0; i < numRows; i++) {
-      const y = i * height / numRows + 10;
-      
+      const y = i * height / numRows + 10; // current row
+
       for (let j = 0; j < numCols; j++) {
-        const x = j * width / numCols + 10;
-        
+        const x = j * width / numCols + 10; // current column
+
+        let initialRadius = defaultRadius;
+        if (imageSrc && isImageLoaded && pixels.length > 0 && imageWidth && imageHeight) {
+          // Get corresponding pixel in image
+          const imageX = Math.floor((j / numCols) * imageWidth);
+          const imageY = Math.floor((i / numRows) * imageHeight);
+          const pixelIndex = imageY * imageWidth + imageX;
+          const pixel = pixels[pixelIndex];
+          if (pixel) {
+            // Map brightness to point radius
+            const brightness = getBrightness(pixel);
+            initialRadius = mapTo(brightness, 0, 255, maxRadius, minRadius);
+          }
+        }
         radiusPoints.current.push({
-          originalRadius: defaultRadius,
-          radius: defaultRadius,
-          lastRadius: defaultRadius,
+          originalRadius: initialRadius,
+          radius: initialRadius,
+          lastRadius: initialRadius,
           vr: 0,
           x: x,
           y: y,
         });
       }
     }
-    
-  }, [width, height, gridGap, defaultRadius]);
+  }, [width, height, gridGap, defaultRadius, imageSrc, isImageLoaded, pixels, imageWidth, imageHeight, minRadius, maxRadius, canvasDimensions.imgScale]);
 
   // Update radius values based on mouse position and animation state
   const updateRadiusPoints = useCallback((mouseX: number, mouseY: number) => {
@@ -106,7 +170,7 @@ const ShrinkCircles = ({
 
         // Calculate target radius based on force (inverse of GrowthCircles)
         // Closer mouse = smaller radius
-        const targetRadius = defaultRadius * (1 - force * shrinkFactor); // Scale factor for shrinking effect
+        const targetRadius = point.originalRadius * (1 - force * shrinkFactor); // Scale factor for shrinking effect
         
         // Apply physics to radius with ease-in
         const radiusDiff = targetRadius - point.radius;
@@ -127,8 +191,31 @@ const ShrinkCircles = ({
         point.lastRadius = point.radius;
       } else {
         // Auto-animate radius in a wave pattern
-        const waveOffset = Math.sin(autoAnimPhase.current + point.x * 0.01 + point.y * 0.01);
+        /*const waveOffset = Math.sin(autoAnimPhase.current + point.x * 0.01 + point.y * 0.01);
         point.radius = point.lastRadius + waveOffset * animationRadius.current;
+        point.radius = Math.max(minRadius, Math.min(maxRadius, point.radius));*/
+        
+        // Auto-animate radius in a pulsating pattern from center
+        const centerX = width / 2;
+        const centerY = height / 2;
+        
+        // Calculate distance from center
+        const dx = point.x - centerX;
+        const dy = point.y - centerY;
+        const distanceFromCenter = Math.sqrt(dx * dx + dy * dy);
+        
+        // Create a pulsating wave that radiates from center
+        // Points closer to center pulsate first, creating a ripple effect
+        const maxDistance = Math.sqrt(centerX * centerX + centerY * centerY);
+        const normalizedDistance = distanceFromCenter / maxDistance;
+        const phaseOffset = normalizedDistance * Math.PI * 2; // Full wave cycle across radius
+        
+        const pulsateOffset = Math.sin(autoAnimPhase.current + phaseOffset) * animationRadius.current;
+
+        console.log(distanceFromCenter);
+        
+        // Apply pulsating effect to radius
+        point.radius = point.originalRadius + pulsateOffset * 2;
         point.radius = Math.max(minRadius, Math.min(maxRadius, point.radius));
       }
     }
