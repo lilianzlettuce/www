@@ -76,3 +76,6 @@ export function getRandomGlitchColor(): Color {
   return palette[Math.floor(Math.random() * palette.length)];
 }
   
+export function getBrightness(color: Color): number {
+  return 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
+}

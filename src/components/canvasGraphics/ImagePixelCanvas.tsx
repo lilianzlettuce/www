@@ -4,7 +4,8 @@ import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
 import { useRef, useCallback, useEffect, useState, useMemo } from "react";
-import { Color, colorToString } from "@/lib/utils";
+import { Color, colorToString, getBrightness } from "@/lib/utils";
+import { useImagePixels } from "@/hooks/useImagePixels";
 
 type Point = {
   originalX: number;
@@ -51,14 +52,10 @@ const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
     const autoAnimPhase = useRef(0);
     const radius = useRef(1);
     const isDragging = useRef(false);
+
+    const { pixels, imageWidth, imageHeight, isImageLoaded, error } = useImagePixels(src);
     
-    // Image processing state
-    const [pixels, setPixels] = useState<Color[]>([]);
-    const [imageWidth, setImageWidth] = useState(0);
-    const [imageHeight, setImageHeight] = useState(0);
-    const [isImageLoaded, setIsImageLoaded] = useState(false);
-    
-    // Calculate scale based on screen size - memoized
+    // Calculate scale based on screen size
     const scale = useMemo(() => {
         const breakpointMobile = 640;
         const isMobile = typeof window !== 'undefined' ? window.innerWidth < breakpointMobile : false;
@@ -75,7 +72,7 @@ const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
         const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 800;
         const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 600;
         
-        // Calculate maximum dimensions that fit in viewport
+        // Calculate max dimensions that fit in viewport
         const maxWidth = viewportWidth * 0.9; 
         const maxHeight = viewportHeight * 0.9; 
         
@@ -105,54 +102,6 @@ const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
     }), [pointSize, gridSize, maxRadius, attractionDistance, scale]);
 
     const points = useRef<Point[]>([]); // store point grid
-
-    // Load and process image
-    useEffect(() => {
-        const image = new Image();
-        image.crossOrigin = "anonymous";
-        
-        image.onload = () => {
-            // Draw image to ghost canvas to get the image data (pixels)
-            const tempCanvas = document.createElement('canvas');
-            const tempCtx = tempCanvas.getContext('2d');
-            
-            if (!tempCtx) return;
-            
-            tempCanvas.width = image.width;
-            tempCanvas.height = image.height;
-            
-            // Get img data array (each element is 1 val)
-            tempCtx.drawImage(image, 0, 0);
-            const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
-            const data = imageData.data;
-            
-            // Convert data array to pixel color array
-            const rgbPixels: Color[] = [];
-            for (let i = 0; i < data.length; i += 4) {
-                rgbPixels.push({
-                    r: data[i],
-                    g: data[i + 1],
-                    b: data[i + 2],
-                    a: data[i + 3] / 255, // Normalize alpha to 0-1
-                });
-            }
-            
-            setPixels(rgbPixels);
-            setImageWidth(image.width);
-            setImageHeight(image.height);
-            setIsImageLoaded(true);
-            
-            if (onPixelsExtracted) {
-                onPixelsExtracted(rgbPixels, image.width, image.height);
-            }
-        };
-        
-        image.onerror = () => {
-            console.error('Failed to load image:', src);
-        };
-        
-        image.src = src;
-    }, [src, onPixelsExtracted]);
 
     // Create grid of points based on image
     useEffect(() => {
@@ -263,6 +212,8 @@ const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
 
         for (const point of points.current) {
             ctx.fillStyle = colorToString(point.color);
+            //const brightness = getBrightness(point.color);
+            //ctx.fillStyle = `rgb(${brightness}, ${brightness}, ${brightness})`;
 
             // Snap to grid during drawing
             const snappedX = snapToGrid(point.x, scaledValues.gridSize);
