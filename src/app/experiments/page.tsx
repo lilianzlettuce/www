@@ -23,7 +23,7 @@ export default async function ExperimentsPage() {
         
         <div className="z-10">
           <ImagePixelCanvas
-            src="/img/lowRes/rick.jpg"
+            src="/img/lowRes/pineapple.jpg"
             scaleFactor={1.4}
             pointSize={2}           // Size of each point
             gridSize={2}            // Grid spacing (affects resolution)
