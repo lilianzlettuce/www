@@ -127,10 +127,10 @@ const ShrinkCircles = ({
     const numCols = Math.floor(width / gap);
 
     for (let i = 0; i < numRows; i++) {
-      const y = i * height / numRows + 10; // current row
+      const y = i * height / numRows; // current row
 
       for (let j = 0; j < numCols; j++) {
-        const x = j * width / numCols + 10; // current column
+        const x = j * width / numCols; // current column
 
         let initialRadius = defaultRadius;
         if (imageSrc && isImageLoaded && pixels.length > 0 && imageWidth && imageHeight) {
