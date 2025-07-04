@@ -102,11 +102,29 @@ export default async function ExperimentsPage() {
             debounceTime={3000}
             autoAnimStep={0.03}
           />
-        </div>*/}
+        </div>
+
+        // higher res version
+        <div className="bg-white">
+          <ShrinkCircles 
+            imageSrc="/img/lowRes/heart.png"
+            scaleFactor={1.2}
+            gridGap={3}
+            circleColor="#000000"
+            attractionDistance={200}
+            shrinkFactor={1}
+            minRadius={0.1}
+            maxRadius={1.6}
+            delayFactor={0.85}
+            delayCap={0.1}
+            debounceTime={3000}
+            autoAnimStep={0.03}
+          />
+        </div>
 
         <div className="bg-white">
           <ShrinkCircles 
-            imageSrc="/img/lowRes/tooth.jpg"
+            imageSrc="/img/lowRes/tooth.png"
             scaleFactor={1.2}
             gridGap={2}
             circleColor="#000000"
@@ -118,6 +136,57 @@ export default async function ExperimentsPage() {
             delayCap={0.1}
             debounceTime={3000}
             autoAnimStep={0.03}
+          />
+        </div>
+
+        <div className="bg-white">
+          <ShrinkCircles 
+            imageSrc="/img/lowRes/toothbrush.jpg"
+            scaleFactor={1.2}
+            gridGap={20}
+            circleColor="#000000"
+            attractionDistance={200}
+            shrinkFactor={1}
+            minRadius={0.1}
+            maxRadius={2.5}
+            delayFactor={0.85}
+            delayCap={0.1}
+            debounceTime={3000}
+            autoAnimStep={0.03}
+          />
+        </div>
+        
+        <div className="bg-white">
+          <ShrinkCircles 
+            imageSrc="/img/lowRes/fire.png"
+            scaleFactor={1}
+            gridGap={10}
+            circleColor="#000000"
+            attractionDistance={200}
+            shrinkFactor={1}
+            minRadius={0.1}
+            maxRadius={2}
+            delayFactor={0.85}
+            delayCap={0.1}
+            debounceTime={3000}
+            autoAnimStep={0.03}
+          />
+        </div>*/}
+
+        <div className="bg-white">
+          <ShrinkCircles 
+            imageSrc="/img/lowRes/heart.png"
+            scaleFactor={1.2}
+            gridGap={3}
+            circleColor="#000000"
+            attractionDistance={200}
+            shrinkFactor={1}
+            minRadius={0.1}
+            maxRadius={1.6}
+            delayFactor={0.85}
+            delayCap={0.1}
+            debounceTime={3000}
+            autoAnimStep={0.05}
           />
         </div>
         
