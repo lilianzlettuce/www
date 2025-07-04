@@ -280,6 +280,8 @@ const ShrinkCircles = ({
 
   // Handle touch events for mobile
   const handleTouchStart = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
+    event.preventDefault(); // Prevent page scrolling
+    
     lastMouseMoveTime.current = Date.now();
     isDragging.current = true;
     
@@ -294,10 +296,11 @@ const ShrinkCircles = ({
   }, [updateRadiusPoints]);
 
   const handleTouchMove = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
+    event.preventDefault(); // Prevent page scrolling
+    
     if (!isDragging.current) return;
     lastMouseMoveTime.current = Date.now();
     
-    event.preventDefault();
     const touch = event.touches[0];
     if (!touch || !canvasRef.current) return;
     
