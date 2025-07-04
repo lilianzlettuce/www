@@ -5,9 +5,9 @@ import PixelCircle from "@/components/canvasGraphics/PixelCircle";
 import GlitchCircle from "@/components/canvasGraphics/GlitchCircle";
 import GridCanvas from "@/components/canvasGraphics/GridCanvas";*/
 import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
-import ImagePixelCanvas from "@/components/canvasGraphics/ImagePixelCanvas";
+/*import ImagePixelCanvas from "@/components/canvasGraphics/ImagePixelCanvas";
 import Image from "next/image";
-/*import Link from "next/link";
+import Link from "next/link";
 
 const contactInfo = [
   { label: "Email", value: "hello@yourname.com", link: "mailto:hello@yourname.com" },

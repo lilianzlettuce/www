@@ -53,11 +53,11 @@ const ShrinkCircles = ({
   const mousePosition = useMousePosition();
   const { pixels, imageWidth, imageHeight, isImageLoaded } = useImagePixels(imageSrc || "");
 
-  const scale = useMemo(() => {
+  /*const scale = useMemo(() => {
     const breakpointMobile = 640;
     const isMobile = typeof window !== 'undefined' ? window.innerWidth < breakpointMobile : false;
     return isMobile ? 1.5 : 3;
-  }, []);
+  }, []);*/
 
   const canvasDimensions = useMemo(() => {
     if (!imageSrc || !isImageLoaded || imageWidth === 0 || imageHeight === 0) {
@@ -115,7 +115,7 @@ const ShrinkCircles = ({
     radiusPoints.current = [];
 
     // Calculate number of rows, columns, and gap btw points
-    let numRows, numCols, gap;
+    let gap;
     if (imageSrc && isImageLoaded && canvasDimensions.imgScale) {
       // Scale to image dimensions
       gap = gridGap * canvasDimensions.imgScale;
@@ -123,8 +123,8 @@ const ShrinkCircles = ({
       // Default canvas
       gap = gridGap;
     }
-    numRows = Math.floor(height / gap);
-    numCols = Math.floor(width / gap);
+    const numRows = Math.floor(height / gap);
+    const numCols = Math.floor(width / gap);
 
     for (let i = 0; i < numRows; i++) {
       const y = i * height / numRows + 10; // current row

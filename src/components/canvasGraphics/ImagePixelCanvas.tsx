@@ -51,7 +51,7 @@ const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
     const radius = useRef(1);
     const isDragging = useRef(false);
 
-    const { pixels, imageWidth, imageHeight, isImageLoaded, error } = useImagePixels(src);
+    const { pixels, imageWidth, imageHeight, isImageLoaded } = useImagePixels(src);
     
     // Calculate scale based on screen size
     const scale = useMemo(() => {
