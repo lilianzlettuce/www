@@ -39,7 +39,7 @@ export default async function ExperimentsPage() {
           src="/img/lowRes/rick.jpg" 
           alt="" 
           width={100}
-          height={0}/>*/}
+          height={0}/>
 
         <ShrinkCircles 
           imageSrc="/img/lowRes/pineapple.jpg"
@@ -54,7 +54,7 @@ export default async function ExperimentsPage() {
           delayCap={0.1}
           debounceTime={3000}
         />
-
+        
         <ShrinkCircles 
           imageSrc="/img/lowRes/pineapple4.jpg"
           scaleFactor={1.8}
@@ -69,6 +69,58 @@ export default async function ExperimentsPage() {
           debounceTime={3000}
           autoAnimStep={0.03}
         />
+        
+        <div className="bg-white">
+          <ShrinkCircles 
+            imageSrc="/img/lowRes/brain.png"
+            scaleFactor={1}
+            gridGap={3}
+            circleColor="#000000"
+            attractionDistance={200}
+            shrinkFactor={1}
+            minRadius={0.1}
+            maxRadius={3.8}
+            delayFactor={0.85}
+            delayCap={0.1}
+            debounceTime={3000}
+            autoAnimStep={0.03}
+          />
+        </div>
+        
+        <div className="bg-white">
+          <ShrinkCircles 
+            imageSrc="/img/lowRes/heart.png"
+            scaleFactor={1.2}
+            gridGap={4}
+            circleColor="#000000"
+            attractionDistance={200}
+            shrinkFactor={1}
+            minRadius={0.1}
+            maxRadius={2}
+            delayFactor={0.85}
+            delayCap={0.1}
+            debounceTime={3000}
+            autoAnimStep={0.03}
+          />
+        </div>*/}
+
+        <div className="bg-white">
+          <ShrinkCircles 
+            imageSrc="/img/lowRes/tooth.jpg"
+            scaleFactor={1.2}
+            gridGap={2}
+            circleColor="#000000"
+            attractionDistance={200}
+            shrinkFactor={1}
+            minRadius={0.5}
+            maxRadius={5}
+            delayFactor={0.85}
+            delayCap={0.1}
+            debounceTime={3000}
+            autoAnimStep={0.03}
+          />
+        </div>
+        
 
         {/*
 
