@@ -39,7 +39,7 @@ export default async function ExperimentsPage() {
           src="/img/lowRes/rick.jpg" 
           alt="" 
           width={100}
-          height={0}/>
+          height={0}/>*/}
 
         <ShrinkCircles 
           imageSrc="/img/lowRes/pineapple.jpg"
@@ -53,7 +53,7 @@ export default async function ExperimentsPage() {
           delayFactor={0.85}
           delayCap={0.1}
           debounceTime={3000}
-        />*/}
+        />
 
         <ShrinkCircles 
           imageSrc="/img/lowRes/pineapple4.jpg"
@@ -67,6 +67,7 @@ export default async function ExperimentsPage() {
           delayFactor={0.85}
           delayCap={0.1}
           debounceTime={3000}
+          autoAnimStep={0.03}
         />
 
         {/*

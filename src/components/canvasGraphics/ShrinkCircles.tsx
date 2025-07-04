@@ -27,6 +27,7 @@ interface ShrinkCirclesProps {
   shrinkFactor?: number;
   debounceTime?: number;
   autoAnimStep?: number;
+  animOffset?: number;
   maxRadius?: number;
   minRadius?: number;
   delayFactor?: number;
@@ -43,6 +44,7 @@ const ShrinkCircles = ({
   shrinkFactor = 1,
   debounceTime = 5500,
   autoAnimStep = 0.02,
+  animOffset = -0.5,
   maxRadius = 50,
   minRadius = 0.5,
   delayFactor = 100,
@@ -59,7 +61,14 @@ const ShrinkCircles = ({
 
   const canvasDimensions = useMemo(() => {
     if (!imageSrc || !isImageLoaded || imageWidth === 0 || imageHeight === 0) {
-      return { width: undefined, height: undefined };
+      // Default canvas dimensions when no image is provided
+      const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 800;
+      const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 600;
+      return { 
+        width: viewportWidth, 
+        height: viewportHeight,
+        imgScale: 1 
+      };
     }
 
     // Get viewport dimensions
@@ -81,7 +90,7 @@ const ShrinkCircles = ({
       height: Math.floor(imageHeight * imgScale),
       imgScale,
     };
-  }, [imageSrc, isImageLoaded, imageWidth, imageHeight, scale]);
+  }, [imageSrc, isImageLoaded, imageWidth, imageHeight, scaleFactor]);
 
   const { canvasRef, ctx, width, height } = useCanvas(
     { width: canvasDimensions.width, height: canvasDimensions.height }
@@ -92,6 +101,7 @@ const ShrinkCircles = ({
   const mouseActive = useRef(true);
   const autoAnimPhase = useRef(0);
   const animationRadius = useRef(1);
+  const animDirection = useRef(1);
   const isDragging = useRef(false);
 
   const radiusPoints = useRef<RadiusPoint[]>([]); // store point grid
@@ -189,7 +199,7 @@ const ShrinkCircles = ({
         point.radius = Math.max(minRadius, Math.min(maxRadius, point.radius));
         
         point.lastRadius = point.radius;
-      } else {
+      } else if (width != 0 && height != 0) {
         // Auto-animate radius in a wave pattern
         /*const waveOffset = Math.sin(autoAnimPhase.current + point.x * 0.01 + point.y * 0.01);
         point.radius = point.lastRadius + waveOffset * animationRadius.current;
@@ -208,28 +218,32 @@ const ShrinkCircles = ({
         // Points closer to center pulsate first, creating a ripple effect
         const maxDistance = Math.sqrt(centerX * centerX + centerY * centerY);
         const normalizedDistance = distanceFromCenter / maxDistance;
-        const phaseOffset = normalizedDistance * Math.PI * 2; // Full wave cycle across radius
         
-        const pulsateOffset = Math.sin(autoAnimPhase.current + phaseOffset) * animationRadius.current;
-
-        console.log(distanceFromCenter);
+        // Create alternating ripple direction based on time
+        //const rippleDirection = Math.sin(autoAnimPhase.current * 0.5) > 0 ? 1 : -1;
+        const phaseOffset = animOffset + normalizedDistance * Math.PI * 1;
+        
+        const pulsateOffset = Math.sin(autoAnimPhase.current - phaseOffset) * animationRadius.current;
         
         // Apply pulsating effect to radius
-        point.radius = point.originalRadius + pulsateOffset * 2;
+        point.radius = point.originalRadius + pulsateOffset * 0.25;
         point.radius = Math.max(minRadius, Math.min(maxRadius, point.radius));
       }
     }
 
     // Update auto-anim phase for the next frame
     if (!mouseActive.current && !isDragging.current) {
-      autoAnimPhase.current += autoAnimStep;
+      if (autoAnimPhase.current > 2 || autoAnimPhase.current < 0) {
+        animDirection.current *= -1;
+      }
+      autoAnimPhase.current += animDirection.current * autoAnimStep;
       animationRadius.current = Math.min(animationRadius.current * 1.01, 5);
     } else {
       // Reset
       autoAnimPhase.current = 0;
       animationRadius.current = 1;
     }
-  }, [radiusPoints, debounceTime, attractionDistance, defaultRadius, minRadius, maxRadius, autoAnimStep, delayFactor]);
+  }, [radiusPoints, debounceTime, attractionDistance, autoAnimStep, width, height]);
 
   // Draw circles on canvas
   const drawCircles = useCallback(() => {
