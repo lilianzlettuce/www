@@ -25,6 +25,8 @@
   --successForeground: #ffffff;
   --warning: #f59e0b;
   --warningForeground: #ffffff;
+
+  overflow-x: hidden;
 }
 
 @theme inline {
@@ -74,7 +76,6 @@ canvas {
 
 .goose-sprite {
   --sprite-size: 32px;
-  scale: 3;
   image-rendering: pixelated;
   width: var(--sprite-size);
   height: var(--sprite-size);

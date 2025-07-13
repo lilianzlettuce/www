@@ -1,3 +1,4 @@
+import GooseMarquee from "@/components/GooseMarquee";
 /*import CirclesCanvas from "@/components/canvasGraphics/CirclesCanvas";
 import StarCanvas from "@/components/canvasGraphics/StarCanvas";
 import GrowthCircles from "@/components/canvasGraphics/GrowthCircles";
@@ -190,7 +191,14 @@ export default async function ExperimentsPage() {
           />
         </div>*/}
 
-        <div className="goose-sprite"></div>
+        {/*<div className="goose-sprite mb-8"></div>*/}
+        
+        {/* Goose Marquee Examples */}
+        <div className="w-full relative -left-20 flex flex-col items-start justify-start gap-4">
+          <GooseMarquee duration={30} count={3} scale={6} />
+          <GooseMarquee duration={30} count={5} scale={4} />
+          <GooseMarquee duration={30} count={20} scale={2} />
+        </div>
 
         {/*
 
