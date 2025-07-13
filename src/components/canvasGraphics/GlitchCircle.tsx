@@ -33,7 +33,7 @@ const GlitchCircle = ({
   circleColor = "rgb(0, 0, 0)",
   circleEndColor = "rgb(255, 255, 255)",
   attractionDistance = 200,
-  glitchDebounceTime = 500,
+  glitchDebounceTime = 5000,
   debounceTime = 5500,
   autoAnimStep = 0.02,
   fillMode = false
@@ -96,6 +96,7 @@ const GlitchCircle = ({
                 const dy = pixel.y - mouseY;
                 const distance = Math.sqrt(dx * dx + dy * dy);
 
+                // Glitch pixels near mouse
                 if (distance < attractionDistance) {
                     // Chance of glitch change, higher near center
                     const glitchChance = 1 - (distance / attractionDistance); 
@@ -105,17 +106,29 @@ const GlitchCircle = ({
 
                     pixel.lastTouched = now;
                     pixel.lastColor = pixel.color;
-                } else if (now - pixel.lastTouched < glitchDebounceTime) {
-                    // Chance of glitch change, higher near center
-                    const glitchChance = 1 - (now - pixel.lastTouched) / glitchDebounceTime;
-
-                    if (Math.random() < Math.pow(glitchChance, 3.5)) {
-                      pixel.color = getRandomGlitchColor();
+                }
+                if (fillMode && pixel.lastTouched > 0) {
+                    const glitchChance = 0.1;
+                    if (Math.random() < glitchChance) {
+                        pixel.color = getRandomGlitchColor();
                     }
 
                     pixel.lastColor = pixel.color;
-                } else {
-                    if (!fillMode) pixel.color = defaultColor;
+                }
+                
+                if (!fillMode) {
+                    if (now - pixel.lastTouched < glitchDebounceTime) {
+                        // Chance of glitch change, higher near center
+                        const glitchChance = 1 - (now - pixel.lastTouched) / glitchDebounceTime;
+
+                        if (Math.random() < Math.pow(glitchChance, 3.5)) {
+                        pixel.color = getRandomGlitchColor();
+                        }
+
+                        pixel.lastColor = pixel.color;
+                    } else {
+                        pixel.color = defaultColor;
+                    }
                 }
             } else {
                 const t = performance.now() * 0.002;

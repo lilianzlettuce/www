@@ -2,9 +2,9 @@
 import StarCanvas from "@/components/canvasGraphics/StarCanvas";
 import GrowthCircles from "@/components/canvasGraphics/GrowthCircles";
 import PixelCircle from "@/components/canvasGraphics/PixelCircle";
-import GlitchCircle from "@/components/canvasGraphics/GlitchCircle";
 import GridCanvas from "@/components/canvasGraphics/GridCanvas";*/
-import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
+//import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
+//import GlitchCircle from "@/components/canvasGraphics/GlitchCircle";
 /*import ImagePixelCanvas from "@/components/canvasGraphics/ImagePixelCanvas";
 import Image from "next/image";
 import Link from "next/link";
@@ -171,7 +171,7 @@ export default async function ExperimentsPage() {
             debounceTime={3000}
             autoAnimStep={0.03}
           />
-        </div>*/}
+        </div>
 
         <div className="bg-white">
           <ShrinkCircles 
@@ -188,8 +188,9 @@ export default async function ExperimentsPage() {
             debounceTime={3000}
             autoAnimStep={0.05}
           />
-        </div>
-        
+        </div>*/}
+
+        <div className="goose-sprite"></div>
 
         {/*
 

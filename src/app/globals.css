@@ -71,3 +71,27 @@ body {
 canvas {
   touch-action: none;
 }
+
+.goose-sprite {
+  --sprite-size: 32px;
+  scale: 3;
+  image-rendering: pixelated;
+  width: var(--sprite-size);
+  height: var(--sprite-size);
+  background-image: url('/img/sprite/goose-walk.png');
+  animation: idle 1s steps(2) infinite;
+}
+
+.goose-sprite:hover {
+  animation: hover 0.2s steps(2) infinite;
+}
+
+@keyframes idle {
+  from { background-position: 0px 0px; }
+  to   { background-position: -64px 0px; }
+}
+
+@keyframes hover {
+  from { background-position: 0px 0px; }
+  to   { background-position: -64px 0px; }
+}
