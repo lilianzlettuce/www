@@ -19,7 +19,7 @@ interface SpriteProps {
   hoverIterationCount?: string;
 }
 
-const Sprite: React.FC<SpriteProps> = ({
+const Sprite = ({
   id,
   spriteSize = 32,
   backgroundImage,
@@ -33,7 +33,7 @@ const Sprite: React.FC<SpriteProps> = ({
   hoverSteps = 2,
   hoverDuration = 0.2,
   hoverBackgroundImage
-}) => {
+}: SpriteProps) => {
   const [isHovered, setIsHovered] = useState(false);
   
   // Calculate total width of sprite sheet
@@ -96,6 +96,6 @@ const Sprite: React.FC<SpriteProps> = ({
       `}</style>
     </>
   );
-};
+}
 
 export default Sprite; 

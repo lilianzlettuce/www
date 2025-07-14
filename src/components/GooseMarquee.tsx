@@ -10,13 +10,12 @@ interface GooseMarqueeProps {
   scale?: number;
 }
 
-const GooseMarquee: React.FC<GooseMarqueeProps> = ({ 
+const GooseMarquee = ({ 
   duration = 50, 
   count = 5, 
   className = "",
   scale = 3
-}) => {
-
+}: GooseMarqueeProps) => {
   return (
     <div className={`w-fit overflow-hidden ${className}`}
         style={{
