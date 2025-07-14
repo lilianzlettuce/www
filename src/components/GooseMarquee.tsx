@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Sprite from "./Sprite";
 
 interface GooseMarqueeProps {
   duration?: number; // pixels per second
@@ -33,9 +34,13 @@ const GooseMarquee: React.FC<GooseMarqueeProps> = ({
           }}
         >
           {Array.from({ length: count }, (_, index) => (
-            <div 
+            <Sprite
               key={`goose-1-${index}`}
-              className="goose-sprite"
+              className={`goose-1-${index}`}
+              spriteSize={32}
+              backgroundImage="/img/sprite/goose-walk2.png"
+              steps={4}
+              duration={1}
               style={{
                 scale: scale,
               }}
@@ -51,9 +56,13 @@ const GooseMarquee: React.FC<GooseMarqueeProps> = ({
           }}
         >
           {Array.from({ length: count }, (_, index) => (
-            <div 
+            <Sprite
               key={`goose-2-${index}`}
-              className="goose-sprite"
+              className={`goose-1-${index}`}
+              spriteSize={32}
+              backgroundImage="/img/sprite/goose-walk2.png"
+              steps={4}
+              duration={1}
               style={{
                 scale: scale,
               }}

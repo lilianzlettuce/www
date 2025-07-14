@@ -1,0 +1,95 @@
+'use client';
+
+import React, { useState } from 'react';
+
+interface SpriteProps {
+  spriteSize?: number; // size of each sprite frame in pixels
+  backgroundImage: string; // URL of the sprite sheet
+  steps?: number; // number of animation frames
+  duration?: number; // animation duration in seconds
+  fillMode?: 'forwards' | 'backwards' | 'both' | 'none'; // CSS animation-fill-mode
+  className?: string;
+  style?: React.CSSProperties;
+  onHover?: boolean; // whether to use hover animation
+  hoverSteps?: number; // number of steps for hover animation
+  hoverDuration?: number; // duration for hover animation
+  hoverBackgroundImage?: string; // different sprite sheet for hover animation
+}
+
+const Sprite: React.FC<SpriteProps> = ({
+  spriteSize = 32,
+  backgroundImage,
+  steps = 2,
+  duration = 1,
+  fillMode = 'forwards',
+  className = '',
+  style = {},
+  onHover = false,
+  hoverSteps = 2,
+  hoverDuration = 0.2,
+  hoverBackgroundImage
+}) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  // Calculate the total width of the sprite sheet
+  const spriteSheetWidth = spriteSize * steps;
+  const hoverSpriteSheetWidth = spriteSize * hoverSteps;
+  
+  // Generate unique animation names to avoid conflicts
+  const animationId = className;
+  const idleAnimationName = `sprite-idle-${animationId}`;
+  const hoverAnimationName = `sprite-hover-${animationId}`;
+
+  // Determine which background image and animation to use
+  const currentBackgroundImage = isHovered && hoverBackgroundImage 
+    ? hoverBackgroundImage 
+    : backgroundImage;
+  
+  const currentSpriteSheetWidth = isHovered && hoverBackgroundImage 
+    ? hoverSpriteSheetWidth 
+    : spriteSheetWidth;
+
+  return (
+    <>
+      <div
+        className={`sprite ${className}`}
+        style={{
+          width: `${spriteSize}px`,
+          height: `${spriteSize}px`,
+          backgroundImage: `url(${currentBackgroundImage})`,
+          backgroundSize: `${currentSpriteSheetWidth}px ${spriteSize}px`,
+          backgroundRepeat: 'no-repeat',
+          imageRendering: 'pixelated',
+          animation: isHovered && onHover
+            ? `${hoverAnimationName} ${hoverDuration}s steps(${hoverSteps}) infinite ${fillMode}`
+            : `${idleAnimationName} ${duration}s steps(${steps}) infinite ${fillMode}`,
+          ...style
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      />
+      
+      <style jsx>{`
+        @keyframes ${idleAnimationName} {
+          from { 
+            background-position: 0px 0px; 
+          }
+          to { 
+            background-position: -${spriteSheetWidth}px 0px; 
+          }
+        }
+        
+        @keyframes ${hoverAnimationName} {
+          from { 
+            background-position: 0px 0px; 
+          }
+          to { 
+            background-position: -${hoverSpriteSheetWidth}px 0px; 
+          }
+        }
+      `}</style>
+    </>
+  );
+};
+
+export default Sprite; 

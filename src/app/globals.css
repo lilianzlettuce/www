@@ -79,8 +79,8 @@ canvas {
   image-rendering: pixelated;
   width: var(--sprite-size);
   height: var(--sprite-size);
-  background-image: url('/img/sprite/goose-walk.png');
-  animation: idle 1s steps(2) infinite;
+  background-image: url('/img/sprite/goose-walk2.png');
+  animation: idle 1s steps(4) infinite;
 }
 
 .goose-sprite:hover {
@@ -89,7 +89,7 @@ canvas {
 
 @keyframes idle {
   from { background-position: 0px 0px; }
-  to   { background-position: -64px 0px; }
+  to   { background-position: -128px 0px; }
 }
 
 @keyframes hover {
