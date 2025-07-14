@@ -20,6 +20,7 @@ interface SpriteProps {
 }
 
 const Sprite: React.FC<SpriteProps> = ({
+  id,
   spriteSize = 32,
   backgroundImage,
   steps = 2,
@@ -40,9 +41,8 @@ const Sprite: React.FC<SpriteProps> = ({
   const hoverSpriteSheetWidth = spriteSize * hoverSteps;
   
   // Set unique animation names to avoid conflicts
-  const animationId = className;
-  const idleAnimationName = `sprite-idle-${animationId}`;
-  const hoverAnimationName = `sprite-hover-${animationId}`;
+  const idleAnimationName = `sprite-idle-${id}`;
+  const hoverAnimationName = `sprite-hover-${id}`;
 
   // Determine which background image and animation to use
   const currentBackgroundImage = isHovered && hoverBackgroundImage 
