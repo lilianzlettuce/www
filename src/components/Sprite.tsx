@@ -1,19 +1,22 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface SpriteProps {
+  id: string; // unique id 
   spriteSize?: number; // size of each sprite frame in pixels
   backgroundImage: string; // URL of the sprite sheet
   steps?: number; // number of animation frames
   duration?: number; // animation duration in seconds
-  fillMode?: 'forwards' | 'backwards' | 'both' | 'none'; // CSS animation-fill-mode
+  fillMode?: "forwards" | "backwards" | "both" | "none"; // CSS animation-fill-mode
+  iterationCount?: string; // CSS animation-iteration-count
   className?: string;
   style?: React.CSSProperties;
   onHover?: boolean; // whether to use hover animation
-  hoverSteps?: number; // number of steps for hover animation
-  hoverDuration?: number; // duration for hover animation
+  hoverSteps?: number; 
+  hoverDuration?: number;
   hoverBackgroundImage?: string; // different sprite sheet for hover animation
+  hoverIterationCount?: string;
 }
 
 const Sprite: React.FC<SpriteProps> = ({
@@ -21,8 +24,9 @@ const Sprite: React.FC<SpriteProps> = ({
   backgroundImage,
   steps = 2,
   duration = 1,
-  fillMode = 'forwards',
-  className = '',
+  fillMode = "forwards",
+  iterationCount = "infinite",
+  className = "",
   style = {},
   onHover = false,
   hoverSteps = 2,
@@ -31,11 +35,11 @@ const Sprite: React.FC<SpriteProps> = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   
-  // Calculate the total width of the sprite sheet
+  // Calculate total width of sprite sheet
   const spriteSheetWidth = spriteSize * steps;
   const hoverSpriteSheetWidth = spriteSize * hoverSteps;
   
-  // Generate unique animation names to avoid conflicts
+  // Set unique animation names to avoid conflicts
   const animationId = className;
   const idleAnimationName = `sprite-idle-${animationId}`;
   const hoverAnimationName = `sprite-hover-${animationId}`;
@@ -49,6 +53,9 @@ const Sprite: React.FC<SpriteProps> = ({
     ? hoverSpriteSheetWidth 
     : spriteSheetWidth;
 
+  const finite = iterationCount !== "infinite";
+  const backgroundSize = finite ? `${currentSpriteSheetWidth + spriteSize}px ${spriteSize}px` : `${currentSpriteSheetWidth}px ${spriteSize}px`;
+
   return (
     <>
       <div
@@ -57,12 +64,11 @@ const Sprite: React.FC<SpriteProps> = ({
           width: `${spriteSize}px`,
           height: `${spriteSize}px`,
           backgroundImage: `url(${currentBackgroundImage})`,
-          backgroundSize: `${currentSpriteSheetWidth}px ${spriteSize}px`,
-          backgroundRepeat: 'no-repeat',
-          imageRendering: 'pixelated',
+          backgroundSize: backgroundSize,
+          imageRendering: "pixelated",
           animation: isHovered && onHover
-            ? `${hoverAnimationName} ${hoverDuration}s steps(${hoverSteps}) infinite ${fillMode}`
-            : `${idleAnimationName} ${duration}s steps(${steps}) infinite ${fillMode}`,
+            ? `${hoverAnimationName} ${hoverDuration}s steps(${hoverSteps}) ${iterationCount} ${fillMode}`
+            : `${idleAnimationName} ${duration}s steps(${steps}) ${iterationCount} ${fillMode}`,
           ...style
         }}
         onMouseEnter={() => setIsHovered(true)}

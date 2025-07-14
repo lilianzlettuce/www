@@ -36,6 +36,7 @@ const GooseMarquee: React.FC<GooseMarqueeProps> = ({
           {Array.from({ length: count }, (_, index) => (
             <Sprite
               key={`goose-1-${index}`}
+              id={`goose-1-${index}`}
               className={`goose-1-${index}`}
               spriteSize={32}
               backgroundImage="/img/sprite/goose-walk2.png"
@@ -58,6 +59,7 @@ const GooseMarquee: React.FC<GooseMarqueeProps> = ({
           {Array.from({ length: count }, (_, index) => (
             <Sprite
               key={`goose-2-${index}`}
+              id={`goose-2-${index}`}
               className={`goose-1-${index}`}
               spriteSize={32}
               backgroundImage="/img/sprite/goose-walk2.png"

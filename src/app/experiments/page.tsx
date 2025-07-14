@@ -199,17 +199,20 @@ export default async function ExperimentsPage() {
             <div>
               <h3 className="text-sm font-medium mb-2">Goose (4 steps, 1s)</h3>
               <Sprite
+                id="finite-goose"
                 spriteSize={32}
                 backgroundImage="/img/sprite/goose-walk2.png"
-                steps={4}
+                steps={3}
                 duration={1}
                 style={{ scale: 3 }}
+                iterationCount="1"
               />
             </div>
             
             <div>
               <h3 className="text-sm font-medium mb-2">Goose with Different Hover Sprite</h3>
               <Sprite
+                id="infinite-goose"
                 spriteSize={32}
                 backgroundImage="/img/sprite/goose-walk2.png"
                 steps={4}
