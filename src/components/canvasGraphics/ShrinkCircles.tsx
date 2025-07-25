@@ -327,19 +327,20 @@ const ShrinkCircles = ({
 
   return (
     <div>
-      <canvas
-        id={id}
-        ref={canvasRef}
-        className="w-screen h-screen"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      />
+      <div className="bg-white">
+        <canvas
+          id={id}
+          ref={canvasRef}
+          className="w-screen h-screen"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        />
+      </div>
       <p>{imageSrc}</p>
-      <p>{imageWidth}</p>
-      <p>{imageHeight}</p>
+      <p>{imageWidth} x {imageHeight}</p>
       <p>{pixels.length}</p>
     </div>
   );

@@ -14,6 +14,8 @@ export default function ToneCanvasPage() {
   const [interactive, setInteractive] = useState(true);
   const [transparent, setTransparent] = useState(false);
 
+  const imageURL = "/img/lowRes/brain.png";
+
   function handleCopyToClipboard() {
     const canvas = document.getElementById("tone-canvas") as HTMLCanvasElement;
 
@@ -42,7 +44,7 @@ export default function ToneCanvasPage() {
     const canvas = document.getElementById("tone-canvas") as HTMLCanvasElement;
     const link = document.createElement("a");
     link.href = canvas.toDataURL("image/png");
-    link.download = "tone-canvas.png";
+    link.download = imageURL.split("/").pop()?.split(".")[0] + "-" + new Date().toISOString().split("T")[0] + ".png";
     link.click();
   }
 
@@ -71,7 +73,7 @@ export default function ToneCanvasPage() {
           <label htmlFor="dotResolution">Dot Resolution</label>
           <input id="dotResolution"
             type="range"
-            min="72"
+            min="150"
             max="300"
             value={dotResolution}
             onChange={(e) => {
@@ -82,7 +84,7 @@ export default function ToneCanvasPage() {
           <input 
             type="number" 
             value={dotResolutionInput}
-            min="72" 
+            min="150" 
             max="300" 
             step="1"
             onChange={(e) => setDotResolutionInput(e.target.value)}
@@ -99,7 +101,7 @@ export default function ToneCanvasPage() {
           <input 
             type="range"
             step="0.1"
-            min="0.1"
+            min="0"
             max="2"
             value={minRadius}
             onChange={(e) => {
@@ -110,7 +112,7 @@ export default function ToneCanvasPage() {
           <input 
             type="number" 
             value={minRadiusInput}
-            min="0.1"
+            min="0"
             max="2"
             step="0.1"
             onChange={(e) => setMinRadiusInput(e.target.value)}
@@ -128,7 +130,7 @@ export default function ToneCanvasPage() {
             type="range"
             step="0.1"
             min="1"
-            max="30"
+            max="12"
             value={maxRadius}
             onChange={(e) => {
               setMaxRadius(parseFloat(e.target.value));
@@ -139,7 +141,7 @@ export default function ToneCanvasPage() {
             type="number" 
             value={maxRadiusInput}
             min="1"
-            max="10"
+            max="12"
             step="0.1"
             onChange={(e) => setMaxRadiusInput(e.target.value)}
             onKeyDown={(e) => {
@@ -162,14 +164,14 @@ export default function ToneCanvasPage() {
         </button>
       </div>
       <div className="flex flex-col items-center justify-center gap-0">
-        <div className="bg-white">
+        <div>
           <ShrinkCircles 
             id="tone-canvas"
             interactive={interactive}
             transparent={transparent}
-            imageSrc="/img/lowRes/brain.png"
+            imageSrc={imageURL}
             scaleFactor={1}
-            gridGap={mapTo(dotResolution, 72, 300, 30, 3)}
+            gridGap={mapTo(dotResolution, 72, 300, 30, 1)}
             defaultRadius={3}
             circleColor="#000000"
             attractionDistance={200}
