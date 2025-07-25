@@ -65,3 +65,19 @@ export function getRandomGlitchColor(): Color {
 export function getBrightness(color: Color): number {
   return 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
 }
+
+// New function: getAlphaBrightness
+// If brightness is low, lower alpha increases brightness; if brightness is high, lower alpha decreases brightness.
+export function getAlphaBrightness(color: Color): number {
+  const brightness = getBrightness(color);
+  // Normalize brightness to [0, 1]
+  const normBrightness = brightness / 255;
+  // If dark, lower alpha increases brightness; if bright, lower alpha decreases brightness
+  if (normBrightness < 0.5) {
+    // For dark colors, blend toward white as alpha decreases
+    return brightness + (1 - color.a) * (255 - brightness);
+  } else {
+    // For bright colors, blend toward black as alpha decreases
+    return brightness - (1 - color.a) * brightness;
+  }
+}

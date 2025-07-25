@@ -5,7 +5,7 @@ import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
 import { useRef, useCallback, useEffect, useMemo } from "react";
 import { useImagePixels } from "@/hooks/useImagePixels";
-import { getBrightness } from "@/lib/colorProcessing";
+import { getBrightness, getAlphaBrightness } from "@/lib/colorProcessing";
 import { mapTo } from "@/lib/utils";
 
 type RadiusPoint = {
@@ -20,6 +20,7 @@ type RadiusPoint = {
 interface ShrinkCirclesProps {
   id?: string;
   interactive?: boolean;
+  transparent?: boolean;
   imageSrc?: string;
   scaleFactor?: number;
   gridGap?: number;
@@ -39,6 +40,7 @@ interface ShrinkCirclesProps {
 const ShrinkCircles = ({
   id,
   interactive = true,
+  transparent = false,
   imageSrc, 
   scaleFactor = 1.2,
   gridGap = 3,
@@ -144,9 +146,20 @@ const ShrinkCircles = ({
           const pixelIndex = imageY * imageWidth + imageX;
           const pixel = pixels[pixelIndex];
           if (pixel) {
-            // Map brightness to point radius
-            const brightness = getBrightness(pixel);
-            initialRadius = mapTo(brightness, 0, 255, maxRadius, minRadius);
+            if (transparent) {
+              // Maintain transparency
+              if (pixel.a === 0) {
+                initialRadius = 0;
+              } else {
+                // Map brightness to point radius
+                const brightness = getAlphaBrightness(pixel);
+                initialRadius = mapTo(brightness, 0, 255, maxRadius, minRadius);
+              }
+            } else {
+              // Map rgb brightness to point radius (ignore alpha)
+              const brightness = getBrightness(pixel);
+              initialRadius = mapTo(brightness, 0, 255, maxRadius, minRadius);
+            }
           }
         }
         radiusPoints.current.push({
@@ -280,7 +293,7 @@ const ShrinkCircles = ({
 
   const handleMouseLeave = useCallback(() => {
     if (!canvasRef.current || !interactive) return;
-    
+
     lastMouseMoveTime.current = Date.now();
     updateRadiusPoints(-100, -100);
   }, [updateRadiusPoints]);

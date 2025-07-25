@@ -7,15 +7,66 @@ import { mapTo } from "@/lib/utils";
 export default function ToneCanvasPage() {
   const [dotResolution, setDotResolution] = useState(290);
   const [dotResolutionInput, setDotResolutionInput] = useState(dotResolution.toString());
-  const [defaultRadius, setDefaultRadius] = useState(3);
   const [minRadius, setMinRadius] = useState(0.1);
   const [minRadiusInput, setMinRadiusInput] = useState(minRadius.toString());
   const [maxRadius, setMaxRadius] = useState(3.8);
   const [maxRadiusInput, setMaxRadiusInput] = useState(maxRadius.toString());
+  const [interactive, setInteractive] = useState(true);
+  const [transparent, setTransparent] = useState(false);
+
+  function handleCopyToClipboard() {
+    const canvas = document.getElementById("tone-canvas") as HTMLCanvasElement;
+
+    // Convert canvas content to Blob 
+    canvas.toBlob((blob) => {
+      if (blob) {
+        // Create clipboard item with image Blob
+        const item = new ClipboardItem({ 'image/png': blob });
+
+        // Write clipboard item to the clipboard
+        navigator.clipboard.write([item])
+          .then(() => {
+            alert('Copied');
+          })
+          .catch(err => {
+            console.error('Failed to copy canvas:', err);
+            alert('Failed to copy.');
+          });
+      } else {
+        alert('Failed to create image from canvas.');
+      }
+    }, 'image/png'); // image format
+  }
+
+  function handleDownload() {
+    const canvas = document.getElementById("tone-canvas") as HTMLCanvasElement;
+    const link = document.createElement("a");
+    link.href = canvas.toDataURL("image/png");
+    link.download = "tone-canvas.png";
+    link.click();
+  }
 
   return (
     <div className="min-h-screen bg-background p-20">
       <div className="flex flex-col justify-center mb-4">
+        <div className="flex gap-6 mb-2">
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={interactive}
+              onChange={e => setInteractive(e.target.checked)}
+            />
+            Interactive
+          </label>
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={transparent}
+              onChange={e => setTransparent(e.target.checked)}
+            />
+            Transparent
+          </label>
+        </div>
         <div>
           <label htmlFor="dotResolution">Dot Resolution</label>
           <input id="dotResolution"
@@ -42,17 +93,6 @@ export default function ToneCanvasPage() {
               }
             }}
           />
-        </div>
-        <div>
-          <label htmlFor="defaultRadius">Default Radius</label>
-          <input 
-            type="range"
-            min="1"
-            max="10"
-            value={defaultRadius}
-            onChange={(e) => setDefaultRadius(parseFloat(e.target.value))}
-          />
-          <p>{defaultRadius}</p>
         </div>
         <div>
           <label htmlFor="minRadius">Min Radius</label>
@@ -111,40 +151,12 @@ export default function ToneCanvasPage() {
           />
         </div>
         <button 
-          onClick={() => {
-            const canvas = document.getElementById("tone-canvas") as HTMLCanvasElement;
-
-            // Convert canvas content to a Blob 
-            canvas.toBlob((blob) => {
-              if (blob) {
-                // Create clipboard item with image Blob
-                const item = new ClipboardItem({ 'image/png': blob });
-
-                // Write clipboard item to the clipboard
-                navigator.clipboard.write([item])
-                  .then(() => {
-                    alert('Canvas copied to clipboard!');
-                  })
-                  .catch(err => {
-                    console.error('Failed to copy canvas:', err);
-                    alert('Failed to copy canvas to clipboard.');
-                  });
-              } else {
-                alert('Failed to create image from canvas.');
-              }
-            }, 'image/png'); // image format ('image/png', 'image/jpeg')
-          }}
+          onClick={handleCopyToClipboard}
         >
           Copy to clipboard
         </button>
         <button
-          onClick={() => {
-            const canvas = document.getElementById("tone-canvas") as HTMLCanvasElement;
-            const link = document.createElement("a");
-            link.href = canvas.toDataURL("image/png");
-            link.download = "tone-canvas.png";
-            link.click();
-          }}
+          onClick={handleDownload}
         >
           Download Image
         </button>
@@ -153,11 +165,12 @@ export default function ToneCanvasPage() {
         <div className="bg-white">
           <ShrinkCircles 
             id="tone-canvas"
-            interactive={false}
+            interactive={interactive}
+            transparent={transparent}
             imageSrc="/img/lowRes/brain.png"
             scaleFactor={1}
             gridGap={mapTo(dotResolution, 72, 300, 30, 3)}
-            defaultRadius={defaultRadius}
+            defaultRadius={3}
             circleColor="#000000"
             attractionDistance={200}
             shrinkFactor={1}
