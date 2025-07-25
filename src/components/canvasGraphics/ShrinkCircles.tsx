@@ -37,7 +37,7 @@ interface ShrinkCirclesProps {
 const ShrinkCircles = ({
   imageSrc, 
   scaleFactor = 1.2,
-  gridGap = 30,
+  gridGap = 3,
   defaultRadius = 3,
   circleColor = "black",
   attractionDistance = 200,

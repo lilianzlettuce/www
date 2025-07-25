@@ -1,29 +1,136 @@
-import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
+"use client";
 
-export default async function ToneCanvasPage() {
+import { useState } from "react";
+import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
+import { mapTo } from "@/lib/utils";
+
+export default function ToneCanvasPage() {
+  const [dotResolution, setDotResolution] = useState(100);
+  const [dotResolutionInput, setDotResolutionInput] = useState(dotResolution.toString());
+  const [defaultRadius, setDefaultRadius] = useState(3);
+  const [minRadius, setMinRadius] = useState(0.1);
+  const [minRadiusInput, setMinRadiusInput] = useState(minRadius.toString());
+  const [maxRadius, setMaxRadius] = useState(3.8);
+  const [maxRadiusInput, setMaxRadiusInput] = useState(maxRadius.toString());
+
   return (
     <div className="min-h-screen bg-background p-20">
-      <div className="flex flex-col items-center justify-center gap-0">
-        
-        {/*<div className="z-10">
-          <ImagePixelCanvas
-            src="/img/lowRes/pineapple.jpg"
-            scaleFactor={1.4}
-            pointSize={2}           // Size of each point
-            gridSize={2}            // Grid spacing (affects resolution)
-            attractionDistance={20} // Mouse influence range
-            debounceTime={3000000}     // Auto-animation delay
-            autoAnimStep={0.01}
-            maxRadius={55}
-            animSpeed={1.1}
+      <div className="flex flex-col justify-center mb-4">
+        <div>
+          <label htmlFor="dotResolution">Dot Resolution</label>
+          <input id="dotResolution"
+            type="range"
+            min="72"
+            max="300"
+            value={dotResolution}
+            onChange={(e) => {
+              setDotResolution(parseInt(e.target.value));
+              setDotResolutionInput(e.target.value);
+            }}
+          />
+          <input 
+            type="number" 
+            value={dotResolutionInput}
+            min="72" 
+            max="300" 
+            step="1"
+            onChange={(e) => setDotResolutionInput(e.target.value)}
+            onKeyDown={(e) => {
+              let val = e.currentTarget.valueAsNumber;
+              if (e.key === "Enter" && val) {
+                setDotResolution(val);
+              }
+            }}
           />
         </div>
-
-        <Image className="z-0 relative top-[-170px] left-[-20px]"
-          src="/img/lowRes/rick.jpg" 
-          alt="" 
-          width={100}
-          height={0}/>
+        <div>
+          <label htmlFor="defaultRadius">Default Radius</label>
+          <input 
+            type="range"
+            min="1"
+            max="8"
+            value={defaultRadius}
+            onChange={(e) => setDefaultRadius(parseFloat(e.target.value))}
+          />
+          <p>{defaultRadius}</p>
+        </div>
+        <div>
+          <label htmlFor="minRadius">Min Radius</label>
+          <input 
+            type="range"
+            step="0.1"
+            min="0.1"
+            max="2"
+            value={minRadius}
+            onChange={(e) => {
+              setMinRadius(parseFloat(e.target.value));
+              setMinRadiusInput(e.target.value);
+            }}
+          />
+          <input 
+            type="number" 
+            value={minRadiusInput}
+            min="0.1"
+            max="2"
+            step="0.1"
+            onChange={(e) => setMinRadiusInput(e.target.value)}
+            onKeyDown={(e) => {
+              let val = e.currentTarget.valueAsNumber;
+              if (e.key === "Enter" && val) {
+                setMinRadius(val);
+              }
+            }}
+          />
+        </div>
+        <div>
+          <label htmlFor="maxRadius">Max Radius</label>
+          <input 
+            type="range"
+            step="0.1"
+            min="1"
+            max="10"
+            value={maxRadius}
+            onChange={(e) => {
+              setMaxRadius(parseFloat(e.target.value));
+              setMaxRadiusInput(e.target.value);
+            }}
+          />
+          <input 
+            type="number" 
+            value={maxRadiusInput}
+            min="1"
+            max="10"
+            step="0.1"
+            onChange={(e) => setMaxRadiusInput(e.target.value)}
+            onKeyDown={(e) => {
+              let val = e.currentTarget.valueAsNumber;
+              if (e.key === "Enter" && val) {
+                setMaxRadius(val);
+              }
+            }}
+          />
+        </div>
+      </div>
+      <div className="flex flex-col items-center justify-center gap-0">
+        <div className="bg-white">
+          <ShrinkCircles 
+            imageSrc="/img/lowRes/brain.png"
+            scaleFactor={1}
+            gridGap={mapTo(dotResolution, 72, 300, 30, 3)}
+            defaultRadius={defaultRadius}
+            circleColor="#000000"
+            attractionDistance={200}
+            shrinkFactor={1}
+            minRadius={minRadius}
+            maxRadius={maxRadius}
+            delayFactor={0.85}
+            delayCap={0.1}
+            debounceTime={3000000}
+            autoAnimStep={0.03}
+          />
+        </div>
+        
+        {/*
 
         <ShrinkCircles 
           imageSrc="/img/lowRes/pineapple.jpg"
@@ -172,14 +279,14 @@ export default async function ToneCanvasPage() {
             debounceTime={3000}
             autoAnimStep={0.05}
           />
-        </div>*/}
-
+        </div>
+        
         <div className="bg-white">
           <ShrinkCircles 
             imageSrc="/img/lowRes/brain.png"
-            scaleFactor={1}
+            scaleFactor={2}
             gridGap={3}
-            circleColor="#000000"
+            circleColor="blue"
             attractionDistance={200}
             shrinkFactor={1}
             minRadius={0.1}
@@ -190,6 +297,43 @@ export default async function ToneCanvasPage() {
             autoAnimStep={0.03}
           />
         </div>
+        */}
+
+        {/* Background canvases
+
+        <div className="bg-white">
+          <ShrinkCircles 
+            gridGap={5}
+            circleColor="black"
+            attractionDistance={200}
+            shrinkFactor={1}
+            minRadius={0.1}
+            defaultRadius={4}
+            maxRadius={3.8}
+            delayFactor={0.85}
+            delayCap={0.1}
+            debounceTime={300000}
+            autoAnimStep={0.03}
+          />
+        </div>
+        
+        <div className="bg-white">
+          <ShrinkCircles 
+            gridGap={4}
+            circleColor="black"
+            attractionDistance={200}
+            shrinkFactor={1}
+            minRadius={0.1}
+            defaultRadius={4}
+            maxRadius={3.8}
+            delayFactor={10}
+            delayCap={10}
+            debounceTime={300000}
+            autoAnimStep={0.03}
+          />
+        </div>
+
+        */}
 
 
         {/*
