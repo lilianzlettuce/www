@@ -53,10 +53,6 @@ export function useImagePixels(src: string, fillColor: string = ""): UseImagePix
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             const data = imageData.data;
 
-            for (let i = 600; i < 100; i += 4) {
-                console.log(data[i], data[i + 1], data[i + 2], data[i + 3]);
-            }
-
             // Convert data array to pixel color array
             const rgbPixels: Color[] = [];
             for (let i = 0; i < data.length; i += 4) {

@@ -3,9 +3,9 @@
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
-import { useRef, useCallback, useEffect, useMemo } from "react";
+import { useRef, useEffect } from "react";
 import { useImagePixels } from "@/hooks/useImagePixels";
-import { getBrightness, getAlphaBrightness } from "@/lib/colorProcessing";
+import { getBrightness } from "@/lib/colorProcessing";
 import { mapTo } from "@/lib/utils";
 
 type RadiusPoint = {
@@ -59,25 +59,19 @@ const ShrinkCircles = ({
   const mousePosition = useMousePosition();
   const { pixels, imageWidth, imageHeight, isImageLoaded } = useImagePixels(imageSrc || "", transparent ? "white" : "");
 
-  /*const scale = useMemo(() => {
-    const breakpointMobile = 640;
-    const isMobile = typeof window !== 'undefined' ? window.innerWidth < breakpointMobile : false;
-    return isMobile ? 1.5 : 3;
-  }, []);*/
-
-  const canvasDimensions = useMemo(() => {
-    if (!imageSrc || !isImageLoaded || imageWidth === 0 || imageHeight === 0) {
-      // Default canvas dimensions when no image is provided
-      const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 800;
-      const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 600;
-      return { 
-        width: viewportWidth, 
-        height: viewportHeight,
-        imgScale: 1 
-      };
-    }
-
-    // Get viewport dimensions
+  // Calculate canvas dimensions
+  let canvasDimensions;
+  if (!imageSrc || !isImageLoaded || imageWidth === 0 || imageHeight === 0) {
+    // Default canvas dimensions when no image is provided
+    const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 800;
+    const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 600;
+    canvasDimensions = { 
+      width: viewportWidth, 
+      height: viewportHeight,
+      imgScale: 1 
+    };
+  } else {
+    // Calculate canvas dimensions based on image size
     const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 800;
     const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 600;
     
@@ -85,18 +79,16 @@ const ShrinkCircles = ({
     const maxWidth = viewportWidth * 0.9;
     const maxHeight = viewportHeight * 0.9;
 
-    // Calculate scale to fit image within viewport
+    // Scale image within viewport
     const scaleX = maxWidth / imageWidth;
     const scaleY = maxHeight / imageHeight;
-    const imgScale = Math.min(scaleX, scaleY, 1) * scaleFactor; // custom scale factor
-
-    // Calculate canvas dimensions based on image size
-    return {
+    const imgScale = Math.min(scaleX, scaleY, 1) * scaleFactor;
+    canvasDimensions = {
       width: Math.floor(imageWidth * imgScale),
       height: Math.floor(imageHeight * imgScale),
       imgScale,
     };
-  }, [imageSrc, isImageLoaded, imageWidth, imageHeight, scaleFactor]);
+  }
 
   const { canvasRef, ctx, width, height } = useCanvas(
     { width: canvasDimensions.width, height: canvasDimensions.height }
@@ -154,10 +146,13 @@ const ShrinkCircles = ({
         });
       }
     }
-  }, [width, height, gridGap, defaultRadius, imageSrc, isImageLoaded, pixels, imageWidth, imageHeight, minRadius, maxRadius, canvasDimensions.imgScale, transparent]);
+
+    // Update canvas
+    drawCircles();
+  }, [width, height, gridGap, defaultRadius, imageSrc, isImageLoaded, pixels, imageWidth, imageHeight, minRadius, maxRadius, canvasDimensions.imgScale, transparent, circleColor, ctx]);
 
   // Update radius values based on mouse position and animation state
-  const updateRadiusPoints = useCallback((mouseX: number, mouseY: number) => {
+  const updateRadiusPoints = (mouseX: number, mouseY: number) => {
     const now = Date.now();
     mouseActive.current = (now - lastMouseMoveTime.current) < debounceTime;
 
@@ -214,7 +209,7 @@ const ShrinkCircles = ({
         const distanceFromCenter = Math.sqrt(dx * dx + dy * dy);
         
         // Create a pulsating wave that radiates from center
-        // Points closer to center pulsate first, creating a ripple effect
+        // Points closer to center pulsate first
         const maxDistance = Math.sqrt(centerX * centerX + centerY * centerY);
         const normalizedDistance = distanceFromCenter / maxDistance;
         
@@ -242,26 +237,24 @@ const ShrinkCircles = ({
       autoAnimPhase.current = 0;
       animationRadius.current = 1;
     }
-  }, [radiusPoints, debounceTime, attractionDistance, autoAnimStep, width, height]);
+  };
 
   // Draw circles on canvas
-  const drawCircles = useCallback(() => {
+  function drawCircles() {
     if (!ctx) return;
-    
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = circleColor;
-
+    
     for (const point of radiusPoints.current) {
       ctx.beginPath();
       ctx.arc(point.x, point.y, point.radius, 0, 2 * Math.PI);
       ctx.fill();
       ctx.closePath();
     }
-  }, [ctx, width, height, circleColor, radiusPoints, transparent]);
-  drawCircles();
+  }
 
   // Handle mouse events
-  const handleMouseMove = useCallback(() => {
+  function handleMouseMove() {
     if (!canvasRef.current || !interactive) return;
 
     // Calculate mouse position relative to canvas on viewport
@@ -271,19 +264,18 @@ const ShrinkCircles = ({
     
     lastMouseMoveTime.current = Date.now();
     updateRadiusPoints(mouseX, mouseY);
-  }, [mousePosition, updateRadiusPoints]);
+  }
 
-  const handleMouseLeave = useCallback(() => {
+  function handleMouseLeave() {
     if (!canvasRef.current || !interactive) return;
 
     lastMouseMoveTime.current = Date.now();
     updateRadiusPoints(-100, -100);
-  }, [updateRadiusPoints]);
+  }
 
   // Handle touch events for mobile
-  const handleTouchStart = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
-    event.preventDefault(); // Prevent page scrolling
-    
+  function handleTouchStart(event: React.TouchEvent<HTMLCanvasElement>) {
+    event.preventDefault();
     lastMouseMoveTime.current = Date.now();
     isDragging.current = true;
     
@@ -295,11 +287,10 @@ const ShrinkCircles = ({
     const touchY = touch.clientY - rect.top;
     
     updateRadiusPoints(touchX, touchY);
-  }, [updateRadiusPoints]);
+  }
 
-  const handleTouchMove = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
-    event.preventDefault(); // Prevent page scrolling
-    
+  function handleTouchMove(event: React.TouchEvent<HTMLCanvasElement>) {
+    event.preventDefault();
     if (!isDragging.current) return;
     lastMouseMoveTime.current = Date.now();
     
@@ -311,13 +302,13 @@ const ShrinkCircles = ({
     const touchY = touch.clientY - rect.top;
     
     updateRadiusPoints(touchX, touchY);
-  }, [updateRadiusPoints]);
+  }
 
-  const handleTouchEnd = useCallback(() => {
+  function handleTouchEnd() {
     isDragging.current = false;
     lastMouseMoveTime.current = Date.now();
     updateRadiusPoints(-100, -100);
-  }, [updateRadiusPoints]);
+  }
 
   // Animation frame callback
   const animate = () => {
