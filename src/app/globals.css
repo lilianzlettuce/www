@@ -26,7 +26,12 @@
   --warning: #f59e0b;
   --warningForeground: #ffffff;
 
+  --highlight-bg: #2563eb;
+
   overflow-x: hidden;
+}
+:root:has(.no-doc-scroll) {
+  overflow: hidden;
 }
 
 @theme inline {
@@ -68,6 +73,29 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background-color: var(--highlight-bg);
+}
+
+@layer base {
+  input, textarea {
+    outline: none;
+    padding: 2px 4px;
+    font-family: var(--font-overused-grotesk);
+    border: 1px solid rgb(47, 47, 47);
+    border-radius: 1px;
+  }
+
+  button {
+    width: fit-content;
+    border: 1px solid rgb(148, 148, 148);
+    border-radius: 1px;
+    padding: 2px 8px;
+    font-family: var(--font-overused-grotesk);
+    cursor: pointer;
+  }
 }
 
 canvas {

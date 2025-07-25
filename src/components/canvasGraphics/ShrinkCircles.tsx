@@ -18,6 +18,8 @@ type RadiusPoint = {
 };
 
 interface ShrinkCirclesProps {
+  id?: string;
+  interactive?: boolean;
   imageSrc?: string;
   scaleFactor?: number;
   gridGap?: number;
@@ -35,6 +37,8 @@ interface ShrinkCirclesProps {
 }
 
 const ShrinkCircles = ({
+  id,
+  interactive = true,
   imageSrc, 
   scaleFactor = 1.2,
   gridGap = 3,
@@ -259,10 +263,11 @@ const ShrinkCircles = ({
       ctx.closePath();
     }
   }, [ctx, width, height, circleColor, radiusPoints]);
+  drawCircles();
 
   // Handle mouse events
   const handleMouseMove = useCallback(() => {
-    if (!canvasRef.current) return;
+    if (!canvasRef.current || !interactive) return;
 
     // Calculate mouse position relative to canvas on viewport
     const rect = canvasRef.current.getBoundingClientRect();
@@ -274,6 +279,8 @@ const ShrinkCircles = ({
   }, [mousePosition, updateRadiusPoints]);
 
   const handleMouseLeave = useCallback(() => {
+    if (!canvasRef.current || !interactive) return;
+    
     lastMouseMoveTime.current = Date.now();
     updateRadiusPoints(-100, -100);
   }, [updateRadiusPoints]);
@@ -319,7 +326,7 @@ const ShrinkCircles = ({
 
   // Animation frame callback
   const animate = () => {
-    if (!canvasRef.current || !ctx) return;
+    if (!canvasRef.current || !ctx || !interactive) return;
     
     // Calculate mouse position relative to canvas on viewport
     const rect = canvasRef.current.getBoundingClientRect();
@@ -334,6 +341,7 @@ const ShrinkCircles = ({
 
   return (
     <canvas
+      id={id}
       ref={canvasRef}
       className="w-screen h-screen"
       onMouseMove={handleMouseMove}

@@ -5,7 +5,7 @@ import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import { mapTo } from "@/lib/utils";
 
 export default function ToneCanvasPage() {
-  const [dotResolution, setDotResolution] = useState(100);
+  const [dotResolution, setDotResolution] = useState(290);
   const [dotResolutionInput, setDotResolutionInput] = useState(dotResolution.toString());
   const [defaultRadius, setDefaultRadius] = useState(3);
   const [minRadius, setMinRadius] = useState(0.1);
@@ -48,7 +48,7 @@ export default function ToneCanvasPage() {
           <input 
             type="range"
             min="1"
-            max="8"
+            max="10"
             value={defaultRadius}
             onChange={(e) => setDefaultRadius(parseFloat(e.target.value))}
           />
@@ -88,7 +88,7 @@ export default function ToneCanvasPage() {
             type="range"
             step="0.1"
             min="1"
-            max="10"
+            max="30"
             value={maxRadius}
             onChange={(e) => {
               setMaxRadius(parseFloat(e.target.value));
@@ -110,10 +110,50 @@ export default function ToneCanvasPage() {
             }}
           />
         </div>
+        <button 
+          onClick={() => {
+            const canvas = document.getElementById("tone-canvas") as HTMLCanvasElement;
+
+            // Convert canvas content to a Blob 
+            canvas.toBlob((blob) => {
+              if (blob) {
+                // Create clipboard item with image Blob
+                const item = new ClipboardItem({ 'image/png': blob });
+
+                // Write clipboard item to the clipboard
+                navigator.clipboard.write([item])
+                  .then(() => {
+                    alert('Canvas copied to clipboard!');
+                  })
+                  .catch(err => {
+                    console.error('Failed to copy canvas:', err);
+                    alert('Failed to copy canvas to clipboard.');
+                  });
+              } else {
+                alert('Failed to create image from canvas.');
+              }
+            }, 'image/png'); // image format ('image/png', 'image/jpeg')
+          }}
+        >
+          Copy to clipboard
+        </button>
+        <button
+          onClick={() => {
+            const canvas = document.getElementById("tone-canvas") as HTMLCanvasElement;
+            const link = document.createElement("a");
+            link.href = canvas.toDataURL("image/png");
+            link.download = "tone-canvas.png";
+            link.click();
+          }}
+        >
+          Download Image
+        </button>
       </div>
       <div className="flex flex-col items-center justify-center gap-0">
         <div className="bg-white">
           <ShrinkCircles 
+            id="tone-canvas"
+            interactive={false}
             imageSrc="/img/lowRes/brain.png"
             scaleFactor={1}
             gridGap={mapTo(dotResolution, 72, 300, 30, 3)}
