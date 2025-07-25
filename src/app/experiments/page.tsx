@@ -19,11 +19,12 @@ export default async function ExperimentsPage() {
     <div className="min-h-screen bg-background p-20">
       <div className="flex flex-col items-center justify-center gap-0">
 
-      <GridCanvas 
+        <GridCanvas 
           gridSize={5}
           pointColor="#000000"
           pointSize={5}
           attractionDistance={50}
+          debounceTime={9999900}
         />
 
         <GlitchCircle 
@@ -33,15 +34,23 @@ export default async function ExperimentsPage() {
           attractionDistance={30}
         />
 
-        <PixelCircle 
-          pixelSize={50}
-          circleColor="rgb(255, 255, 0)"
-          circleEndColor="rgb(255, 0, 255)"
-          attractionDistance={100}
-          shrinkFactor={1.1}
-          minRadius={0.5}
-          easeInFactor={20}
-        />
+        <div className="w-screen h-screen flex flex-col items-start justify-center">
+          <p className="text-[200px] font-bold">Pixel Circle</p>
+          <p className="text-sm">
+            This is a pixel circle. It is a circle that is made up of pixels.
+          </p>
+          <div className="absolute mix-blend-difference">
+            <PixelCircle 
+              pixelSize={60}
+              circleColor="rgb(0, 0, 0)"
+              circleEndColor="rgb(255, 0, 255)"
+              attractionDistance={45}
+              shrinkFactor={1.1}
+              minRadius={0.5}
+              easeInFactor={20}
+            />
+          </div>
+        </div>
 
         <ShrinkCircles 
           gridGap={25}

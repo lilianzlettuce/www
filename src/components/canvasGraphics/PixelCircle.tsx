@@ -21,6 +21,7 @@ interface PixelCircleProps {
   pixelSize?: number;
   circleColor?: string;
   circleEndColor?: string;
+  blendColors?: boolean;
   attractionDistance?: number;
   shrinkFactor?: number;
   debounceTime?: number;
@@ -31,16 +32,17 @@ interface PixelCircleProps {
 }
 
 const PixelCircle = ({
-  pixelSize = 30,
-  circleColor = "rgb(0, 0, 0)",
-  circleEndColor = "rgb(255, 255, 255)",
-  attractionDistance = 200,
-  shrinkFactor = 1,
-  debounceTime = 5500,
-  autoAnimStep = 0.02,
-  maxRadius = 50,
-  minRadius = 0.5,
-  easeInFactor = 0.85,
+    pixelSize = 30,
+    circleColor = "rgb(0, 0, 0)",
+    circleEndColor = "rgb(255, 255, 255)",
+    blendColors = false,
+    attractionDistance = 200,
+    shrinkFactor = 1,
+    debounceTime = 5500,
+    autoAnimStep = 0.02,
+    maxRadius = 50,
+    minRadius = 0.5,
+    easeInFactor = 0.85,
 }: PixelCircleProps) => {
     const mousePosition = useMousePosition();
     const { canvasRef, ctx, width, height } = useCanvas();
@@ -60,8 +62,6 @@ const PixelCircle = ({
 
     // Create grid of pixels
     useEffect(() => {
-        console.log("Generating grid", width, height);
-        
         if (width === 0 || height === 0) return;
 
         // Calculate number of rows and columns
@@ -88,76 +88,75 @@ const PixelCircle = ({
         }
     }, [width, height, pixelSize, circleColor, circleEndColor]);
 
-    // Update radius values based on mouse position and animation state
+    // Update pixels based on mouse position and animation state
     const updatePixels = useCallback((mouseX: number, mouseY: number) => {
         const now = Date.now();
         mouseActive.current = (now - lastMouseMoveTime.current) < debounceTime;
 
         for (const pixel of pixels.current) {
             if (mouseActive.current) {
-                // Calculate distance from mouse to circle center
-                const dx = pixel.x - mouseX;
-                const dy = pixel.y - mouseY;
+                // Calculate distance from mouse to pixel
+                const dx = pixel.x - mouseX + pixelSize / 2;
+                const dy = pixel.y - mouseY + pixelSize / 2;
                 const distance = Math.sqrt(dx * dx + dy * dy);
 
-                // Calculate force based on distance (inverse relationship)
-                let force = 0;
-                if (distance < attractionDistance) {
-                    // Direct relationship: closer = smaller radius
-                    // Value between 0 and 1
-                    force = (attractionDistance - distance) / attractionDistance;
-                    // Apply power curve for more dramatic effect
-                    //force = Math.pow(force, 2);
-                    force = 1 - Math.pow(1 - force, 3);
-                    //force = force * force * (3 - 2 * force);
+                if (!blendColors) {
+                    // Color all affected pixels to end color
+                    if (distance < attractionDistance) {
+                        pixel.color = endColor;
+                    } else {
+                        pixel.color = defaultColor;
+                    }
+                } else {
+                    // Calculate force based on distance (inverse relationship)
+                    let force = 0;
+                    if (distance < attractionDistance) {
+                        // Direct relationship: closer = smaller radius
+                        // Value between 0 and 1
+                        force = (attractionDistance - distance) / attractionDistance;
+                        // Apply power curve for more dramatic effect
+                        //force = Math.pow(force, 2);
+                        force = 1 - Math.pow(1 - force, 3);
+                        //force = force * force * (3 - 2 * force);
+                    }
+
+                    // Calculate target color (in between start and end colors)
+
+                    const targetColor = mapColor(defaultColor, (defaultVal, channel) =>
+                        //mapTo(distance, attractionDistance, 0, defaultVal, endColor[channel])
+                        //mapTo(defaultVal * (1 - force * shrinkFactor), 0, defaultVal, defaultVal, endColor[channel])
+                        //mapTo(distance, attractionDistance, 0, defaultVal, endColor[channel])
+                        mapTo(force, 0, 1, defaultVal, endColor[channel])
+                    );
+                    const colorDiff = mapColor(targetColor, (targetVal, channel) => 
+                        targetVal - pixel.color[channel]
+                    );
+                    const colorForce = mapColor(colorDiff, (diffVal) => 
+                        //Math.min(2, Math.abs(diffVal) / 10)
+                        Math.abs(diffVal) / easeInFactor
+                    );
+
+                    // Update velocity to tween between colors
+                    pixel.vc = mapColor(pixel.vc, (velocity, channel) => {
+                        const diff = colorDiff[channel];
+                        const force = colorForce[channel];
+                        // use just force (not color force for glitch effect)
+                        return diff > 0
+                        ? (velocity + force) * shrinkFactor
+                        : (velocity - force) * shrinkFactor;
+                    });
+
+                    pixel.color = mapColor(pixel.color, (colorVal, channel) => {
+                        const diff = colorDiff[channel];
+                        const force = colorForce[channel];
+                        return diff > 0
+                        ? colorVal + force * 5
+                        : colorVal - force * 5;
+                    });
                 }
-
-                /// **************
-
-                // Ignore force and shrinkfactor for now
-                // Calculate target color (in between start and end colors)
-
-                const targetColor = mapColor(defaultColor, (defaultVal, channel) =>
-                    //mapTo(distance, attractionDistance, 0, defaultVal, endColor[channel])
-                    //mapTo(defaultVal * (1 - force * shrinkFactor), 0, defaultVal, defaultVal, endColor[channel])
-                    //mapTo(distance, attractionDistance, 0, defaultVal, endColor[channel])
-                    mapTo(force, 0, 1, defaultVal, endColor[channel])
-                );
-                const colorDiff = mapColor(targetColor, (targetVal, channel) => 
-                    targetVal - pixel.color[channel]
-                );
-                const colorForce = mapColor(colorDiff, (diffVal) => 
-                    //Math.min(2, Math.abs(diffVal) / 10)
-                    Math.abs(diffVal) / easeInFactor
-                );
-
-                // Update velocity to tween between colors
-                pixel.vc = mapColor(pixel.vc, (velocity, channel) => {
-                    const diff = colorDiff[channel];
-                    const force = colorForce[channel];
-                    // use just force (not color force for glitch effect)
-                    return diff > 0
-                      ? (velocity + force) * shrinkFactor
-                      : (velocity - force) * shrinkFactor;
-                });
-                  
-                // Update radius with velocity
-                /*pixel.color = mapColor(pixel.color, (colorVal, channel) => 
-                    colorVal + pixel.vc[channel]
-                )*/
-
-                pixel.color = mapColor(pixel.color, (colorVal, channel) => {
-                    const diff = colorDiff[channel];
-                    const force = colorForce[channel];
-                    return diff > 0
-                      ? colorVal + force * 5
-                      : colorVal - force * 5;
-                });
-                  
                 
                 // Clamp colorto bounds
                 pixel.color = mapColor(pixel.color, (colorVal) => Math.max(0, Math.min(255, colorVal)));
-                
                 pixel.lastColor = pixel.color;
             }
         }
