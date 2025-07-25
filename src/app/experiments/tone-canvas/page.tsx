@@ -5,7 +5,7 @@ import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import { mapTo } from "@/lib/utils";
 
 export default function ToneCanvasPage() {
-  const [dotResolution, setDotResolution] = useState(290);
+  const [dotResolution, setDotResolution] = useState(100);
   const [dotResolutionInput, setDotResolutionInput] = useState(dotResolution.toString());
   const [minRadius, setMinRadius] = useState(0.1);
   const [minRadiusInput, setMinRadiusInput] = useState(minRadius.toString());
@@ -167,7 +167,7 @@ export default function ToneCanvasPage() {
             id="tone-canvas"
             interactive={interactive}
             transparent={transparent}
-            imageSrc="/img/lowRes/brain.png"
+            imageSrc="/img/lowRes/heart.png"
             scaleFactor={1}
             gridGap={mapTo(dotResolution, 72, 300, 30, 3)}
             defaultRadius={3}
