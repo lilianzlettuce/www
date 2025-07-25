@@ -167,6 +167,27 @@ export default function ToneCanvasPage() {
             id="tone-canvas"
             interactive={interactive}
             transparent={transparent}
+            imageSrc="/img/lowRes/brain.png"
+            scaleFactor={1}
+            gridGap={mapTo(dotResolution, 72, 300, 30, 3)}
+            defaultRadius={3}
+            circleColor="#000000"
+            attractionDistance={200}
+            shrinkFactor={1}
+            minRadius={minRadius}
+            maxRadius={maxRadius}
+            delayFactor={0.85}
+            delayCap={0.1}
+            debounceTime={3000000}
+            autoAnimStep={0.03}
+          />
+        </div>
+
+        <div className="bg-white">
+          <ShrinkCircles 
+            id="tone-canvas"
+            interactive={interactive}
+            transparent={transparent}
             imageSrc="/img/lowRes/heart.png"
             scaleFactor={1}
             gridGap={mapTo(dotResolution, 72, 300, 30, 3)}

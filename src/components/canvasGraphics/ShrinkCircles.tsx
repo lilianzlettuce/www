@@ -57,7 +57,7 @@ const ShrinkCircles = ({
   delayCap = 0.1,
 }: ShrinkCirclesProps) => {
   const mousePosition = useMousePosition();
-  const { pixels, imageWidth, imageHeight, isImageLoaded } = useImagePixels(imageSrc || "");
+  const { pixels, imageWidth, imageHeight, isImageLoaded } = useImagePixels(imageSrc || "", transparent ? "white" : "");
 
   /*const scale = useMemo(() => {
     const breakpointMobile = 640;
@@ -88,7 +88,7 @@ const ShrinkCircles = ({
     // Calculate scale to fit image within viewport
     const scaleX = maxWidth / imageWidth;
     const scaleY = maxHeight / imageHeight;
-    const imgScale = Math.min(scaleX, scaleY, 1) * scaleFactor; // scale down
+    const imgScale = Math.min(scaleX, scaleY, 1) * scaleFactor; // custom scale factor
 
     // Calculate canvas dimensions based on image size
     return {
@@ -120,17 +120,9 @@ const ShrinkCircles = ({
     // Clear existing points
     radiusPoints.current = [];
 
-    // Calculate number of rows, columns, and gap btw points
-    let gap;
-    if (imageSrc && isImageLoaded && canvasDimensions.imgScale) {
-      // Scale to image dimensions
-      gap = gridGap * canvasDimensions.imgScale;
-    } else {
-      // Default canvas
-      gap = gridGap;
-    }
-    const numRows = Math.floor(height / gap);
-    const numCols = Math.floor(width / gap);
+    // Calculate number of rows, columns
+    const numRows = Math.floor(height / gridGap);
+    const numCols = Math.floor(width / gridGap);
 
     for (let i = 0; i < numRows; i++) {
       const y = i * height / numRows; // current row
@@ -146,20 +138,10 @@ const ShrinkCircles = ({
           const pixelIndex = imageY * imageWidth + imageX;
           const pixel = pixels[pixelIndex];
           if (pixel) {
-            if (transparent) {
-              // Maintain transparency
-              if (pixel.a === 0) {
-                initialRadius = 0;
-              } else {
-                // Map brightness to point radius
-                const brightness = getAlphaBrightness(pixel);
-                initialRadius = mapTo(brightness, 0, 255, maxRadius, minRadius);
-              }
-            } else {
               // Map rgb brightness to point radius (ignore alpha)
               const brightness = getBrightness(pixel);
               initialRadius = mapTo(brightness, 0, 255, maxRadius, minRadius);
-            }
+            
           }
         }
         radiusPoints.current.push({
@@ -172,7 +154,7 @@ const ShrinkCircles = ({
         });
       }
     }
-  }, [width, height, gridGap, defaultRadius, imageSrc, isImageLoaded, pixels, imageWidth, imageHeight, minRadius, maxRadius, canvasDimensions.imgScale]);
+  }, [width, height, gridGap, defaultRadius, imageSrc, isImageLoaded, pixels, imageWidth, imageHeight, minRadius, maxRadius, canvasDimensions.imgScale, transparent]);
 
   // Update radius values based on mouse position and animation state
   const updateRadiusPoints = useCallback((mouseX: number, mouseY: number) => {
@@ -275,7 +257,7 @@ const ShrinkCircles = ({
       ctx.fill();
       ctx.closePath();
     }
-  }, [ctx, width, height, circleColor, radiusPoints]);
+  }, [ctx, width, height, circleColor, radiusPoints, transparent]);
   drawCircles();
 
   // Handle mouse events
@@ -353,16 +335,22 @@ const ShrinkCircles = ({
   useAnimationFrame(animate);
 
   return (
-    <canvas
-      id={id}
-      ref={canvasRef}
-      className="w-screen h-screen"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    />
+    <div>
+      <canvas
+        id={id}
+        ref={canvasRef}
+        className="w-screen h-screen"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      />
+      <p>{imageSrc}</p>
+      <p>{imageWidth}</p>
+      <p>{imageHeight}</p>
+      <p>{pixels.length}</p>
+    </div>
   );
 };
 

@@ -11,7 +11,9 @@ interface UseImagePixelsResult {
   error: string | null;
 }
 
-export function useImagePixels(src: string): UseImagePixelsResult {
+// Returns the pixel data of a source image as an array of Color objects
+// Image dimensions preserved
+export function useImagePixels(src: string, fillColor: string = ""): UseImagePixelsResult {
     const [pixels, setPixels] = useState<Color[]>([]);
     const [imageWidth, setimageWidth] = useState(0);
     const [imageHeight, setimageHeight] = useState(0);
@@ -25,6 +27,7 @@ export function useImagePixels(src: string): UseImagePixelsResult {
         const image = new Image();
         image.crossOrigin = "anonymous";
 
+        // Extract image dimensions and pixels once loaded
         image.onload = () => {
             // Draw image to ghost canvas to get the image data (pixels)
             const canvas = document.createElement("canvas");
@@ -38,6 +41,12 @@ export function useImagePixels(src: string): UseImagePixelsResult {
             canvas.height = image.height;
             setimageWidth(image.width);
             setimageHeight(image.height);
+
+            // Fill canvas background if fillColor is provided
+            if (fillColor) {
+                ctx.fillStyle = fillColor;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
 
             // Get img data array (each element is 1 val)
             ctx.drawImage(image, 0, 0);
@@ -75,7 +84,7 @@ export function useImagePixels(src: string): UseImagePixelsResult {
             setisImageLoaded(false);
             setError(null);
         };
-    }, [src]);
+    }, [src, fillColor]);
 
     return { pixels, imageWidth, imageHeight, isImageLoaded, error };
 }
