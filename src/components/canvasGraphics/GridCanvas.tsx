@@ -3,7 +3,7 @@
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
-import { useRef, useCallback, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { Color, colorToString, getRandomGlitchColor } from "@/lib/colorProcessing";
 
 type Point = {
@@ -97,12 +97,12 @@ const GridCanvas = ({
   }, [width, height, gridSize]);
 
   // Helper function to snap to grid
-  const snapToGrid = useCallback((value: number, gridSize: number) => {
+  const snapToGrid = (value: number, gridSize: number) => {
     return Math.floor(value / gridSize) * gridSize;
-  }, []);
+  };
 
   // Update points based on mouse position and animation state
-  const updatePoints = useCallback((mouseX: number, mouseY: number) => {
+  const updatePoints = (mouseX: number, mouseY: number) => {
     const now = Date.now();
     mouseActive.current = (now - lastMouseMoveTime.current) < debounceTime;
 
@@ -152,10 +152,10 @@ const GridCanvas = ({
       autoAnimPhase.current = 0;
       radius.current = scale;
     }
-  }, [debounceTime, scaledAttractionDistance, autoAnimStep, scaledMaxRadius, scale]);
+  };
 
   // Draw points on canvas
-  const drawPoints = useCallback(() => {
+  const drawPoints = () => {
     if (!ctx) return;
     
     ctx.clearRect(0, 0, width, height);
@@ -173,10 +173,10 @@ const GridCanvas = ({
         scaledPointSize
       );
     }
-  }, [ctx, width, height, pointColor, snapToGrid, scaledGridSize, scaledPointSize]);
+  };
 
   // Handle mouse events
-  const handleMouseMove = useCallback(() => {
+  const handleMouseMove = () => {
     if (!canvasRef.current) return;
 
     // Calculate mouse position relative to canvas on viewport
@@ -186,15 +186,15 @@ const GridCanvas = ({
     
     lastMouseMoveTime.current = Date.now();
     updatePoints(mouseX, mouseY);
-  }, [mousePosition, updatePoints]);
+  };
 
-  const handleMouseLeave = useCallback(() => {
+  const handleMouseLeave = () => {
     lastMouseMoveTime.current = Date.now();
     updatePoints(-100, -100);
-  }, [updatePoints]);
+  };
 
   // Handle touch events for mobile
-  const handleTouchStart = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
+  const handleTouchStart = (event: React.TouchEvent<HTMLCanvasElement>) => {
     lastMouseMoveTime.current = Date.now();
     isDragging.current = true;
     
@@ -206,9 +206,9 @@ const GridCanvas = ({
     const touchY = touch.clientY - rect.top;
     
     updatePoints(touchX, touchY);
-  }, [updatePoints]);
+  };
 
-  const handleTouchMove = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
+  const handleTouchMove = (event: React.TouchEvent<HTMLCanvasElement>) => {
     if (!isDragging.current) return;
     lastMouseMoveTime.current = Date.now();
     
@@ -221,13 +221,13 @@ const GridCanvas = ({
     const touchY = touch.clientY - rect.top;
     
     updatePoints(touchX, touchY);
-  }, [updatePoints]);
+  };
 
-  const handleTouchEnd = useCallback(() => {
+  const handleTouchEnd = () => {
     isDragging.current = false;
     lastMouseMoveTime.current = Date.now();
     updatePoints(-100, -100);
-  }, [updatePoints]);
+  };
 
   // Animation frame callback
   const animate = () => {

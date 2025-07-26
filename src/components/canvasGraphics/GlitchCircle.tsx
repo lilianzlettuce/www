@@ -3,7 +3,7 @@
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
-import { useRef, useCallback, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { Color, parseColorString, colorToString, getRandomGlitchColor } from "@/lib/colorProcessing";
 
 type Pixel = {
@@ -85,7 +85,7 @@ const GlitchCircle = ({
     }, [width, height, pixelSize, circleColor, circleEndColor]);
 
     // Update radius values based on mouse position and animation state
-    const updatePixels = useCallback((mouseX: number, mouseY: number) => {
+    const updatePixels = (mouseX: number, mouseY: number) => {
         const now = Date.now();
         mouseActive.current = (now - lastMouseMoveTime.current) < debounceTime;
 
@@ -159,10 +159,10 @@ const GlitchCircle = ({
             autoAnimPhase.current = 0;
             animationRadius.current = 1;
         }
-    }, [pixels, , circleColor, circleEndColor, debounceTime, attractionDistance, autoAnimStep]);
+    };
 
     // Draw circles on canvas
-    const drawCircles = useCallback(() => {
+    const drawCircles = () => {
         if (!ctx) return;
         
         ctx.clearRect(0, 0, width, height);
@@ -177,10 +177,10 @@ const GlitchCircle = ({
             ctx.fill();
             ctx.closePath();
         }
-    }, [ctx, width, height, circleColor, pixels]);
+    };
 
     // Handle mouse events
-    const handleMouseMove = useCallback(() => {
+    const handleMouseMove = () => {
         if (!canvasRef.current) return;
 
         // Calculate mouse position relative to canvas on viewport
@@ -192,15 +192,15 @@ const GlitchCircle = ({
         
         lastMouseMoveTime.current = Date.now();
         updatePixels(mouseX, mouseY);
-    }, [mousePosition, updatePixels]);
+    };
 
-    const handleMouseLeave = useCallback(() => {
+    const handleMouseLeave = () => {
         lastMouseMoveTime.current = Date.now();
         updatePixels(-100, -100);
-    }, [updatePixels]);
+    };
 
     // Handle touch events for mobile
-    const handleTouchStart = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
+    const handleTouchStart = (event: React.TouchEvent<HTMLCanvasElement>) => {
         lastMouseMoveTime.current = Date.now();
         isDragging.current = true;
         
@@ -212,9 +212,9 @@ const GlitchCircle = ({
         const touchY = touch.clientY - rect.top;
         
         updatePixels(touchX, touchY);
-    }, [updatePixels]);
+    };
 
-    const handleTouchMove = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
+    const handleTouchMove = (event: React.TouchEvent<HTMLCanvasElement>) => {
         if (!isDragging.current) return;
         lastMouseMoveTime.current = Date.now();
         
@@ -227,13 +227,13 @@ const GlitchCircle = ({
         const touchY = touch.clientY - rect.top;
         
         updatePixels(touchX, touchY);
-    }, [updatePixels]);
+    };
 
-    const handleTouchEnd = useCallback(() => {
+    const handleTouchEnd = () => {
         isDragging.current = false;
         lastMouseMoveTime.current = Date.now();
         updatePixels(-100, -100);
-    }, [updatePixels]);
+    };
 
     // Animation frame callback
     const animate = () => {

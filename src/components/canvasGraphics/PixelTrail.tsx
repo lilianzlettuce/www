@@ -3,7 +3,7 @@
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
-import { useRef, useCallback, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { Color, parseColorString, mapColor, colorToString } from "@/lib/colorProcessing";
 import { mapTo } from "@/lib/utils";
 
@@ -96,7 +96,7 @@ const PixelTrail = ({
     }, [width, height, pixelSize, circleColor, circleEndColor]);
 
     // Update pixels based on mouse position and animation state
-    const updatePixels = useCallback((mouseX: number, mouseY: number) => {
+    const updatePixels = (mouseX: number, mouseY: number) => {
         const now = Date.now();
         mouseActive.current = (now - lastMouseMoveTime.current) < debounceTime;
 
@@ -184,10 +184,10 @@ const PixelTrail = ({
             autoAnimPhase.current = 0;
             animationRadius.current = 1;
         }
-    }, [pixels, , circleColor, circleEndColor, debounceTime, attractionDistance, minRadius, maxRadius, autoAnimStep, easeInFactor, trailDebounceTime, drawMode]);
+    };
 
     // Draw circles on canvas
-    const drawCircles = useCallback(() => {
+    const drawCircles = () => {
         if (!ctx) return;
         
         ctx.clearRect(0, 0, width, height);
@@ -202,10 +202,10 @@ const PixelTrail = ({
             ctx.fill();
             ctx.closePath();
         }
-    }, [ctx, width, height, circleColor, pixels]);
+    };
 
     // Handle mouse events
-    const handleMouseMove = useCallback(() => {
+    const handleMouseMove = () => {
         if (!canvasRef.current) return;
 
         // Calculate mouse position relative to canvas on viewport
@@ -217,24 +217,24 @@ const PixelTrail = ({
         
         lastMouseMoveTime.current = Date.now();
         updatePixels(mouseX, mouseY);
-    }, [mousePosition, updatePixels]);
+    };
 
-    const handleMouseDown = useCallback(() => {
+    const handleMouseDown = () => {
         isMouseDown.current = true;
-    }, []);
+    };
 
-    const handleMouseUp = useCallback(() => {
+    const handleMouseUp = () => {
         isMouseDown.current = false;
-    }, []);
+    };
 
-    const handleMouseLeave = useCallback(() => {
+    const handleMouseLeave = () => {
         lastMouseMoveTime.current = Date.now();
         isMouseDown.current = false;
         updatePixels(-100, -100);
-    }, [updatePixels]);
+    };
 
     // Handle touch events for mobile
-    const handleTouchStart = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
+    const handleTouchStart = (event: React.TouchEvent<HTMLCanvasElement>) => {
         lastMouseMoveTime.current = Date.now();
         isDragging.current = true;
         
@@ -246,9 +246,9 @@ const PixelTrail = ({
         const touchY = touch.clientY - rect.top;
         
         updatePixels(touchX, touchY);
-    }, [updatePixels]);
+    };
 
-    const handleTouchMove = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
+    const handleTouchMove = (event: React.TouchEvent<HTMLCanvasElement>) => {
         if (!isDragging.current) return;
         lastMouseMoveTime.current = Date.now();
         
@@ -261,13 +261,13 @@ const PixelTrail = ({
         const touchY = touch.clientY - rect.top;
         
         updatePixels(touchX, touchY);
-    }, [updatePixels]);
+    };
 
-    const handleTouchEnd = useCallback(() => {
+    const handleTouchEnd = () => {
         isDragging.current = false;
         lastMouseMoveTime.current = Date.now();
         updatePixels(-100, -100);
-    }, [updatePixels]);
+    };
 
     // Animation frame callback
     const animate = () => {

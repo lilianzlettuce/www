@@ -3,7 +3,7 @@
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
-import { useRef, useCallback, useMemo } from "react";
+import { useRef, useEffect } from "react";
 
 type Point = {
   originalX: number;
@@ -68,7 +68,9 @@ const StarCanvas = ({
   const attractionDistance = 40 * scale;
 
   // Create lines data structure
-  const lines = useMemo(() => {
+  const lines = useRef<Point[][]>([]);
+
+  useEffect(() => {
     const linesData: Point[][] = [];
     const angleStep = (Math.PI * 2) / numLines;
 
@@ -98,21 +100,21 @@ const StarCanvas = ({
         linesData.push(line);
       }
     }
-    return linesData;
+    lines.current = linesData;
   }, [numLines, scaledLineLength, lineWidth, scaledGridSize, centerX, centerY, initialRotationAngle, lineThickness]);
 
   // Helper function to snap to grid
-  const snapToGrid = useCallback((value: number, gridSize: number) => {
+  const snapToGrid = (value: number, gridSize: number) => {
     return Math.floor(value / gridSize) * gridSize;
-  }, []);
+  };
 
   // Update points based on mouse position and animation state
-  const updatePoints = useCallback((mouseX: number, mouseY: number) => {
+  const updatePoints = (mouseX: number, mouseY: number) => {
     const now = Date.now();
     mouseActive.current = (now - lastMouseMoveTime.current) < debounceTime;
 
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
+    for (let i = 0; i < lines.current.length; i++) {
+      const line = lines.current[i];
       if (!line) continue;
 
       for (let j = 0; j < line.length; j++) {
@@ -164,16 +166,16 @@ const StarCanvas = ({
       autoAnimPhase.current = 0;
       radius.current = scale;
     }
-  }, [lines, debounceTime, attractionDistance, autoAnimStep, scaledMaxRadius, scale]);
+  };
 
   // Draw lines on canvas
-  const drawLines = useCallback(() => {
+  const drawLines = () => {
     if (!ctx) return;
     
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = starColor;
 
-    for (const line of lines) {
+    for (const line of lines.current) {
       for (const point of line) {
         // Snap to grid during drawing
         const snappedX = snapToGrid(point.x, scaledGridSize);
@@ -186,10 +188,10 @@ const StarCanvas = ({
         );
       }
     }
-  }, [ctx, width, height, starColor, lines, snapToGrid, scaledGridSize, scaledPointSize]);
+  };
 
   // Handle mouse events
-  const handleMouseMove = useCallback(() => {
+  const handleMouseMove = () => {
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect) return;
 
@@ -198,15 +200,15 @@ const StarCanvas = ({
     
     lastMouseMoveTime.current = Date.now();
     updatePoints(mouseX, mouseY);
-  }, [updatePoints]);
+  };
 
-  const handleMouseLeave = useCallback(() => {
+  const handleMouseLeave = () => {
     lastMouseMoveTime.current = Date.now();
     updatePoints(-100, -100);
-  }, [updatePoints]);
+  };
 
   // Handle touch events for mobile
-  const handleTouchStart = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
+  const handleTouchStart = (event: React.TouchEvent<HTMLCanvasElement>) => {
     lastMouseMoveTime.current = Date.now();
     isDragging.current = true;
     
@@ -218,9 +220,9 @@ const StarCanvas = ({
     const touchY = touch.clientY - rect.top;
     
     updatePoints(touchX, touchY);
-  }, [updatePoints]);
+  };
 
-  const handleTouchMove = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
+  const handleTouchMove = (event: React.TouchEvent<HTMLCanvasElement>) => {
     if (!isDragging.current) return;
     lastMouseMoveTime.current = Date.now();
     
@@ -233,13 +235,13 @@ const StarCanvas = ({
     const touchY = touch.clientY - rect.top;
     
     updatePoints(touchX, touchY);
-  }, [updatePoints]);
+  };
 
-  const handleTouchEnd = useCallback(() => {
+  const handleTouchEnd = () => {
     isDragging.current = false;
     lastMouseMoveTime.current = Date.now();
     updatePoints(-100, -100);
-  }, [updatePoints]);
+  };
 
   // Animation frame callback
   const animate = () => {

@@ -29,12 +29,21 @@ export default async function ExperimentsPage() {
           debounceTime={9999900}
         />
 
-        <GlitchCircle 
-          pixelSize={20}
-          circleColor="rgb(0, 0, 0, 0)"
-          circleEndColor="rgb(255, 0, 255)"
-          attractionDistance={30}
-        />
+        <div className="w-screen h-screen flex flex-col items-start justify-center">
+          <p className="text-[200px] font-bold">Glitch Circle</p>
+          <p className="text-sm">
+            This is a glitch circle. It is a glitchy circle that is made up of pixels.
+          </p>
+          <div className="absolute mix-blend-difference">
+            <GlitchCircle 
+              pixelSize={20}
+              circleColor="rgb(0, 0, 0, 0)"
+              circleEndColor="rgb(255, 0, 255)"
+              attractionDistance={30}
+              glitchDebounceTime={100}
+            />
+          </div>
+        </div>
 
         <div className="w-screen h-screen flex flex-col items-start justify-center">
           <p className="text-[200px] font-bold">Pixel Circle</p>

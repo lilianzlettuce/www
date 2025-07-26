@@ -3,7 +3,7 @@
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
-import { useRef, useCallback, useEffect, useMemo } from "react";
+import { useRef, useEffect, useMemo } from "react";
 import { Color, colorToString } from "@/lib/colorProcessing";
 import { useImagePixels } from "@/hooks/useImagePixels";
 
@@ -145,12 +145,12 @@ const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
     }, [width, height, gridSize, isImageLoaded, imageWidth, imageHeight]);
 
     // Helper function to snap to grid
-    const snapToGrid = useCallback((value: number, gridSize: number) => {
+    const snapToGrid = (value: number, gridSize: number) => {
         return Math.floor(value / gridSize) * gridSize;
-    }, []);
+    };
 
     // Update points based on mouse position and animation state
-    const updatePoints = useCallback((mouseX: number, mouseY: number) => {
+    const updatePoints = (mouseX: number, mouseY: number) => {
         const now = Date.now();
         mouseActive.current = (now - lastMouseMoveTime.current) < debounceTime;
 
@@ -200,10 +200,10 @@ const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
             autoAnimPhase.current = 0;
             radius.current = scale;
         }
-    }, [debounceTime, scaledValues, autoAnimStep, scale]);
+    };
 
     // Draw points on canvas
-    const drawPoints = useCallback(() => {
+    const drawPoints = () => {
         if (!ctx) return;
         
         ctx.clearRect(0, 0, width, height);
@@ -223,10 +223,10 @@ const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
                 scaledValues.pointSize
             );
         }
-    }, [ctx, width, height, snapToGrid, scaledValues]);
+    };
 
     // Handle mouse events
-    const handleMouseMove = useCallback(() => {
+    const handleMouseMove = () => {
         if (!canvasRef.current) return;
 
         // Calculate mouse position relative to canvas on viewport
@@ -236,15 +236,15 @@ const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
         
         lastMouseMoveTime.current = Date.now();
         updatePoints(mouseX, mouseY);
-    }, [mousePosition, updatePoints]);
+    };
 
-    const handleMouseLeave = useCallback(() => {
+    const handleMouseLeave = () => {
         lastMouseMoveTime.current = Date.now();
         updatePoints(-100, -100);
-    }, [updatePoints]);
+    };
 
     // Handle touch events for mobile
-    const handleTouchStart = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
+    const handleTouchStart = (event: React.TouchEvent<HTMLCanvasElement>) => {
         lastMouseMoveTime.current = Date.now();
         isDragging.current = true;
         
@@ -256,9 +256,9 @@ const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
         const touchY = touch.clientY - rect.top;
         
         updatePoints(touchX, touchY);
-    }, [updatePoints]);
+    };
 
-    const handleTouchMove = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
+    const handleTouchMove = (event: React.TouchEvent<HTMLCanvasElement>) => {
         if (!isDragging.current) return;
         lastMouseMoveTime.current = Date.now();
         
@@ -271,16 +271,16 @@ const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
         const touchY = touch.clientY - rect.top;
         
         updatePoints(touchX, touchY);
-    }, [updatePoints]);
+    };
 
-    const handleTouchEnd = useCallback(() => {
+    const handleTouchEnd = () => {
         isDragging.current = false;
         lastMouseMoveTime.current = Date.now();
         updatePoints(-100, -100);
-    }, [updatePoints]);
+    };
 
     // Animation frame callback
-    const animate = useCallback(() => {
+    const animate = () => {
         if (!canvasRef.current || !ctx) return;
         
         // Calculate mouse position relative to canvas on viewport
@@ -290,7 +290,7 @@ const ImagePixelCanvas: React.FC<ImagePixelCanvasProps> = ({
         
         updatePoints(mouseX, mouseY);
         drawPoints();
-    }, [mousePosition, updatePoints, drawPoints]);
+    };
 
     useAnimationFrame(animate);
 

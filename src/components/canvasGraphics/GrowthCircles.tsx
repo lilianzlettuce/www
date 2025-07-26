@@ -3,7 +3,7 @@
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
-import { useRef, useCallback, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 type RadiusPoint = {
   originalRadius: number;
@@ -83,12 +83,11 @@ const GrowthCircles = ({
     }, [width, height, gridGap, defaultRadius]);
 
     // Update radius values based on mouse position and animation state
-    const updateRadiusPoints = useCallback((mouseX: number, mouseY: number) => {
+    const updateRadiusPoints = (mouseX: number, mouseY: number) => {
         const now = Date.now();
         mouseActive.current = (now - lastMouseMoveTime.current) < debounceTime;
 
         for (const point of radiusPoints.current) {
-            //console.log(point);
             if (mouseActive.current) {
                 // Calculate distance from mouse to circle center
                 const dx = point.x - mouseX;
@@ -98,7 +97,6 @@ const GrowthCircles = ({
                 // Calculate force based on distance
                 let force = 0;
                 if (distance < attractionDistance) {
-                    // Inverse relationship: closer = larger radius
                     force = (attractionDistance - distance) / attractionDistance;
                     // Apply power curve for more dramatic effect
                     //force = Math.pow(force, 1.4);
@@ -124,7 +122,7 @@ const GrowthCircles = ({
                 point.radius = Math.max(minRadius, point.radius);
                 
                 point.lastRadius = point.radius;
-            } else {
+            } else if (width != 0 && height != 0) {
                 // Auto-animate radius in a wave pattern
                 const waveOffset = Math.sin(autoAnimPhase.current + point.x * 0.01 + point.y * 0.01);
                 point.radius = point.lastRadius + waveOffset * animationRadius.current;
@@ -141,10 +139,10 @@ const GrowthCircles = ({
             autoAnimPhase.current = 0;
             animationRadius.current = 1;
         }
-    }, [radiusPoints.current, debounceTime, attractionDistance, growthFactor, defaultRadius, minRadius, autoAnimStep, easeInFactor]);
+    };
 
     // Draw circles on canvas
-    const drawCircles = useCallback(() => {
+    const drawCircles = () => {
         if (!ctx) return;
         
         ctx.clearRect(0, 0, width, height);
@@ -156,10 +154,10 @@ const GrowthCircles = ({
             ctx.fill();
             ctx.closePath();
         }
-    }, [ctx, width, height, circleColor, radiusPoints.current]);
+    };
 
     // Handle mouse events
-    const handleMouseMove = useCallback(() => {
+    const handleMouseMove = () => {
         if (!canvasRef.current) return;
     
         // Get relative mouse position
@@ -174,15 +172,15 @@ const GrowthCircles = ({
         
         lastMouseMoveTime.current = Date.now();
         updateRadiusPoints(mouseX, mouseY);
-    }, [mousePosition, left, top, updateRadiusPoints]);
+    };
 
-    const handleMouseLeave = useCallback(() => {
+    const handleMouseLeave = () => {
         lastMouseMoveTime.current = Date.now();
         updateRadiusPoints(-100, -100);
-    }, [updateRadiusPoints]);
+    };
 
     // Handle touch events for mobile
-    const handleTouchStart = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
+    const handleTouchStart = (event: React.TouchEvent<HTMLCanvasElement>) => {
         lastMouseMoveTime.current = Date.now();
         isDragging.current = true;
         
@@ -194,9 +192,9 @@ const GrowthCircles = ({
         const touchY = touch.clientY - rect.top;
         
         updateRadiusPoints(touchX, touchY);
-    }, [updateRadiusPoints]);
+    };
 
-    const handleTouchMove = useCallback((event: React.TouchEvent<HTMLCanvasElement>) => {
+    const handleTouchMove = (event: React.TouchEvent<HTMLCanvasElement>) => {
         if (!isDragging.current) return;
         lastMouseMoveTime.current = Date.now();
         
@@ -209,13 +207,13 @@ const GrowthCircles = ({
         const touchY = touch.clientY - rect.top;
         
         updateRadiusPoints(touchX, touchY);
-    }, [updateRadiusPoints]);
+    };
 
-    const handleTouchEnd = useCallback(() => {
+    const handleTouchEnd = () => {
         isDragging.current = false;
         lastMouseMoveTime.current = Date.now();
         updateRadiusPoints(-100, -100);
-    }, [updateRadiusPoints]);
+    };
 
     // Animation frame 
     const animate = () => {
