@@ -3,6 +3,8 @@ import PixelCircle from "@/components/canvasGraphics/PixelCircle";
 import GridCanvas from "@/components/canvasGraphics/GridCanvas";
 import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import GlitchCircle from "@/components/canvasGraphics/GlitchCircle";
+import PixelTrail from "@/components/canvasGraphics/PixelTrail";
+
 /*import ImagePixelCanvas from "@/components/canvasGraphics/ImagePixelCanvas";
 import Image from "next/image";
 import Link from "next/link";
@@ -48,6 +50,25 @@ export default async function ExperimentsPage() {
               shrinkFactor={1.1}
               minRadius={0.5}
               easeInFactor={20}
+            />
+          </div>
+        </div>
+
+        <div className="w-screen h-screen flex flex-col items-start justify-center">
+          <p className="text-[200px] font-bold">Pixel Trail</p>
+          <p className="text-sm">
+            This is a pixel trail. It is a trail that is made up of pixels.
+          </p>
+          <div className="absolute mix-blend-difference">
+            <PixelTrail 
+              pixelSize={60}
+              circleColor="rgb(0, 0, 0)"
+              circleEndColor="rgb(255, 0, 255)"
+              attractionDistance={45}
+              shrinkFactor={1.1}
+              minRadius={0.5}
+              easeInFactor={20}
+              trailDebounceTime={100}
             />
           </div>
         </div>
