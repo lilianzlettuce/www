@@ -11,6 +11,7 @@ type Pixel = {
   originalColor: Color;
   color: Color;
   lastColor: Color;
+  lastColorChange: number;
   vc: Color; // velocity in color change
   vr: number; // velocity for radius
   x: number; // fixed position
@@ -79,6 +80,7 @@ const PixelCircle = ({
                     originalColor: defaultColor,
                     color: defaultColor,
                     lastColor: defaultColor,
+                    lastColorChange: 0,
                     vc: { r: 0, g: 0, b: 0, a: 0},
                     vr: 0,
                     x: x,
@@ -103,7 +105,22 @@ const PixelCircle = ({
                 if (!blendColors) {
                     // Color all affected pixels to end color
                     if (distance < attractionDistance) {
-                        pixel.color = endColor;
+
+                        let normalizedDistance = distance / attractionDistance;
+                        if (normalizedDistance > 0.9) {
+                            pixel.color = endColor;
+                        } else {
+                            if (now - pixel.lastColorChange > 500) {
+                                let chance = normalizedDistance;
+                                let ran = Math.random();
+                                if (ran < chance) {
+                                    pixel.color = defaultColor;
+                                } else {
+                                    pixel.color = endColor;
+                                }
+                                pixel.lastColorChange = now;
+                            }
+                        }
                     } else {
                         pixel.color = defaultColor;
                     }
@@ -198,8 +215,6 @@ const PixelCircle = ({
         const rect = canvasRef.current.getBoundingClientRect();
         const mouseX = mousePosition.x - rect.left;
         const mouseY = mousePosition.y - rect.top;
-
-        //console.log(mouseX, mouseY);
         
         lastMouseMoveTime.current = Date.now();
         updatePixels(mouseX, mouseY);

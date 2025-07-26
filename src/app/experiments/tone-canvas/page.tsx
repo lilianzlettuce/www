@@ -15,6 +15,7 @@ export default function ToneCanvasPage() {
   const [transparent, setTransparent] = useState(false);
 
   const imageURL = "/img/lowRes/brain.png";
+  //imageURL = "/img/lowRes/brain-top.jpg";
 
   function handleCopyToClipboard() {
     const canvas = document.getElementById("tone-canvas") as HTMLCanvasElement;

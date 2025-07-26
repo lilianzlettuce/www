@@ -43,13 +43,14 @@ export default async function ExperimentsPage() {
           </p>
           <div className="absolute mix-blend-difference">
             <PixelCircle 
-              pixelSize={60}
+              pixelSize={30}
               circleColor="rgb(0, 0, 0)"
               circleEndColor="rgb(255, 0, 255)"
-              attractionDistance={45}
+              attractionDistance={60}
               shrinkFactor={1.1}
               minRadius={0.5}
               easeInFactor={20}
+              debounceTime={99999}
             />
           </div>
         </div>
@@ -63,7 +64,7 @@ export default async function ExperimentsPage() {
             <PixelTrail 
               pixelSize={60}
               circleColor="rgb(0, 0, 0)"
-              circleEndColor="rgb(255, 0, 255)"
+              circleEndColor="rgb(255, 255, 255)"
               attractionDistance={45}
               shrinkFactor={1.1}
               minRadius={0.5}

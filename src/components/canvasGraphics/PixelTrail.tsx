@@ -10,7 +10,6 @@ import { mapTo } from "@/lib/utils";
 type Pixel = {
   originalColor: Color;
   color: Color;
-  lastColor: Color;
   vc: Color; // velocity in color change
   vr: number; // velocity for radius
   x: number; // fixed position
@@ -85,7 +84,6 @@ const PixelTrail = ({
                 pixels.current.push({
                     originalColor: defaultColor,
                     color: defaultColor,
-                    lastColor: defaultColor,
                     vc: { r: 0, g: 0, b: 0, a: 0},
                     vr: 0,
                     x: x,
@@ -165,18 +163,13 @@ const PixelTrail = ({
                 
                 // Clamp color to bounds
                 pixel.color = mapColor(pixel.color, (colorVal) => Math.max(0, Math.min(255, colorVal)));
-                pixel.lastColor = pixel.color;
                 pixel.lastTouched = now;
             } else {
                 // Check if pixel should revert based on trail debounce time
-                if (now - pixel.lastTouched < trailDebounceTime) {
-                    // Keep current color, don't revert yet
-                    pixel.lastColor = pixel.color;
-                } else {
+                if (now - pixel.lastTouched > trailDebounceTime) {
                     // Revert to original color only if not in draw mode or not drawn
                     if (!drawMode || !pixel.drawn) {
                         pixel.color = defaultColor;
-                        pixel.lastColor = pixel.color;
                     }
                 }
             }
