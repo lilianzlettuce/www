@@ -69,6 +69,7 @@ export default async function ExperimentsPage() {
               minRadius={0.5}
               easeInFactor={20}
               trailDebounceTime={100}
+              drawMode={true}
             />
           </div>
         </div>

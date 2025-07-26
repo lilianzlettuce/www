@@ -89,7 +89,7 @@ export default function ToneCanvasPage() {
             step="1"
             onChange={(e) => setDotResolutionInput(e.target.value)}
             onKeyDown={(e) => {
-              let val = e.currentTarget.valueAsNumber;
+              const val = e.currentTarget.valueAsNumber;
               if (e.key === "Enter" && val) {
                 setDotResolution(val);
               }
@@ -117,7 +117,7 @@ export default function ToneCanvasPage() {
             step="0.1"
             onChange={(e) => setMinRadiusInput(e.target.value)}
             onKeyDown={(e) => {
-              let val = e.currentTarget.valueAsNumber;
+              const val = e.currentTarget.valueAsNumber;
               if (e.key === "Enter" && val) {
                 setMinRadius(val);
               }
@@ -145,7 +145,7 @@ export default function ToneCanvasPage() {
             step="0.1"
             onChange={(e) => setMaxRadiusInput(e.target.value)}
             onKeyDown={(e) => {
-              let val = e.currentTarget.valueAsNumber;
+              const val = e.currentTarget.valueAsNumber;
               if (e.key === "Enter" && val) {
                 setMaxRadius(val);
               }

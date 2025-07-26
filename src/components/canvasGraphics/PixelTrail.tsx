@@ -16,6 +16,7 @@ type Pixel = {
   x: number; // fixed position
   y: number; // fixed position
   lastTouched: number;
+  drawn: boolean;
 };
 
 interface PixelTrailProps {
@@ -31,6 +32,7 @@ interface PixelTrailProps {
   minRadius?: number;
   easeInFactor?: number;
   trailDebounceTime?: number;
+  drawMode?: boolean;
 }
 
 const PixelTrail = ({
@@ -46,6 +48,7 @@ const PixelTrail = ({
     minRadius = 0.5,
     easeInFactor = 0.85,
     trailDebounceTime = 5000,
+    drawMode = false,
 }: PixelTrailProps) => {
     const mousePosition = useMousePosition();
     const { canvasRef, ctx, width, height } = useCanvas();
@@ -56,6 +59,7 @@ const PixelTrail = ({
     const autoAnimPhase = useRef(0);
     const animationRadius = useRef(1);
     const isDragging = useRef(false);
+    const isMouseDown = useRef(false);
 
     const pixels = useRef<Pixel[]>([]); // store pixel grid
 
@@ -87,6 +91,7 @@ const PixelTrail = ({
                     x: x,
                     y: y,
                     lastTouched: 0,
+                    drawn: false,
                 });
             }
         }
@@ -104,6 +109,11 @@ const PixelTrail = ({
 
             if (mouseActive.current && isMouseOnPixel) {
                 // Mouse is on this pixel
+                if (drawMode && (isDragging.current || isMouseDown.current)) {
+                    // In draw mode and mouse is down - mark as drawn
+                    pixel.drawn = true;
+                }
+                
                 if (!blendColors) {
                     // Color all affected pixels to end color
                     pixel.color = endColor;
@@ -163,15 +173,17 @@ const PixelTrail = ({
                     // Keep current color, don't revert yet
                     pixel.lastColor = pixel.color;
                 } else {
-                    // Revert to original color
-                    pixel.color = defaultColor;
-                    pixel.lastColor = pixel.color;
+                    // Revert to original color only if not in draw mode or not drawn
+                    if (!drawMode || !pixel.drawn) {
+                        pixel.color = defaultColor;
+                        pixel.lastColor = pixel.color;
+                    }
                 }
             }
         }
 
         // Update auto-anim phase for the next frame
-        if (!mouseActive.current && !isDragging.current) {
+        if (!mouseActive.current && !isDragging.current && !isMouseDown.current) {
             autoAnimPhase.current += autoAnimStep;
             animationRadius.current = Math.min(animationRadius.current * 1.01, 5);
         } else {
@@ -179,7 +191,7 @@ const PixelTrail = ({
             autoAnimPhase.current = 0;
             animationRadius.current = 1;
         }
-    }, [pixels, , circleColor, circleEndColor, debounceTime, attractionDistance, minRadius, maxRadius, autoAnimStep, easeInFactor, trailDebounceTime]);
+    }, [pixels, , circleColor, circleEndColor, debounceTime, attractionDistance, minRadius, maxRadius, autoAnimStep, easeInFactor, trailDebounceTime, drawMode]);
 
     // Draw circles on canvas
     const drawCircles = useCallback(() => {
@@ -214,8 +226,17 @@ const PixelTrail = ({
         updatePixels(mouseX, mouseY);
     }, [mousePosition, updatePixels]);
 
+    const handleMouseDown = useCallback(() => {
+        isMouseDown.current = true;
+    }, []);
+
+    const handleMouseUp = useCallback(() => {
+        isMouseDown.current = false;
+    }, []);
+
     const handleMouseLeave = useCallback(() => {
         lastMouseMoveTime.current = Date.now();
+        isMouseDown.current = false;
         updatePixels(-100, -100);
     }, [updatePixels]);
 
@@ -272,13 +293,15 @@ const PixelTrail = ({
 
     return (
         <canvas
-        ref={canvasRef}
-        className="w-screen h-screen"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
+            ref={canvasRef}
+            className="w-screen h-screen"
+            onMouseMove={handleMouseMove}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
         />
     );
 };
