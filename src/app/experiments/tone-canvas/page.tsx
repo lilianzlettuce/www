@@ -11,11 +11,20 @@ export default function ToneCanvasPage() {
   const [minRadiusInput, setMinRadiusInput] = useState(minRadius.toString());
   const [maxRadius, setMaxRadius] = useState(3.8);
   const [maxRadiusInput, setMaxRadiusInput] = useState(maxRadius.toString());
+
   const [interactive, setInteractive] = useState(true);
   const [transparent, setTransparent] = useState(false);
 
+  const [mouseEase, setMouseEase] = useState(0.85);
+  const [mouseEaseInput, setMouseEaseInput] = useState(mouseEase.toString());
+  const [mouseEaseCap, setMouseEaseCap] = useState(0.1);
+  const [mouseEaseCapInput, setMouseEaseCapInput] = useState(mouseEaseCap.toString());
+
   const imageURL = "/img/lowRes/brain.png";
-  //imageURL = "/img/lowRes/brain-top.jpg";
+  //const imageURL = "/img/lowRes/hand-ok-2.png";
+  //const imageURL = "/img/lowRes/goose.png";
+  //const imageURL = "/img/lowRes/hands-outreached.jpg";
+  //const imageURL = "/img/lowRes/brain-top.jpg";
 
   function handleCopyToClipboard() {
     const canvas = document.getElementById("tone-canvas") as HTMLCanvasElement;
@@ -153,6 +162,37 @@ export default function ToneCanvasPage() {
             }}
           />
         </div>
+        <div>
+          <label htmlFor="mouseEase">Mouse Ease</label>
+          <input 
+            type="range"
+            step="0.01"
+            min="0.1"
+            max="20"
+            value={mouseEase}
+            onChange={(e) => {
+              setMouseEase(parseFloat(e.target.value));
+              setMouseEaseInput(e.target.value);
+            }}
+          />
+          <input 
+            type="number" 
+            value={mouseEaseInput}
+            min="0.1"
+            max="20"
+            step="0.01"
+            onChange={(e) => setMouseEaseInput(e.target.value)}
+            onKeyDown={(e) => {
+              const val = e.currentTarget.valueAsNumber;
+              if (e.key === "Enter" && val) {
+                setMouseEase(val);
+              }
+            }}
+          />
+        </div>
+
+        <div>
+        </div>
         <button 
           onClick={handleCopyToClipboard}
         >
@@ -179,7 +219,7 @@ export default function ToneCanvasPage() {
             shrinkFactor={1}
             minRadius={minRadius}
             maxRadius={maxRadius}
-            delayFactor={0.85}
+            delayFactor={mouseEase}
             delayCap={0.1}
             debounceTime={3000000}
             autoAnimStep={0.03}
