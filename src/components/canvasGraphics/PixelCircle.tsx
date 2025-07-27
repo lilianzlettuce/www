@@ -27,8 +27,6 @@ interface PixelCircleProps {
   shrinkFactor?: number;
   debounceTime?: number;
   autoAnimStep?: number;
-  maxRadius?: number;
-  minRadius?: number;
   easeInFactor?: number;
 }
 
@@ -41,8 +39,6 @@ const PixelCircle = ({
     shrinkFactor = 1,
     debounceTime = 5500,
     autoAnimStep = 0.02,
-    maxRadius = 50,
-    minRadius = 0.5,
     easeInFactor = 0.85,
 }: PixelCircleProps) => {
     const mousePosition = useMousePosition();
@@ -106,13 +102,13 @@ const PixelCircle = ({
                     // Color all affected pixels to end color
                     if (distance < attractionDistance) {
 
-                        let normalizedDistance = distance / attractionDistance;
+                        const normalizedDistance = distance / attractionDistance;
                         if (normalizedDistance > 0.9) {
                             pixel.color = endColor;
                         } else {
                             if (now - pixel.lastColorChange > 500) {
-                                let chance = normalizedDistance;
-                                let ran = Math.random();
+                                const chance = normalizedDistance;
+                                const ran = Math.random();
                                 if (ran < chance) {
                                     pixel.color = defaultColor;
                                 } else {

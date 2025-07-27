@@ -49,6 +49,7 @@ const PixelTrail = ({
     trailDebounceTime = 5000,
     drawMode = false,
 }: PixelTrailProps) => {
+    console.log(minRadius, maxRadius, attractionDistance);
     const mousePosition = useMousePosition();
     const { canvasRef, ctx, width, height } = useCanvas();
     

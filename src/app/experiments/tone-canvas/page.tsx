@@ -17,8 +17,8 @@ export default function ToneCanvasPage() {
 
   const [mouseEase, setMouseEase] = useState(0.85);
   const [mouseEaseInput, setMouseEaseInput] = useState(mouseEase.toString());
-  const [mouseEaseCap, setMouseEaseCap] = useState(0.1);
-  const [mouseEaseCapInput, setMouseEaseCapInput] = useState(mouseEaseCap.toString());
+  //const [mouseEaseCap, setMouseEaseCap] = useState(0.1);
+  //const [mouseEaseCapInput, setMouseEaseCapInput] = useState(mouseEaseCap.toString());
 
   const imageURL = "/img/lowRes/brain.png";
   //const imageURL = "/img/lowRes/hand-ok-2.png";

@@ -38,7 +38,7 @@ const GrowthCircles = ({
   easeInFactor = 0.85,
 }: GrowthCirclesProps) => {
     const mousePosition = useMousePosition();
-    const { canvasRef, ctx, width, height, top, left } = useCanvas();
+    const { canvasRef, ctx, width, height } = useCanvas();
     
     // Animation state refs
     const lastMouseMoveTime = useRef(Date.now());

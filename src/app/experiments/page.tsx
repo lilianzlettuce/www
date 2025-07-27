@@ -23,7 +23,8 @@ export default async function ExperimentsPage() {
 
         <GridCanvas 
           gridSize={5}
-          pointColor="#000000"
+          glitchMode={false}
+          pointColor="rgb(0, 51, 255)"
           pointSize={5}
           attractionDistance={50}
           debounceTime={9999900}
@@ -57,7 +58,6 @@ export default async function ExperimentsPage() {
               circleEndColor="rgb(255, 0, 255)"
               attractionDistance={60}
               shrinkFactor={1.1}
-              minRadius={0.5}
               easeInFactor={20}
               debounceTime={99999}
             />

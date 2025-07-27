@@ -4,7 +4,7 @@ import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
 import { useRef, useEffect } from "react";
-import { Color, colorToString, getRandomGlitchColor } from "@/lib/colorProcessing";
+import { Color, colorToString, parseColorString, getRandomGlitchColor } from "@/lib/colorProcessing";
 
 type Point = {
   originalX: number;
@@ -19,6 +19,7 @@ type Point = {
 };
 
 interface GridCanvasProps {
+  glitchMode?: boolean;
   pointColor?: string;
   pointSize?: number;
   gridSize?: number;
@@ -29,6 +30,7 @@ interface GridCanvasProps {
 }
 
 const GridCanvas = ({
+  glitchMode = false,
   pointColor = "#000000",
   pointSize = 3,
   gridSize = 5,
@@ -89,7 +91,7 @@ const GridCanvas = ({
           lastY: y,
           vx: 0,
           vy: 0,
-          color: getRandomGlitchColor()
+          color: glitchMode ? getRandomGlitchColor() : parseColorString(pointColor) || { r: 0, g: 0, b: 0, a: 1 }
         });
       }
     }
