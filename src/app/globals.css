@@ -10,9 +10,9 @@
   --gray-300: #d1d5db;
   --gray-400: #9ca3af;
   --gray-500: #6b7280;
-  --gray-600: #374151;
-  --gray-700: #1f2937;
-  --gray-800: #111827;
+  --gray-600: #40454e;
+  --gray-700: #272b30;
+  --gray-800: #1e2127;
   --gray-900: #171717;
   --gray-950: #0a0a0a;
   --gray-light: #ededed;
@@ -139,7 +139,6 @@ body {
 
   button {
     width: fit-content;
-    border: 1px solid rgb(148, 148, 148);
     border-radius: 1px;
     padding: 2px 8px;
     font-family: var(--font-overused-grotesk);

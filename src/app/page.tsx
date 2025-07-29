@@ -4,15 +4,14 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-muted via-background to-accent">
+      <section className="relative h-screen flex items-center justify-center bg-background">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6">
-            Hi, I&apos;m <span className="text-primary">Lilian Zhao</span>
+          <h1 className="font-mono text-xl md:text-xl font-bold text-foreground mb-6">
+            Hello, I&apos;m <span className="text-foreground">a rat in three trenchcoats</span>.
           </h1>
-          <p className="text-xl md:text-2xl text-mutedForeground mb-8 max-w-2xl mx-auto">
-            I create digital experiences that matter. From web applications to creative projects, 
-            I bring ideas to life through code and design.
+          <p className="font-mono text-xl md:text-lg text-mutedForeground mb-8 max-w-2xl mx-auto">
+            UI Engineer and artist exploring spaces between pixels and atoms.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
@@ -84,12 +83,12 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-foreground text-background">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+      <section className="font-mono py-20 bg-background text-foreground">
+        <div className="max-w-4xl text-left px-4 sm:px-6 lg:px-8">
+          <h2 className="text-xl md:text-4xl font-bold mb-4">
             Ready to work together?
           </h2>
-          <p className="text-xl text-mutedForeground mb-8">
+          <p className="text-md text-mutedForeground mb-8">
             Let&apos;s discuss your next project and bring your vision to life.
           </p>
           <Link 

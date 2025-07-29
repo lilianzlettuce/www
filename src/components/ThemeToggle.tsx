@@ -3,10 +3,10 @@
 import { useTheme } from "@/contexts/ThemeContext";
 import { SunIcon, MoonIcon, EyeIcon, SwatchIcon } from "@/components/Icons";
 
-export function ThemeToggle() {
-  const { theme, setTheme, availableThemes } = useTheme();
+export function ThemeToggle({ buttonClassName = "p-2 rounded-full" }: { buttonClassName?: string }) {
+  const { theme, setTheme } = useTheme();
 
-  const themeIcons = {
+  /*const themeIcons = {
     light: SunIcon,
     dark: MoonIcon,
     sepia: SwatchIcon,
@@ -18,7 +18,7 @@ export function ThemeToggle() {
     dark: "Dark",
     sepia: "Sepia",
     "high-contrast": "High Contrast",
-  };
+  };*/
 
   return (
     <div className="relative">
@@ -28,9 +28,9 @@ export function ThemeToggle() {
             if (theme === "dark") setTheme("light");
             else setTheme("dark");
           }}
-          className={`p-2 rounded-full transition-colors ${
+          className={`${buttonClassName} ${
             theme === "dark"
-              ? "bg-background text-foreground hover:bg-accent"
+              ? "text-foreground hover:bg-accent"
               : "bg-foreground text-background"
           }`}
           title={theme === "dark" ? "Light" : "Dark"}
