@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import ThemeToggle from '@/components/ThemeToggle';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Navigation() {
   const pathname = usePathname();
 
   const navItems = [
-    { href: '/', label: 'Home' },
-    { href: '/work', label: 'Work' },
-    { href: '/stuff', label: 'Stuff' },
-    { href: '/about', label: 'About' },
+    { href: "/", label: "Home" },
+    { href: "/work", label: "Work" },
+    { href: "/stuff", label: "Stuff" },
+    { href: "/about", label: "About" },
   ];
 
   return (
@@ -29,8 +29,8 @@ export default function Navigation() {
                 href={item.href}
                 className={`text-sm font-medium transition-colors ${
                   pathname === item.href
-                    ? 'text-primary border-b-2 border-primary'
-                    : 'text-mutedForeground hover:text-foreground'
+                    ? "text-primary border-b-2 border-primary"
+                    : "text-mutedForeground hover:text-foreground"
                 }`}
               >
                 {item.label}

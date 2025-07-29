@@ -1,32 +1,80 @@
 @import "tailwindcss";
 
 :root {
-  /* Theme variables will be set dynamically */
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: #2563eb;
-  --primaryForeground: #ffffff;
-  --secondary: #f3f4f6;
-  --secondaryForeground: #374151;
-  --muted: #f9fafb;
-  --mutedForeground: #6b7280;
-  --accent: #f3f4f6;
-  --accentForeground: #374151;
-  --border: #e5e7eb;
-  --input: #ffffff;
-  --ring: #2563eb;
-  --card: #ffffff;
-  --cardForeground: #171717;
-  --popover: #ffffff;
-  --popoverForeground: #171717;
-  --destructive: #ef4444;
-  --destructiveForeground: #ffffff;
-  --success: #10b981;
-  --successForeground: #ffffff;
-  --warning: #f59e0b;
-  --warningForeground: #ffffff;
+  /* Color variables */
+  --white: #ffffff;
+  --black: #000000;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #374151;
+  --gray-700: #1f2937;
+  --gray-800: #111827;
+  --gray-900: #171717;
+  --gray-950: #0a0a0a;
+  --gray-light: #ededed;
+  
+  /* Blue colors */
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  
+  /* Brown/Sepia colors */
+  --brown-600: #8b4513;
+  --brown-700: #5d3a1a;
+  --brown-800: #2d1810;
+  --brown-100: #f4e4d6;
+  --brown-50: #f9f1e8;
+  --brown-200: #e6d5c3;
+  --brown-300: #8b6f47;
+  --sepia-bg: #fdf8f3;
+  --sepia-card: #faf5f0;
+  
+  /* High contrast colors */
+  --yellow: #ffff00;
+  --red: #ff0000;
+  --green: #00ff00;
+  --orange: #ff8800;
+  --gray-dark: #333333;
+  --gray-light-2: #cccccc;
+  
+  /* Status colors */
+  --red-500: #ef4444;
+  --red-600: #dc2626;
+  --green-500: #10b981;
+  --green-600: #059669;
+  --yellow-500: #f59e0b;
+  --yellow-600: #d97706;
 
-  --highlight-bg: #2563eb;
+  /* Theme variables will be set dynamically */
+  --background: var(--white);
+  --foreground: var(--gray-900);
+  --primary: var(--blue-600);
+  --primaryForeground: var(--white);
+  --secondary: var(--gray-100);
+  --secondaryForeground: var(--gray-600);
+  --muted: var(--gray-50);
+  --mutedForeground: var(--gray-500);
+  --accent: var(--gray-100);
+  --accentForeground: var(--gray-600);
+  --border: var(--gray-200);
+  --input: var(--white);
+  --ring: var(--blue-600);
+  --card: var(--white);
+  --cardForeground: var(--gray-900);
+  --popover: var(--white);
+  --popoverForeground: var(--gray-900);
+  --destructive: var(--red-500);
+  --destructiveForeground: var(--white);
+  --success: var(--green-500);
+  --successForeground: var(--white);
+  --warning: var(--yellow-500);
+  --warningForeground: var(--white);
+
+  --highlight-bg: var(--foreground);
+  --highlight-fg: var(--background);
 
   overflow-x: hidden;
 }
@@ -77,6 +125,7 @@ body {
 
 ::selection {
   background-color: var(--highlight-bg);
+  color: var(--highlight-fg);
 }
 
 @layer base {
