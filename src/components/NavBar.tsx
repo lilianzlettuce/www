@@ -78,8 +78,8 @@ export function NavBarGrid() {
               </Link>
             ))}
           </div>
-          <div className="h-full px-1 flex items-center justify-center border-l border-border">
-            <ThemeToggle buttonClassName="p-1" />
+          <div className="h-full flex items-center justify-center border-l border-border">
+            <ThemeToggle buttonClassName="p-2" />
           </div>
         </div>
 
@@ -122,13 +122,13 @@ export function NavBarBasic() {
                 {item.label}
               </Link>
             ))}
-            <ThemeToggle />
+            <ThemeToggle buttonClassName="p-1 rounded-full" />
           </div>
         </div>
 
         {/* Mobile menu button */}
         <div className="md:hidden flex items-center space-x-4">
-          <ThemeToggle />
+          <ThemeToggle buttonClassName="" />
           <button className="text-mutedForeground hover:text-foreground">
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -170,7 +170,7 @@ export function NavBarFloating() {
               {item.label}
             </Link>
           ))}
-          <ThemeToggle buttonClassName="bg-accent"/>
+          <ThemeToggle buttonClassName="bg-accent p-2 rounded-full"/>
         </div>
 
         {/* Mobile menu button */}
