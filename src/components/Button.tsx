@@ -25,10 +25,28 @@ export function Button({ text = "Schedule a demo", className }: ButtonProps) {
                     →
                 </div>
             </button>
+            <button className="group inline-flex items-center gap-1 transition-all duration-200
+                        rounded-full px-2 bg-foreground text-background border-1 border-foreground hover:bg-background hover:text-foreground">
+                <div className="">
+                    {text}
+                </div>
+                <div className="relative -left-8 overflow-hidden min-w-0 max-w-0 transition-all duration-200 group-hover:left-0 group-hover:max-w-[20px]">
+                    •
+                </div>
+            </button>
+            <button className="group inline-flex items-center gap-1 transition-all duration-200
+                        rounded-full bg-background text-foreground border-1 border-none hover:bg-foreground hover:text-background hover:border-background">
+                <div className="">
+                    {text}
+                </div>
+                <div className="relative -left-8 overflow-hidden min-w-0 max-w-0 transition-all duration-200 group-hover:left-0 group-hover:max-w-[20px]">
+                    •
+                </div>
+            </button>
         </div>
         <button className="group inline-flex items-center gap-1 transition-all duration-200
-                    hover-slide-bg hover:bg-white hover:text-green hover:border-purple">
-            <div className="min-w-[130px] mix-blend-difference">
+                    hover-slide-bg hover:bg-white">
+            <div className="mix-blend-difference">
                 {text}
             </div>
             <div className="mix-blend-difference overflow-hidden min-w-0 max-w-0 transition-all duration-200 group-hover:max-w-[20px]">

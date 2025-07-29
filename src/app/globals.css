@@ -102,8 +102,38 @@ body {
 }
 
 @theme {
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+              "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+              "Liberation Mono", "Courier New", monospace;
+
   --font-display: "Satoshi", "sans-serif";
+
+  /* Local fonts */
+  --font-satoshi: var(--font-satoshi);
+  --font-uncut-sans: var(--font-uncut-sans);
+  --font-psygen: var(--font-psygen);
+  --font-code7x5: var(--font-code7x5);
+  --font-bp-dots-square-bold: var(--font-bp-dots-square-bold);
+  --font-unifont-ex-mono: var(--font-unifont-ex-mono);
+
+  /* Google fonts */
+  --font-inter: var(--font-inter);
+  --font-noto-sans: var(--font-noto-sans);
+  --font-open-sans: var(--font-open-sans);
+  --font-roboto: var(--font-roboto);
+
+  --font-roboto-mono: var(--font-roboto-mono);
+  --font-dm-mono: var(--font-dm-mono);
+  --font-ibm-plex-mono: var(--font-ibm-plex-mono);
+  --font-jetbrains-mono: var(--font-jetbrains-mono);
+
+  --font-silkscreen: var(--font-silkscreen);
+  --font-tiny5: var(--font-tiny5);
+  --font-micro5: var(--font-micro5);
+  --font-archivo-black: var(--font-archivo-black);
   
+  /* Color variables */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
