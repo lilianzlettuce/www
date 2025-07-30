@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { LogoIcon } from "@/components/Icons";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { ThemeToggle, ThemeSlider } from "@/components/ThemeToggle";
 import { navItems } from "@/lib/data";
 
 export function NavBar() {
@@ -19,7 +19,7 @@ export function NavBar() {
         
         <div className="w-full h-full px-4 sm:px-6 lg:px-2 hidden md:flex items-center justify-end gap-2 border-b border-border">
           <div className="h-full flex items-center justify-center">
-            <ThemeToggle buttonClassName="p-1" />
+            <ThemeSlider buttonClassName="p-1" />
           </div>
           <div className="w-2/3 h-full flex items-center gap-0 font-mono font-bold lowercase text-sm capitalize">
             {navItems.map((item) => (

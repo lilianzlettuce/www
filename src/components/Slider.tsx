@@ -10,7 +10,29 @@ type SliderProps = {
     "aria-labelledby"?: string;
 }
 
-export default function DefaultSlider({ min, max, step, value, onValueChange, id, "aria-labelledby": ariaLabelledby }: SliderProps) {
+export function SquareSlider({ min, max, step, value, onValueChange, id, "aria-labelledby": ariaLabelledby }: SliderProps) {
+    return (
+        <div>
+            <Slider.Root 
+                className="relative w-24 h-full flex items-center gap-2 cursor-pointer" 
+                min={min}
+                max={max} 
+                step={step}
+                value={value}
+                onValueChange={onValueChange}
+                id={id}
+                aria-labelledby={ariaLabelledby}
+            >
+                <Slider.Track className="relative w-full h-1 grow-1 rounded-full bg-foreground/30 box-border border-1 border-background">
+                    <Slider.Range className="absolute h-full rounded-full bg-foreground" />
+                </Slider.Track>
+                <Slider.Thumb className="block w-3 h-3 bg-background border-1 border-foreground focus:outline-none" aria-label="Volume" />
+            </Slider.Root>
+        </div>
+    );
+}
+
+export function DefaultSlider({ min, max, step, value, onValueChange, id, "aria-labelledby": ariaLabelledby }: SliderProps) {
     return (
         <div>
             <Slider.Root 

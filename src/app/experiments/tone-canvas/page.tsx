@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import DefaultSlider from "@/components/Slider";
+import { DefaultSlider } from "@/components/Slider";
 import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import { mapTo } from "@/lib/utils";
 
