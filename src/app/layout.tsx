@@ -143,7 +143,6 @@ export default function RootLayout({
     >
       <body className="antialiased">
         <ThemeProvider>
-          <NavBar />
           <main className="min-h-screen">
             {children}
           </main>

@@ -21,6 +21,7 @@ interface ShrinkCirclesProps {
   id?: string;
   interactive?: boolean;
   transparent?: boolean;
+  showStats?: boolean;
   imageSrc?: string;
   scaleFactor?: number;
   gridGap?: number;
@@ -41,6 +42,7 @@ const ShrinkCircles = ({
   id,
   interactive = true,
   transparent = false,
+  showStats = true,
   imageSrc, 
   scaleFactor = 1.2,
   gridGap = 3,
@@ -61,11 +63,17 @@ const ShrinkCircles = ({
 
   // Calculate canvas dimensions
   let canvasDimensions;
+  let imageDimensions;
   if (!imageSrc || !isImageLoaded || imageWidth === 0 || imageHeight === 0) {
     // Default canvas dimensions when no image is provided
     const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 800;
     const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 600;
     canvasDimensions = { 
+      width: viewportWidth, 
+      height: viewportHeight,
+      imgScale: 1 
+    };
+    imageDimensions = {
       width: viewportWidth, 
       height: viewportHeight,
       imgScale: 1 
@@ -83,14 +91,19 @@ const ShrinkCircles = ({
     const scaleX = maxWidth / imageWidth;
     const scaleY = maxHeight / imageHeight;
     const imgScale = Math.min(scaleX, scaleY, 1) * scaleFactor;
-    canvasDimensions = {
+    imageDimensions = {
+      width: Math.floor(imageWidth * imgScale),
+      height: Math.floor(imageHeight * imgScale),
+      imgScale,
+    };
+    canvasDimensions = { 
       width: Math.floor(imageWidth * imgScale),
       height: Math.floor(imageHeight * imgScale),
       imgScale,
     };
   }
 
-  const { canvasRef, ctx, width, height } = useCanvas(
+  const { canvasRef, ctx, width: canvasWidth, height: canvasHeight } = useCanvas(
     { width: canvasDimensions.width, height: canvasDimensions.height }
   );
   
@@ -106,34 +119,40 @@ const ShrinkCircles = ({
 
   // Create grid of points (image or default)
   useEffect(() => {
-    if (width === 0 || height === 0) return;
+    if (canvasWidth === 0 || canvasHeight === 0) return;
     if (imageSrc && !isImageLoaded) return;
 
     // Clear existing points
     radiusPoints.current = [];
 
     // Calculate number of rows, columns
-    const numRows = Math.floor(height / gridGap);
-    const numCols = Math.floor(width / gridGap);
+    const numRows = Math.floor(canvasHeight / gridGap);
+    const numCols = Math.floor(canvasWidth / gridGap);
+
+    const numRowsImage = Math.floor(imageDimensions.height / gridGap);
+    const numColsImage = Math.floor(imageDimensions.width / gridGap);
 
     for (let i = 0; i < numRows; i++) {
-      const y = i * height / numRows; // current row
+      const y = i * canvasHeight / numRows; // current row
 
       for (let j = 0; j < numCols; j++) {
-        const x = j * width / numCols; // current column
+        const x = j * canvasWidth / numCols; // current column
 
         let initialRadius = defaultRadius;
         if (imageSrc && isImageLoaded && pixels.length > 0 && imageWidth && imageHeight) {
-          // Get corresponding pixel in image
-          const imageX = Math.floor((j / numCols) * imageWidth);
-          const imageY = Math.floor((i / numRows) * imageHeight);
-          const pixelIndex = imageY * imageWidth + imageX;
-          const pixel = pixels[pixelIndex];
-          if (pixel) {
+          if (j < numColsImage && i < numRowsImage) {
+            // Get corresponding pixel in image
+            const imageX = Math.floor((j / numColsImage) * imageWidth);
+            const imageY = Math.floor((i / numRowsImage) * imageHeight);
+            const pixelIndex = imageY * imageWidth + imageX;
+            const pixel = pixels[pixelIndex];
+            if (pixel) {
               // Map rgb brightness to point radius (ignore alpha)
               const brightness = getBrightness(pixel);
               initialRadius = mapTo(brightness, 0, 255, maxRadius, minRadius);
-            
+            }
+          } else {
+            initialRadius = mapTo(0, 0, 255, maxRadius, minRadius);
           }
         }
         radiusPoints.current.push({
@@ -149,12 +168,12 @@ const ShrinkCircles = ({
 
     // Update canvas
     drawCircles();
-  }, [width, height, gridGap, defaultRadius, imageSrc, isImageLoaded, pixels, imageWidth, imageHeight, minRadius, maxRadius, canvasDimensions.imgScale, transparent, circleColor, ctx]);
+  }, [canvasWidth, canvasHeight, gridGap, defaultRadius, imageSrc, isImageLoaded, pixels, imageWidth, imageHeight, minRadius, maxRadius, canvasDimensions.imgScale, transparent, circleColor, ctx]);
 
   // Update radius values based on mouse position and animation state
   const updateRadiusPoints = (mouseX: number, mouseY: number) => {
     const now = Date.now();
-    mouseActive.current = (now - lastMouseMoveTime.current) < debounceTime;
+    mouseActive.current = (now - lastMouseMoveTime.current) < debounceTime || debounceTime <= 0;
 
     for (const point of radiusPoints.current) {
       if (mouseActive.current) {
@@ -193,15 +212,15 @@ const ShrinkCircles = ({
         point.radius = Math.max(minRadius, Math.min(maxRadius, point.radius));
         
         point.lastRadius = point.radius;
-      } else if (width != 0 && height != 0) {
+      } else if (debounceTime > 0 && (canvasWidth != 0 && canvasHeight != 0)) {
         // Auto-animate radius in a wave pattern
         /*const waveOffset = Math.sin(autoAnimPhase.current + point.x * 0.01 + point.y * 0.01);
         point.radius = point.lastRadius + waveOffset * animationRadius.current;
         point.radius = Math.max(minRadius, Math.min(maxRadius, point.radius));*/
         
         // Auto-animate radius in a pulsating pattern from center
-        const centerX = width / 2;
-        const centerY = height / 2;
+        const centerX = canvasWidth / 2;
+        const centerY = canvasHeight / 2;
         
         // Calculate distance from center
         const dx = point.x - centerX;
@@ -242,7 +261,7 @@ const ShrinkCircles = ({
   // Draw circles on canvas
   function drawCircles() {
     if (!ctx) return;
-    ctx.clearRect(0, 0, width, height);
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     ctx.fillStyle = circleColor;
     
     for (const point of radiusPoints.current) {
@@ -339,9 +358,13 @@ const ShrinkCircles = ({
           onTouchEnd={handleTouchEnd}
         />
       </div>
-      <p>{imageSrc}</p>
-      <p>{imageWidth} x {imageHeight}</p>
-      <p>{pixels.length}</p>
+      {showStats && (
+        <div className="">
+          <p>{imageSrc}</p>
+          <p>{imageWidth} x {imageHeight}</p>
+          <p>{pixels.length}</p>
+        </div>
+      )}
     </div>
   );
 };

@@ -7,11 +7,15 @@ import { LogoIcon } from "@/components/Icons";
 import { ThemeToggle, ThemeSlider } from "@/components/ThemeToggle";
 import { navItems } from "@/lib/data";
 
-export function NavBar() {
+type NavBarProps = {
+  className?: string;
+}
+
+export function NavBar({ className }: NavBarProps) {
   const pathname = usePathname();
 
   return (
-    <nav className="z-50 sticky top-0 w-full h-10 py-0 m-auto bg-background">
+    <nav className={`${className} z-50 sticky top-0 w-full py-0 m-auto bg-background`}>
       <div className="w-full h-full flex justify-between items-center gap-2">
         <Link href="/" className="w-fit h-full text-xl font-bold text-foreground hover:text-mutedForeground transition-colors">
           <LogoIcon className="w-fit h-full" />

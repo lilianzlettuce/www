@@ -1,9 +1,16 @@
 import Link from "next/link";
-import { RevealButton } from "@/components/Button";
+import { NavBar } from "@/components/NavBar";
+import { RevealButton, RevealButton2 } from "@/components/Button";
+
+import Hero from "@/components/homePage/Hero";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <NavBar className="h-8" />
+
+      <Hero />
+
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center bg-background">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
@@ -17,15 +24,21 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/work" 
-              className=""
             >
-              <RevealButton text="View My Work" className="h-fit px-6 py-1 rounded-full" />
+              <RevealButton 
+                text="View My Work" 
+                icon="→" 
+                className="h-fit px-6 py-1 rounded-full" 
+              />
             </Link>
             <Link 
               href="/about" 
-              className="border border-border text-foreground px-8 py-3 rounded-lg font-medium hover:bg-accent transition-colors"
             >
-              Learn More
+              <RevealButton2 
+                text="Learn More" 
+                icon="•" 
+                className="h-fit px-6 py-1 rounded-full bg-background border-1 border-secondary hover:bg-foreground/20" 
+              />
             </Link>
           </div>
         </div>
