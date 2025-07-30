@@ -1,9 +1,24 @@
 type ButtonProps = {
   text: string;
+  icon?: string | React.ReactNode;
   className?: string;
 }
 
-export function Button({ text = "Schedule a demo", className }: ButtonProps) {
+export function RevealButton({ text = "Proceed", className = "", icon = "→" }: ButtonProps) {
+    return (
+        <button className={`${className} group inline-flex items-center gap-1 transition-all duration-200
+                        rounded-full px-2 bg-foreground text-background hover:bg-background hover:text-foreground`}>
+            <div className="">
+                {text}
+            </div>
+            <div className="relative -left-8 overflow-hidden min-w-0 max-w-0 transition-all duration-200 group-hover:left-0 group-hover:max-w-[20px]">
+                {icon}
+            </div>
+        </button>
+    );
+}
+
+export function Button({ text = "Schedule a demo" }: ButtonProps) {
   return (
     <div className="w-full flex flex-col gap-4">
         <div className="flex flex-row gap-4">

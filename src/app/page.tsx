@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { RevealButton } from "@/components/Button";
 
 export default function Home() {
   return (
@@ -16,9 +17,9 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/work" 
-              className="bg-primary text-primaryForeground px-8 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+              className=""
             >
-              View My Work
+              <RevealButton text="View My Work" className="h-fit px-6 py-2 rounded-full" />
             </Link>
             <Link 
               href="/about" 

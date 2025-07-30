@@ -1,4 +1,4 @@
-import { NavBar, NavBarGrid, NavBarBasic, NavBarFloating } from "@/components/NavBar";
+import { NavBarGrid, NavBarBasic, NavBarFloating } from "@/components/NavBar";
 import { Button } from "@/components/Button";
 
 export default function UIExperimentsPage() {
