@@ -74,7 +74,7 @@
   --warningForeground: var(--white);
 
   /* Theme filter variables */
-  --invert-filter: 20%;
+  --invert: 0;
 
   --highlight-bg: var(--foreground);
   --highlight-fg: var(--background);
@@ -85,7 +85,7 @@
   filter: sepia(50%);
   filter: contrast(50%);
   filter: hue-rotate(45deg);
-  filter: invert(20%);
+  filter: invert(var(--invert));
 
   overflow-x: hidden;
 }

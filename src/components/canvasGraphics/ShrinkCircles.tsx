@@ -346,7 +346,7 @@ const ShrinkCircles = ({
 
   return (
     <div>
-      <div className="bg-white">
+      <div className="bg-background">
         <canvas
           id={id}
           ref={canvasRef}

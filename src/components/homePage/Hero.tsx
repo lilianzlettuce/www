@@ -2,9 +2,30 @@
 
 import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
     const { theme } = useTheme();
+    const [circleColor, setCircleColor] = useState("black");
+    
+    useEffect(() => {
+        const updateCircleColor = () => {
+            const color = getComputedStyle(document.documentElement).getPropertyValue("--foreground");
+            setCircleColor(color || "black");
+        };
+        
+        // Initial update
+        updateCircleColor();
+        
+        // Listen for theme changes
+        const observer = new MutationObserver(updateCircleColor);
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['class', 'style']
+        });
+        
+        return () => observer.disconnect();
+    }, [theme]);
     
     return (
       <section className="relative h-screen flex items-center justify-start">
@@ -17,7 +38,7 @@ export default function Hero() {
           imageSrc="/img/lowRes/brain.png"
           scaleFactor={1}
           gridGap={3}
-          circleColor={"black"}
+          circleColor={circleColor}
           attractionDistance={200}
           shrinkFactor={1}
           minRadius={0}

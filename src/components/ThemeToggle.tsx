@@ -7,7 +7,7 @@ import { SquareSlider } from "./Slider";
 
 export function ThemeSlider({ buttonClassName = "p-2 rounded-full" }: { buttonClassName?: string }) {
   const { theme, setTheme } = useTheme();
-  const [sliderValue, setSliderValue] = useState(2);
+  const [sliderValue, setSliderValue] = useState(0.1);
 
   /*const themeIcons = {
     light: SunIcon,
@@ -28,11 +28,12 @@ export function ThemeSlider({ buttonClassName = "p-2 rounded-full" }: { buttonCl
       <div className="flex items-center gap-1">
         <SquareSlider
           min={0}
-          max={4}
-          step={1}
+          max={1}
+          step={0.01}
           value={[sliderValue]}
           onValueChange={(value) => {
             setSliderValue(value[0]);
+            document.documentElement.style.setProperty('--invert', value[0].toString());
           }}
         />
         <button
@@ -40,11 +41,7 @@ export function ThemeSlider({ buttonClassName = "p-2 rounded-full" }: { buttonCl
             if (theme === "dark") setTheme("light");
             else setTheme("dark");
           }}
-          className={`${buttonClassName} ${
-            theme === "dark"
-              ? "text-foreground hover:bg-accent"
-              : "bg-foreground text-background"
-          }`}
+          className={`${buttonClassName} text-foreground hover:bg-accent`}
           title={theme === "dark" ? "Light" : "Dark"}
         >
           {theme === "dark" ? <SunIcon className="w-4 h-4" /> : <MoonIcon className="w-4 h-4" />}
