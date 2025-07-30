@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import DefaultSlider from "@/components/Slider";
 import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import { mapTo } from "@/lib/utils";
 
@@ -17,8 +18,6 @@ export default function ToneCanvasPage() {
 
   const [mouseEase, setMouseEase] = useState(0.85);
   const [mouseEaseInput, setMouseEaseInput] = useState(mouseEase.toString());
-  //const [mouseEaseCap, setMouseEaseCap] = useState(0.1);
-  //const [mouseEaseCapInput, setMouseEaseCapInput] = useState(mouseEaseCap.toString());
 
   const imageURL = "/img/lowRes/brain.png";
   //const imageURL = "/img/lowRes/hand-ok-2.png";
@@ -80,115 +79,136 @@ export default function ToneCanvasPage() {
           </label>
         </div>
         <div>
-          <label htmlFor="dotResolution">Dot Resolution</label>
-          <input id="dotResolution"
-            type="range"
-            min="150"
-            max="300"
-            value={dotResolution}
-            onChange={(e) => {
-              setDotResolution(parseInt(e.target.value));
-              setDotResolutionInput(e.target.value);
-            }}
-          />
-          <input 
-            type="number" 
-            value={dotResolutionInput}
-            min="150" 
-            max="300" 
-            step="1"
-            onChange={(e) => setDotResolutionInput(e.target.value)}
-            onKeyDown={(e) => {
-              const val = e.currentTarget.valueAsNumber;
-              if (e.key === "Enter" && val) {
-                setDotResolution(val);
-              }
-            }}
-          />
+          <label htmlFor="dotResolutionSlider">Dot Resolution</label>
+          <div className="flex items-center gap-2">
+            <DefaultSlider 
+              id="dotResolutionSlider"
+              aria-labelledby="dotResolutionLabel"
+              min={150}
+              max={300}
+              step={1}
+              value={[dotResolution]}
+              onValueChange={(value) => {
+                setDotResolution(value[0]);
+                setDotResolutionInput(value[0].toString());
+              }}
+            />
+            <input 
+              id="dotResolutionInput"
+              aria-labelledby="dotResolutionLabel"
+              type="number" 
+              value={dotResolutionInput}
+              min="150" 
+              max="300" 
+              step="1"
+              onChange={(e) => setDotResolutionInput(e.target.value)}
+              onKeyDown={(e) => {
+                const val = e.currentTarget.valueAsNumber;
+                if (e.key === "Enter" && val) {
+                  setDotResolution(val);
+                }
+              }}
+            />
+          </div>
         </div>
         <div>
-          <label htmlFor="minRadius">Min Radius</label>
-          <input 
-            type="range"
-            step="0.1"
-            min="0"
-            max="2"
-            value={minRadius}
-            onChange={(e) => {
-              setMinRadius(parseFloat(e.target.value));
-              setMinRadiusInput(e.target.value);
-            }}
-          />
-          <input 
-            type="number" 
-            value={minRadiusInput}
-            min="0"
-            max="2"
-            step="0.1"
-            onChange={(e) => setMinRadiusInput(e.target.value)}
-            onKeyDown={(e) => {
-              const val = e.currentTarget.valueAsNumber;
-              if (e.key === "Enter" && val) {
-                setMinRadius(val);
-              }
-            }}
-          />
+          <label htmlFor="minRadiusSlider" id="minRadiusLabel">Min Radius</label>
+          <div className="flex items-center gap-2">
+            <DefaultSlider 
+              id="minRadiusSlider"
+              aria-labelledby="minRadiusLabel"
+              min={0}
+              max={2}
+              step={0.1}
+              value={[minRadius]}
+              onValueChange={(value) => {
+                setMinRadius(value[0]);
+                setMinRadiusInput(value[0].toString());
+              }}
+            />
+            <input 
+              id="minRadiusInput"
+              aria-labelledby="minRadiusLabel"
+              type="number" 
+              value={minRadiusInput}
+              min="0"
+              max="2"
+              step="0.1"
+              onChange={(e) => setMinRadiusInput(e.target.value)}
+              onKeyDown={(e) => {
+                const val = e.currentTarget.valueAsNumber;
+                if (e.key === "Enter" && val) {
+                  setMinRadius(val);
+                }
+              }}
+            />
+          </div>
         </div>
         <div>
-          <label htmlFor="maxRadius">Max Radius</label>
-          <input 
-            type="range"
-            step="0.1"
-            min="1"
-            max="12"
-            value={maxRadius}
-            onChange={(e) => {
-              setMaxRadius(parseFloat(e.target.value));
-              setMaxRadiusInput(e.target.value);
-            }}
-          />
-          <input 
-            type="number" 
-            value={maxRadiusInput}
-            min="1"
-            max="12"
-            step="0.1"
-            onChange={(e) => setMaxRadiusInput(e.target.value)}
-            onKeyDown={(e) => {
-              const val = e.currentTarget.valueAsNumber;
-              if (e.key === "Enter" && val) {
-                setMaxRadius(val);
-              }
-            }}
-          />
+          <label htmlFor="maxRadiusSlider" id="maxRadiusLabel">Max Radius</label>
+          <div className="flex items-center gap-2">
+            <DefaultSlider 
+              id="maxRadiusSlider"
+              aria-labelledby="maxRadiusLabel"
+              min={1}
+              max={12}
+              step={0.1}
+              value={[maxRadius]}
+              onValueChange={(value) => {
+                setMaxRadius(value[0]);
+                setMaxRadiusInput(value[0].toString());
+              }}
+            />
+            <input 
+              id="maxRadiusInput"
+              aria-labelledby="maxRadiusLabel"
+              type="number" 
+              value={maxRadiusInput}
+              min="1"
+              max="12"
+              step="0.1"
+              onChange={(e) => setMaxRadiusInput(e.target.value)}
+              onKeyDown={(e) => {
+                const val = e.currentTarget.valueAsNumber;
+                if (e.key === "Enter" && val) {
+                  setMaxRadius(val);
+                }
+              }}
+            />
+          </div>
         </div>
         <div>
-          <label htmlFor="mouseEase">Mouse Ease</label>
-          <input 
-            type="range"
-            step="0.01"
-            min="0.1"
-            max="20"
-            value={mouseEase}
-            onChange={(e) => {
-              setMouseEase(parseFloat(e.target.value));
-              setMouseEaseInput(e.target.value);
-            }}
-          />
-          <input 
-            type="number" 
-            value={mouseEaseInput}
-            min="0.1"
-            max="20"
-            step="0.01"
-            onChange={(e) => setMouseEaseInput(e.target.value)}
-            onKeyDown={(e) => {
-              const val = e.currentTarget.valueAsNumber;
-              if (e.key === "Enter" && val) {
-                setMouseEase(val);
-              }
-            }}
-          />
+          <label htmlFor="mouseEaseSlider" id="mouseEaseLabel">Mouse Ease</label>
+          <div className="flex items-center gap-2">
+            <DefaultSlider 
+              id="mouseEaseSlider"
+              aria-labelledby="mouseEaseLabel"
+              min={0.1}
+              max={20}
+              step={0.01}
+              value={[mouseEase]}
+              onValueChange={(value) => {
+                setMouseEase(value[0]);
+                setMouseEaseInput(value[0].toString());
+              }}
+            />
+            <input 
+              id="mouseEaseInput"
+              aria-labelledby="mouseEaseLabel"
+              type="number" 
+              value={mouseEaseInput}
+              min="0.1"
+              max="20"
+              step="0.01"
+              onChange={(e) => setMouseEaseInput(e.target.value)}
+              onKeyDown={(e) => {
+                const val = e.currentTarget.valueAsNumber;
+                if (e.key === "Enter" && val) {
+                  setMouseEase(val);
+                }
+              }}
+            />
+          </div>
         </div>
 
         <div>

@@ -19,7 +19,7 @@ export default function Home() {
               href="/work" 
               className=""
             >
-              <RevealButton text="View My Work" className="h-fit px-6 py-2 rounded-full" />
+              <RevealButton text="View My Work" className="h-fit px-6 py-1 rounded-full" />
             </Link>
             <Link 
               href="/about" 
