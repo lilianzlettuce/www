@@ -102,7 +102,7 @@ const ImageMask = ({
           const pixel = pixels[pixelIndex];
 
           // Only draw if pixel has non-zero alpha
-          if (pixel && pixel.a > 0.7) {
+          if (pixel && pixel.a > 0.9) {
             ctx.globalAlpha = pixel.a;
             ctx.fillRect(x, y, pixelSize, pixelSize);
           }

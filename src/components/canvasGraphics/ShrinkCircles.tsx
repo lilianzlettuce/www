@@ -157,7 +157,7 @@ const ShrinkCircles = ({
               const brightness = getBrightness(pixel);
               if (drawLight) {
                 // Map larger radius to brighter pixels
-                initialRadius = mapTo(brightness, 0, 255, minRadius, maxRadius);
+                initialRadius = Math.pow(mapTo(brightness, 0, 255, minRadius, defaultRadius), 2.5);
               } else {
                 // Map larger radius to darker pixels
                 initialRadius = mapTo(brightness, 0, 255, maxRadius, minRadius);
@@ -204,7 +204,12 @@ const ShrinkCircles = ({
         }
 
         // Calculate target radius based on force, shrinkFactor, and growth boolean
-        const targetRadius = point.originalRadius * (growCircles ? (1 + force * shrinkFactor) : (1 - force * shrinkFactor));
+        let targetRadius;
+        if (growCircles) {
+          targetRadius = point.originalRadius * Math.pow(1 + Math.pow(force, 10) * shrinkFactor, 0.5);
+        } else {
+          targetRadius = point.originalRadius * (1 - force * shrinkFactor);
+        }
         
         // Apply physics to radius with ease-in
         const radiusDiff = targetRadius - point.radius;
