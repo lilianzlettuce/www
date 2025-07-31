@@ -306,7 +306,12 @@ const ShrinkCircles = ({
       const imageY = Math.floor((y / canvasHeight) * imageHeight);
       const pixelIndex = imageY * imageWidth + imageX;
       const pixel = pixels[pixelIndex];
-      return pixel.a > 0;
+
+      if (dotMapMode === "shadow" && transparent) {
+        return pixel.a > 0 && pixel.r != 255 && pixel.g != 255 && pixel.b != 255;
+      } else {
+        return pixel.a > 0;
+      }
 
       /*const imageData = ctx.getImageData(x, y, 1, 1);
       const data = imageData.data;

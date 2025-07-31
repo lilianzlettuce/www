@@ -189,10 +189,20 @@ export function BrainDarkMouseDark({imageSrc}: {imageSrc: string}) {
                     onHoverChange={handleHoverChange}
                 />
             </div>
+            {/*<div className="absolute inset-0">
+                <ImageMask
+                    imageSrc={imageSrc}
+                    maskColor="rgb(0, 0, 0, 0)"
+                    gridGap={1}
+                    pixelSize={1}
+                    scaleFactor={1}
+                    onHoverChange={handleHoverChange}
+                />
+            </div>*/}
             {/* Tooltip */}
             {isHovering && (
                 <div 
-                    className="z-50 fixed px-1 py-0 pointer-events-none bg-black text-white text-xs border-1 border-white"
+                    className="z-50 fixed px-1 py-0 pointer-events-none bg-black text-white text-xs font-bold border-1 border-white"
                     style={{
                         left: hoverPosition.x + 10,
                         top: hoverPosition.y - 30,
