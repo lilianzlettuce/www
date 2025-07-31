@@ -37,7 +37,8 @@ export default function Hero() {
       <div className="absolute inset-0 bg-grid-pattern opacity-50"></div>
       <div className="h-fit absolute left-1/2">
         {/*<BrainLight imageSrc="/img/lowRes/brain.png" />
-        <BrainDarkMouseLight imageSrc="/img/lowRes/brain.png" />*/}
+        <BrainDarkMouseLight imageSrc="/img/lowRes/brain.png" />
+        <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" />*/}
         <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" />
       </div>
       <div className="relative z-10 text-left max-w-lg px-4 sm:px-6 lg:px-8">

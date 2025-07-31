@@ -26,7 +26,7 @@ export default function ToneCanvasPage() {
   //const imageURL = "/img/lowRes/brain-top.jpg";
 
   function handleCopyToClipboard() {
-    const canvas = document.getElementById("tone-canvas") as HTMLCanvasElement;
+    const canvas = document.getElementById("tone-experiment-canvas") as HTMLCanvasElement;
 
     // Convert canvas content to Blob 
     canvas.toBlob((blob) => {
@@ -50,7 +50,7 @@ export default function ToneCanvasPage() {
   }
 
   function handleDownload() {
-    const canvas = document.getElementById("tone-canvas") as HTMLCanvasElement;
+    const canvas = document.getElementById("tone-experiment-canvas") as HTMLCanvasElement;
     const link = document.createElement("a");
     link.href = canvas.toDataURL("image/png");
     link.download = imageURL.split("/").pop()?.split(".")[0] + "-" + new Date().toISOString().split("T")[0] + ".png";
@@ -227,14 +227,14 @@ export default function ToneCanvasPage() {
       <div className="flex flex-col items-center justify-center gap-0">
         <div>
           <ShrinkCircles 
-            id="tone-canvas"
-            interactive={interactive}
+            id="tone-experiment-canvas"
+            interactionMode={interactive ? "shrink" : "none"}
             transparent={transparent}
             imageSrc={imageURL}
             scaleFactor={1}
             gridGap={mapTo(dotResolution, 72, 300, 30, 1)}
             defaultRadius={3}
-            circleColor="#000000"
+            dotColor="#000000"
             attractionDistance={200}
             shrinkFactor={1}
             minRadius={minRadius}

@@ -5,22 +5,22 @@ import { useState, useEffect } from "react";
 
 export function BrainLight({imageSrc}: {imageSrc: string}) {
     const { theme } = useTheme();
-    const [circleColor, setCircleColor] = useState("black");
+    const [dotColor, setDotColor] = useState("black");
     const [maskColor, setMaskColor] = useState("white");
     
     useEffect(() => {
-        const updateCircleColor = () => {
+        const updateDotColor = () => {
             const color = getComputedStyle(document.documentElement).getPropertyValue("--foreground");
-            setCircleColor(color || "black");
+            setDotColor(color || "black");
             const maskColor = getComputedStyle(document.documentElement).getPropertyValue("--background");
             setMaskColor(maskColor || "white");
         };
         
         // Initial update
-        updateCircleColor();
+        updateDotColor();
         
         // Listen for theme changes
-        const observer = new MutationObserver(updateCircleColor);
+        const observer = new MutationObserver(updateDotColor);
         observer.observe(document.documentElement, {
             attributes: true,
             attributeFilter: ['class', 'style']
@@ -40,16 +40,15 @@ export function BrainLight({imageSrc}: {imageSrc: string}) {
             />
             <div className="absolute inset-0">
                 <ShrinkCircles 
-                    drawLight={true}
-                    growCircles={true}
+                    interactionMode="grow"
                     bgColor="none"
-                    interactive={true}
                     transparent={false}
                     showStats={false}
                     imageSrc="/img/lowRes/brain.png"
                     scaleFactor={1}
                     gridGap={3}
-                    circleColor={circleColor}
+                    dotMapMode="light"
+                    dotColor={dotColor}
                     attractionDistance={400}
                     shrinkFactor={20}
                     defaultRadius={1.6}
@@ -67,22 +66,22 @@ export function BrainLight({imageSrc}: {imageSrc: string}) {
 
 export function BrainDarkMouseLight({imageSrc}: {imageSrc: string}) {
     const { theme } = useTheme();
-    const [circleColor, setCircleColor] = useState("black");
+    const [dotColor, setDotColor] = useState("black");
     const [maskColor, setMaskColor] = useState("white");
     
     useEffect(() => {
-        const updateCircleColor = () => {
+        const updateDotColor = () => {
             const color = getComputedStyle(document.documentElement).getPropertyValue("--background");
-            setCircleColor(color || "black");
+            setDotColor(color || "black");
             const maskColor = getComputedStyle(document.documentElement).getPropertyValue("--foreground");
             setMaskColor(maskColor || "white");
         };
         
         // Initial update
-        updateCircleColor();
+        updateDotColor();
         
         // Listen for theme changes
-        const observer = new MutationObserver(updateCircleColor);
+        const observer = new MutationObserver(updateDotColor);
         observer.observe(document.documentElement, {
             attributes: true,
             attributeFilter: ['class', 'style']
@@ -102,16 +101,15 @@ export function BrainDarkMouseLight({imageSrc}: {imageSrc: string}) {
             />
             <div className="absolute inset-0">
                 <ShrinkCircles 
-                    drawLight={false}
-                    growCircles={false}
-                    bgColor="none"
-                    interactive={true}
+                    interactionMode="shrink"
                     transparent={true}
                     showStats={false}
                     imageSrc={imageSrc}
                     scaleFactor={1}
                     gridGap={3}
-                    circleColor={circleColor}
+                    bgColor="none"
+                    dotMapMode="shadow"
+                    dotColor={dotColor}
                     attractionDistance={200}
                     shrinkFactor={1}
                     minRadius={0}
@@ -128,22 +126,22 @@ export function BrainDarkMouseLight({imageSrc}: {imageSrc: string}) {
 
 export function BrainDarkMouseDark({imageSrc}: {imageSrc: string}) {
     const { theme } = useTheme();
-    const [circleColor, setCircleColor] = useState("black");
+    const [dotColor, setDotColor] = useState("black");
     const [maskColor, setMaskColor] = useState("white");
     
     useEffect(() => {
-        const updateCircleColor = () => {
+        const updateDotColor = () => {
             const color = getComputedStyle(document.documentElement).getPropertyValue("--background");
-            setCircleColor(color || "black");
+            setDotColor(color || "black");
             const maskColor = getComputedStyle(document.documentElement).getPropertyValue("--foreground");
             setMaskColor(maskColor || "white");
         };
         
         // Initial update
-        updateCircleColor();
+        updateDotColor();
         
         // Listen for theme changes
-        const observer = new MutationObserver(updateCircleColor);
+        const observer = new MutationObserver(updateDotColor);
         observer.observe(document.documentElement, {
             attributes: true,
             attributeFilter: ['class', 'style']
@@ -163,16 +161,15 @@ export function BrainDarkMouseDark({imageSrc}: {imageSrc: string}) {
             />
             <div className="absolute inset-0">
                 <ShrinkCircles 
-                    drawLight={false}
-                    growCircles={true}
                     bgColor="none"
-                    interactive={true}
+                    interactionMode="grow"
                     transparent={true}
                     showStats={false}
                     imageSrc={imageSrc}
                     scaleFactor={1}
                     gridGap={3}
-                    circleColor={circleColor}
+                    dotMapMode="shadow"
+                    dotColor={dotColor}
                     attractionDistance={600}
                     shrinkFactor={15}
                     minRadius={0}

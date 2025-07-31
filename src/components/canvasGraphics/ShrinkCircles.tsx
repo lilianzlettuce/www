@@ -18,18 +18,17 @@ type RadiusPoint = {
 };
 
 interface ShrinkCirclesProps {
-  drawLight?: boolean;
-  growCircles?: boolean;
-  bgColor?: string;
   id?: string;
-  interactive?: boolean;
+  interactionMode?: "grow" | "shrink" | "none";
   transparent?: boolean;
   showStats?: boolean;
   imageSrc?: string;
   scaleFactor?: number;
   gridGap?: number;
   defaultRadius?: number;
-  circleColor?: string;
+  dotMapMode?: "light" | "shadow";
+  dotColor?: string;
+  bgColor?: string;
   attractionDistance?: number;
   shrinkFactor?: number;
   debounceTime?: number;
@@ -42,18 +41,17 @@ interface ShrinkCirclesProps {
 }
 
 const ShrinkCircles = ({
-  drawLight = false,
-  growCircles = false,
-  bgColor = "white",
   id,
-  interactive = true,
+  interactionMode = "shrink",
   transparent = false,
   showStats = true,
   imageSrc, 
   scaleFactor = 1.2,
   gridGap = 3,
   defaultRadius = 3,
-  circleColor = "black",
+  dotMapMode = "shadow",
+  dotColor = "black",
+  bgColor = "white",
   attractionDistance = 200,
   shrinkFactor = 1,
   debounceTime = 5500,
@@ -155,7 +153,7 @@ const ShrinkCircles = ({
             if (pixel) {
               // Map rgb brightness to point radius (ignore alpha)
               const brightness = getBrightness(pixel);
-              if (drawLight) {
+              if (dotMapMode === "light") {
                 // Map larger radius to brighter pixels
                 initialRadius = Math.pow(mapTo(brightness, 0, 255, minRadius, defaultRadius), 2.5);
               } else {
@@ -180,7 +178,7 @@ const ShrinkCircles = ({
 
     // Update canvas
     drawCircles();
-  }, [canvasWidth, canvasHeight, gridGap, defaultRadius, imageSrc, isImageLoaded, pixels, imageWidth, imageHeight, minRadius, maxRadius, canvasDimensions.imgScale, transparent, circleColor, ctx]);
+  }, [canvasWidth, canvasHeight, gridGap, defaultRadius, imageSrc, isImageLoaded, pixels, imageWidth, imageHeight, minRadius, maxRadius, canvasDimensions.imgScale, transparent, dotColor, ctx]);
 
   // Update radius values based on mouse position and animation state
   const updateRadiusPoints = (mouseX: number, mouseY: number) => {
@@ -205,7 +203,7 @@ const ShrinkCircles = ({
 
         // Calculate target radius based on force, shrinkFactor, and growth boolean
         let targetRadius;
-        if (growCircles) {
+        if (interactionMode === "grow") {
           targetRadius = point.originalRadius * Math.pow(1 + Math.pow(force, 10) * shrinkFactor, 0.5);
         } else {
           targetRadius = point.originalRadius * (1 - force * shrinkFactor);
@@ -278,7 +276,7 @@ const ShrinkCircles = ({
   function drawCircles() {
     if (!ctx) return;
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-    ctx.fillStyle = circleColor;
+    ctx.fillStyle = dotColor;
     
     for (const point of radiusPoints.current) {
       ctx.beginPath();
@@ -290,7 +288,7 @@ const ShrinkCircles = ({
 
   // Handle mouse events
   function handleMouseMove() {
-    if (!canvasRef.current || !interactive) return;
+    if (!canvasRef.current || interactionMode === "none") return;
 
     // Calculate mouse position relative to canvas on viewport
     const rect = canvasRef.current.getBoundingClientRect();
@@ -302,7 +300,7 @@ const ShrinkCircles = ({
   }
 
   function handleMouseLeave() {
-    if (!canvasRef.current || !interactive) return;
+    if (!canvasRef.current || interactionMode === "none") return;
 
     lastMouseMoveTime.current = Date.now();
     updateRadiusPoints(-100, -100);
@@ -347,7 +345,7 @@ const ShrinkCircles = ({
 
   // Animation frame callback
   const animate = () => {
-    if (!canvasRef.current || !ctx || !interactive) return;
+    if (!canvasRef.current || !ctx || interactionMode === "none") return;
     
     // Calculate mouse position relative to canvas on viewport
     const rect = canvasRef.current.getBoundingClientRect();
