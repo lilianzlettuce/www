@@ -42,7 +42,7 @@ export function BrainLight({imageSrc}: {imageSrc: string}) {
                 <ShrinkCircles 
                     interactionMode="grow"
                     bgColor="none"
-                    transparent={false}
+                    transparent={true}
                     showStats={false}
                     imageSrc="/img/lowRes/brain.png"
                     scaleFactor={1}
@@ -128,6 +128,8 @@ export function BrainDarkMouseDark({imageSrc}: {imageSrc: string}) {
     const { theme } = useTheme();
     const [dotColor, setDotColor] = useState("black");
     const [maskColor, setMaskColor] = useState("white");
+    const [isHovering, setIsHovering] = useState(false);
+    const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
     
     useEffect(() => {
         const updateDotColor = () => {
@@ -150,11 +152,17 @@ export function BrainDarkMouseDark({imageSrc}: {imageSrc: string}) {
         return () => observer.disconnect();
     }, [theme]);
 
+    const handleHoverChange = (hovering: boolean, x: number, y: number) => {
+        setIsHovering(hovering);
+        setHoverPosition({ x, y });
+        console.log(hovering, x, y);
+    };
+
     return (
-        <div className="relative">
+        <div className={`relative ${isHovering ? 'cursor-pointer' : 'cursor-default'}`}>
             <ImageMask
                 imageSrc={imageSrc}
-                maskColor={maskColor}
+                maskColor="white"
                 gridGap={1}
                 pixelSize={1}
                 scaleFactor={1}
@@ -162,24 +170,37 @@ export function BrainDarkMouseDark({imageSrc}: {imageSrc: string}) {
             <div className="absolute inset-0">
                 <ShrinkCircles 
                     bgColor="none"
-                    interactionMode="grow"
+                    interactionMode={theme === "dark" ? "grow" : "shrink"}
                     transparent={true}
                     showStats={false}
                     imageSrc={imageSrc}
                     scaleFactor={1}
                     gridGap={3}
                     dotMapMode="shadow"
-                    dotColor={dotColor}
-                    attractionDistance={600}
-                    shrinkFactor={15}
+                    dotColor="black"
+                    attractionDistance={theme === "dark" ? 600 : 200}
+                    shrinkFactor={theme === "dark" ? 15 : 1}
                     minRadius={0}
-                    maxRadius={3.8}
+                    maxRadius={theme === "dark" ? 3.8 : 3.8}
                     delayFactor={0.4}
                     delayCap={0.1}
                     debounceTime={0}
                     autoAnimStep={0.03}
+                    onHoverChange={handleHoverChange}
                 />
             </div>
+            {/* Tooltip */}
+            {isHovering && (
+                <div 
+                    className="z-50 fixed px-1 py-0 pointer-events-none bg-black text-white text-xs border-1 border-white"
+                    style={{
+                        left: hoverPosition.x + 10,
+                        top: hoverPosition.y - 30,
+                    }}
+                >
+                    POKE
+                </div>
+            )}
         </div>
     );
 }

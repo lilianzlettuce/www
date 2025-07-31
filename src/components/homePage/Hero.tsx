@@ -42,10 +42,10 @@ export default function Hero() {
         <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" />
       </div>
       <div className="relative z-10 text-left max-w-lg px-4 sm:px-6 lg:px-8">
-        <h1 className="font-mono text-md md:text-lg font-bold text-foreground mb-6">
-          Hello, I&apos;m <span className="text-foreground">a rat in three trenchcoats</span>.
+        <h1 className="font-uncut-sans text-md md:text-2xl font-medium text-foreground mb-6">
+          Hello, I&apos;m <span className="text-foreground font-black">a rat in three trenchcoats</span>.
         </h1>
-        <p className="font-mono text-md md:text-md text-mutedForeground mb-8 max-w-2xl mx-auto">
+        <p className="font-mono text-md md:text-lg text-mutedForeground mb-8 max-w-2xl mx-auto">
           UI Engineer and artist exploring spaces between pixels and atoms.
         </p>
       </div>

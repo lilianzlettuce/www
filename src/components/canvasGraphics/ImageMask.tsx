@@ -11,6 +11,7 @@ interface ImageMaskProps {
   gridGap?: number;
   pixelSize?: number;
   scaleFactor?: number;
+  onHoverChange?: (isHovering: boolean, x: number, y: number) => void;
 }
 
 const ImageMask = ({
@@ -20,10 +21,11 @@ const ImageMask = ({
   gridGap = 3,
   pixelSize = 2,
   scaleFactor = 1.2,
+  onHoverChange,
 }: ImageMaskProps) => {
   const { pixels, imageWidth, imageHeight, isImageLoaded } = useImagePixels(imageSrc, "");
 
-  // Calculate canvas dimensions (same logic as ShrinkCircles)
+  // Calculate canvas dimensions
   let canvasDimensions;
   let imageDimensions;
   if (!imageSrc || !isImageLoaded || imageWidth === 0 || imageHeight === 0) {
@@ -68,6 +70,48 @@ const ImageMask = ({
   const { canvasRef, ctx, width: canvasWidth, height: canvasHeight } = useCanvas(
     { width: canvasDimensions.width, height: canvasDimensions.height }
   );
+
+  // Check if pixel at position has non-transparent data
+  const isPixelNonTransparent = (x: number, y: number): boolean => {
+    if (!pixels.length || x < 0 || y < 0 || x >= canvasWidth || y >= canvasHeight) return false;
+    
+    try {
+      // Get corresponding pixel in image
+      const imageX = Math.floor((x / canvasWidth) * imageWidth);
+      const imageY = Math.floor((y / canvasHeight) * imageHeight);
+      const pixelIndex = imageY * imageWidth + imageX;
+      const pixel = pixels[pixelIndex];
+      return pixel && pixel.a > 0;
+    } catch (e) {
+      return false;
+    }
+  };
+
+  // Handle mouse events
+  const handleMouseMove = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    console.log("mouse move")
+    if (!canvasRef.current) return;
+
+    // Calculate mouse position relative to canvas on viewport
+    const rect = canvasRef.current.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    
+    // Check if mouse is over non-transparent pixel
+    const isOverPixel = isPixelNonTransparent(mouseX, mouseY);
+    
+    // Call hover callback if provided
+    if (onHoverChange) {
+      onHoverChange(isOverPixel, event.clientX, event.clientY);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    // Call hover callback to indicate no hover
+    if (onHoverChange) {
+      onHoverChange(false, -1, -1);
+    }
+  };
 
   // Draw mask when image loads or canvas dimensions change
   useEffect(() => {
@@ -117,6 +161,8 @@ const ImageMask = ({
         id={id}
         ref={canvasRef}
         className="w-screen h-screen"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
       />
     </div>
   );

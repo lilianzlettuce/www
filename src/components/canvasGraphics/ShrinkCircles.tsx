@@ -38,6 +38,7 @@ interface ShrinkCirclesProps {
   minRadius?: number;
   delayFactor?: number;
   delayCap?: number;
+  onHoverChange?: (isHovering: boolean, x: number, y: number) => void;
 }
 
 const ShrinkCircles = ({
@@ -61,9 +62,18 @@ const ShrinkCircles = ({
   minRadius = 0.5,
   delayFactor = 100,
   delayCap = 0.1,
+  onHoverChange,
 }: ShrinkCirclesProps) => {
   const mousePosition = useMousePosition();
-  const { pixels, imageWidth, imageHeight, isImageLoaded } = useImagePixels(imageSrc || "", transparent ? "white" : "");
+
+  // Set fill color based on dotMapMode and transparent prop
+  let fillColor;
+  if (dotMapMode === "shadow") {
+    fillColor = transparent ? "white" : "";
+  } else {
+    fillColor = transparent ? "" : "white";
+  }
+  const { pixels, imageWidth, imageHeight, isImageLoaded } = useImagePixels(imageSrc || "", fillColor);
 
   // Calculate canvas dimensions
   let canvasDimensions;
@@ -107,9 +117,16 @@ const ShrinkCircles = ({
     };
   }
 
+  // Create display canvas to draw dots on
   const { canvasRef, ctx, width: canvasWidth, height: canvasHeight } = useCanvas(
     { width: canvasDimensions.width, height: canvasDimensions.height }
   );
+
+  // Calculate number of rows, columns in display canvas and image
+  const numRows = Math.floor(canvasHeight / gridGap);
+  const numCols = Math.floor(canvasWidth / gridGap);
+  const numRowsImage = Math.floor(imageDimensions.height / gridGap);
+  const numColsImage = Math.floor(imageDimensions.width / gridGap);
   
   // Animation state refs
   const lastMouseMoveTime = useRef(Date.now());
@@ -128,13 +145,6 @@ const ShrinkCircles = ({
 
     // Clear existing points
     radiusPoints.current = [];
-
-    // Calculate number of rows, columns
-    const numRows = Math.floor(canvasHeight / gridGap);
-    const numCols = Math.floor(canvasWidth / gridGap);
-
-    const numRowsImage = Math.floor(imageDimensions.height / gridGap);
-    const numColsImage = Math.floor(imageDimensions.width / gridGap);
 
     for (let i = 0; i < numRows; i++) {
       const y = i * canvasHeight / numRows; // current row
@@ -286,6 +296,26 @@ const ShrinkCircles = ({
     }
   }
 
+  // Check if pixel at position has non-transparent data
+  const isPixelNonTransparent = (x: number, y: number): boolean => {
+    if (!ctx || x < 0 || y < 0 || x >= canvasWidth || y >= canvasHeight) return false;
+    
+    try {
+      // Get corresponding pixel in image
+      const imageX = Math.floor((x / canvasWidth) * imageWidth);
+      const imageY = Math.floor((y / canvasHeight) * imageHeight);
+      const pixelIndex = imageY * imageWidth + imageX;
+      const pixel = pixels[pixelIndex];
+      return pixel.a > 0;
+
+      /*const imageData = ctx.getImageData(x, y, 1, 1);
+      const data = imageData.data;
+      return data[3] > 0; // Check alpha channel*/
+    } catch (e) {
+      return false;
+    }
+  };
+
   // Handle mouse events
   function handleMouseMove() {
     if (!canvasRef.current || interactionMode === "none") return;
@@ -295,12 +325,25 @@ const ShrinkCircles = ({
     const mouseX = mousePosition.x - rect.left;
     const mouseY = mousePosition.y - rect.top;
     
+    // Check if mouse is over non-transparent pixel
+    const isOverPixel = isPixelNonTransparent(mouseX, mouseY);
+    
+    // Call hover callback if provided
+    if (onHoverChange) {
+      onHoverChange(isOverPixel, mousePosition.x, mousePosition.y);
+    }
+    
     lastMouseMoveTime.current = Date.now();
     updateRadiusPoints(mouseX, mouseY);
   }
 
   function handleMouseLeave() {
     if (!canvasRef.current || interactionMode === "none") return;
+
+    // Call hover callback to indicate no hover
+    if (onHoverChange) {
+      onHoverChange(false, -1, -1);
+    }
 
     lastMouseMoveTime.current = Date.now();
     updateRadiusPoints(-100, -100);
