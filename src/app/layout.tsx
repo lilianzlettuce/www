@@ -27,6 +27,11 @@ const psygen = localFont({
   variable: "--font-psygen",
 });
 
+const murmure = localFont({
+  src: "./fonts/LeMurmure-Regular.woff2",
+  variable: "--font-murmure",
+});
+
 const code7x5 = localFont({
   src: "./fonts/Code7x5.ttf",
   variable: "--font-code7x5",
@@ -135,7 +140,7 @@ export default function RootLayout({
   return (
     <html 
       lang="en"
-      className={`${satoshi.variable} ${uncutSans.variable} ${psygen.variable} ${code7x5.variable} ${bpDotsSquareBold.variable} ${unifontExMono.variable}
+      className={`${satoshi.variable} ${uncutSans.variable} ${psygen.variable} ${murmure.variable} ${code7x5.variable} ${bpDotsSquareBold.variable} ${unifontExMono.variable}
           ${geistSans.variable} ${geistMono.variable} ${inter.variable} ${notoSans.variable} ${openSans.variable} ${roboto.variable}
           ${robotoMono.variable} ${dmMono.variable} ${ibmPlexMono.variable} ${jetbrainsMono.variable}
           ${silkscreen.variable} ${tiny5.variable} ${micro5.variable} ${archivoBlack.variable}

@@ -124,7 +124,7 @@ export function BrainDarkMouseLight({imageSrc}: {imageSrc: string}) {
     );
 }
 
-export function BrainDarkMouseDark({imageSrc}: {imageSrc: string}) {
+export function BrainDarkMouseDark({imageSrc, tooltipText = "POKE"}: {imageSrc: string, tooltipText: string}) {
     const { theme } = useTheme();
     const [dotColor, setDotColor] = useState("black");
     const [maskColor, setMaskColor] = useState("white");
@@ -167,7 +167,7 @@ export function BrainDarkMouseDark({imageSrc}: {imageSrc: string}) {
                 pixelSize={1}
                 scaleFactor={1}
             />
-            <div className="absolute inset-0">
+            <div className="absolute inset-[0px]">
                 <ShrinkCircles 
                     bgColor="none"
                     interactionMode={theme === "dark" ? "grow" : "shrink"}
@@ -181,7 +181,7 @@ export function BrainDarkMouseDark({imageSrc}: {imageSrc: string}) {
                     attractionDistance={theme === "dark" ? 600 : 200}
                     shrinkFactor={theme === "dark" ? 15 : 1}
                     minRadius={0}
-                    maxRadius={theme === "dark" ? 3.8 : 3.8}
+                    maxRadius={3.8}
                     delayFactor={0.4}
                     delayCap={0.1}
                     debounceTime={0}
@@ -202,13 +202,13 @@ export function BrainDarkMouseDark({imageSrc}: {imageSrc: string}) {
             {/* Tooltip */}
             {isHovering && (
                 <div 
-                    className="z-50 fixed px-1 py-0 pointer-events-none bg-black text-white text-xs font-bold border-1 border-white"
+                    className="z-50 fixed px-1 py-0 pointer-events-none bg-background text-foreground text-xs font-bold border-1 border-foreground"
                     style={{
                         left: hoverPosition.x + 10,
                         top: hoverPosition.y - 30,
                     }}
                 >
-                    POKE
+                    {tooltipText}
                 </div>
             )}
         </div>

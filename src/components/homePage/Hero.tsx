@@ -39,7 +39,7 @@ export default function Hero() {
         {/*<BrainLight imageSrc="/img/lowRes/brain.png" />
         <BrainDarkMouseLight imageSrc="/img/lowRes/brain.png" />
         <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" />*/}
-        <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" />
+        <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" tooltipText="POKE" />
       </div>
       <div className="relative z-10 text-left max-w-lg px-4 sm:px-6 lg:px-8">
         <h1 className="font-uncut-sans text-md md:text-2xl font-medium text-foreground mb-6">

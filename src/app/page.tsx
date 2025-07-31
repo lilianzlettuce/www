@@ -45,11 +45,11 @@ export default function Home() {
       </section>
 
       {/* Featured Section */}
-      <section className="py-20 bg-card">
+      <section className="py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-cardForeground mb-4">
-              What I Do
+            <h2 className="font-murmure text-3xl md:text-[10rem] font-bold text-cardForeground mb-4">
+              LETTUCE lettuce
             </h2>
             <p className="text-xl text-mutedForeground max-w-2xl mx-auto">
               I specialize in building modern web applications and creating engaging digital experiences.
