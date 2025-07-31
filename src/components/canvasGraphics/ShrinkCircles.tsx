@@ -18,6 +18,9 @@ type RadiusPoint = {
 };
 
 interface ShrinkCirclesProps {
+  drawLight?: boolean;
+  growCircles?: boolean;
+  bgColor?: string;
   id?: string;
   interactive?: boolean;
   transparent?: boolean;
@@ -39,6 +42,9 @@ interface ShrinkCirclesProps {
 }
 
 const ShrinkCircles = ({
+  drawLight = false,
+  growCircles = false,
+  bgColor = "white",
   id,
   interactive = true,
   transparent = false,
@@ -149,7 +155,13 @@ const ShrinkCircles = ({
             if (pixel) {
               // Map rgb brightness to point radius (ignore alpha)
               const brightness = getBrightness(pixel);
-              initialRadius = mapTo(brightness, 0, 255, maxRadius, minRadius);
+              if (drawLight) {
+                // Map larger radius to brighter pixels
+                initialRadius = mapTo(brightness, 0, 255, minRadius, maxRadius);
+              } else {
+                // Map larger radius to darker pixels
+                initialRadius = mapTo(brightness, 0, 255, maxRadius, minRadius);
+              }
             }
           } else {
             initialRadius = mapTo(0, 0, 255, maxRadius, minRadius);
@@ -191,9 +203,8 @@ const ShrinkCircles = ({
           //force = Math.pow(force, 1.4);
         }
 
-        // Calculate target radius based on force (inverse of GrowthCircles)
-        // Closer mouse = smaller radius
-        const targetRadius = point.originalRadius * (1 - force * shrinkFactor); // Scale factor for shrinking effect
+        // Calculate target radius based on force, shrinkFactor, and growth boolean
+        const targetRadius = point.originalRadius * (growCircles ? (1 + force * shrinkFactor) : (1 - force * shrinkFactor));
         
         // Apply physics to radius with ease-in
         const radiusDiff = targetRadius - point.radius;
@@ -346,7 +357,7 @@ const ShrinkCircles = ({
 
   return (
     <div>
-      <div className="bg-background">
+      <div className={`bg-${bgColor}`}>
         <canvas
           id={id}
           ref={canvasRef}

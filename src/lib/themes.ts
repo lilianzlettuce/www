@@ -29,7 +29,7 @@ export interface ThemeColors {
 export const themes: Record<ThemeMode, ThemeColors> = {
   light: {
     background: 'var(--white)',
-    foreground: 'var(--gray-900)',
+    foreground: 'var(--black)',
     primary: 'var(--blue-600)',
     primaryForeground: 'var(--white)',
     secondary: 'var(--gray-100)',
@@ -53,8 +53,8 @@ export const themes: Record<ThemeMode, ThemeColors> = {
     warningForeground: 'var(--white)',
   },
   dark: {
-    background: 'var(--gray-950)',
-    foreground: 'var(--gray-light)',
+    background: 'var(--black)',
+    foreground: 'var(--white)',
     primary: 'var(--blue-500)',
     primaryForeground: 'var(--white)',
     secondary: 'var(--gray-700)',
