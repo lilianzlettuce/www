@@ -87,7 +87,7 @@ export default async function ExperimentsPage() {
         <ShrinkCircles 
           gridGap={25}
           defaultRadius={45}
-          circleColor="#000000"
+          dotColor="#000000"
           attractionDistance={900}
           shrinkFactor={1}
           minRadius={0.5}

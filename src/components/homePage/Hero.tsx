@@ -1,4 +1,4 @@
-import { BrainLight, BrainDarkMouseLight, BrainDarkMouseDark } from "./ToneCanvas";
+import { BrainDarkMouseDark } from "./ToneCanvas";
 import { DraggableWindow } from "../DraggableWindow";
 
 export default function Hero() {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCanvas } from "@/hooks/useCanvas";
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 import { useImagePixels } from "@/hooks/useImagePixels";
 
 interface ImageMaskProps {
@@ -83,6 +83,7 @@ const ImageMask = ({
       const pixel = pixels[pixelIndex];
       return pixel && pixel.a > 0;
     } catch (e) {
+      console.log(e);
       return false;
     }
   };

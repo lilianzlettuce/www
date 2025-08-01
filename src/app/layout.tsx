@@ -5,7 +5,7 @@ import { Geist, Geist_Mono, Inter, Noto_Sans, Open_Sans, Roboto,
   Silkscreen, Tiny5, Micro_5, Archivo_Black
 } from "next/font/google";
 import "./globals.css";
-import { NavBar } from "@/components/NavBar";
+//import { NavBar } from "@/components/NavBar";
 //import { NavBar, NavBarFloating, NavBarBasic, NavBarGrid } from "@/components/NavBar";
 //import Navigation from "@/components/Navigation";
 import { Footer } from "@/components/Footer";

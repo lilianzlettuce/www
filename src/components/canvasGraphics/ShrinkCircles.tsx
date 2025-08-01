@@ -317,6 +317,7 @@ const ShrinkCircles = ({
       const data = imageData.data;
       return data[3] > 0; // Check alpha channel*/
     } catch (e) {
+      console.log(e);
       return false;
     }
   };
