@@ -1,19 +1,63 @@
 interface IconProps {
   className?: string;
+  strokeWidth?: number;
+  strokeLength?: number;
 }
 
-export function ArrowLeftIcon({ className = "w-6 h-6" }: IconProps) {
+export function XIcon({ className = "w-6 h-6", strokeWidth = 4 }: IconProps) {
   return (
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      <path strokeLinejoin="round" strokeWidth={strokeWidth} d="M6 18L18 6M6 6l12 12" />
     </svg>
   );
 }
 
-export function ExternalLinkIcon({ className = "w-6 h-6" }: IconProps) {
+export function ExpandIcon({ className = "w-6 h-6", strokeWidth = 2, strokeLength = 2 }: IconProps) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 6V18H6V6H18" stroke="currentColor" strokeWidth={strokeWidth}/>
+      <path d={`M18 6v${strokeLength}h-12v-${strokeLength}h12Z`} fill="currentColor" strokeWidth={strokeWidth}/>
+    </svg>
+  );
+}
+
+export function ExpandIcon2({ className = "w-6 h-6", strokeWidth = 2, strokeLength = 6 }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d={`M6 ${6+strokeLength}v-${strokeLength}h${strokeLength}`} stroke="currentColor" strokeWidth={strokeWidth}/>
+      <path d={`M18 ${18-strokeLength}v${strokeLength}h-${strokeLength}`} stroke="currentColor" strokeWidth={strokeWidth}/>
+    </svg>
+  );
+}
+
+export function MinimizeIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
   return (
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+      <path strokeLinejoin="round" strokeWidth={strokeWidth} d="M6 18h12" />
+    </svg>
+  );
+}
+
+export function PlusIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M12 4v16m8-8H4" />
+    </svg>
+  );
+}
+
+export function ArrowLeftIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+    </svg>
+  );
+}
+
+export function ExternalLinkIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
     </svg>
   );
 }
@@ -26,35 +70,35 @@ export function GithubIcon({ className = "w-6 h-6" }: IconProps) {
   );
 }
 
-export function SunIcon({ className = "w-6 h-6" }: IconProps) {
+export function SunIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
   return (
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
     </svg>
   );
 }
 
-export function MoonIcon({ className = "w-6 h-6" }: IconProps) {
+export function MoonIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
   return (
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
     </svg>
   );
 }
 
-export function SwatchIcon({ className = "w-6 h-6" }: IconProps) {
+export function SwatchIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
   return (
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
     </svg>
   );
 }
 
-export function EyeIcon({ className = "w-6 h-6" }: IconProps) {
+export function EyeIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
   return (
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
     </svg>
   );
 } 

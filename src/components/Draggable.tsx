@@ -1,3 +1,5 @@
+// Draggable wrapper component (for windows)
+
 "use client";
 import React, { useEffect, useRef, useState, ReactNode } from "react";
 

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { NavBar } from "@/components/NavBar";
-import { RevealButton, RevealButton2 } from "@/components/Button";
+import { RevealButton, RevealButton2 } from "@/components/Buttons";
 
 import Hero from "@/components/homePage/Hero";
 
