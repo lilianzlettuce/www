@@ -118,7 +118,7 @@ body {
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
               "Liberation Mono", "Courier New", monospace;
 
-  --font-display: "Satoshi", "sans-serif";
+  --font-display: var(--font-psygen)
 
   /* Local fonts */
   --font-satoshi: var(--font-satoshi);
@@ -130,6 +130,8 @@ body {
   --font-unifont-ex-mono: var(--font-unifont-ex-mono);
 
   /* Google fonts */
+  --font-geist-sans: var(--font-geist-sans);
+  --font-geist-mono: var(--font-geist-mono);
   --font-inter: var(--font-inter);
   --font-noto-sans: var(--font-noto-sans);
   --font-open-sans: var(--font-open-sans);

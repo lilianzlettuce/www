@@ -4,6 +4,7 @@ import { DraggableWindow } from "@/components/DraggableWindow";
 import Draggable from "@/components/Draggable";
 import { ArrowLeftIcon, GithubIcon, ExternalLinkIcon, XIcon, SwatchIcon, MoonIcon, SunIcon, EyeIcon, ExpandIcon, ExpandIcon2, MinimizeIcon } from "@/components/Icons";
 import Sprite from "@/components/Sprite";
+import ZoomableImage from "@/components/ZoomableImage";
 
 export default function UIExperimentsPage() {
   return (
@@ -26,7 +27,7 @@ export default function UIExperimentsPage() {
                 <DraggableWindow />
               </div>
               <Draggable>
-                <div className="z-100 relative w-[300px] h-[300px] flex flex-col bg-background text-foreground border border-foreground shadow-lg">
+                <div className="z-45 relative w-[300px] h-[300px] flex flex-col bg-background text-foreground border border-foreground shadow-lg">
                   <div className="handle select-none cursor-grab px-1 py-0 flex flex-row justify-between items-center bg-foreground text-background text-sm font-tiny5 uppercase">
                     <div className="flex flex-row items-center gap-2">
                       <div className="mix-blend-difference">
@@ -61,7 +62,7 @@ export default function UIExperimentsPage() {
                 </div>
               </Draggable>
               <Draggable>
-                <div className="z-100 relative w-[300px] h-fit flex flex-col bg-background text-foreground border border-foreground shadow-lg">
+                <div className="z-45 relative w-[300px] h-fit flex flex-col bg-background text-foreground border border-foreground shadow-lg">
                 <div className="handle select-none cursor-grab px-1 py-0 flex flex-row justify-between items-center border-b-1 border-foreground text-sm font-tiny5 uppercase">
                     <div className="flex flex-row items-center gap-2">
                       <div className="mix-blend-difference">
@@ -128,7 +129,7 @@ export default function UIExperimentsPage() {
               </Draggable>
 
               <Draggable>
-                <div className="z-100 relative w-[300px] h-fit flex flex-col bg-background text-foreground border border-foreground shadow-lg">
+                <div className="z-45 relative w-[300px] h-fit flex flex-col bg-background text-foreground border border-foreground shadow-lg">
                   <div className="handle select-none cursor-grab px-1 py-0 flex flex-row justify-between items-center border-b-1 border-foreground text-sm font-tiny5 uppercase">
                     <div className="flex flex-row items-center gap-2">
                       <div className="mix-blend-difference">
@@ -162,7 +163,7 @@ export default function UIExperimentsPage() {
               </Draggable>
 
               <Draggable>
-                <div className="z-100 relative w-[300px] h-fit p-1 flex flex-col bg-background text-foreground border-2 border-foreground shadow-lg">
+                <div className="z-45 relative w-[300px] h-fit p-1 flex flex-col bg-background text-foreground border-2 border-foreground shadow-lg">
                   <div className="handle select-none cursor-grab px-1 pb-1 flex flex-row justify-between items-center">
                     <div className="flex flex-row items-center gap-2">
                       <div className="mix-blend-difference">
@@ -196,8 +197,16 @@ export default function UIExperimentsPage() {
                     </div>
                   </div>
                   <div className="flex-1 flex flex-col items-center justify-center border-2 border-foreground">
-                    <div className="w-full h-full p-4 font-roboto-mono text-xs">
-                      This is the window content.
+                    <div className="w-full h-50 bg-white">
+                      <ZoomableImage
+                        className="w-full h-full"
+                        src="/img/halftone/heart.png"
+                        alt="zoomed halftone heart image"
+                        backgroundSize={800}
+                        initialX={-250}
+                        initialY={-40}
+                        useNextImage={false}
+                      />
                     </div>
                   </div>
                 </div>

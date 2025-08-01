@@ -7,7 +7,7 @@ interface DraggableProps {
   children: ReactNode;
 }
 
-const Draggable: React.FC<DraggableProps> = ({ children }) => {
+export default function Draggable ({ children }: DraggableProps) {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const handleRef = useRef<HTMLElement | null>(null);
     const offset = useRef({ x: 0, y: 0 });
@@ -70,5 +70,3 @@ const Draggable: React.FC<DraggableProps> = ({ children }) => {
         </div>
     );
 };
-
-export default Draggable;
