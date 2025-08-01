@@ -1,5 +1,6 @@
 import { NavBarGrid, NavBarBasic, NavBarFloating } from "@/components/NavBar";
 import { Button } from "@/components/Button";
+import { DraggableWindow } from "@/components/DraggableWindow";
 
 export default function UIExperimentsPage() {
   return (
@@ -16,6 +17,10 @@ export default function UIExperimentsPage() {
                 This is a page for UI experiments.
             </p>
             <Button text="Hello" />
+            <div className="relative bg-foreground/20">
+                <DraggableWindow />
+                hi
+            </div>
         </div>
     </div>
   );

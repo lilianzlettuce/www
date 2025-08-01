@@ -1,41 +1,13 @@
-"use client";
-
-import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
-import ImageMask from "@/components/canvasGraphics/ImageMask";
-import { useTheme } from "@/contexts/ThemeContext";
-import { useState, useEffect } from "react";
-import { BrainLight, BrainDarkMouseLight, BrainDarkMouseDark } from "./HeroGraphic";
+import { BrainLight, BrainDarkMouseLight, BrainDarkMouseDark } from "./ToneCanvas";
+import { DraggableWindow } from "../DraggableWindow";
 
 export default function Hero() {
-    const { theme } = useTheme();
-    const [circleColor, setCircleColor] = useState("black");
-    const [maskColor, setMaskColor] = useState("white");
-    
-    useEffect(() => {
-        const updateCircleColor = () => {
-          const color = getComputedStyle(document.documentElement).getPropertyValue("--background");
-          setCircleColor(color || "black");
-          const maskColor = getComputedStyle(document.documentElement).getPropertyValue("--foreground");
-          setMaskColor(maskColor || "white");
-        };
-        
-        // Initial update
-        updateCircleColor();
-        
-        // Listen for theme changes
-        const observer = new MutationObserver(updateCircleColor);
-        observer.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ['class', 'style']
-        });
-        
-        return () => observer.disconnect();
-    }, [theme]);
     
     return (
-      <section className="relative h-screen min-h-screen flex items-center justify-start">
+      <section className="relative h-screen min-h-screen py-[400px] flex items-center justify-start">
       <div className="absolute inset-0 bg-grid-pattern opacity-50"></div>
-      <div className="h-fit absolute left-1/2">
+      <div className="h-fit absolute left-5/12">
+        <DraggableWindow />
         {/*<BrainLight imageSrc="/img/lowRes/brain.png" />
         <BrainDarkMouseLight imageSrc="/img/lowRes/brain.png" />
         <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" />*/}
