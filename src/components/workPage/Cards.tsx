@@ -5,7 +5,76 @@ import { ProjectFrontmatter } from "@/lib/mdx";
 
 type ProjectCardProps = {
     project: ProjectFrontmatter;
+    index?: number;
 }
+
+export function ProjectListItemMinimal({ project, index = 0 }: ProjectCardProps) {
+    return (
+        <Link
+            key={project.slug}
+            href={`/work/${project.slug}`}
+            className="group relative h-fit rounded-none border-1 border-border hover:border-[var(--mutedForeground)] transition-all duration-300"
+            style={{ "--corner-size": "4px", 
+                "--corner-offset": "-2px",
+                "--corner-color": "var(--secondaryForeground)" } as React.CSSProperties}
+        >
+            <div className="relative w-full h-full p-4 flex flex-row gap-4">
+                <div className="absolute left-1/4 w-100 h-50 hidden group-hover:flex items-center justify-center border-1 border-secondary">
+                    {project.image ? (
+                        <Image
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover"
+                            fill={true}
+                        />
+                    ) : (
+                        <div className="text-mutedForeground text-4xl font-bold">
+                            {project.title.charAt(0)}
+                        </div>
+                    )}
+                </div>
+                
+                <div className="w-full h-full flex flex-row justify-between">
+                    <div className="min-w-fit flex flex-row items-start gap-2">
+                        <div className="font-roboto-mono text-[var(--mutedForeground)]">
+                            {index.toString().padStart(2, '0')}
+                        </div>
+                        <div className="flex items-start justify-between">
+                            <h3 className="font-roboto-monotext-base font-semibold text-foreground">
+                                {project.title}
+                            </h3>
+                        </div>
+                        <p className="hidden font-ibm-plex-mono text-sm text-mutedForeground line-clamp-2">
+                            {project.description}
+                        </p>
+                    </div>
+                    
+                    <div className="min-w-fit flex flex-col gap-2">
+                        <div className="w-full flex flex-wrap gap-2 font-roboto-mono text-[0.65rem] tracking-widest uppercase">
+                            {project.tags?.slice(0, 3).map((tag: string) => (
+                                <span
+                                    key={tag}
+                                    className="h-fit px-1 py-0.4 rounded-xs bg-foreground text-background"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                            {project.tags && project.tags.length > 3 && (
+                                <span className="h-fit px-1 py-0.4 rounded-xs bg-muted text-mutedForeground">
+                                    +{project.tags.length - 3}
+                                </span>
+                            )}
+                        </div>
+
+                        <p className="font-roboto-mono text-[0.6rem] tracking-widest">
+                            &#91;{project.date.split("-").reverse().join(".")}&#93;
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </Link>
+    );
+};
 
 export function ProjectListItem({ project }: ProjectCardProps) {
     return (

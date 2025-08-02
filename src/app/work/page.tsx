@@ -1,5 +1,5 @@
 import { getAllProjects, ProjectFrontmatter } from "@/lib/mdx";
-import { ProjectCardDefault, ProjectCardBasic, ProjectListItem } from "@/components/workPage/Cards";
+import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectListItemMinimal } from "@/components/workPage/Cards";
 import { NavBar } from "@/components/NavBar";
 
 export default async function WorkPage() {
@@ -37,6 +37,12 @@ export default async function WorkPage() {
           <p className="text-xl text-mutedForeground max-w-2xl mx-auto">
             What are you even searching for?
           </p>
+        </div>
+
+        <div className="flex flex-col">
+          {projects.slice(0, 7).map((project: ProjectFrontmatter, index: number) => (
+            <ProjectListItemMinimal key={project.slug} project={project} index={index} />
+          ))}
         </div>
 
         <div className="flex flex-col">
