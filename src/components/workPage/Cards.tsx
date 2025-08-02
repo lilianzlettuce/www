@@ -12,7 +12,7 @@ export function ProjectListItem({ project }: ProjectCardProps) {
         <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className="group relative h-75 rounded-none border-1 border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+            className="group relative h-75 rounded-none border-1 border-border hover:border-[var(--mutedForeground)] transition-all duration-300 hover:-translate-y-1"
             style={{ "--corner-size": "4px", 
                 "--corner-offset": "-2px",
                 "--corner-color": "var(--secondaryForeground)" } as React.CSSProperties}
@@ -118,7 +118,7 @@ export function ProjectCardBasic({ project }: ProjectCardProps) {
         <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className="group relative h-90 rounded-none border-1 border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+            className="group relative h-90 rounded-none border-1 border-border hover:border-primary hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
             style={{ "--corner-size": "4px", 
                 "--corner-offset": "-2px",
                 "--corner-color": "var(--secondaryForeground)" } as React.CSSProperties}
