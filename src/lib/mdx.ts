@@ -9,11 +9,12 @@ const projectsDirectory = path.join(process.cwd(), 'content/projects');
 
 export interface ProjectFrontmatter {
   title: string;
+  subtitle?: string;
   description: string;
   image: string;
   tags: string[];
-  github?: string;
-  live?: string;
+  categories: string[];
+  link?: string;
   date: string;
   featured?: boolean;
   slug: string;

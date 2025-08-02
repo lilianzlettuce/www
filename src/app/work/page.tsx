@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { getAllProjects, ProjectFrontmatter } from "@/lib/mdx";
-import { ExternalLinkIcon } from "@/components/Icons";
+import { ProjectCardDefault, ProjectCardBasic } from "@/components/workPage/Cards";
+import { NavBar } from "@/components/NavBar";
 
 export default async function WorkPage() {
   const projects = await getAllProjects();
@@ -27,67 +27,27 @@ export default async function WorkPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
+      <NavBar className="h-8" />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            My Work
+          <h1 className="text-4xl md:text-9xl font-psygen font-bold text-foreground uppercase mb-4">
+            Work
           </h1>
           <p className="text-xl text-mutedForeground max-w-2xl mx-auto">
-            A collection of projects I&apos;ve worked on, from web applications to creative experiments.
+            What are you even searching for?
           </p>
         </div>
 
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.slice(0, 7).map((project: ProjectFrontmatter) => (
+            <ProjectCardBasic key={project.slug} project={project} />
+          ))}
+        </div>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project: ProjectFrontmatter) => (
-            <Link
-              key={project.slug}
-              href={`/work/${project.slug}`}
-              className="group block bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="aspect-video bg-muted flex items-center justify-center">
-                {project.image ? (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="text-mutedForeground text-4xl font-bold">
-                    {project.title.charAt(0)}
-                  </div>
-                )}
-              </div>
-              
-              <div className="p-6">
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-xl font-semibold text-cardForeground group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                  <ExternalLinkIcon className="w-4 h-4 text-mutedForeground group-hover:text-primary transition-colors" />
-                </div>
-                
-                <p className="text-mutedForeground mb-4 line-clamp-2">
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2">
-                  {project.tags?.slice(0, 3).map((tag: string) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  {project.tags && project.tags.length > 3 && (
-                    <span className="px-2 py-1 text-xs font-medium bg-muted text-mutedForeground rounded">
-                      +{project.tags.length - 3}
-                    </span>
-                  )}
-                </div>
-              </div>
-            </Link>
+          {projects.slice(0, 7).map((project: ProjectFrontmatter) => (
+            <ProjectCardDefault key={project.slug} project={project} />
           ))}
         </div>
 

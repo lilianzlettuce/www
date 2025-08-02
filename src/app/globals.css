@@ -85,7 +85,7 @@
   filter: sepia(50%);
   filter: contrast(50%);
   filter: hue-rotate(45deg);
-  filter: invert(var(--invert));
+  filter: invert(var(--invert)) hue-rotate(0deg);
 
   overflow-x: hidden;
 }
