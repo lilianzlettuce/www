@@ -1,5 +1,5 @@
 import { getAllProjects, ProjectFrontmatter } from "@/lib/mdx";
-import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectCardLarge } from "@/components/workPage/Cards";
+import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectListItemTechMono, ProjectCardLarge } from "@/components/workPage/Cards";
 import { NavBar, SideBar, SideBar2, SideBar3 } from "@/components/NavBar";
 
 export default async function WorkPage() {
@@ -26,7 +26,7 @@ export default async function WorkPage() {
 
         <div className="group/list flex flex-col">
           {projects.slice(0, 7).map((project: ProjectFrontmatter, index: number) => (
-            <ProjectListItem key={project.slug} project={project} index={index} />
+            <ProjectListItemTechMono key={project.slug} project={project} index={index} />
           ))}
         </div>
 

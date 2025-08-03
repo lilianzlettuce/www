@@ -13,19 +13,14 @@ type ProjectCardProps = {
 
 export function ProjectListItem({ project, index = 0 }: ProjectCardProps) {
     const mousePosition = useMousePosition();
-    
-    const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        console.log(mousePosition);
-    }
 
     return (
         <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            onMouseMove={handleMouseMove}
-            className="group/list-item relative w-full h-fit rounded-none border-1 border-border hover:border-muted-foreground transition-all duration-300"
+            className="group/list-item relative w-full h-fit rounded-none border-t-1 border-border hover:border-muted-foreground transition-all duration-300"
         >
-            <div className="relative w-full h-full p-4 flex flex-row gap-4">
+            <div className="relative w-full h-full p-4 flex flex-row items-center gap-4 border-b-1 border-background hover:border-muted-foreground transition-all duration-300">
                 <div className="fixed z-10 left-1/4 w-100 h-65 aspect-auto hidden group-hover/list-item:flex items-center justify-center"
                     style={{
                         left: mousePosition.x + 50,
@@ -46,7 +41,7 @@ export function ProjectListItem({ project, index = 0 }: ProjectCardProps) {
                     )}
                 </div>
                 
-                <div className="w-full h-full flex flex-row items-start justify-between transition-all duration-300 text-foreground group-hover/list:text-muted-foreground group-hover/list-item:text-foreground">
+                <div className="w-full h-full flex flex-row items-center justify-between transition-all duration-300 text-foreground group-hover/list:text-muted-foreground group-hover/list-item:text-foreground">
                     <div className="min-w-fit flex flex-row items-center gap-2">
                         <div className="font-roboto-mono text-xs text-muted-foreground">
                             &#91;{index.toString().padStart(2, '0')}&#93;
@@ -59,7 +54,7 @@ export function ProjectListItem({ project, index = 0 }: ProjectCardProps) {
                         </p>
                     </div>
                     
-                    <div className="min-w-fit flex flex-col items-end gap-2">
+                    <div className="min-w-fit flex items-end gap-2">
                         <div className="w-full flex flex-wrap gap-2 font-roboto-mono text-[0.65rem] tracking-widest uppercase">
                             {project.tags?.slice(0, 3).map((tag: string) => (
                                 <span
@@ -90,17 +85,12 @@ export function ProjectListItem({ project, index = 0 }: ProjectCardProps) {
 
 export function ProjectListItemTechMono({ project, index = 0 }: ProjectCardProps) {
     const mousePosition = useMousePosition();
-    
-    const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        console.log(mousePosition);
-    }
 
     return (
         <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            onMouseMove={handleMouseMove}
-            className="group/list-item relative w-full h-fit rounded-none border-1 border-border hover:border-muted-foreground transition-all duration-300"
+            className="group/list-item relative w-full h-fit rounded-none border-t-1 border-border hover:border-muted-foreground transition-all duration-300"
         >
             <div className="relative w-full h-full p-4 flex flex-row gap-4">
                 <div className="fixed z-10 left-1/4 w-100 h-65 aspect-auto hidden group-hover/list-item:flex items-center justify-center"
