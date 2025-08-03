@@ -46,16 +46,14 @@ export function ProjectListItemMinimal({ project, index = 0 }: ProjectCardProps)
                     )}
                 </div>
                 
-                <div className="w-full h-full flex flex-row justify-between transition-all duration-300 text-foreground group-hover/list:text-muted-foreground group-hover/list-item:text-foreground">
-                    <div className="min-w-fit flex flex-row items-start gap-2">
-                        <div className="font-roboto-mono text-muted-foreground">
-                            {index.toString().padStart(2, '0')}
+                <div className="w-full h-full flex flex-row items-start justify-between transition-all duration-300 text-foreground group-hover/list:text-muted-foreground group-hover/list-item:text-foreground">
+                    <div className="min-w-fit flex flex-row items-center gap-2">
+                        <div className="font-roboto-mono text-xs text-muted-foreground">
+                            &#91;{index.toString().padStart(2, '0')}&#93;
                         </div>
-                        <div className="flex items-start justify-between">
-                            <h3 className="font-roboto-monotext-base font-semibold">
-                                {project.title}
-                            </h3>
-                        </div>
+                        <h3 className="font-roboto-monotext-base font-semibold">
+                            {project.title}
+                        </h3>
                         <p className="hidden font-ibm-plex-mono text-sm text-mutedForeground line-clamp-2">
                             {project.description}
                         </p>
@@ -66,7 +64,7 @@ export function ProjectListItemMinimal({ project, index = 0 }: ProjectCardProps)
                             {project.tags?.slice(0, 3).map((tag: string) => (
                                 <span
                                     key={tag}
-                                    className="h-fit px-1 py-0.4 rounded-xs bg-foreground text-background
+                                    className="h-fit px-1 py-0.4 rounded-xs bg-foreground text-background transition-all duration-300
                                         group-hover/list:bg-muted-foreground group-hover/list:text-background
                                         group-hover/list-item:bg-foreground group-hover/list-item:text-background"
                                 >

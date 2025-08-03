@@ -11,6 +11,54 @@ type NavBarProps = {
   className?: string;
 }
 
+export function SideBar({ className }: NavBarProps) {
+  const pathname = usePathname();
+
+  return (
+    <nav className={`${className} z-50 sticky top-0 left-0 min-w-50 h-screen p-0 bg-background`}>
+      <div className="w-full h-full border-r border-border p-0">
+        <div className="w-full h-full flex flex-col justify-start items-center gap-2">
+          <Link href="/" className="w-full h-11 p-2 text-xl font-bold text-foreground hover:text-mutedForeground transition-colors">
+            <LogoIcon className="w-full h-full" />
+          </Link>
+          
+          <div className="w-full hidden md:flex flex-col items-start justify-end gap-2">
+            <div className="p-2 w-full flex items-center justify-start">
+              <ThemeSlider buttonClassName="p-1" />
+            </div>
+            <div className="w-full h-fit flex flex-col items-center gap-0 font-mono font-bold lowercase text-sm capitalize">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`w-full h-10 flex items-center justify-center text-xs font-medium px-8 border-b border-border ${
+                    pathname === item.href
+                      ? "text-foreground decoration-1 line-through"
+                      : "text-mutedForeground hover:line-through"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center space-x-4">
+            <ThemeToggle />
+            <button className="text-mutedForeground hover:text-foreground">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+} 
+
+
 export function NavBar({ className }: NavBarProps) {
   const pathname = usePathname();
 
