@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ExternalLinkIcon } from "../Icons";
 import { ProjectFrontmatter } from "@/lib/mdx";
 import { useMousePosition } from "@/hooks/useMousePosition";
+import { TagLabelFill, TagLabelStroke } from "./Labels";
 
 type ProjectCardProps = {
     project: ProjectFrontmatter;
@@ -20,7 +21,7 @@ export function ProjectListItem({ project, index = 0 }: ProjectCardProps) {
             href={`/work/${project.slug}`}
             className="group/list-item relative w-full h-fit rounded-none border-t-1 border-border hover:border-muted-foreground transition-all duration-300"
         >
-            <div className="relative w-full h-full p-4 flex flex-row items-center gap-4 border-b-1 border-background hover:border-muted-foreground transition-all duration-300">
+            <div className="relative w-full h-full p-5 flex flex-row items-center gap-4 border-b-1 border-background hover:border-muted-foreground transition-all duration-300">
                 <div className="fixed z-10 left-1/4 w-100 h-65 aspect-auto hidden group-hover/list-item:flex items-center justify-center"
                     style={{
                         left: mousePosition.x + 50,
@@ -42,11 +43,11 @@ export function ProjectListItem({ project, index = 0 }: ProjectCardProps) {
                 </div>
                 
                 <div className="w-full h-full flex flex-row items-center justify-between transition-all duration-300 text-foreground group-hover/list:text-muted-foreground group-hover/list-item:text-foreground">
-                    <div className="min-w-fit flex flex-row items-center gap-2">
-                        <div className="font-roboto-mono text-xs text-muted-foreground">
-                            &#91;{index.toString().padStart(2, '0')}&#93;
+                    <div className="min-w-fit flex flex-row items-start gap-6">
+                        <div className="font-roboto-mono text-[0.65rem] text-muted-foreground">
+                        &#91;{index.toString().padStart(2, '0')}&#93;
                         </div>
-                        <h3 className="font-roboto-monotext-base font-semibold">
+                        <h3 className="font-sans text-xl/5 font-medium">
                             {project.title}
                         </h3>
                         <p className="hidden font-ibm-plex-mono text-sm text-mutedForeground line-clamp-2">
@@ -54,17 +55,15 @@ export function ProjectListItem({ project, index = 0 }: ProjectCardProps) {
                         </p>
                     </div>
                     
-                    <div className="min-w-fit flex items-end gap-2">
-                        <div className="w-full flex flex-wrap gap-2 font-roboto-mono text-[0.65rem] tracking-widest uppercase">
+                    <div className="min-w-fit flex items-center gap-6 font-roboto-mono text-[0.65rem] tracking-widest">
+                        <div className="w-full flex flex-wrap gap-2 uppercase">
                             {project.tags?.slice(0, 3).map((tag: string) => (
-                                <span
+                                <TagLabelStroke
                                     key={tag}
-                                    className="h-fit px-1 py-0.4 rounded-xs bg-foreground text-background transition-all duration-300
-                                        group-hover/list:bg-muted-foreground group-hover/list:text-background
-                                        group-hover/list-item:bg-foreground group-hover/list-item:text-background"
-                                >
-                                    {tag}
-                                </span>
+                                    tag={tag}
+                                    className="group-hover/list:border-muted-foreground group-hover/list:text-muted-foreground
+                                        group-hover/list-item:border-foreground group-hover/list-item:text-foreground"
+                                />
                             ))}
                             {project.tags && project.tags.length > 3 && (
                                 <span className="h-fit px-1 py-0.4 rounded-xs bg-muted text-mutedForeground">
@@ -73,8 +72,8 @@ export function ProjectListItem({ project, index = 0 }: ProjectCardProps) {
                             )}
                         </div>
 
-                        <p className="font-roboto-mono text-[0.6rem] tracking-widest">
-                            &#91;{project.date.split("-").reverse().join(".")}&#93;
+                        <p className="">
+                            {project.date.split("-").reverse().join(".")}
                         </p>
                     </div>
                 </div>
@@ -129,14 +128,12 @@ export function ProjectListItemTechMono({ project, index = 0 }: ProjectCardProps
                     <div className="min-w-fit flex flex-col items-end gap-2">
                         <div className="w-full flex flex-wrap gap-2 font-roboto-mono text-[0.65rem] tracking-widest uppercase">
                             {project.tags?.slice(0, 3).map((tag: string) => (
-                                <span
+                                <TagLabelFill
                                     key={tag}
-                                    className="h-fit px-1 py-0.4 rounded-xs bg-foreground text-background transition-all duration-300
-                                        group-hover/list:bg-muted-foreground group-hover/list:text-background
+                                    tag={tag}
+                                    className="group-hover/list:bg-muted-foreground group-hover/list:text-background
                                         group-hover/list-item:bg-foreground group-hover/list-item:text-background"
-                                >
-                                    {tag}
-                                </span>
+                                />
                             ))}
                             {project.tags && project.tags.length > 3 && (
                                 <span className="h-fit px-1 py-0.4 rounded-xs bg-muted text-mutedForeground">
