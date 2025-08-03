@@ -39,7 +39,7 @@ export default async function WorkPage() {
           </p>
         </div>
 
-        <div className="flex flex-col">
+        <div className="group/list flex flex-col">
           {projects.slice(0, 7).map((project: ProjectFrontmatter, index: number) => (
             <ProjectListItemMinimal key={project.slug} project={project} index={index} />
           ))}

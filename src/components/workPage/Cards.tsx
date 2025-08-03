@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { ExternalLinkIcon } from "../Icons";
 import { ProjectFrontmatter } from "@/lib/mdx";
+import { useMousePosition } from "@/hooks/useMousePosition";
 
 type ProjectCardProps = {
     project: ProjectFrontmatter;
@@ -9,17 +12,26 @@ type ProjectCardProps = {
 }
 
 export function ProjectListItemMinimal({ project, index = 0 }: ProjectCardProps) {
+    const mousePosition = useMousePosition();
+    
+    const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        console.log(mousePosition);
+    }
+
     return (
         <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className="group relative h-fit rounded-none border-1 border-border hover:border-[var(--mutedForeground)] transition-all duration-300"
-            style={{ "--corner-size": "4px", 
-                "--corner-offset": "-2px",
-                "--corner-color": "var(--secondaryForeground)" } as React.CSSProperties}
+            onMouseMove={handleMouseMove}
+            className="group/list-item relative h-fit rounded-none border-1 border-border hover:border-muted-foreground transition-all duration-300"
         >
             <div className="relative w-full h-full p-4 flex flex-row gap-4">
-                <div className="absolute left-1/4 w-100 h-50 hidden group-hover:flex items-center justify-center border-1 border-secondary">
+                <div className="fixed z-10 left-1/4 w-100 h-65 aspect-auto hidden group-hover/list-item:flex items-center justify-center"
+                    style={{
+                        left: mousePosition.x + 50,
+                        top: mousePosition.y - 15,
+                    }}
+                >
                     {project.image ? (
                         <Image
                             src={project.image}
@@ -34,13 +46,13 @@ export function ProjectListItemMinimal({ project, index = 0 }: ProjectCardProps)
                     )}
                 </div>
                 
-                <div className="w-full h-full flex flex-row justify-between">
+                <div className="w-full h-full flex flex-row justify-between transition-all duration-300 text-foreground group-hover/list:text-muted-foreground group-hover/list-item:text-foreground">
                     <div className="min-w-fit flex flex-row items-start gap-2">
-                        <div className="font-roboto-mono text-[var(--mutedForeground)]">
+                        <div className="font-roboto-mono text-muted-foreground">
                             {index.toString().padStart(2, '0')}
                         </div>
                         <div className="flex items-start justify-between">
-                            <h3 className="font-roboto-monotext-base font-semibold text-foreground">
+                            <h3 className="font-roboto-monotext-base font-semibold">
                                 {project.title}
                             </h3>
                         </div>
@@ -49,12 +61,14 @@ export function ProjectListItemMinimal({ project, index = 0 }: ProjectCardProps)
                         </p>
                     </div>
                     
-                    <div className="min-w-fit flex flex-col gap-2">
+                    <div className="min-w-fit flex flex-col items-end gap-2">
                         <div className="w-full flex flex-wrap gap-2 font-roboto-mono text-[0.65rem] tracking-widest uppercase">
                             {project.tags?.slice(0, 3).map((tag: string) => (
                                 <span
                                     key={tag}
-                                    className="h-fit px-1 py-0.4 rounded-xs bg-foreground text-background"
+                                    className="h-fit px-1 py-0.4 rounded-xs bg-foreground text-background
+                                        group-hover/list:bg-muted-foreground group-hover/list:text-background
+                                        group-hover/list-item:bg-foreground group-hover/list-item:text-background"
                                 >
                                     {tag}
                                 </span>
@@ -81,7 +95,7 @@ export function ProjectListItem({ project }: ProjectCardProps) {
         <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className="group relative h-75 rounded-none border-1 border-border hover:border-[var(--mutedForeground)] transition-all duration-300 hover:-translate-y-1"
+            className="group relative h-75 rounded-none border-1 border-border hover:border-muted-foreground transition-all duration-300 hover:-translate-y-1"
             style={{ "--corner-size": "4px", 
                 "--corner-offset": "-2px",
                 "--corner-color": "var(--secondaryForeground)" } as React.CSSProperties}
@@ -187,7 +201,7 @@ export function ProjectCardBasic({ project }: ProjectCardProps) {
         <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className="group relative h-90 rounded-none border-1 border-border hover:border-primary hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+            className="group relative h-90 rounded-none border-1 border-border hover:border-muted-foreground hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
             style={{ "--corner-size": "4px", 
                 "--corner-offset": "-2px",
                 "--corner-color": "var(--secondaryForeground)" } as React.CSSProperties}
