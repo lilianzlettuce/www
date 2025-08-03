@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { SunIcon, MoonIcon, EyeIcon, SwatchIcon } from "@/components/Icons";
-import { SquareSlider } from "./Slider";
+import { MinimalLineSlider, SquareSlider } from "./Slider";
 
-export function ThemeSlider({ buttonClassName = "p-2 rounded-full" }: { buttonClassName?: string }) {
+export function ThemeSlider({ sliderClassName = "w-24", buttonClassName = "p-2 rounded-full" }: { sliderClassName?: string, buttonClassName?: string }) {
   const { theme, setTheme } = useTheme();
   const [sliderValue, setSliderValue] = useState(0.1);
 
@@ -26,7 +26,8 @@ export function ThemeSlider({ buttonClassName = "p-2 rounded-full" }: { buttonCl
   return (
     <div className="relative">
       <div className="flex items-center gap-1">
-        <SquareSlider
+        <MinimalLineSlider
+          className={sliderClassName}
           min={0}
           max={1}
           step={0.01}
@@ -35,6 +36,7 @@ export function ThemeSlider({ buttonClassName = "p-2 rounded-full" }: { buttonCl
             setSliderValue(value[0]);
             document.documentElement.style.setProperty('--invert', value[0].toString());
           }}
+          aria-labelledby="theme-slider"
         />
         <button
           onClick={() => {

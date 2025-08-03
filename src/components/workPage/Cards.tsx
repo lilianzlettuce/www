@@ -11,7 +11,7 @@ type ProjectCardProps = {
     index?: number;
 }
 
-export function ProjectListItemMinimal({ project, index = 0 }: ProjectCardProps) {
+export function ProjectListItem({ project, index = 0 }: ProjectCardProps) {
     const mousePosition = useMousePosition();
     
     const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -88,7 +88,7 @@ export function ProjectListItemMinimal({ project, index = 0 }: ProjectCardProps)
     );
 };
 
-export function ProjectListItem({ project }: ProjectCardProps) {
+export function ProjectCardLarge({ project }: ProjectCardProps) {
     return (
         <Link
             key={project.slug}

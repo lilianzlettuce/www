@@ -1,6 +1,6 @@
 import { getAllProjects, ProjectFrontmatter } from "@/lib/mdx";
-import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectListItemMinimal } from "@/components/workPage/Cards";
-import { NavBar, SideBar } from "@/components/NavBar";
+import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectCardLarge } from "@/components/workPage/Cards";
+import { NavBar, SideBar, SideBar2 } from "@/components/NavBar";
 
 export default async function WorkPage() {
   const projects = await getAllProjects();
@@ -8,9 +8,9 @@ export default async function WorkPage() {
   return (
     <div className="min-h-screen flex flex-row">
       <SideBar className="" />
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-left mb-16">
-          <h1 className="text-4xl md:text-[400px]/[0.8] scale-x-170 translate-x-100 font-murmure font-bold text-foreground lowercase mb-4">
+          <h1 className="text-4xl md:text-[400px]/[0.8] scale-x-100 translate-x-0 font-bp-dots-square-bold font-bold text-foreground lowercase mb-4">
             Work
           </h1>
           <p className="text-xl text-mutedForeground max-w-2xl">
@@ -20,13 +20,19 @@ export default async function WorkPage() {
 
         <div className="group/list flex flex-col">
           {projects.slice(0, 7).map((project: ProjectFrontmatter, index: number) => (
-            <ProjectListItemMinimal key={project.slug} project={project} index={index} />
+            <ProjectListItem key={project.slug} project={project} index={index} />
+          ))}
+        </div>
+
+        <div className="group/list flex flex-col">
+          {projects.slice(0, 7).map((project: ProjectFrontmatter, index: number) => (
+            <ProjectListItem key={project.slug} project={project} index={index} />
           ))}
         </div>
 
         <div className="flex flex-col">
           {projects.slice(0, 7).map((project: ProjectFrontmatter) => (
-            <ProjectListItem key={project.slug} project={project} />
+            <ProjectCardLarge key={project.slug} project={project} />
           ))}
         </div>
 
