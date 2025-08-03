@@ -1,14 +1,14 @@
 import { getAllProjects, ProjectFrontmatter } from "@/lib/mdx";
 import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectCardLarge } from "@/components/workPage/Cards";
-import { NavBar, SideBar, SideBar2 } from "@/components/NavBar";
+import { NavBar, SideBar, SideBar2, SideBar3 } from "@/components/NavBar";
 
 export default async function WorkPage() {
   const projects = await getAllProjects();
 
   return (
     <div className="min-h-screen flex flex-row">
-      <SideBar className="" />
-      <div className="max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+      <SideBar3 className="min-w-60" />
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-left mb-16">
           <h1 className="text-4xl md:text-[400px]/[0.8] scale-x-100 translate-x-0 font-bp-dots-square-bold font-bold text-foreground lowercase mb-4">
             Work
@@ -18,7 +18,7 @@ export default async function WorkPage() {
           </p>
         </div>
 
-        <div className="group/list flex flex-col">
+        <div className="group/list w-full flex flex-col">
           {projects.slice(0, 7).map((project: ProjectFrontmatter, index: number) => (
             <ProjectListItem key={project.slug} project={project} index={index} />
           ))}

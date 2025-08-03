@@ -5,7 +5,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { SunIcon, MoonIcon, EyeIcon, SwatchIcon } from "@/components/Icons";
 import { MinimalLineSlider, SquareSlider } from "./Slider";
 
-export function ThemeSlider({ sliderClassName = "w-24", buttonClassName = "p-2 rounded-full" }: { sliderClassName?: string, buttonClassName?: string }) {
+export function ThemeSlider({ buttonClassName = "p-2 rounded-full" }: { sliderClassName?: string, buttonClassName?: string }) {
   const { theme, setTheme } = useTheme();
   const [sliderValue, setSliderValue] = useState(0.1);
 
@@ -24,10 +24,10 @@ export function ThemeSlider({ sliderClassName = "w-24", buttonClassName = "p-2 r
   };*/
 
   return (
-    <div className="relative">
-      <div className="flex items-center gap-1">
+    <div className="relative w-full">
+      <div className="w-full flex items-center gap-1">
         <MinimalLineSlider
-          className={sliderClassName}
+          className="w-full"
           min={0}
           max={1}
           step={0.01}

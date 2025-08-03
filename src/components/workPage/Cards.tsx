@@ -23,7 +23,84 @@ export function ProjectListItem({ project, index = 0 }: ProjectCardProps) {
             key={project.slug}
             href={`/work/${project.slug}`}
             onMouseMove={handleMouseMove}
-            className="group/list-item relative h-fit rounded-none border-1 border-border hover:border-muted-foreground transition-all duration-300"
+            className="group/list-item relative w-full h-fit rounded-none border-1 border-border hover:border-muted-foreground transition-all duration-300"
+        >
+            <div className="relative w-full h-full p-4 flex flex-row gap-4">
+                <div className="fixed z-10 left-1/4 w-100 h-65 aspect-auto hidden group-hover/list-item:flex items-center justify-center"
+                    style={{
+                        left: mousePosition.x + 50,
+                        top: mousePosition.y - 15,
+                    }}
+                >
+                    {project.image ? (
+                        <Image
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover"
+                            fill={true}
+                        />
+                    ) : (
+                        <div className="text-mutedForeground text-4xl font-bold">
+                            {project.title.charAt(0)}
+                        </div>
+                    )}
+                </div>
+                
+                <div className="w-full h-full flex flex-row items-start justify-between transition-all duration-300 text-foreground group-hover/list:text-muted-foreground group-hover/list-item:text-foreground">
+                    <div className="min-w-fit flex flex-row items-center gap-2">
+                        <div className="font-roboto-mono text-xs text-muted-foreground">
+                            &#91;{index.toString().padStart(2, '0')}&#93;
+                        </div>
+                        <h3 className="font-roboto-monotext-base font-semibold">
+                            {project.title}
+                        </h3>
+                        <p className="hidden font-ibm-plex-mono text-sm text-mutedForeground line-clamp-2">
+                            {project.description}
+                        </p>
+                    </div>
+                    
+                    <div className="min-w-fit flex flex-col items-end gap-2">
+                        <div className="w-full flex flex-wrap gap-2 font-roboto-mono text-[0.65rem] tracking-widest uppercase">
+                            {project.tags?.slice(0, 3).map((tag: string) => (
+                                <span
+                                    key={tag}
+                                    className="h-fit px-1 py-0.4 rounded-xs bg-foreground text-background transition-all duration-300
+                                        group-hover/list:bg-muted-foreground group-hover/list:text-background
+                                        group-hover/list-item:bg-foreground group-hover/list-item:text-background"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                            {project.tags && project.tags.length > 3 && (
+                                <span className="h-fit px-1 py-0.4 rounded-xs bg-muted text-mutedForeground">
+                                    +{project.tags.length - 3}
+                                </span>
+                            )}
+                        </div>
+
+                        <p className="font-roboto-mono text-[0.6rem] tracking-widest">
+                            &#91;{project.date.split("-").reverse().join(".")}&#93;
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </Link>
+    );
+};
+
+export function ProjectListItemTechMono({ project, index = 0 }: ProjectCardProps) {
+    const mousePosition = useMousePosition();
+    
+    const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        console.log(mousePosition);
+    }
+
+    return (
+        <Link
+            key={project.slug}
+            href={`/work/${project.slug}`}
+            onMouseMove={handleMouseMove}
+            className="group/list-item relative w-full h-fit rounded-none border-1 border-border hover:border-muted-foreground transition-all duration-300"
         >
             <div className="relative w-full h-full p-4 flex flex-row gap-4">
                 <div className="fixed z-10 left-1/4 w-100 h-65 aspect-auto hidden group-hover/list-item:flex items-center justify-center"

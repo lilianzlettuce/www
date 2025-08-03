@@ -1,7 +1,8 @@
 export const navItems = [
+    { href: "/", label: "Home" },
     { href: "/work", label: "Work" },
-    { href: "/stuff", label: "Stuff" },
     { href: "/about", label: "About" },
+    { href: "/stuff", label: "???" },
 ];
 
 export const socialLinks = [
