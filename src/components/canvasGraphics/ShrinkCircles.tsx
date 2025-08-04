@@ -18,6 +18,7 @@ type RadiusPoint = {
 };
 
 interface ShrinkCirclesProps {
+  className?: string;
   id?: string;
   interactionMode?: "grow" | "shrink" | "none";
   transparent?: boolean;
@@ -42,6 +43,7 @@ interface ShrinkCirclesProps {
 }
 
 const ShrinkCircles = ({
+  className,
   id,
   interactionMode = "shrink",
   transparent = false,
@@ -408,7 +410,7 @@ const ShrinkCircles = ({
   useAnimationFrame(animate);
 
   return (
-    <div>
+    <div className={`${className}`}>
       <div className={`bg-${bgColor}`}>
         <canvas
           id={id}
