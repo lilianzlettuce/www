@@ -13,6 +13,7 @@ export default function WorkPage() {
   const categoryFilter = searchParams.get("category");
   const [projects, setProjects] = useState<ProjectFrontmatter[]>([]);
   const [loading, setLoading] = useState(true);
+  const [viewMode, setViewMode] = useState<string>("list");
 
   // Load projects on component mount
   useEffect(() => {
@@ -76,15 +77,42 @@ export default function WorkPage() {
       <div className="w-full px-4 sm:px-6 lg:px-6 py-0">
         <WorkPageHeader />
 
+        <div className="flex gap-2">
+          <button className={`px-3 py-1 text-sm transition-colors 
+                    ${viewMode === "list" ? "text-foreground font-semibold" 
+                      : "text-muted-foreground hover:text-foreground"}`}
+            onClick={() => setViewMode("list")}
+          >
+            List
+          </button>
+          <button className={`px-3 py-1 text-sm transition-colors 
+                    ${viewMode === "grid" ? "text-foreground font-semibold" 
+                      : "text-muted-foreground hover:text-foreground"}`}
+            onClick={() => setViewMode("grid")}
+          >
+            Grid
+          </button>
+        </div>
+
         {/* Filtering */}
         <ProjectFilter categories={allCategories} />
 
         {/* Project Listings */}
-        <div className="group/list w-full flex flex-col">
-          {filteredProjects.map((project: ProjectFrontmatter, index: number) => (
-            <ProjectListItem key={project.slug} project={project} index={index} />
-          ))}
-        </div>
+        {viewMode === "list" && (
+          <div className="group/list w-full flex flex-col">
+            {filteredProjects.map((project: ProjectFrontmatter, index: number) => (
+              <ProjectListItem key={project.slug} project={project} index={index} />
+            ))}
+          </div>
+        )}
+
+        {viewMode === "grid" && (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
+              <ProjectCardBasic key={project.slug} project={project} />
+            ))}
+          </div>
+        )}
 
         <div className="group/list flex flex-col">
           {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter, index: number) => (
@@ -95,12 +123,6 @@ export default function WorkPage() {
         <div className="flex flex-col">
           {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
             <ProjectCardLarge key={project.slug} project={project} />
-          ))}
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
-            <ProjectCardBasic key={project.slug} project={project} />
           ))}
         </div>
 
