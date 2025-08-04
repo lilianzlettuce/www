@@ -1,49 +1,117 @@
-import { getAllProjects, ProjectFrontmatter } from "@/lib/mdx";
+"use client";
+
+import { ProjectFrontmatter } from "@/lib/mdx";
 import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectListItemTechMono, ProjectCardLarge } from "@/components/workPage/Cards";
 import { NavBar, SideBar, SideBar2, SideBar3 } from "@/components/NavBar";
 import { WorkPageHeader, WorkPageHeader2 } from "@/components/workPage/Header";
+import ProjectFilter from "@/components/workPage/ProjectFilter";
+import { useSearchParams } from "next/navigation";
+import { useMemo, useState, useEffect } from "react";
 
-export default async function WorkPage() {
-  const projects = await getAllProjects();
+export default function WorkPage() {
+  const searchParams = useSearchParams();
+  const categoryFilter = searchParams.get("category");
+  const [projects, setProjects] = useState<ProjectFrontmatter[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Load projects on component mount
+  useEffect(() => {
+    const loadProjects = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch("/api/projects");
+        if (response.ok) {
+          const allProjects = await response.json();
+          setProjects(allProjects);
+        } else {
+          console.error("Failed to fetch projects");
+        }
+      } catch (error) {
+        console.error("Error loading projects:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    loadProjects();
+  }, []);
+
+  // Get all unique categories from projects
+  const allCategories = ["dev", "design", "art", "fabrication"]; /*useMemo(() => {
+    const categories = new Set<string>();
+    projects.forEach(project => {
+      project.categories.forEach(category => categories.add(category));
+    });
+    return Array.from(categories).sort();
+  }, [projects]);*/
+
+  // Filter projects based on category
+  const filteredProjects = useMemo(() => {
+    if (!categoryFilter) {
+      return projects;
+    }
+    
+    return projects.filter(project => 
+      project.categories && project.categories.includes(categoryFilter)
+    );
+  }, [projects, categoryFilter]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-row">
+        <SideBar3 className="min-w-60" />
+        <div className="w-full px-4 sm:px-6 lg:px-6 py-0">
+          <WorkPageHeader2 />
+          <div className="text-center py-12">
+            <p className="text-mutedForeground text-lg">Loading projects...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-row">
       <SideBar3 className="min-w-60" />
       <div className="w-full px-4 sm:px-6 lg:px-6 py-0">
-        <WorkPageHeader2 />
+        <WorkPageHeader />
 
+        {/* Filtering */}
+        <ProjectFilter categories={allCategories} />
+
+        {/* Project Listings */}
         <div className="group/list w-full flex flex-col">
-          {projects.slice(0, 7).map((project: ProjectFrontmatter, index: number) => (
+          {filteredProjects.map((project: ProjectFrontmatter, index: number) => (
             <ProjectListItem key={project.slug} project={project} index={index} />
           ))}
         </div>
 
         <div className="group/list flex flex-col">
-          {projects.slice(0, 7).map((project: ProjectFrontmatter, index: number) => (
+          {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter, index: number) => (
             <ProjectListItemTechMono key={project.slug} project={project} index={index} />
           ))}
         </div>
 
         <div className="flex flex-col">
-          {projects.slice(0, 7).map((project: ProjectFrontmatter) => (
+          {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
             <ProjectCardLarge key={project.slug} project={project} />
           ))}
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.slice(0, 7).map((project: ProjectFrontmatter) => (
+          {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
             <ProjectCardBasic key={project.slug} project={project} />
           ))}
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.slice(0, 7).map((project: ProjectFrontmatter) => (
+          {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
             <ProjectCardDefault key={project.slug} project={project} />
           ))}
         </div>
 
-        {projects.length === 0 && (
-          <div className="text-center py-12">
+        {filteredProjects.length === 0 && (
+          <div className="z-10 text-center py-12">
             <p className="text-mutedForeground text-lg">
               No projects found. Check back soon for updates!
             </p>

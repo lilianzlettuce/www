@@ -125,7 +125,7 @@ export function WorkPageHeader() {
             </p>
           </div>
 
-          <div className="relative w-fit h-fit">
+          <div className="z-0 relative w-fit h-fit">
             <div className="fixed -top-30 -right-60 w-190 h-150 bg-white">
                 <Image src="/img/halftone/brain-bg-black.png" 
                     alt="Work" 
