@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { WindowTechMono } from "../Windows";
 import ShrinkCircles from "../canvasGraphics/ShrinkCircles";
+import { DevIcon, DesignIcon, PixelatedArrowIcon, ArtIcon, ListIcon } from "../Icons";
 
 export function WorkPageHeader2() {
     return (
@@ -116,8 +117,8 @@ export function WorkPageHeader2() {
 export function WorkPageHeader() {
     return (
         <div className="pt-30 min-h-[50vh] flex flex-row gap-4">
-          <div className="min-w-1/2 text-left mb-16">
-            <h1 className="text-4xl md:text-6xl/[0.8] scale-x-100 translate-x-0 font-micro5 font-bold text-foreground uppercase mb-4">
+          <div className="min-w-1/2 text-left my-16">
+            <h1 className="animate-text translate-x-2 w-fit text-4xl md:text-6xl/[0.8] scale-x-100 translate-x-0 font-micro5 font-bold text-foreground uppercase mb-4">
               Work
             </h1>
             <p className="text-sm text-mutedForeground max-w-2xl">

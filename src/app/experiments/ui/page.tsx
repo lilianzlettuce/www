@@ -2,7 +2,7 @@ import { NavBarGrid, NavBarBasic, NavBarFloating } from "@/components/NavBar";
 import { Button } from "@/components/Buttons";
 import { DraggableWindow } from "@/components/DraggableWindow";
 import Draggable from "@/components/Draggable";
-import { ArrowLeftIcon, GithubIcon, ExternalLinkIcon, XIcon, SwatchIcon, MoonIcon, SunIcon, EyeIcon, ExpandIcon, ExpandIcon2, MinimizeIcon } from "@/components/Icons";
+import { ArrowLeftIcon, GithubIcon, ExternalLinkIcon, XIcon, SwatchIcon, MoonIcon, SunIcon, EyeIcon, ExpandIcon, ExpandIcon2, MinimizeIcon, PlusIcon, PlusIconThin } from "@/components/Icons";
 import Sprite from "@/components/Sprite";
 import ZoomableImage from "@/components/ZoomableImage";
 import { WindowTechMono } from "@/components/Windows";
@@ -23,7 +23,21 @@ export default function UIExperimentsPage() {
             </p>
             <Button text="Hello" />
 
-            <div className="w-screen min-h-screen h-fit b-green-300 p-4 flex flex-row flex-wrap gap-4">
+            <div className="w-full flex flex-col items-start gap-2">
+              Plus icon for grid
+              <PlusIconThin className="w-48 h-48 text-foreground" strokeWidth={0.1} />
+
+              Plus icon row
+              <div className="w-full p-8 flex flex-row items-center justify-between">
+                {Array.from({ length: 3 }).map((_, index) => (
+                  <div key={index} className="w-8 h-8d">
+                    <PlusIcon className="w-7 h-7 text-foreground" strokeWidth={3} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="w-screen min-h-screen h-fit b-green-300 p-8 flex flex-row flex-wrap gap-4">
               <div className="relative">
                 <DraggableWindow />
               </div>

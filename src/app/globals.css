@@ -171,6 +171,30 @@ body {
   --color-success-foreground: var(--successForeground);
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warningForeground);
+
+  /* Animations */
+  --animate-text: textAnim 1s ease forwards;
+  --animate-text2: textAnim2 1s ease forwards;
+
+  @keyframes textAnim {
+    0% {
+      transform: scale(0, 1);
+    }
+    50% {
+      transform: scale(1.2, 0.8);
+    }
+    100% {
+      transform: scale(1.2, 1.2);
+    }
+  }
+  @keyframes textAnim2 {
+    50% {
+      transform: scale(2, .8);
+    }
+    100% {
+      transform: scale(2, 1.6);
+    }
+  }
 }
 
 @layer base {
@@ -304,6 +328,8 @@ body {
   .hover-reveal-icon:hover::after {
     transform: scaleX(100%);
   }
+
+  
 }
 
 

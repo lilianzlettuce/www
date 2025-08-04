@@ -4,6 +4,22 @@ interface IconProps {
   strokeLength?: number;
 }
 
+export function ListIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
+  return (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path strokeWidth={strokeWidth} d="M4 6h16M4 11.5h16M4 17h16"/>
+    </svg>
+  );
+}
+
+export function GridIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
+  return (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path strokeWidth={strokeWidth} d="M2 6h20v10h-20v-10M12 6v10"/>
+    </svg>
+  );
+}
+
 export function XIcon({ className = "w-6 h-6", strokeWidth = 4 }: IconProps) {
   return (
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -41,7 +57,15 @@ export function MinimizeIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconPro
 export function PlusIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
   return (
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M12 4v16m8-8H4" />
+      <path strokeWidth={strokeWidth} d="M12 4v16m8-8H4" />
+    </svg>
+  );
+}
+
+export function PlusIconThin({ className = "w-6 h-6", strokeWidth = 1 }: IconProps) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 100 100">
+      <path strokeWidth={strokeWidth} d="M50 0v100M0 50H100" />
     </svg>
   );
 }
@@ -103,6 +127,8 @@ export function EyeIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
   );
 } 
 
+// Logo icons
+
 export function LogoIcon({ className = "w-full h-full" }: IconProps) {
   return (
     <svg className={className} viewBox="0 0 284 40" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -121,6 +147,69 @@ export function FooterLogoIcon({ className = "w-full h-full" }: IconProps) {
       <path d="M724 105.686C724 129.857 731.536 148.286 746.607 160.972C761.679 173.657 783.101 180 810.873 180C836.562 180 889.275 180 897.037 180C897.589 180 898 179.583 898 179.03C898 171.95 898 127.875 898 105.686V1.00149C898 0.448621 897.551 0.000666305 896.999 0.00148743L815.051 0.123198C814.499 0.124017 814.053 0.571492 814.053 1.1232V136.572C814.053 137.124 813.605 137.572 813.053 137.572H808.947C808.395 137.572 807.947 137.124 807.947 136.572V1.12379C807.947 0.572092 807.501 0.124621 806.949 0.123798L725.001 0.00149468C724.449 0.000669553 724 0.448626 724 1.00149V105.686Z"/>
       <path d="M987.542 0H1064C1064.55 0 1065 0.447715 1065 1V85.1972C1065 85.7495 1064.55 86.1972 1064 86.1972H991.575C991.023 86.1972 990.575 85.7495 990.575 85.1972V51.7042C990.575 51.1519 990.128 50.7042 989.575 50.7042H985.5C984.948 50.7042 984.5 51.1519 984.5 51.7042V128.296C984.5 128.848 984.948 129.296 985.5 129.296H989.575C990.128 129.296 990.575 128.848 990.575 128.296V92.2676C990.575 91.7153 991.023 91.2676 991.575 91.2676H1064C1064.55 91.2676 1065 91.7153 1065 92.2676V179C1065 179.552 1064.55 180 1064 180H987.542H905C904.448 180 904 179.552 904 179V90V1C904 0.447718 904.448 0 905 0H987.542Z"/>
       <path d="M1071 1C1071 0.447718 1071.45 0 1072 0H1250C1250.55 0 1251 0.447715 1251 1V61.6087C1251 62.161 1250.55 62.6087 1250 62.6087H1145.53C1144.98 62.6087 1144.53 63.0564 1144.53 63.6087V67.0233C1144.53 67.5755 1144.98 68.0233 1145.53 68.0233H1250C1250.55 68.0233 1251 68.471 1251 69.0233V108.36C1251 108.913 1250.55 109.36 1250 109.36H1145.53C1144.98 109.36 1144.53 109.808 1144.53 110.36V113.783C1144.53 114.335 1144.98 114.783 1145.53 114.783H1250C1250.55 114.783 1251 115.23 1251 115.783V179C1251 179.552 1250.55 180 1250 180H1072C1071.45 180 1071 179.552 1071 179V1Z"/>
+    </svg>
+  );
+}
+
+// Pixelated icons
+
+export function DevIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
+  return (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" 
+          viewBox={strokeWidth > 0 ? "-2 -2 34 34" : "0 0 30 30"} 
+          fill="none">
+      <path fill={strokeWidth > 0 ? "none" : "currentColor"} 
+            stroke={strokeWidth > 0 ? "currentColor" : "none"} 
+            strokeWidth={strokeWidth} 
+            d="M10 20h10v10H0V10h10v10Zm20 0H20V10H10V0h20v20Z"/>
+    </svg>
+  );
+}
+
+export function DesignIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
+  return (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" 
+          viewBox={strokeWidth > 0 ? "-2 -2 34 34" : "0 0 30 30"} 
+          fill="none">
+      <path fill={strokeWidth > 0 ? "none" : "currentColor"} 
+            stroke={strokeWidth > 0 ? "currentColor" : "none"} 
+            strokeWidth={strokeWidth} 
+            d="M20 20V10h10v10H20v10H10V20h10Zm0-20v10H10V0h10ZM10 10v10H0V10h10Z"/>
+    </svg>
+  );
+}
+
+export function ArtIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
+  return (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" 
+          viewBox={strokeWidth > 0 ? "-2 -2 34 34" : "0 0 30 30"} 
+          fill="none">
+      <path fill={strokeWidth > 0 ? "none" : "currentColor"} 
+            stroke={strokeWidth > 0 ? "currentColor" : "none"} 
+            strokeWidth={strokeWidth} 
+            d="M20 30H10V20H0V10h20v20Zm10-20H20V0h10v10Z"/>
+    </svg>
+  );
+}
+
+export function PixelatedArrowIcon({ className = "w-6 h-6", strokeWidth = 0 }: IconProps) {
+  return (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" fill="none">
+      <path fill={strokeWidth > 0 ? "none" : "currentColor"} 
+            stroke={strokeWidth > 0 ? "currentColor" : "none"} 
+            strokeWidth={strokeWidth} 
+            d="M10 10H2V8h4V6h2V2h2v8ZM6 6H4V4h2v2ZM4 4H2V2h2v2ZM2 2H0V0h2v2Z"/>
+    </svg>
+  );
+}
+
+export function RoundPixelatedArrowIcon({ className = "w-6 h-6", strokeWidth = 0 }: IconProps) {
+  return (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="-8 -8 72 72" fill="none">
+      <path fill={strokeWidth > 0 ? "none" : "currentColor"} 
+            stroke={strokeWidth > 0 ? "currentColor" : "none"} 
+            strokeWidth={strokeWidth} 
+            d="M64 59c0 3-2 5-5 5H5c-3 0-5-2-5-5v-6c0-3 2-5 5-5h22c3 0 5-2 5-5v-6c0-3-2-5-5-5h-6c-3 0-5-2-5-5v-6c0-3-2-5-5-5H5c-3 0-5-2-5-5V5c0-3 2-5 5-5h6c3 0 5 2 5 5v6c0 3 2 5 5 5h6c3 0 5 2 5 5v6c0 3 2 5 5 5h6c3 0 5-2 5-5V5c0-3 2-5 5-5h6c3 0 5 2 5 5v54Z"/>
     </svg>
   );
 }

@@ -1,12 +1,16 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
+import { useMemo, useState, useEffect } from "react";
+
 import { ProjectFrontmatter } from "@/lib/mdx";
+import { projectCategories } from "@/lib/data";
+
 import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectListItemTechMono, ProjectCardLarge } from "@/components/workPage/Cards";
 import { NavBar, SideBar, SideBar2, SideBar3 } from "@/components/NavBar";
 import { WorkPageHeader, WorkPageHeader2 } from "@/components/workPage/Header";
 import ProjectFilter from "@/components/workPage/ProjectFilter";
-import { useSearchParams } from "next/navigation";
-import { useMemo, useState, useEffect } from "react";
+import { GridIcon, ListIcon } from "@/components/Icons";
 
 export default function WorkPage() {
   const searchParams = useSearchParams();
@@ -37,15 +41,6 @@ export default function WorkPage() {
     loadProjects();
   }, []);
 
-  // Get all unique categories from projects
-  const allCategories = ["dev", "design", "art", "fabrication"]; /*useMemo(() => {
-    const categories = new Set<string>();
-    projects.forEach(project => {
-      project.categories.forEach(category => categories.add(category));
-    });
-    return Array.from(categories).sort();
-  }, [projects]);*/
-
   // Filter projects based on category
   const filteredProjects = useMemo(() => {
     if (!categoryFilter) {
@@ -57,86 +52,94 @@ export default function WorkPage() {
     );
   }, [projects, categoryFilter]);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex flex-row">
-        <SideBar3 className="min-w-60" />
-        <div className="w-full px-4 sm:px-6 lg:px-6 py-0">
-          <WorkPageHeader2 />
-          <div className="text-center py-12">
-            <p className="text-mutedForeground text-lg">Loading projects...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen flex flex-row">
       <SideBar3 className="min-w-60" />
       <div className="w-full px-4 sm:px-6 lg:px-6 py-0">
+        {/* Filtering */}
+        <div className="fixed z-60 top-0 left-64 flex items-center gap-2 mt-4">
+          <span className="font-satoshi text-xs text-muted-foreground mr-2">
+            Filter by
+          </span>
+          <ProjectFilter categories={projectCategories} />
+        </div>
+
         <WorkPageHeader />
 
-        <div className="flex gap-2">
-          <button className={`px-3 py-1 text-sm transition-colors 
-                    ${viewMode === "list" ? "text-foreground font-semibold" 
-                      : "text-muted-foreground hover:text-foreground"}`}
-            onClick={() => setViewMode("list")}
-          >
-            List
-          </button>
-          <button className={`px-3 py-1 text-sm transition-colors 
-                    ${viewMode === "grid" ? "text-foreground font-semibold" 
-                      : "text-muted-foreground hover:text-foreground"}`}
-            onClick={() => setViewMode("grid")}
-          >
-            Grid
-          </button>
-        </div>
-
-        {/* Filtering */}
-        <ProjectFilter categories={allCategories} />
-
-        {/* Project Listings */}
-        {viewMode === "list" && (
-          <div className="group/list w-full flex flex-col">
-            {filteredProjects.map((project: ProjectFrontmatter, index: number) => (
-              <ProjectListItem key={project.slug} project={project} index={index} />
-            ))}
+        <div className="z-30 w-full flex flex-col items-start justify-between gap-2 mb-8">
+          {/* View Mode Buttons */}
+          <div className="flex gap-2">
+            <button className={`p-1 flex items-center gap-1 
+                      font-roboto-mono text-xs lowercase transition-colors 
+                      ${viewMode === "list" ? "text-foreground font-semibold" 
+                        : "text-muted-foreground hover:text-foreground"}`}
+              onClick={() => setViewMode("list")}
+            >
+              
+              <ListIcon className="w-3.5 h-3.5" strokeWidth={2} /> List
+            </button>
+            <button className={`p-1 flex items-center gap-1 
+                      font-roboto-mono text-xs lowercase transition-colors 
+                      ${viewMode === "grid" ? "text-foreground font-semibold" 
+                        : "text-muted-foreground hover:text-foreground"}`}
+              onClick={() => setViewMode("grid")}
+            >
+              <GridIcon className="w-3.5 h-3.5" strokeWidth={2} /> Grid
+            </button>
           </div>
-        )}
 
-        {viewMode === "grid" && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
-              <ProjectCardBasic key={project.slug} project={project} />
-            ))}
+          {/* Filtering */}
+          
+        </div>
+
+        {loading ? (
+          <div className="text-center py-12">
+            <p className="text-mutedForeground text-lg">Loading projects...</p>
           </div>
-        )}
+        ) : (
+          <div className="w-full flex flex-col">
+            {/* Project Listings */}
+            {viewMode === "list" && (
+              <div className="group/list w-full flex flex-col">
+                {filteredProjects.map((project: ProjectFrontmatter, index: number) => (
+                  <ProjectListItem key={project.slug} project={project} index={index} />
+                ))}
+              </div>
+            )}
 
-        <div className="group/list flex flex-col">
-          {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter, index: number) => (
-            <ProjectListItemTechMono key={project.slug} project={project} index={index} />
-          ))}
-        </div>
+            {viewMode === "grid" && (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
+                  <ProjectCardBasic key={project.slug} project={project} />
+                ))}
+              </div>
+            )}
 
-        <div className="flex flex-col">
-          {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
-            <ProjectCardLarge key={project.slug} project={project} />
-          ))}
-        </div>
+            <div className="group/list flex flex-col">
+              {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter, index: number) => (
+                <ProjectListItemTechMono key={project.slug} project={project} index={index} />
+              ))}
+            </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
-            <ProjectCardDefault key={project.slug} project={project} />
-          ))}
-        </div>
+            <div className="flex flex-col">
+              {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
+                <ProjectCardLarge key={project.slug} project={project} />
+              ))}
+            </div>
 
-        {filteredProjects.length === 0 && (
-          <div className="z-10 text-center py-12">
-            <p className="text-mutedForeground text-lg">
-              No projects found. Check back soon for updates!
-            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
+                <ProjectCardDefault key={project.slug} project={project} />
+              ))}
+            </div>
+
+            {filteredProjects.length === 0 && (
+              <div className="z-10 text-center py-12">
+                <p className="text-mutedForeground text-lg">
+                  No projects found. They&apos;re probably hiding.
+                </p>
+              </div>
+            )}
           </div>
         )}
       </div>

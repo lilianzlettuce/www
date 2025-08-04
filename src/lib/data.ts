@@ -12,6 +12,13 @@ export const socialLinks = [
     { href: "https://www.instagram.com/lettuce.0_0/", label: "Instagram" },
 ];
 
+export const projectCategories = [
+    "dev",
+    "design",
+    "art",
+    "fabrication",
+];
+
 export const projects = [
     {
         title: "Becoming",

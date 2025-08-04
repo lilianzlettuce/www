@@ -1,9 +1,41 @@
-import { getAllProjects, ProjectFrontmatter } from "@/lib/mdx";
-import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectListItemMinimal } from "@/components/workPage/Cards";
-import { NavBar } from "@/components/NavBar";
+"use client";
 
-export default async function WorkPage() {
-  const projects = await getAllProjects();
+import { useEffect, useState } from "react";
+
+import { ProjectFrontmatter } from "@/lib/mdx";
+import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectListItemTechMono } from "@/components/workPage/Cards";
+import { NavBar, SideBar3 } from "@/components/NavBar";
+import ProjectFilter from "@/components/workPage/ProjectFilter";
+import { projectCategories } from "@/lib/data";
+import { GridIcon, ListIcon } from "@/components/Icons";
+import { WorkPageHeader2 } from "@/components/workPage/Header";
+
+export default function WorkPage() {
+  const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState<ProjectFrontmatter[]>([]);
+  const [viewMode, setViewMode] = useState<string>("list");
+
+  // Load projects on component mount
+  useEffect(() => {
+    const loadProjects = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch("/api/projects");
+        if (response.ok) {
+          const allProjects = await response.json();
+          setProjects(allProjects);
+        } else {
+          console.error("Failed to fetch projects");
+        }
+      } catch (error) {
+        console.error("Error loading projects:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    loadProjects();
+  }, []);
 
   const experiences = [
     {
@@ -28,7 +60,7 @@ export default async function WorkPage() {
 
   return (
     <div className="min-h-screen">
-      <NavBar className="w-70" />
+      <NavBar className="" />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-left mb-16">
           <h1 className="text-4xl md:text-[400px]/[0.8] scale-x-170 translate-x-100 font-murmure font-bold text-foreground lowercase mb-4">
@@ -39,35 +71,80 @@ export default async function WorkPage() {
           </p>
         </div>
 
-        <div className="group/list flex flex-col">
-          {projects.slice(0, 7).map((project: ProjectFrontmatter, index: number) => (
-            <ProjectListItemMinimal key={project.slug} project={project} index={index} />
-          ))}
+        <div className="w-full flex items-center justify-between mb-8">
+          {/* Filtering */}
+          <div className="flex items-center gap-2">
+            <span className="hidden font-satoshi text-xs text-muted-foreground mr-2">
+              Filter by
+            </span>
+            <ProjectFilter categories={projectCategories} />
+          </div>
+
+          {/* View Mode Buttons */}
+          <div className="flex gap-2">
+            <button className={`px-1 py-1 flex items-center gap-1 
+                      text-sm transition-colors 
+                      ${viewMode === "list" ? "text-foreground font-semibold" 
+                        : "text-muted-foreground hover:text-foreground"}`}
+              onClick={() => setViewMode("list")}
+            >
+              
+              <ListIcon className="w-4 h-4" strokeWidth={2} /> List
+            </button>
+            <button className={`px-1 py-1 flex items-center gap-1 
+                      text-sm transition-colors 
+                      ${viewMode === "grid" ? "text-foreground font-semibold" 
+                        : "text-muted-foreground hover:text-foreground"}`}
+              onClick={() => setViewMode("grid")}
+            >
+              <GridIcon className="w-4 h-4" strokeWidth={2} /> Grid
+            </button>
+          </div>
         </div>
 
-        <div className="flex flex-col">
-          {projects.slice(0, 7).map((project: ProjectFrontmatter) => (
-            <ProjectListItem key={project.slug} project={project} />
-          ))}
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.slice(0, 7).map((project: ProjectFrontmatter) => (
-            <ProjectCardBasic key={project.slug} project={project} />
-          ))}
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.slice(0, 7).map((project: ProjectFrontmatter) => (
-            <ProjectCardDefault key={project.slug} project={project} />
-          ))}
-        </div>
-
-        {projects.length === 0 && (
+        {/* Project Listings */}  
+        {loading && (
           <div className="text-center py-12">
-            <p className="text-mutedForeground text-lg">
-              No projects found. Check back soon for updates!
-            </p>
+            <p className="text-mutedForeground text-lg">Loading projects...</p>
+          </div>
+        )}
+
+        {!loading && (
+          <div className="w-full flex flex-col">
+
+            {viewMode === "list" && (
+              <div className="group/list flex flex-col">
+                {projects.slice(0, 7).map((project: ProjectFrontmatter, index: number) => (
+                  <ProjectListItemTechMono key={project.slug} project={project} index={index} />
+                ))}
+              </div>
+            )}
+
+            <div className="flex flex-col">
+              {projects.slice(0, 7).map((project: ProjectFrontmatter) => (
+                <ProjectListItem key={project.slug} project={project} />
+              ))}
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {projects.slice(0, 7).map((project: ProjectFrontmatter) => (
+                <ProjectCardBasic key={project.slug} project={project} />
+              ))}
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.slice(0, 7).map((project: ProjectFrontmatter) => (
+                <ProjectCardDefault key={project.slug} project={project} />
+              ))}
+            </div>
+
+            {projects.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-mutedForeground text-lg">
+                  No projects found. Check back soon for updates!
+                </p>
+              </div>
+            )}
           </div>
         )}
       </div>
