@@ -1,5 +1,5 @@
 import { BrainDarkMouseDark } from "./ToneCanvas";
-import { HeroWindow } from "./Windows";
+import { HeroWindow } from "../Windows";
 
 export default function Hero() {
     

@@ -1,10 +1,49 @@
-import Draggable from "../Draggable";
-import Sprite from "../Sprite";
-import ZoomableImage from "../ZoomableImage";
-import { MinimizeIcon, ExpandIcon, XIcon } from "../Icons";
+import Draggable from "./Draggable";
+import Sprite from "./Sprite";
+import ZoomableImage from "./ZoomableImage";
+import { MinimizeIcon, ExpandIcon, XIcon, ExpandIcon2 } from "./Icons";
 
 type WindowProps = {
     className?: string;
+    children?: React.ReactNode;
+}
+
+export function WindowTechMono({ className = "w-fit h-fit", children }: WindowProps) {
+    return (
+        <Draggable>
+            <div className={`${className} z-45 relative flex flex-col bg-background text-foreground border border-foreground shadow-lg`}>
+                <div className="handle select-none cursor-grab px-1 py-0 flex flex-row justify-between items-center bg-foreground text-background text-sm font-tiny5 uppercase">
+                    <div className="flex flex-row items-center gap-2">
+                        <div className="mix-blend-difference">
+                            <Sprite
+                                id="eye-icon"
+                                spriteSize={16}
+                                backgroundImage="/img/sprite/eye-open.png"
+                                steps={1}
+                                duration={1}
+                                onHover={true}
+                                hoverSteps={2}
+                                hoverDuration={0.3}
+                                hoverBackgroundImage="/img/sprite/goose-walk.png"
+                                style={{ scale: 1.1 }}
+                            />
+                        </div>
+                        <div>
+                            Accessing...
+                        </div>
+                    </div>
+                    <div className="flex flex-row items-center justify-between gap-0">
+                        <MinimizeIcon className="w-4.5 h-4.5" strokeWidth={2.5} />
+                        <ExpandIcon2 className="w-4.5 h-4.5" strokeWidth={2.5} />
+                        <XIcon className="w-4.5 h-4.5" strokeWidth={2.5} />
+                    </div>
+                </div>
+                <div className="overflow-hidden flex-1 flex flex-col items-center justify-center">
+                    {children}
+                </div>
+            </div>
+        </Draggable>
+    );
 }
 
 export function HeroWindow({ className = "w-[300px] h-fit" }: WindowProps) {

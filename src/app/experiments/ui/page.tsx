@@ -5,6 +5,7 @@ import Draggable from "@/components/Draggable";
 import { ArrowLeftIcon, GithubIcon, ExternalLinkIcon, XIcon, SwatchIcon, MoonIcon, SunIcon, EyeIcon, ExpandIcon, ExpandIcon2, MinimizeIcon } from "@/components/Icons";
 import Sprite from "@/components/Sprite";
 import ZoomableImage from "@/components/ZoomableImage";
+import { WindowTechMono } from "@/components/Windows";
 
 export default function UIExperimentsPage() {
   return (
@@ -211,6 +212,21 @@ export default function UIExperimentsPage() {
                   </div>
                 </div>
               </Draggable>
+
+              <WindowTechMono className="w-fit h-fit">
+                <div className="p-2">
+                  <div className="bg-white w-100 h-70 ">
+                    <ZoomableImage
+                      className="w-full h-full border-1 border-white"
+                      src="/img/halftone/hands-outreached.png"
+                      alt="zoomed halftone heart image"
+                      backgroundSize={850}
+                      initialX={-215}
+                      initialY={-155}
+                    />
+                  </div>
+                </div>
+              </WindowTechMono>
             </div>
         </div>
     </div>
