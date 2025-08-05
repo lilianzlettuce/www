@@ -1,22 +1,25 @@
-interface PlusGridProps {
+interface GridContainerProps {
     className?: string;        // Additional styling
-    layers?: PlusGridLayer[];  // Multiple layers
+    layers?: GridContainerLayer[];  // Multiple layers
+    children: React.ReactNode;
 }
   
-interface PlusGridLayer {
+interface GridContainerLayer {
     spacing: number;    // distance between pluses
     strokeWidth: number; // line thickness
     strokeLength: number; // length of plus arms
     color: string; // stroke color
+    opacity: number; // overall opacity
     offset?: { x: number; y: number }; // pattern offset
 }
 
-export const PlusGrid = ({ 
+export const GridContainer = ({ 
     className = "",
-    layers = []
-}: PlusGridProps) => {
-    const generatePlusPattern = (layer: PlusGridLayer, index: number) => {
-        const { spacing, strokeWidth, strokeLength, color, offset = { x: 0, y: 0 } } = layer;
+    layers = [],
+    children
+}: GridContainerProps) => {
+    const generatePlusPattern = (layer: GridContainerLayer, index: number) => {
+        const { spacing, strokeWidth, strokeLength, color, opacity, offset = { x: 0, y: 0 } } = layer;
         
         return (
             <pattern 
@@ -26,7 +29,7 @@ export const PlusGrid = ({
                 height={spacing}
                 patternTransform={`translate(${offset.x} ${offset.y})`}
             >
-                <g stroke={color} strokeWidth={strokeWidth}>
+                <g stroke={color} strokeWidth={strokeWidth} opacity={opacity}>
                     {/* Horizontal line */}
                     <line 
                         x1={spacing/2 - strokeLength/2} 
@@ -47,35 +50,34 @@ export const PlusGrid = ({
     };
 
     return (
-        <svg className={`absolute inset-0 w-full h-full ${className}`}>
-            <defs>
-                {/* Multiple layer patterns */}
-                {layers.map((layer, index) => (
-                    <g key={index}>
-                        {generatePlusPattern(layer, index)}
-                    </g>
+        <div className={`relative ${className}`}>
+            <svg className="absolute inset-0 w-full h-full">
+                <defs>
+                    {/* Multiple layer patterns */}
+                    {layers.map((layer, index) => (
+                        <g key={index}>
+                            {generatePlusPattern(layer, index)}
+                        </g>
+                    ))}
+                </defs>
+                
+                {/* Multiple layer rects */}
+                {layers.map((_, index) => (
+                    <rect 
+                        key={index}
+                        width="100%" 
+                        height="100%" 
+                        fill={`url(#plus-grid-${index})`}
+                    />
                 ))}
-            </defs>
-            
-            {/* Multiple layer rects */}
-            {layers.map((_, index) => (
-                <rect 
-                    key={index}
-                    width="100%" 
-                    height="100%" 
-                    fill={`url(#plus-grid-${index})`}
-                />
-            ))}
-        </svg>
+            </svg>
+
+            {children}
+        </div>
     );
 };
 
 export const GridPattern = ({
-    spacing = 20,
-    strokeWidth = 1,
-    strokeLength = 8,
-    color = "currentColor",
-    opacity = 0.3,
     className = "",
     layers = []
 }) => {

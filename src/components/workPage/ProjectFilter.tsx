@@ -64,7 +64,7 @@ export function ProjectFilter({
                         currentCategory === category
                             ? toggleStyleActive
                             : toggleStyleInactive
-                        } ${i === categories.length - 1 && "rotate-180"}`}
+                        } ${i === categories.length - 1 && "rotate-180 text-[0.5rem]"}`}
                     >
                         {category.charAt(0).toUpperCase() + category.slice(1)}
                     </ToggleGroup.Item>

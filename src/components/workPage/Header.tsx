@@ -4,7 +4,7 @@ import ShrinkCircles from "../canvasGraphics/ShrinkCircles";
 import { useScroll, useMotionValueEvent } from "motion/react";
 import { useState } from "react";
 import { ArtIcon, DevIcon, DesignIcon } from "../svg/Icons";
-import { PlusGrid } from "../svg/BgPatterns";
+import { GridContainer } from "../svg/BgPatterns";
 
 export function WorkPageHeader2() {
     return (
@@ -56,7 +56,25 @@ export function WorkPageHeader2() {
                             </div>
 
                             {/* Right window display */}
-                            <div className="min-w-1/2 h-full pt-2 px-6 border-1 border-border flex items-center justify-center">
+                            <GridContainer 
+                                className="min-w-1/2 h-full pt-2 px-6 border-1 border-border flex items-center justify-center"
+                                layers={[
+                                    {
+                                        spacing: 30,
+                                        strokeWidth: 0.9,
+                                        strokeLength: 30,
+                                        color: "rgba(255,255,255)",
+                                        opacity: 0.1
+                                    },
+                                    {
+                                        spacing: 30,
+                                        strokeWidth: 1,
+                                        strokeLength: 3,
+                                        color: "rgba(255,255,255)",
+                                        opacity: 0.3
+                                    },
+                                ]} 
+                            >
                                 {/*<ShrinkCircles 
                                     imageSrc="/img/lowRes/brain.png"
                                     interactionMode="none"
@@ -73,22 +91,6 @@ export function WorkPageHeader2() {
                                     debounceTime={0}
                                     autoAnimStep={0.03}
                                 />*/}
-                                <PlusGrid 
-                                    layers={[
-                                        {
-                                          spacing: 30,
-                                          strokeWidth: 1,
-                                          strokeLength: 30,
-                                          color: "rgba(255,255,255,0.08)",
-                                        },
-                                        {
-                                          spacing: 30,
-                                          strokeWidth: 1.2,
-                                          strokeLength: 5,
-                                          color: "rgba(255,255,255,0.2)",
-                                        },
-                                      ]}
-                                />
                                 <ShrinkCircles 
                                     interactionMode="none"
                                     bgColor="none"
@@ -109,7 +111,7 @@ export function WorkPageHeader2() {
                                     debounceTime={0}
                                     autoAnimStep={0.03}
                                 />
-                            </div>
+                            </GridContainer>
                         </div>
 
                         <div className="w-full flex flex-row justify-between font-roboto-mono">
@@ -118,9 +120,9 @@ export function WorkPageHeader2() {
                                     No rest for the wicked.
                                 </p>
                                 <div className="flex flex-row items-center gap-2">
-                                    <DevIcon className="w-4 h-4" strokeWidth={2} />
-                                    <DesignIcon className="w-4 h-4" strokeWidth={2} />
-                                    <ArtIcon className="w-4 h-4" strokeWidth={2} />
+                                    <DevIcon className="w-3 h-3" strokeWidth={2} />
+                                    <DesignIcon className="w-3 h-3" strokeWidth={2} />
+                                    <ArtIcon className="w-3 h-3" strokeWidth={2} />
                                 </div>
                             </div>
                             <div className="flex flex-col items-end">

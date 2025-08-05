@@ -6,7 +6,7 @@ import { useMemo, useState, useEffect } from "react";
 import { ProjectFrontmatter } from "@/lib/mdx";
 import { projectCategories } from "@/lib/data";
 
-import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectListItemTechMono, ProjectCardLarge } from "@/components/workPage/Cards";
+import { ProjectCardBasic, ProjectListItem, ProjectListItemTechMono, ProjectCardLarge } from "@/components/workPage/Cards";
 import { NavBar, SideBar, SideBar2, SideBar3 } from "@/components/NavBar";
 import { WorkPageHeader, WorkPageHeader2 } from "@/components/workPage/Header";
 import { ProjectFilter, ProjectMultiFilter } from "@/components/workPage/ProjectFilter";
@@ -62,7 +62,7 @@ export default function WorkPage() {
         <div className="fixed z-60 top-0 left-64 flex items-center gap-2 mt-4">
           <ProjectFilter 
             categories={projectCategories}
-            toggleStyle="px-2 py-0 rounded-xs font-roboto-mono text-xs uppercase tracking-widest transition-colors"
+            toggleStyle="min-h-4.5 px-2 py-0 rounded-xs font-roboto-mono text-xs uppercase tracking-widest transition-colors"
             toggleStyleActive="bg-foreground text-background"
             toggleStyleInactive="border-1 border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground"
           />
