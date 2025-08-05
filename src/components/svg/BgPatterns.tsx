@@ -13,6 +13,8 @@ interface GridContainerLayer {
     offset?: { x: number; y: number }; // pattern offset
 }
 
+// Container with customizable grid pattern.
+// Takes in an array of layers and wraps child content
 export const GridContainer = ({ 
     className = "",
     layers = [],
@@ -77,15 +79,34 @@ export const GridContainer = ({
     );
 };
 
-export const GridPattern = ({
+interface BgPatternProps {
+    className?: string;
+    children?: React.ReactNode;
+    patternTransform?: string; // transform applied to pattern
+    offset?: { x: number; y: number }; // pattern offset
+    dimensions?: { width: number; height: number }; // pattern dimensions (controls padding/frequency)
+}
+
+// Takes in an svg path and uses it to create pattern background
+// Parent container must have relative positioning
+export const BgPattern = ({
     className = "",
-    layers = []
-}) => {
+    children,
+    patternTransform,
+    offset,
+    dimensions
+}: BgPatternProps) => {
     return (
-        <svg className="absolute inset-0 w-full h-full opacity-20">
+        <svg className={`absolute inset-0 w-full h-full ${className}`}>
             <defs>
-                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+                <pattern id="grid" 
+                        x={offset?.x ? offset.x : 0} 
+                        y={offset?.y ? offset.y : 0} 
+                        width={dimensions?.width ? dimensions.width : 40} 
+                        height={dimensions?.height ? dimensions.height : 40} 
+                        patternTransform={patternTransform ? patternTransform : "rotate(45) scale(1 1)"}
+                        patternUnits="userSpaceOnUse">
+                    {children ? children : <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeWidth="0.5"/>}
                 </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
