@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Geist, Geist_Mono, Inter, Noto_Sans, Open_Sans, Roboto,
   Roboto_Mono, DM_Mono, IBM_Plex_Mono, JetBrains_Mono,
-  Silkscreen, Tiny5, Micro_5, Archivo_Black
+  Silkscreen, Tiny5, Micro_5, Archivo_Black, Libre_Barcode_128
 } from "next/font/google";
 import "./globals.css";
 //import { NavBar } from "@/components/NavBar";
@@ -125,6 +125,11 @@ const archivoBlack = Archivo_Black({
   weight: ["400"],
 });
 
+const libreBarcode128 = Libre_Barcode_128({
+  variable: "--font-libre-barcode-128",
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 
 export const metadata: Metadata = {
@@ -143,7 +148,7 @@ export default function RootLayout({
       className={`${satoshi.variable} ${uncutSans.variable} ${psygen.variable} ${murmure.variable} ${code7x5.variable} ${bpDotsSquareBold.variable} ${unifontExMono.variable}
           ${geistSans.variable} ${geistMono.variable} ${inter.variable} ${notoSans.variable} ${openSans.variable} ${roboto.variable}
           ${robotoMono.variable} ${dmMono.variable} ${ibmPlexMono.variable} ${jetbrainsMono.variable}
-          ${silkscreen.variable} ${tiny5.variable} ${micro5.variable} ${archivoBlack.variable}
+          ${silkscreen.variable} ${tiny5.variable} ${micro5.variable} ${archivoBlack.variable} ${libreBarcode128.variable}
       `}
     >
       <body className="antialiased">

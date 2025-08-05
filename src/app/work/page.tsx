@@ -60,9 +60,6 @@ export default function WorkPage() {
       <div className="w-full px-4 sm:px-6 lg:px-6 py-0">
         {/* Filtering */}
         <div className="fixed z-60 top-0 left-64 flex items-center gap-2 mt-4">
-          <span className="font-roboto-mono text-[0.6rem] tracking-tighter text-muted-foreground mr-2">
-            Filter by
-          </span>
           <ProjectFilter 
             categories={projectCategories}
             toggleStyle="px-2 py-0 rounded-xs font-roboto-mono text-xs uppercase tracking-widest transition-colors"
@@ -116,27 +113,15 @@ export default function WorkPage() {
 
             {viewMode === "grid" && (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
+                {filteredProjects.map((project: ProjectFrontmatter) => (
                   <ProjectCardBasic key={project.slug} project={project} />
                 ))}
               </div>
             )}
 
-            <div className="group/list flex flex-col">
-              {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter, index: number) => (
-                <ProjectListItemTechMono key={project.slug} project={project} index={index} />
-              ))}
-            </div>
-
-            <div className="flex flex-col">
+            <div className="hidden flex flex-col">
               {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
                 <ProjectCardLarge key={project.slug} project={project} />
-              ))}
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
-                <ProjectCardDefault key={project.slug} project={project} />
               ))}
             </div>
 
@@ -149,6 +134,8 @@ export default function WorkPage() {
             )}
           </div>
         )}
+
+        <WorkPageHeader2 />
       </div>
     </div>
   );

@@ -1,11 +1,12 @@
 import { NavBarGrid, NavBarBasic, NavBarFloating } from "@/components/NavBar";
-import { Button } from "@/components/Buttons";
+import { Button, RevealButton, RevealButton2 } from "@/components/Buttons";
 import { DraggableWindow } from "@/components/DraggableWindow";
 import Draggable from "@/components/Draggable";
 import { ArrowLeftIcon, GithubIcon, ExternalLinkIcon, XIcon, SwatchIcon, MoonIcon, SunIcon, EyeIcon, ExpandIcon, ExpandIcon2, MinimizeIcon, PlusIcon, PlusIconThin } from "@/components/Icons";
 import Sprite from "@/components/Sprite";
 import ZoomableImage from "@/components/ZoomableImage";
 import { WindowTechMono } from "@/components/Windows";
+import Link from "next/link";
 
 export default function UIExperimentsPage() {
   return (
@@ -21,6 +22,40 @@ export default function UIExperimentsPage() {
             <p className="text-lg">
                 This is a page for UI experiments.
             </p>
+            
+            {/* Hero Section */}
+            <section className="relative h-screen flex items-center justify-center bg-background">
+              <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+              <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 className="font-mono text-xl md:text-xl font-bold text-foreground mb-6">
+                  Hello, I&apos;m <span className="text-foreground">a rat in three trenchcoats</span>.
+                </h1>
+                <p className="font-mono text-xl md:text-lg text-mutedForeground mb-8 max-w-2xl mx-auto">
+                  UI Engineer and artist exploring spaces between pixels and atoms.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link 
+                    href="/work" 
+                  >
+                    <RevealButton 
+                      text="View My Work" 
+                      icon="→" 
+                      className="h-fit px-6 py-1 rounded-full" 
+                    />
+                  </Link>
+                  <Link 
+                    href="/about" 
+                  >
+                    <RevealButton2 
+                      text="Learn More" 
+                      icon="•" 
+                      className="h-fit px-6 py-1 rounded-full bg-background border-1 border-secondary hover:bg-foreground/20" 
+                    />
+                  </Link>
+                </div>
+              </div>
+            </section>
+
             <Button text="Hello" />
 
             <div className="w-full flex flex-col items-start gap-2">

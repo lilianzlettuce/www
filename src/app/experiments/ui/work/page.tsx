@@ -74,7 +74,7 @@ export default function WorkPage() {
         <div className="w-full flex items-center justify-between mb-8">
           {/* Filtering */}
           <div className="flex items-center gap-2">
-            <span className="hidden font-satoshi text-xs text-muted-foreground mr-2">
+            <span className="font-satoshi text-xs text-muted-foreground mr-2">
               Filter by
             </span>
             <ProjectFilter categories={projectCategories} />

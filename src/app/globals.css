@@ -146,6 +146,7 @@ body {
   --font-tiny5: var(--font-tiny5);
   --font-micro5: var(--font-micro5);
   --font-archivo-black: var(--font-archivo-black);
+  --font-libre-barcode-128: var(--font-libre-barcode-128);
   
   /* Color variables */
   --color-background: var(--background);

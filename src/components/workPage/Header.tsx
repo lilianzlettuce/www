@@ -121,7 +121,7 @@ export function WorkPageHeader() {
     const [defaultRadius, setDefaultRadius] = useState(1.6);
     
     useMotionValueEvent(scrollY, "change", (latest) => {
-        const newGridGap = Math.min(100, 3 + (latest * 0.05));
+        const newGridGap = Math.min(100, 3 + (latest * 0.01));
         const newDefaultRadius = Math.max(1, 1.6 - (latest * 0.0025));
         console.log(newDefaultRadius)
         setGridGap(newGridGap);

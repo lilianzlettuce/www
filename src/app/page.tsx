@@ -1,50 +1,33 @@
 import Link from "next/link";
+
+import { getFeaturedProjects, ProjectFrontmatter } from "@/lib/mdx";
 import { NavBar } from "@/components/NavBar";
 import { RevealButton, RevealButton2 } from "@/components/Buttons";
 
 import Hero from "@/components/homePage/Hero";
+import { ProjectCardLarge } from "@/components/workPage/Cards";
 
-export default function Home() {
+export default async function Home() {
+  const featuredProjects = await getFeaturedProjects();
+
   return (
     <div className="min-h-screen">
       <NavBar className="h-8" />
 
       <Hero />
 
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center bg-background">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="font-mono text-xl md:text-xl font-bold text-foreground mb-6">
-            Hello, I&apos;m <span className="text-foreground">a rat in three trenchcoats</span>.
-          </h1>
-          <p className="font-mono text-xl md:text-lg text-mutedForeground mb-8 max-w-2xl mx-auto">
-            UI Engineer and artist exploring spaces between pixels and atoms.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/work" 
-            >
-              <RevealButton 
-                text="View My Work" 
-                icon="→" 
-                className="h-fit px-6 py-1 rounded-full" 
-              />
-            </Link>
-            <Link 
-              href="/about" 
-            >
-              <RevealButton2 
-                text="Learn More" 
-                icon="•" 
-                className="h-fit px-6 py-1 rounded-full bg-background border-1 border-secondary hover:bg-foreground/20" 
-              />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* Featured Section */}
+      <div className="w-full flex flex-col items-start justify-center">
+        <div className="font-psygen leading-none">
+          <h2 className="text-[8rem]">Featured</h2>
+          <h1 className="text-[12rem]">Projects</h1>
+        </div>
+      </div>
+      <div className="flex flex-col">
+        {featuredProjects.map((project: ProjectFrontmatter) => (
+          <ProjectCardLarge key={project.slug} project={project} />
+        ))}
+      </div>
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
