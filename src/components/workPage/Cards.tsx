@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ExternalLinkIcon } from "../Icons";
+import { ExternalLinkIcon } from "../svg/Icons";
 import { ProjectFrontmatter } from "@/lib/mdx";
 import { useMousePosition } from "@/hooks/useMousePosition";
 import { TagLabelFill, TagLabelStroke } from "./Labels";

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { FooterLogoIcon } from "@/components/Icons";
+import { FooterLogoIcon } from "@/components/svg/Icons";
 import { socialLinks } from "@/lib/data";
 
 export function Footer() {

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTheme } from "@/contexts/ThemeContext";
-import { SunIcon, MoonIcon, EyeIcon, SwatchIcon } from "@/components/Icons";
+import { SunIcon, MoonIcon, EyeIcon, SwatchIcon } from "@/components/svg/Icons";
 import { MinimalLineSlider, SquareSlider } from "./Slider";
 
 export function ThemeSlider({ buttonClassName = "p-2 rounded-full" }: { sliderClassName?: string, buttonClassName?: string }) {

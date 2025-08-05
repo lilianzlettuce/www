@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { LogoIcon } from "@/components/Icons";
+import { LogoIcon } from "@/components/svg/Icons";
 import { ThemeToggle, ThemeSlider } from "@/components/ThemeToggle";
 import { navItems } from "@/lib/data";
 import ZoomableImage from "./ZoomableImage";

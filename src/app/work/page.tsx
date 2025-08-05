@@ -10,7 +10,7 @@ import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectListItemT
 import { NavBar, SideBar, SideBar2, SideBar3 } from "@/components/NavBar";
 import { WorkPageHeader, WorkPageHeader2 } from "@/components/workPage/Header";
 import { ProjectFilter, ProjectMultiFilter } from "@/components/workPage/ProjectFilter";
-import { GridIcon, ListIcon } from "@/components/Icons";
+import { GridIcon, ListIcon } from "@/components/svg/Icons";
 
 export default function WorkPage() {
   const searchParams = useSearchParams();

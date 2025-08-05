@@ -1,7 +1,7 @@
 import Draggable from "./Draggable";
 import Sprite from "./Sprite";
 import ZoomableImage from "./ZoomableImage";
-import { MinimizeIcon, ExpandIcon, XIcon, ExpandIcon2 } from "./Icons";
+import { MinimizeIcon, ExpandIcon, XIcon, ExpandIcon2 } from "./svg/Icons";
 
 type WindowProps = {
     className?: string;

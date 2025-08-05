@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { WindowTechMono } from "../Windows";
 import ShrinkCircles from "../canvasGraphics/ShrinkCircles";
-import { useScroll, useTransform, useMotionValueEvent } from "motion/react";
+import { useScroll, useMotionValueEvent } from "motion/react";
 import { useState } from "react";
+import { ArtIcon, DevIcon, DesignIcon } from "../svg/Icons";
+import { PlusGrid } from "../svg/BgPatterns";
 
 export function WorkPageHeader2() {
     return (
@@ -53,6 +55,7 @@ export function WorkPageHeader2() {
                                 </div>
                             </div>
 
+                            {/* Right window display */}
                             <div className="min-w-1/2 h-full pt-2 px-6 border-1 border-border flex items-center justify-center">
                                 {/*<ShrinkCircles 
                                     imageSrc="/img/lowRes/brain.png"
@@ -70,6 +73,22 @@ export function WorkPageHeader2() {
                                     debounceTime={0}
                                     autoAnimStep={0.03}
                                 />*/}
+                                <PlusGrid 
+                                    layers={[
+                                        {
+                                          spacing: 30,
+                                          strokeWidth: 1,
+                                          strokeLength: 30,
+                                          color: "rgba(255,255,255,0.08)",
+                                        },
+                                        {
+                                          spacing: 30,
+                                          strokeWidth: 1.2,
+                                          strokeLength: 5,
+                                          color: "rgba(255,255,255,0.2)",
+                                        },
+                                      ]}
+                                />
                                 <ShrinkCircles 
                                     interactionMode="none"
                                     bgColor="none"
@@ -94,9 +113,16 @@ export function WorkPageHeader2() {
                         </div>
 
                         <div className="w-full flex flex-row justify-between font-roboto-mono">
-                            <p className="text-xs">
-                                No rest for the wicked.
-                            </p>
+                            <div className="flex flex-col items-start gap-2">
+                                <p className="text-xs">
+                                    No rest for the wicked.
+                                </p>
+                                <div className="flex flex-row items-center gap-2">
+                                    <DevIcon className="w-4 h-4" strokeWidth={2} />
+                                    <DesignIcon className="w-4 h-4" strokeWidth={2} />
+                                    <ArtIcon className="w-4 h-4" strokeWidth={2} />
+                                </div>
+                            </div>
                             <div className="flex flex-col items-end">
                                 <p className="text-[0.65rem]">
                                     IBM-X340 +++// 

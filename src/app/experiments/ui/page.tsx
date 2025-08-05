@@ -2,7 +2,7 @@ import { NavBarGrid, NavBarBasic, NavBarFloating } from "@/components/NavBar";
 import { Button, RevealButton, RevealButton2 } from "@/components/Buttons";
 import { DraggableWindow } from "@/components/DraggableWindow";
 import Draggable from "@/components/Draggable";
-import { ArrowLeftIcon, GithubIcon, ExternalLinkIcon, XIcon, SwatchIcon, MoonIcon, SunIcon, EyeIcon, ExpandIcon, ExpandIcon2, MinimizeIcon, PlusIcon, PlusIconThin } from "@/components/Icons";
+import { ArrowLeftIcon, GithubIcon, ExternalLinkIcon, XIcon, SwatchIcon, MoonIcon, SunIcon, EyeIcon, ExpandIcon, ExpandIcon2, MinimizeIcon, PlusIcon, PlusIconThin } from "@/components/svg/Icons";
 import Sprite from "@/components/Sprite";
 import ZoomableImage from "@/components/ZoomableImage";
 import { WindowTechMono } from "@/components/Windows";

@@ -330,7 +330,29 @@ body {
     transform: scaleX(100%);
   }
 
-  
+  .bg-grid {
+    --grid-size: 30px;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    background-position: 50% -50%;
+    background-repeat: repeat;
+  }
+  .bg-grid-animated {
+    --grid-size: 30px;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    background-position: 50% -50%;
+    background-repeat: repeat;
+    animation: gridMove 4s linear infinite;
+  }
+  @keyframes gridMove {
+    0% { background-position: 0 0; }
+    100% { background-position: var(--grid-size) var(--grid-size); }
+  }
 }
 
 

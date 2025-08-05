@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeftIcon, ExternalLinkIcon, GithubIcon } from '@/components/Icons';
+import { ArrowLeftIcon, ExternalLinkIcon, GithubIcon } from '@/components/svg/Icons';
 import { ProjectFrontmatter } from '@/lib/mdx';
 
 interface ProjectLayoutProps {

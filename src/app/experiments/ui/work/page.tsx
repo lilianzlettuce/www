@@ -7,7 +7,7 @@ import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectListItemT
 import { NavBar, SideBar3 } from "@/components/NavBar";
 import { ProjectFilter } from "@/components/workPage/ProjectFilter";
 import { projectCategories } from "@/lib/data";
-import { GridIcon, ListIcon } from "@/components/Icons";
+import { GridIcon, ListIcon } from "@/components/svg/Icons";
 import { WorkPageHeader2 } from "@/components/workPage/Header";
 
 export default function WorkPage() {
