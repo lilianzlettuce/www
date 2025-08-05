@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { ProjectFrontmatter } from "@/lib/mdx";
 import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectListItemTechMono } from "@/components/workPage/Cards";
 import { NavBar, SideBar3 } from "@/components/NavBar";
-import ProjectFilter from "@/components/workPage/ProjectFilter";
+import { ProjectFilter } from "@/components/workPage/ProjectFilter";
 import { projectCategories } from "@/lib/data";
 import { GridIcon, ListIcon } from "@/components/Icons";
 import { WorkPageHeader2 } from "@/components/workPage/Header";

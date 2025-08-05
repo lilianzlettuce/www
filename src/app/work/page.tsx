@@ -9,12 +9,13 @@ import { projectCategories } from "@/lib/data";
 import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectListItemTechMono, ProjectCardLarge } from "@/components/workPage/Cards";
 import { NavBar, SideBar, SideBar2, SideBar3 } from "@/components/NavBar";
 import { WorkPageHeader, WorkPageHeader2 } from "@/components/workPage/Header";
-import ProjectFilter from "@/components/workPage/ProjectFilter";
+import { ProjectFilter } from "@/components/workPage/ProjectFilter";
+import { FilterToggleGroup } from "@/components/workPage/FilterToggleGroup";
 import { GridIcon, ListIcon } from "@/components/Icons";
 
 export default function WorkPage() {
   const searchParams = useSearchParams();
-  const categoryFilter = searchParams.get("category");
+  const categoryFilters = searchParams.getAll("category");
   const [projects, setProjects] = useState<ProjectFrontmatter[]>([]);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<string>("list");
@@ -41,16 +42,18 @@ export default function WorkPage() {
     loadProjects();
   }, []);
 
-  // Filter projects based on category
+  // Filter projects based on categories
   const filteredProjects = useMemo(() => {
-    if (!categoryFilter) {
+    if (categoryFilters.length === 0) {
       return projects;
     }
     
     return projects.filter(project => 
-      project.categories && project.categories.includes(categoryFilter)
+      project.categories && categoryFilters.some(filter => 
+        project.categories.includes(filter)
+      )
     );
-  }, [projects, categoryFilter]);
+  }, [projects, categoryFilters]);
 
   return (
     <div className="min-h-screen flex flex-row">
@@ -62,6 +65,14 @@ export default function WorkPage() {
             Filter by
           </span>
           <ProjectFilter categories={projectCategories} />
+        </div>
+        
+        {/* Multi-select Filtering */}
+        <div className="fixed z-60 top-0 left-64 flex items-center gap-2 mt-12">
+          <span className="font-satoshi text-xs text-muted-foreground mr-2">
+            Multi-filter
+          </span>
+          <FilterToggleGroup categories={projectCategories} />
         </div>
 
         <WorkPageHeader />
