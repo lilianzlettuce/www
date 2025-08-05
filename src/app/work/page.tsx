@@ -9,8 +9,7 @@ import { projectCategories } from "@/lib/data";
 import { ProjectCardDefault, ProjectCardBasic, ProjectListItem, ProjectListItemTechMono, ProjectCardLarge } from "@/components/workPage/Cards";
 import { NavBar, SideBar, SideBar2, SideBar3 } from "@/components/NavBar";
 import { WorkPageHeader, WorkPageHeader2 } from "@/components/workPage/Header";
-import { ProjectFilter } from "@/components/workPage/ProjectFilter";
-import { FilterToggleGroup } from "@/components/workPage/FilterToggleGroup";
+import { ProjectFilter, ProjectMultiFilter } from "@/components/workPage/ProjectFilter";
 import { GridIcon, ListIcon } from "@/components/Icons";
 
 export default function WorkPage() {
@@ -61,18 +60,15 @@ export default function WorkPage() {
       <div className="w-full px-4 sm:px-6 lg:px-6 py-0">
         {/* Filtering */}
         <div className="fixed z-60 top-0 left-64 flex items-center gap-2 mt-4">
-          <span className="font-satoshi text-xs text-muted-foreground mr-2">
+          <span className="font-roboto-mono text-[0.6rem] tracking-tighter text-muted-foreground mr-2">
             Filter by
           </span>
-          <ProjectFilter categories={projectCategories} />
-        </div>
-        
-        {/* Multi-select Filtering */}
-        <div className="fixed z-60 top-0 left-64 flex items-center gap-2 mt-12">
-          <span className="font-satoshi text-xs text-muted-foreground mr-2">
-            Multi-filter
-          </span>
-          <FilterToggleGroup categories={projectCategories} />
+          <ProjectFilter 
+            categories={projectCategories}
+            toggleStyle="px-2 py-0.25 rounded-xs font-roboto-mono text-xs uppercase tracking-widest transition-colors"
+            toggleStyleActive="bg-foreground text-background"
+            toggleStyleInactive="border-1 border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground"
+          />
         </div>
 
         <WorkPageHeader />
