@@ -65,7 +65,7 @@ export default function WorkPage() {
           </span>
           <ProjectFilter 
             categories={projectCategories}
-            toggleStyle="px-2 py-0.25 rounded-xs font-roboto-mono text-xs uppercase tracking-widest transition-colors"
+            toggleStyle="px-2 py-0 rounded-xs font-roboto-mono text-xs uppercase tracking-widest transition-colors"
             toggleStyleActive="bg-foreground text-background"
             toggleStyleInactive="border-1 border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground"
           />
@@ -104,7 +104,7 @@ export default function WorkPage() {
             <p className="text-mutedForeground text-lg">Loading projects...</p>
           </div>
         ) : (
-          <div className="w-full flex flex-col">
+          <div className="w-full flex flex-col z-100 bg-background/80">
             {/* Project Listings */}
             {viewMode === "list" && (
               <div className="group/list w-full flex flex-col">

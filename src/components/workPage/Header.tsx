@@ -127,12 +127,7 @@ export function WorkPageHeader() {
           </div>
 
           <div className="z-0 relative w-fit h-fit">
-            <div className="fixed -top-30 -right-60 w-190 h-150 bg-white">
-                <Image src="/img/halftone/brain-bg-black.png" 
-                    alt="Work" 
-                    fill={true}
-                    className="w-full h-full object-cover" />
-
+            <div className="fixed -top-30 -right-60 w-190 h-150">
                 <ShrinkCircles 
                     interactionMode="none"
                     bgColor="none"
