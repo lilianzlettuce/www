@@ -1,4 +1,4 @@
-import { BrainDarkMouseDark } from "./ToneCanvas";
+import { BrainDarkMouseDark, BrainDarkMouseLight, BrainLight } from "./ToneCanvas";
 import { HeroWindow } from "../Windows";
 
 export default function Hero() {
@@ -10,7 +10,7 @@ export default function Hero() {
           <HeroWindow className="w-[300px] h-fit -translate-x-10 translate-y-4" />
           {/*<BrainLight imageSrc="/img/lowRes/brain.png" />
           <BrainDarkMouseLight imageSrc="/img/lowRes/brain.png" />
-          <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" />*/}
+          <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" tooltipText="POKE" />*/}
           <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" tooltipText="POKE" />
         </div>
         <div className="relative z-10 text-left max-w-lg w-1/3 px-4 sm:px-6 lg:px-8">

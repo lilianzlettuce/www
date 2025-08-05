@@ -162,8 +162,9 @@ export function WorkPageHeader() {
             <h1 className="animate-text translate-x-2 w-fit text-4xl md:text-6xl/[0.8] scale-x-100 translate-x-0 font-micro5 font-bold text-foreground uppercase mb-4">
               Work
             </h1>
-            <p className="text-sm text-mutedForeground max-w-2xl">
-              What are you even searching for?
+            <p className="text-xs font-roboto-mono tracking-tighter text-muted-foreground max-w-2xl">
+                status: 45% - - - complete rehaul in progress
+                <br/> come forth ↓
             </p>
           </div>
 

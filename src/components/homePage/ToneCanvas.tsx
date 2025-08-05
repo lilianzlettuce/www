@@ -4,11 +4,21 @@ import ImageMask from "@/components/canvasGraphics/ImageMask";
 import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useState, useEffect } from "react";
+import { useMotionValueEvent, useScroll } from "motion/react";
 
 export function BrainLight({imageSrc}: {imageSrc: string}) {
     const { theme } = useTheme();
     const [dotColor, setDotColor] = useState("black");
     const [maskColor, setMaskColor] = useState("white");
+
+    const { scrollY } = useScroll();
+    const [gridGap, setGridGap] = useState(3);
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const newGridGap = Math.min(100, 3 + (latest * 0.05));
+        console.log(newGridGap);
+        setGridGap(newGridGap);
+    });
     
     useEffect(() => {
         const updateDotColor = () => {
@@ -48,7 +58,7 @@ export function BrainLight({imageSrc}: {imageSrc: string}) {
                     showStats={false}
                     imageSrc="/img/lowRes/brain.png"
                     scaleFactor={1}
-                    gridGap={3}
+                    gridGap={gridGap}
                     dotMapMode="light"
                     dotColor={dotColor}
                     attractionDistance={400}
