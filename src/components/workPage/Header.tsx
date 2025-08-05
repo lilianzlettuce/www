@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { WindowTechMono } from "../Windows";
 import ShrinkCircles from "../canvasGraphics/ShrinkCircles";
-import { DevIcon, DesignIcon, PixelatedArrowIcon, ArtIcon, ListIcon } from "../Icons";
+import { useScroll, useTransform, useMotionValueEvent } from "motion/react";
+import { useState } from "react";
 
 export function WorkPageHeader2() {
     return (
@@ -115,6 +116,18 @@ export function WorkPageHeader2() {
 }
 
 export function WorkPageHeader() {
+    const { scrollY } = useScroll();
+    const [gridGap, setGridGap] = useState(3);
+    const [defaultRadius, setDefaultRadius] = useState(1.6);
+    
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const newGridGap = Math.min(100, 3 + (latest * 0.05));
+        const newDefaultRadius = Math.max(1, 1.6 - (latest * 0.0025));
+        console.log(newDefaultRadius)
+        setGridGap(newGridGap);
+        setDefaultRadius(newDefaultRadius);
+    });
+    
     return (
         <div className="pt-30 min-h-[50vh] flex flex-row gap-4">
           <div className="min-w-1/2 text-left my-16">
@@ -135,12 +148,12 @@ export function WorkPageHeader() {
                     showStats={false}
                     imageSrc="/img/lowRes/brain.png"
                     scaleFactor={1}
-                    gridGap={3}
+                    gridGap={gridGap}
                     dotMapMode="light"
                     dotColor="white"
                     attractionDistance={400}
                     shrinkFactor={20}
-                    defaultRadius={1.6}
+                    defaultRadius={defaultRadius}
                     minRadius={0}
                     maxRadius={6}
                     delayFactor={0.4}
