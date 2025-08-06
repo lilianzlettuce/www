@@ -1,5 +1,6 @@
 import { BrainDarkMouseDark, BrainDarkMouseLight, BrainLight } from "./ToneCanvas";
 import { HeroWindow } from "../Windows";
+import ZoomableImage from "../ZoomableImage";
 
 export default function Hero() {
     
@@ -7,7 +8,20 @@ export default function Hero() {
       <section className="relative h-screen min-h-screen py-[400px] flex items-center justify-start">
         <div className="absolute inset-0 bg-grid-pattern opacity-50"></div>
         <div className="h-fit absolute left-5/12">
-          <HeroWindow className="w-[300px] h-fit -translate-x-10 translate-y-4" />
+          <HeroWindow className="w-[300px] h-fit -translate-x-10 translate-y-4"
+            dragHandleText="Greetings"
+          >
+            <div className="w-full h-38 bg-white">
+              <ZoomableImage
+                className="w-full h-full"
+                src="/img/halftone/heart.png"
+                alt="zoomed halftone heart image"
+                backgroundSize={850}
+                initialX={-215}
+                initialY={-55}
+              />
+            </div>
+          </HeroWindow>
           {/*<BrainLight imageSrc="/img/lowRes/brain.png" />
           <BrainDarkMouseLight imageSrc="/img/lowRes/brain.png" />
           <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" tooltipText="POKE" />*/}

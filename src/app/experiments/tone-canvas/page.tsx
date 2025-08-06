@@ -5,6 +5,7 @@ import { DefaultSlider } from "@/components/Slider";
 import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import { mapTo } from "@/lib/utils";
 import { WindowTechMono } from "@/components/Windows";
+import { DevIcon } from "@/components/svg/Icons";
 
 export default function ToneCanvasPage() {
   const [dotResolution, setDotResolution] = useState(100);
@@ -59,10 +60,14 @@ export default function ToneCanvasPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background p-20">
+    <div className="w-screen min-h-screen bg-background px-20 py-10 flex justify-between">
 
-      <WindowTechMono className="z-45 absolute top-0 left-0 w-fit h-fit">
-        <div className="flex flex-col justify-center p-4">
+      <WindowTechMono className="z-45 relative top-0 left-0 w-fit h-fit"
+        dragHandleClassName="bg-background text-foreground border-b-1 border-foreground"
+        dragHandleIcon={<DevIcon className="w-2.5 h-2.5 mr-1" strokeWidth={0} />}
+        dragHandleText="Settings"
+      >
+        <div className="flex flex-col justify-center p-8">
           <div className="flex gap-6 mb-2">
             <label className="flex items-center gap-2">
               <input
@@ -229,27 +234,34 @@ export default function ToneCanvasPage() {
         </div>
       </WindowTechMono>
 
-      <div className="relative flex flex-col items-center justify-center gap-0">
-        <div>
-          <ShrinkCircles 
-            id="tone-experiment-canvas"
-            interactionMode={interactive ? "shrink" : "none"}
-            transparent={transparent}
-            imageSrc={imageURL}
-            scaleFactor={1}
-            gridGap={mapTo(dotResolution, 72, 300, 30, 1)}
-            defaultRadius={3}
-            dotColor="#000000"
-            attractionDistance={200}
-            shrinkFactor={1}
-            minRadius={minRadius}
-            maxRadius={maxRadius}
-            delayFactor={mouseEase}
-            delayCap={0.1}
-            debounceTime={3000000}
-            autoAnimStep={0.03}
-          />
+      <WindowTechMono className="z-45 relative top-0 left-0 w-fit h-fit"
+        dragHandleClassName="bg-background text-foreground border-b-1 border-foreground"
+        dragHandleIcon={<DevIcon className="w-2.5 h-2.5 mr-1" strokeWidth={0} />}
+        dragHandleText="Accessing..."
+      >
+        <div className="relative flex flex-col items-center justify-center gap-0">
+          <div>
+            <ShrinkCircles 
+              id="tone-experiment-canvas"
+              interactionMode={interactive ? "shrink" : "none"}
+              transparent={transparent}
+              imageSrc={imageURL}
+              scaleFactor={1}
+              gridGap={mapTo(dotResolution, 72, 300, 30, 1)}
+              defaultRadius={3}
+              dotColor="#000000"
+              attractionDistance={200}
+              shrinkFactor={1}
+              minRadius={minRadius}
+              maxRadius={maxRadius}
+              delayFactor={mouseEase}
+              delayCap={0.1}
+              debounceTime={3000000}
+              autoAnimStep={0.03}
+            />
+          </div>
         </div>
+      </WindowTechMono>
 
         
         {/*
@@ -517,8 +529,6 @@ export default function ToneCanvasPage() {
         />
 
         */}
-
-      </div>
     </div>
   );
 } 

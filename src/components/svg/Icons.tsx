@@ -192,6 +192,17 @@ export function ArtIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
   );
 }
 
+export function PixelatedXIcon({ className = "w-6 h-6", strokeWidth = 0 }: IconProps) {
+  return (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+      <path fill={strokeWidth > 0 ? "none" : "currentColor"} 
+            stroke={strokeWidth > 0 ? "currentColor" : "none"} 
+            strokeWidth={strokeWidth}
+            d="M15.6 18v-2.4H18V18h-2.4ZM6 18v-2.4h2.4V18H6Zm9.6-2.4h-2.4v-2.4h2.4v2.4Zm-7.2 0v-2.4h2.4v2.4H8.4Zm4.8-2.4h-2.4v-2.4h2.4v2.4Zm0-2.4V8.4h2.4v2.4h-2.4Zm-2.4 0H8.4V8.4h2.4v2.4Zm4.8-2.4V6H18v2.4h-2.4Zm-7.2 0H6V6h2.4v2.4Z"/>
+    </svg>
+  );
+}
+
 export function PixelatedArrowIcon({ className = "w-6 h-6", strokeWidth = 0 }: IconProps) {
   return (
     <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" fill="none">
