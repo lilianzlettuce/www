@@ -4,6 +4,7 @@ import { useState } from "react";
 import { DefaultSlider } from "@/components/Slider";
 import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import { mapTo } from "@/lib/utils";
+import { WindowTechMono } from "@/components/Windows";
 
 export default function ToneCanvasPage() {
   const [dotResolution, setDotResolution] = useState(100);
@@ -59,172 +60,176 @@ export default function ToneCanvasPage() {
 
   return (
     <div className="min-h-screen bg-background p-20">
-      <div className="flex flex-col justify-center mb-4">
-        <div className="flex gap-6 mb-2">
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={interactive}
-              onChange={e => setInteractive(e.target.checked)}
-            />
-            Interactive
-          </label>
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={transparent}
-              onChange={e => setTransparent(e.target.checked)}
-            />
-            Transparent
-          </label>
-        </div>
-        <div>
-          <label htmlFor="dotResolutionSlider">Dot Resolution</label>
-          <div className="flex items-center gap-2">
-            <DefaultSlider 
-              id="dotResolutionSlider"
-              aria-labelledby="dotResolutionLabel"
-              min={150}
-              max={300}
-              step={1}
-              value={[dotResolution]}
-              onValueChange={(value) => {
-                setDotResolution(value[0]);
-                setDotResolutionInput(value[0].toString());
-              }}
-            />
-            <input 
-              id="dotResolutionInput"
-              aria-labelledby="dotResolutionLabel"
-              type="number" 
-              value={dotResolutionInput}
-              min="150" 
-              max="300" 
-              step="1"
-              onChange={(e) => setDotResolutionInput(e.target.value)}
-              onKeyDown={(e) => {
-                const val = e.currentTarget.valueAsNumber;
-                if (e.key === "Enter" && val) {
-                  setDotResolution(val);
-                }
-              }}
-            />
-          </div>
-        </div>
-        <div>
-          <label htmlFor="minRadiusSlider" id="minRadiusLabel">Min Radius</label>
-          <div className="flex items-center gap-2">
-            <DefaultSlider 
-              id="minRadiusSlider"
-              aria-labelledby="minRadiusLabel"
-              min={0}
-              max={2}
-              step={0.1}
-              value={[minRadius]}
-              onValueChange={(value) => {
-                setMinRadius(value[0]);
-                setMinRadiusInput(value[0].toString());
-              }}
-            />
-            <input 
-              id="minRadiusInput"
-              aria-labelledby="minRadiusLabel"
-              type="number" 
-              value={minRadiusInput}
-              min="0"
-              max="2"
-              step="0.1"
-              onChange={(e) => setMinRadiusInput(e.target.value)}
-              onKeyDown={(e) => {
-                const val = e.currentTarget.valueAsNumber;
-                if (e.key === "Enter" && val) {
-                  setMinRadius(val);
-                }
-              }}
-            />
-          </div>
-        </div>
-        <div>
-          <label htmlFor="maxRadiusSlider" id="maxRadiusLabel">Max Radius</label>
-          <div className="flex items-center gap-2">
-            <DefaultSlider 
-              id="maxRadiusSlider"
-              aria-labelledby="maxRadiusLabel"
-              min={1}
-              max={12}
-              step={0.1}
-              value={[maxRadius]}
-              onValueChange={(value) => {
-                setMaxRadius(value[0]);
-                setMaxRadiusInput(value[0].toString());
-              }}
-            />
-            <input 
-              id="maxRadiusInput"
-              aria-labelledby="maxRadiusLabel"
-              type="number" 
-              value={maxRadiusInput}
-              min="1"
-              max="12"
-              step="0.1"
-              onChange={(e) => setMaxRadiusInput(e.target.value)}
-              onKeyDown={(e) => {
-                const val = e.currentTarget.valueAsNumber;
-                if (e.key === "Enter" && val) {
-                  setMaxRadius(val);
-                }
-              }}
-            />
-          </div>
-        </div>
-        <div>
-          <label htmlFor="mouseEaseSlider" id="mouseEaseLabel">Mouse Ease</label>
-          <div className="flex items-center gap-2">
-            <DefaultSlider 
-              id="mouseEaseSlider"
-              aria-labelledby="mouseEaseLabel"
-              min={0.1}
-              max={20}
-              step={0.01}
-              value={[mouseEase]}
-              onValueChange={(value) => {
-                setMouseEase(value[0]);
-                setMouseEaseInput(value[0].toString());
-              }}
-            />
-            <input 
-              id="mouseEaseInput"
-              aria-labelledby="mouseEaseLabel"
-              type="number" 
-              value={mouseEaseInput}
-              min="0.1"
-              max="20"
-              step="0.01"
-              onChange={(e) => setMouseEaseInput(e.target.value)}
-              onKeyDown={(e) => {
-                const val = e.currentTarget.valueAsNumber;
-                if (e.key === "Enter" && val) {
-                  setMouseEase(val);
-                }
-              }}
-            />
-          </div>
-        </div>
 
-        <div>
+      <WindowTechMono className="z-45 absolute top-0 left-0 w-fit h-fit">
+        <div className="flex flex-col justify-center p-4">
+          <div className="flex gap-6 mb-2">
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={interactive}
+                onChange={e => setInteractive(e.target.checked)}
+              />
+              Interactive
+            </label>
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={transparent}
+                onChange={e => setTransparent(e.target.checked)}
+              />
+              Transparent
+            </label>
+          </div>
+          <div>
+            <label htmlFor="dotResolutionSlider">Dot Resolution</label>
+            <div className="flex items-center gap-2">
+              <DefaultSlider 
+                id="dotResolutionSlider"
+                aria-labelledby="dotResolutionLabel"
+                min={150}
+                max={300}
+                step={1}
+                value={[dotResolution]}
+                onValueChange={(value) => {
+                  setDotResolution(value[0]);
+                  setDotResolutionInput(value[0].toString());
+                }}
+              />
+              <input 
+                id="dotResolutionInput"
+                aria-labelledby="dotResolutionLabel"
+                type="number" 
+                value={dotResolutionInput}
+                min="150" 
+                max="300" 
+                step="1"
+                onChange={(e) => setDotResolutionInput(e.target.value)}
+                onKeyDown={(e) => {
+                  const val = e.currentTarget.valueAsNumber;
+                  if (e.key === "Enter" && val) {
+                    setDotResolution(val);
+                  }
+                }}
+              />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="minRadiusSlider" id="minRadiusLabel">Min Radius</label>
+            <div className="flex items-center gap-2">
+              <DefaultSlider 
+                id="minRadiusSlider"
+                aria-labelledby="minRadiusLabel"
+                min={0}
+                max={2}
+                step={0.1}
+                value={[minRadius]}
+                onValueChange={(value) => {
+                  setMinRadius(value[0]);
+                  setMinRadiusInput(value[0].toString());
+                }}
+              />
+              <input 
+                id="minRadiusInput"
+                aria-labelledby="minRadiusLabel"
+                type="number" 
+                value={minRadiusInput}
+                min="0"
+                max="2"
+                step="0.1"
+                onChange={(e) => setMinRadiusInput(e.target.value)}
+                onKeyDown={(e) => {
+                  const val = e.currentTarget.valueAsNumber;
+                  if (e.key === "Enter" && val) {
+                    setMinRadius(val);
+                  }
+                }}
+              />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="maxRadiusSlider" id="maxRadiusLabel">Max Radius</label>
+            <div className="flex items-center gap-2">
+              <DefaultSlider 
+                id="maxRadiusSlider"
+                aria-labelledby="maxRadiusLabel"
+                min={1}
+                max={12}
+                step={0.1}
+                value={[maxRadius]}
+                onValueChange={(value) => {
+                  setMaxRadius(value[0]);
+                  setMaxRadiusInput(value[0].toString());
+                }}
+              />
+              <input 
+                id="maxRadiusInput"
+                aria-labelledby="maxRadiusLabel"
+                type="number" 
+                value={maxRadiusInput}
+                min="1"
+                max="12"
+                step="0.1"
+                onChange={(e) => setMaxRadiusInput(e.target.value)}
+                onKeyDown={(e) => {
+                  const val = e.currentTarget.valueAsNumber;
+                  if (e.key === "Enter" && val) {
+                    setMaxRadius(val);
+                  }
+                }}
+              />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="mouseEaseSlider" id="mouseEaseLabel">Mouse Ease</label>
+            <div className="flex items-center gap-2">
+              <DefaultSlider 
+                id="mouseEaseSlider"
+                aria-labelledby="mouseEaseLabel"
+                min={0.1}
+                max={20}
+                step={0.01}
+                value={[mouseEase]}
+                onValueChange={(value) => {
+                  setMouseEase(value[0]);
+                  setMouseEaseInput(value[0].toString());
+                }}
+              />
+              <input 
+                id="mouseEaseInput"
+                aria-labelledby="mouseEaseLabel"
+                type="number" 
+                value={mouseEaseInput}
+                min="0.1"
+                max="20"
+                step="0.01"
+                onChange={(e) => setMouseEaseInput(e.target.value)}
+                onKeyDown={(e) => {
+                  const val = e.currentTarget.valueAsNumber;
+                  if (e.key === "Enter" && val) {
+                    setMouseEase(val);
+                  }
+                }}
+              />
+            </div>
+          </div>
+
+          <div>
+          </div>
+          <button 
+            onClick={handleCopyToClipboard}
+          >
+            Copy to clipboard
+          </button>
+          <button
+            onClick={handleDownload}
+          >
+            Download Image
+          </button>
         </div>
-        <button 
-          onClick={handleCopyToClipboard}
-        >
-          Copy to clipboard
-        </button>
-        <button
-          onClick={handleDownload}
-        >
-          Download Image
-        </button>
-      </div>
-      <div className="flex flex-col items-center justify-center gap-0">
+      </WindowTechMono>
+
+      <div className="relative flex flex-col items-center justify-center gap-0">
         <div>
           <ShrinkCircles 
             id="tone-experiment-canvas"

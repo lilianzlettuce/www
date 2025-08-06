@@ -8,10 +8,10 @@ type WindowProps = {
     children?: React.ReactNode;
 }
 
-export function WindowTechMono({ className = "w-fit h-fit", children }: WindowProps) {
+export function WindowTechMono({ className = "w-fit h-fit z-45 relative", children }: WindowProps) {
     return (
         <Draggable>
-            <div className={`${className} z-45 relative flex flex-col bg-background text-foreground border border-foreground shadow-lg`}>
+            <div className={`${className} flex flex-col bg-background text-foreground border border-foreground shadow-lg`}>
                 <div className="handle select-none cursor-grab px-1 py-0 flex flex-row justify-between items-center bg-foreground text-background text-sm font-tiny5 uppercase">
                     <div className="flex flex-row items-center gap-2">
                         <div className="mix-blend-difference">

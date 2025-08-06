@@ -1,15 +1,16 @@
 // Draggable wrapper component (for windows)
 
 "use client";
-import React, { useRef, ReactNode, useState } from "react";
+import React, { useRef, ReactNode } from "react";
 import { motion, useDragControls } from "motion/react";
 
 interface DraggableProps {
   children: ReactNode;
   className?: string;
+  zIndex?: number;
 }
 
-export default function Draggable ({ children, className }: DraggableProps) {
+export default function Draggable ({ children, className, zIndex = 50 }: DraggableProps) {
     const dragControls = useDragControls();
     const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -31,9 +32,13 @@ export default function Draggable ({ children, className }: DraggableProps) {
             dragListener={false}
             dragElastic={0}
             dragMomentum={false}
-            whileDrag={{ scale: 1 }}
+            dragConstraints={false}
+            whileDrag={{ scale: 1, zIndex: zIndex }}
             onPointerDown={handleMouseDown}
-            style={{ touchAction: "none" }}
+            style={{ 
+                touchAction: "none",
+                zIndex: zIndex,
+            }}
         >
             {children}
         </motion.div>
