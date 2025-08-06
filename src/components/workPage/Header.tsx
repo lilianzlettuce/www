@@ -9,8 +9,6 @@ import { BgPattern, GridContainer } from "../svg/BgPatterns";
 export function WorkPageHeader2() {
     return (
         <div className="w-full min-h-[50vh] py-3 flex flex-row gap-4">
-          
-
             <div className="relative w-full h-full">
                 <div className="hidden absolute -top-60 left-0 w-190 h-150 bg-white">
                 <Image src="/img/halftone/brain-bg-black.png" 
@@ -19,13 +17,6 @@ export function WorkPageHeader2() {
                     className="w-full h-full object-cover" />
                 </div>
                 <WindowTechMono className="w-full min-h-100">
-                    <BgPattern className="absolute inset-0 w-full h-full"
-                        patternTransform="scale(0.5 0.5)"
-                        offset={{ x: 0, y: 0 }}
-                        dimensions={{ width: 100, height: 100 }}
-                    >
-                        <path strokeWidth={2} d="M6 18L18 6M6 6l12 12" stroke="rgb(255,255,255, 0.3)" fill="none"/>
-                    </BgPattern>
                     <div className="w-full h-full p-4 flex flex-col gap-4">
                         <div className="w-full h-full flex flex-row justify-between gap-2 font-ibm-plex-mono text-xs">
                             <div className="flex flex-col gap-4">

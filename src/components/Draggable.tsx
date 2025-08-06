@@ -1,72 +1,41 @@
 // Draggable wrapper component (for windows)
 
 "use client";
-import React, { useEffect, useRef, useState, ReactNode } from "react";
+import React, { useRef, ReactNode, useState } from "react";
+import { motion, useDragControls } from "motion/react";
 
 interface DraggableProps {
   children: ReactNode;
+  className?: string;
 }
 
-export default function Draggable ({ children }: DraggableProps) {
+export default function Draggable ({ children, className }: DraggableProps) {
+    const dragControls = useDragControls();
     const wrapperRef = useRef<HTMLDivElement>(null);
-    const handleRef = useRef<HTMLElement | null>(null);
-    const offset = useRef({ x: 0, y: 0 });
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [dragging, setDragging] = useState(false);
 
-    useEffect(() => {
-        if (!wrapperRef.current) return;
-
-        // Look for a child element with class "handle"
-        handleRef.current = wrapperRef.current.querySelector(".handle") as HTMLElement | null;
-
-        if (!handleRef.current) {
-            console.warn("No handle found inside <Draggable>. Dragging will be disabled.");
-            return;
+    const handleMouseDown = (e: React.PointerEvent) => {
+        // Check if the clicked element or its parent has the "handle" class
+        const target = e.target as HTMLElement;
+        
+        if (target.closest(".handle")) {
+            dragControls.start(e);
         }
-
-        const handle = handleRef.current;
-
-        const onMouseDown = (e: MouseEvent) => {
-            offset.current = {
-                x: e.clientX - position.x,
-                y: e.clientY - position.y,
-            };
-            setDragging(true);
-        };
-
-        const onMouseMove = (e: MouseEvent) => {
-            if (!dragging) return;
-            setPosition({
-                x: e.clientX - offset.current.x,
-                y: e.clientY - offset.current.y,
-            });
-        };
-
-        const onMouseUp = () => setDragging(false);
-
-        handle.addEventListener("mousedown", onMouseDown);
-        window.addEventListener("mousemove", onMouseMove);
-        window.addEventListener("mouseup", onMouseUp);
-
-        return () => {
-            handle.removeEventListener("mousedown", onMouseDown);
-            window.removeEventListener("mousemove", onMouseMove);
-            window.removeEventListener("mouseup", onMouseUp);
-        };
-    }, [dragging]);
+    };
 
     return (
-        <div
+        <motion.div
             ref={wrapperRef}
-            className="relative"
-            style={{
-                left: position.x,
-                top: position.y,
-                cursor: dragging ? "grabbing" : undefined,
-            }}
+            className={`relative ${className || ""}`}
+            drag
+            dragControls={dragControls}
+            dragListener={false}
+            dragElastic={0}
+            dragMomentum={false}
+            whileDrag={{ scale: 1 }}
+            onPointerDown={handleMouseDown}
+            style={{ touchAction: "none" }}
         >
             {children}
-        </div>
+        </motion.div>
     );
 };

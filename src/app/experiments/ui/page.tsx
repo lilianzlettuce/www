@@ -1,3 +1,5 @@
+"use client";
+
 import { NavBarGrid, NavBarBasic, NavBarFloating } from "@/components/NavBar";
 import { Button, RevealButton, RevealButton2 } from "@/components/Buttons";
 import { DraggableWindow } from "@/components/DraggableWindow";
@@ -7,6 +9,9 @@ import Sprite from "@/components/Sprite";
 import ZoomableImage from "@/components/ZoomableImage";
 import { WindowTechMono } from "@/components/Windows";
 import Link from "next/link";
+import { BgPattern, GridContainer } from "@/components/svg/BgPatterns";
+import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
+import { DevIcon, DesignIcon, ArtIcon } from "@/components/svg/Icons";
 
 export default function UIExperimentsPage() {
   return (
@@ -275,6 +280,137 @@ export default function UIExperimentsPage() {
                     />
                   </div>
                 </div>
+              </WindowTechMono>
+
+              <WindowTechMono className="w-full min-h-100">
+                <BgPattern className="absolute inset-0 w-full h-full"
+                    patternTransform="scale(0.5 0.5)"
+                    offset={{ x: 0, y: 0 }}
+                    dimensions={{ width: 100, height: 100 }}
+                    stroke="rgb(255,255,255, 0.3)"
+                    fill="none"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                >
+                  <div className="w-full h-full p-4 flex flex-col gap-4">
+                      <div className="w-full h-full flex flex-row justify-between gap-2 font-ibm-plex-mono text-xs">
+                          <div className="flex flex-col gap-4">
+                              <div className="text-left">
+                                  <h1 className="text-4xl md:text-6xl/[0.8] scale-x-100 translate-x-0 font-micro5 font-bold text-foreground uppercase mb-4">
+                                      Work
+                                  </h1>
+                                  <p className="text-xs text-mutedForeground max-w-2xl">
+                                      What are you even searching for?
+                                  </p>
+                              </div>
+                              <div className="relative overflow-hidden w-full h-60 border-1 border-border">
+                                  <ShrinkCircles 
+                                      className="absolute -inset-x-50 -inset-y-40"
+                                      interactionMode="none"
+                                      bgColor="none"
+                                      transparent={true}
+                                      showStats={false}
+                                      imageSrc="/img/lowRes/heart.png"
+                                      scaleFactor={1}
+                                      gridGap={2}
+                                      dotMapMode="light"
+                                      dotColor="white"
+                                      attractionDistance={400}
+                                      shrinkFactor={20}
+                                      defaultRadius={1.3}
+                                      minRadius={0.4}
+                                      maxRadius={4}
+                                      delayFactor={0.4}
+                                      delayCap={0.1}
+                                      debounceTime={0}
+                                      autoAnimStep={0.03}
+                                  />
+                              </div>
+                          </div>
+
+                          {/* Right window display */}
+                          <GridContainer 
+                              className="min-w-1/2 h-full pt-2 px-6 border-1 border-border flex items-center justify-center"
+                              layers={[
+                                  {
+                                      spacing: 30,
+                                      strokeWidth: 0.9,
+                                      strokeLength: 30,
+                                      color: "rgba(255,255,255)",
+                                      opacity: 0.1
+                                  },
+                                  {
+                                      spacing: 30,
+                                      strokeWidth: 1,
+                                      strokeLength: 3,
+                                      color: "rgba(255,255,255)",
+                                      opacity: 0.3
+                                  },
+                              ]} 
+                          >
+                              {/*<ShrinkCircles 
+                                  imageSrc="/img/lowRes/brain.png"
+                                  interactionMode="none"
+                                  showStats={false}
+                                  scaleFactor={0.6}
+                                  gridGap={2}
+                                  dotColor="#000000"
+                                  attractionDistance={200}
+                                  shrinkFactor={1}
+                                  minRadius={0.1}
+                                  maxRadius={3.8}
+                                  delayFactor={0.85}
+                                  delayCap={0.1}
+                                  debounceTime={0}
+                                  autoAnimStep={0.03}
+                              />*/}
+                              <ShrinkCircles 
+                                  interactionMode="none"
+                                  bgColor="none"
+                                  transparent={true}
+                                  showStats={false}
+                                  imageSrc="/img/lowRes/brain.png"
+                                  scaleFactor={0.6}
+                                  gridGap={2}
+                                  dotMapMode="light"
+                                  dotColor="white"
+                                  attractionDistance={400}
+                                  shrinkFactor={20}
+                                  defaultRadius={1.3}
+                                  minRadius={0}
+                                  maxRadius={4}
+                                  delayFactor={0.4}
+                                  delayCap={0.1}
+                                  debounceTime={0}
+                                  autoAnimStep={0.03}
+                              />
+                          </GridContainer>
+                      </div>
+
+                      <div className="w-full flex flex-row justify-between font-roboto-mono">
+                          <div className="flex flex-col items-start gap-2">
+                              <p className="text-xs">
+                                  No rest for the wicked.
+                              </p>
+                              <div className="flex flex-row items-center gap-2">
+                                  <DevIcon className="w-3 h-3" strokeWidth={2} />
+                                  <DesignIcon className="w-3 h-3" strokeWidth={2} />
+                                  <ArtIcon className="w-3 h-3" strokeWidth={2} />
+                              </div>
+                          </div>
+                          <div className="flex flex-col items-end">
+                              <p className="text-[0.65rem]">
+                                  IBM-X340 +++// 
+                              </p>
+                              <p className="text-sm">
+                                  <span className="font-micro5 text-xl">&#91;&nbsp;</span>
+                                  <span className="relative top-0.4">■■■■■□□□</span>
+                                  <span className="font-micro5 text-xl">&nbsp;&#93;</span>
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+                </BgPattern>
               </WindowTechMono>
             </div>
         </div>

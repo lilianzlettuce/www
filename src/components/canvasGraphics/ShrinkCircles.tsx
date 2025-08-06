@@ -421,6 +421,7 @@ const ShrinkCircles = ({
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
+          style={{ pointerEvents: interactionMode === "none" ? "none" : "auto" }}
         />
       </div>
       {showStats && (

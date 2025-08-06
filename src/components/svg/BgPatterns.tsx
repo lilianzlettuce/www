@@ -81,35 +81,45 @@ export const GridContainer = ({
 
 interface BgPatternProps {
     className?: string;
-    children?: React.ReactNode;
+    children?: React.ReactNode; // overlay content
     patternTransform?: string; // transform applied to pattern
     offset?: { x: number; y: number }; // pattern offset
     dimensions?: { width: number; height: number }; // pattern dimensions (controls padding/frequency)
+    strokeWidth?: number;
+    stroke?: string;
+    d?: string;
+    fill?: string;
 }
 
-// Takes in an svg path and uses it to create pattern background
-// Parent container must have relative positioning
+// Refactored: SVG pattern as background, overlay content as children
 export const BgPattern = ({
     className = "",
     children,
     patternTransform,
     offset,
-    dimensions
+    dimensions,
+    strokeWidth = 2,
+    stroke = "currentColor",
+    d = "M 20 0 L 0 0 0 20",
+    fill = "none"
 }: BgPatternProps) => {
     return (
-        <svg className={`absolute inset-0 w-full h-full ${className}`}>
-            <defs>
-                <pattern id="grid" 
-                        x={offset?.x ? offset.x : 0} 
-                        y={offset?.y ? offset.y : 0} 
-                        width={dimensions?.width ? dimensions.width : 40} 
-                        height={dimensions?.height ? dimensions.height : 40} 
-                        patternTransform={patternTransform ? patternTransform : "rotate(45) scale(1 1)"}
+        <div className={`relative ${className}`}>
+            <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                <defs>
+                    <pattern id="grid"
+                        x={offset?.x ?? 0}
+                        y={offset?.y ?? 0}
+                        width={dimensions?.width ?? 40}
+                        height={dimensions?.height ?? 40}
+                        patternTransform={patternTransform ?? "rotate(45) scale(1 1)"}
                         patternUnits="userSpaceOnUse">
-                    {children ? children : <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeWidth="0.5"/>}
-                </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
+                        <path d={d} fill={fill} stroke={stroke} strokeWidth={strokeWidth} />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+            {children}
+        </div>
     );
-}
+};
