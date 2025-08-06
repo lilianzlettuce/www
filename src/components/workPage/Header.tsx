@@ -4,7 +4,7 @@ import ShrinkCircles from "../canvasGraphics/ShrinkCircles";
 import { useScroll, useMotionValueEvent } from "motion/react";
 import { useState } from "react";
 import { ArtIcon, DevIcon, DesignIcon } from "../svg/Icons";
-import { BgPattern, GridContainer } from "../svg/BgPatterns";
+import { GridContainer } from "../svg/BgPatterns";
 
 export function WorkPageHeader2() {
     return (
@@ -149,7 +149,6 @@ export function WorkPageHeader() {
     useMotionValueEvent(scrollY, "change", (latest) => {
         const newGridGap = Math.min(100, 3 + (latest * 0.01));
         const newDefaultRadius = Math.max(1, 1.6 - (latest * 0.0025));
-        console.log(newDefaultRadius)
         setGridGap(newGridGap);
         setDefaultRadius(newDefaultRadius);
     });

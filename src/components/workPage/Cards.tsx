@@ -2,19 +2,19 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
+import { useMousePosition } from "@/hooks/useMousePosition";
 import { ExternalLinkIcon } from "../svg/Icons";
 import { ProjectFrontmatter } from "@/lib/mdx";
-import { useMousePosition } from "@/hooks/useMousePosition";
 import { TagLabelFill, TagLabelStroke } from "./Labels";
 
 type ProjectCardProps = {
     project: ProjectFrontmatter;
     index?: number;
+    mousePos?: { x: number; y: number };
 }
 
-export function ProjectListItem({ project, index = 0 }: ProjectCardProps) {
-    const mousePosition = useMousePosition();
-
+export function ProjectListItem({ project, index = 0, mousePos }: ProjectCardProps) {
     return (
         <Link
             key={project.slug}
@@ -24,8 +24,8 @@ export function ProjectListItem({ project, index = 0 }: ProjectCardProps) {
             <div className="relative w-full h-full p-5 flex flex-row items-center gap-4 border-b-1 border-background hover:border-muted-foreground transition-all duration-300">
                 <div className="fixed z-10 left-1/4 w-100 h-65 aspect-auto hidden group-hover/list-item:flex items-center justify-center"
                     style={{
-                        left: mousePosition.x + 50,
-                        top: mousePosition.y - 15,
+                        left: mousePos?.x ? mousePos.x + 50 : 0,
+                        top: mousePos?.y ? mousePos.y - 15 : 0,
                     }}
                 >
                     {project.image ? (

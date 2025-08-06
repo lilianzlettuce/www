@@ -11,6 +11,7 @@ import { NavBar, SideBar, SideBar2, SideBar3 } from "@/components/NavBar";
 import { WorkPageHeader, WorkPageHeader2 } from "@/components/workPage/Header";
 import { ProjectFilter, ProjectMultiFilter } from "@/components/workPage/ProjectFilter";
 import { GridIcon, ListIcon } from "@/components/svg/Icons";
+import ProjectList from "@/components/workPage/ProjectList";
 
 export default function WorkPage() {
   const searchParams = useSearchParams();
@@ -103,13 +104,7 @@ export default function WorkPage() {
         ) : (
           <div className="w-full flex flex-col z-100 bg-background/80">
             {/* Project Listings */}
-            {viewMode === "list" && (
-              <div className="group/list w-full flex flex-col">
-                {filteredProjects.map((project: ProjectFrontmatter, index: number) => (
-                  <ProjectListItem key={project.slug} project={project} index={index} />
-                ))}
-              </div>
-            )}
+            <ProjectList projects={filteredProjects} />
 
             {viewMode === "grid" && (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
