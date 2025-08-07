@@ -14,7 +14,7 @@ export default function WindowsExperimentsPage() {
 
             {/* Window experiments */}
             <div className="relative w-screen h-fit p-8 flex flex-row flex-wrap gap-4">
-              <WindowMinimal className="z-45 relative top-0 left-0 w-fit h-fit min-w-50 min-h-20"
+              <WindowMinimal className="z-45 relative top-0 left-0 w-fit h-fit min-w-50"
                 dragHandleText="Minimal window"
               >
                 <div className="w-full h-full p-4 text-sm">
@@ -30,7 +30,7 @@ export default function WindowsExperimentsPage() {
                 </div>
               </WindowTechMono>
               
-              <WindowTechMono className="relative top-0 left-0 w-140 min-w-100 h-fit min-h-60"
+              <WindowTechMono className="relative top-0 left-0 w-140 min-w-100 h-60"
                 dragHandleClassName="bg-background text-foreground border-b-1 border-foreground"
                 dragHandleText="Icons"
                 dragHandleIcon={<div className="mix-blend-difference">
@@ -48,8 +48,8 @@ export default function WindowsExperimentsPage() {
                                   />
                                 </div>}
               >
-                <div className="w-full h-full bg-red-300 p-4 flex items-start justify-start gap-2 font-roboto-mono text-xs">
-                    <div className="w-80 h-full bg-blue-300">
+                <div className="w-full h-full p-4 flex items-start justify-start gap-2 font-roboto-mono text-xs">
+                    <div className="w-80 h-full">
                         <p>
                             Unicode square symbols:
                         </p>
@@ -73,39 +73,49 @@ export default function WindowsExperimentsPage() {
                     </div>
 
                     {/* SVG Icons */}
-                    <div className="w-full h-full flex flex-col justify-between gap-2">
-                        <div className="w-full h-fit p-4 flex flex-row flex-wrap items-start justify-start gap-2  border-1 border-border">
-                            <ArrowLeftIcon className="w-4.5 h-4.5" strokeWidth={2.5} />
-                            <ExternalLinkIcon className="w-4.5 h-4.5" strokeWidth={2.5} />
-                            <GithubIcon className="w-4.5 h-4.5" />
-                            <SunIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <MoonIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <EyeIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <MinimizeIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <ExpandIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <ExpandIcon2 className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <PlusIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <XIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <ListIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <GridIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <DevIcon className="w-4.5 h-4.5" strokeWidth={0} />
-                            <DesignIcon className="w-4.5 h-4.5" strokeWidth={0} />
-                            <ArtIcon className="w-4.5 h-4.5" strokeWidth={0} />
-                            <DevIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <DesignIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <ArtIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <BarcodeIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <SquareIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <SquareIcon className="w-4.5 h-4.5" strokeWidth={8.5} />
-                            <ArrowRightBar className="w-4.5 h-4.5" strokeWidth={0} />
-                            <PixelatedXIcon className="w-4.5 h-4.5" strokeWidth={0} />
-                            <PixelatedArrowIcon className="w-4.5 h-4.5" strokeWidth={0} />
-                            <PixelatedArrowIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
-                            <RoundPixelatedArrowIcon className="w-10 h-10" strokeWidth={0} />
-                            <RoundPixelatedArrowIcon className="w-10 h-10" strokeWidth={1.5} />
+                    <div className="w-full h-full flex flex-col justify-between gap-3">
+                        <div className="w-full h-full p-4 flex flex-col gap-2  border-1 border-border">
+                            <div className="w-full h-fit flex flex-row flex-wrap items-start justify-start gap-2">
+                                <ArrowLeftIcon className="w-4.5 h-4.5" strokeWidth={2.5} />
+                                <ExternalLinkIcon className="w-4.5 h-4.5" strokeWidth={2.5} />
+                                <GithubIcon className="w-4.5 h-4.5" />
+                                <SunIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                                <MoonIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                                <EyeIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                                <MinimizeIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                                <ExpandIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                                <ExpandIcon2 className="w-4.5 h-4.5" strokeWidth={1.5} />
+                                <PlusIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                                <XIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                                <ListIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                                <GridIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                                <DevIcon className="w-4.5 h-4.5" strokeWidth={0} />
+                                <DesignIcon className="w-4.5 h-4.5" strokeWidth={0} />
+                                <ArtIcon className="w-4.5 h-4.5" strokeWidth={0} />
+                                <DevIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                                <DesignIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                                <ArtIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                                <BarcodeIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                                <SquareIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                                <SquareIcon className="w-4.5 h-4.5 scale-75" strokeWidth={8.5} />
+                                <ArrowRightBar className="w-4.5 h-4.5 scale-120" strokeWidth={0} />
+                                <PixelatedXIcon className="w-4.5 h-4.5" strokeWidth={0} />
+                                <PixelatedArrowIcon className="w-4.5 h-4.5" strokeWidth={0} />
+                                <PixelatedArrowIcon className="w-4.5 h-4.5" strokeWidth={1.5} />
+                            </div>
+
+                            <div className="w-full h-fit flex flex-row flex-wrap items-start justify-start gap-2">
+                                <RoundPixelatedArrowIcon className="w-10 h-10" strokeWidth={0} />
+                                <RoundPixelatedArrowIcon className="w-10 h-10" strokeWidth={1.5} />
+                            </div>
                         </div>
-                        <p className="text-[0.6rem]">
-                            IBM-X340 +++// 
+                        <p className="text-[0.6rem] flex flex-row items-center justify-between">
+                            <div>
+                                IBM-X340 +++// 
+                            </div>
+                            <div>
+                                &#91; ■■■■■□□□ &#93;
+                            </div>
                         </p>
                     </div>
                 </div>
