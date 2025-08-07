@@ -62,7 +62,7 @@ export default function ToneCanvasPage() {
   return (
     <div className="w-screen min-h-screen bg-background px-20 py-10 flex justify-between">
 
-      <WindowTechMono className="z-45 relative top-0 left-0 w-fit h-fit"
+      <WindowTechMono className="relative top-0 left-0 w-fit h-fit"
         dragHandleClassName="bg-background text-foreground border-b-1 border-foreground"
         dragHandleIcon={<DevIcon className="w-2.5 h-2.5 mr-1" strokeWidth={0} />}
         dragHandleText="Settings"

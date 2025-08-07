@@ -110,14 +110,6 @@ export function MoonIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) 
   );
 }
 
-export function SwatchIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
-  return (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
-    </svg>
-  );
-}
-
 export function EyeIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
   return (
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -151,43 +143,74 @@ export function FooterLogoIcon({ className = "w-full h-full" }: IconProps) {
   );
 }
 
+export function SquareIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill={strokeWidth > 0 ? "none" : "currentColor"} 
+            stroke={strokeWidth > 0 ? "currentColor" : "none"} 
+            strokeWidth={strokeWidth} 
+            d="M4.5 4.5 h15v15h-15z"/>
+    </svg>
+  );
+}
+
+export function BarcodeIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g fill="currentColor" clip-path="url(#a)">
+        <path d="M4.5 19.5v-15h4.8v15H4.5Zm6 0v-15h1.1v15h-1.1Zm3.5 0v-15h1.2v15H14ZM17.6 19.5v-15h1.2v15h-1.2Zm6 0v-15h2.3v15h-2.4Zm3.5 0v-15h1.2v15h-1.2ZM30.7 19.5v-15h1.2v15h-1.2Zm2.4 0v-15h2.4v15H33Zm4.7 0v-15H39v15h-1.2ZM43.8 19.5v-15h4.7v15h-4.7Zm7.1 0v-15h1.2v15H51Zm2.4 0v-15h1.2v15h-1.2Z"/>
+      </g>
+      <defs>
+        <clipPath id="a">
+          <path fill="#fff" d="M4.5 4.5h51v15h-51z"/>
+        </clipPath>
+      </defs>
+    </svg>
+  );
+}
+
+export function ArrowRightBar({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill={strokeWidth > 0 ? "none" : "currentColor"} 
+            stroke={strokeWidth > 0 ? "currentColor" : "none"} 
+            strokeWidth={strokeWidth} 
+            d="m18.8 12-4.6 4.8v-2.5H8.5V9.7h5.7V7.2l4.6 4.8ZM6.3 9.8v4.4H5V9.8h1.3Z"/>
+    </svg>
+  );
+}
+
 // Pixelated icons
 
 export function DevIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
   return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" 
-          viewBox={strokeWidth > 0 ? "-2 -2 34 34" : "0 0 30 30"} 
-          fill="none">
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill={strokeWidth > 0 ? "none" : "currentColor"} 
             stroke={strokeWidth > 0 ? "currentColor" : "none"} 
             strokeWidth={strokeWidth} 
-            d="M10 20h10v10H0V10h10v10Zm20 0H20V10H10V0h20v20Z"/>
+            d="M9.5 14.5h5v5h-10v-10h5v5Zm10 0h-5v-5h-5v-5h10v10Z"/>
     </svg>
   );
 }
 
 export function DesignIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
   return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" 
-          viewBox={strokeWidth > 0 ? "-2 -2 34 34" : "0 0 30 30"} 
-          fill="none">
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill={strokeWidth > 0 ? "none" : "currentColor"} 
             stroke={strokeWidth > 0 ? "currentColor" : "none"} 
             strokeWidth={strokeWidth} 
-            d="M20 20V10h10v10H20v10H10V20h10Zm0-20v10H10V0h10ZM10 10v10H0V10h10Z"/>
+            d="M14.5 14.5v-5h5v5h-5v5h-5v-5h5Zm0-10v5h-5v-5h5Zm-5 5v5h-5v-5h5Z"/>
     </svg>
   );
 }
 
 export function ArtIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
   return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" 
-          viewBox={strokeWidth > 0 ? "-2 -2 34 34" : "0 0 30 30"} 
-          fill="none">
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill={strokeWidth > 0 ? "none" : "currentColor"} 
             stroke={strokeWidth > 0 ? "currentColor" : "none"} 
             strokeWidth={strokeWidth} 
-            d="M20 30H10V20H0V10h20v20Zm10-20H20V0h10v10Z"/>
+            d="M14.5 19.5h-5v-5h-5v-5h10v10Zm5-10h-5v-5h5v5Z"/>
     </svg>
   );
 }
@@ -198,18 +221,18 @@ export function PixelatedXIcon({ className = "w-6 h-6", strokeWidth = 0 }: IconP
       <path fill={strokeWidth > 0 ? "none" : "currentColor"} 
             stroke={strokeWidth > 0 ? "currentColor" : "none"} 
             strokeWidth={strokeWidth}
-            d="M15.6 18v-2.4H18V18h-2.4ZM6 18v-2.4h2.4V18H6Zm9.6-2.4h-2.4v-2.4h2.4v2.4Zm-7.2 0v-2.4h2.4v2.4H8.4Zm4.8-2.4h-2.4v-2.4h2.4v2.4Zm0-2.4V8.4h2.4v2.4h-2.4Zm-2.4 0H8.4V8.4h2.4v2.4Zm4.8-2.4V6H18v2.4h-2.4Zm-7.2 0H6V6h2.4v2.4Z"/>
+            d="M16.5 19.5v-3h3v3h-3Zm-12 0v-3h3v3h-3Zm12-3h-3v-3h3v3Zm-9 0v-3h3v3h-3Zm6-3h-3v-3h3v3Zm0-3v-3h3v3h-3Zm-3 0h-3v-3h3v3Zm6-3v-3h3v3h-3Zm-9 0h-3v-3h3v3Z" />
     </svg>
   );
 }
 
 export function PixelatedArrowIcon({ className = "w-6 h-6", strokeWidth = 0 }: IconProps) {
   return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" fill="none">
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
       <path fill={strokeWidth > 0 ? "none" : "currentColor"} 
             stroke={strokeWidth > 0 ? "currentColor" : "none"} 
             strokeWidth={strokeWidth} 
-            d="M10 10H2V8h4V6h2V2h2v8ZM6 6H4V4h2v2ZM4 4H2V2h2v2ZM2 2H0V0h2v2Z"/>
+            d="M19.5 19.5h-12v-3h6v-3h3v-6h3v12Zm-6-6h-3v-3h3v3Zm-3-3h-3v-3h3v3Zm-3-3h-3v-3h3v3Z"/>
     </svg>
   );
 }

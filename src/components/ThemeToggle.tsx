@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useTheme } from "@/contexts/ThemeContext";
-import { SunIcon, MoonIcon, EyeIcon, SwatchIcon } from "@/components/svg/Icons";
-import { MinimalLineSlider, SquareSlider } from "./Slider";
+import { SunIcon, MoonIcon, EyeIcon, PixelatedArrowIcon } from "@/components/svg/Icons";
+import { MinimalLineSlider } from "./Slider";
 
 export function ThemeSlider({ buttonClassName = "p-2 rounded-full" }: { sliderClassName?: string, buttonClassName?: string }) {
   const { theme, setTheme } = useTheme();
@@ -98,7 +98,7 @@ export function ThemeMultiToggle() {
   const themeIcons = {
     light: SunIcon,
     dark: MoonIcon,
-    sepia: SwatchIcon,
+    sepia: PixelatedArrowIcon,
     "high-contrast": EyeIcon,
   };
 
