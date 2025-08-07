@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { DefaultSlider } from "@/components/Slider";
 import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import { mapTo } from "@/lib/utils";
@@ -8,24 +8,69 @@ import { WindowTechMono } from "@/components/Windows";
 import { DevIcon } from "@/components/svg/Icons";
 
 export default function ToneCanvasPage() {
+  // Canvas rendering variables
   const [dotResolution, setDotResolution] = useState(100);
   const [dotResolutionInput, setDotResolutionInput] = useState(dotResolution.toString());
   const [minRadius, setMinRadius] = useState(0.1);
   const [minRadiusInput, setMinRadiusInput] = useState(minRadius.toString());
   const [maxRadius, setMaxRadius] = useState(3.8);
   const [maxRadiusInput, setMaxRadiusInput] = useState(maxRadius.toString());
-
-  const [interactive, setInteractive] = useState(true);
   const [transparent, setTransparent] = useState(false);
 
+  // Canvas interaction variables
+  const [interactive, setInteractive] = useState(true);
   const [mouseEase, setMouseEase] = useState(0.85);
   const [mouseEaseInput, setMouseEaseInput] = useState(mouseEase.toString());
 
-  const imageURL = "/img/lowRes/brain.png";
+  // Image upload variables
+  const [imageURL, setImageURL] = useState("/img/lowRes/brain.png");
+  const [isDragOver, setIsDragOver] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  //const imageURL = "/img/lowRes/brain.png";
   //const imageURL = "/img/lowRes/hand-ok-2.png";
   //const imageURL = "/img/lowRes/goose.png";
   //const imageURL = "/img/lowRes/hands-outreached.jpg";
   //const imageURL = "/img/lowRes/brain-top.jpg";
+
+  const handleFileUpload = (file: File) => {
+    if (file && file.type.startsWith('image/')) {
+      const url = URL.createObjectURL(file);
+      setImageURL(url);
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    
+    // Get file from drag event
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      handleFileUpload(files[0]);
+    }
+  };
+
+  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      handleFileUpload(files[0]);
+    }
+  };
+
+  const handleFileInputClick = () => {
+    fileInputRef.current?.click();
+  };
 
   function handleCopyToClipboard() {
     const canvas = document.getElementById("tone-experiment-canvas") as HTMLCanvasElement;
@@ -219,18 +264,56 @@ export default function ToneCanvasPage() {
             </div>
           </div>
 
-          <div>
+          {/* Buttons */}
+          <div className="flex flex-row gap-2">
+            <button 
+              onClick={handleCopyToClipboard}
+            >
+              Copy to clipboard
+            </button>
+            <button
+              onClick={handleDownload}
+            >
+              Download Image
+            </button>
           </div>
-          <button 
-            onClick={handleCopyToClipboard}
-          >
-            Copy to clipboard
-          </button>
-          <button
-            onClick={handleDownload}
-          >
-            Download Image
-          </button>
+
+          {/* File upload zone */}
+          <div className="mt-4">
+            <div
+              className={`border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-colors ${
+                isDragOver 
+                  ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' 
+                  : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'
+              }`}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              onClick={handleFileInputClick}
+              tabIndex={0}
+              aria-label="Upload image file"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleFileInputClick();
+                }
+              }}
+            >
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Drop an image here or click to browse
+              </p>
+              <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                Supports: JPG, PNG, GIF, WebP
+              </p>
+            </div>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleFileInputChange}
+              className="hidden"
+            />
+          </div>
         </div>
       </WindowTechMono>
 
@@ -274,7 +357,7 @@ export default function ToneCanvasPage() {
           attractionDistance={200}
           shrinkFactor={1}
           minRadius={0.5}
-          maxRadius={15}
+          maxRadius={5}
           delayFactor={0.85}
           delayCap={0.1}
           debounceTime={3000}
