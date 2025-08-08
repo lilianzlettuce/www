@@ -20,8 +20,9 @@ export function SideBar3({ className }: NavBarProps) {
   return (
     <nav className={`${className} z-50 sticky top-0 left-0 min-w-50 h-screen py-2 bg-background`}>
       <div className="w-full h-full border-r border-border p-0 flex flex-col justify-between">
-        <div className="w-full h-full flex flex-col justify-start items-center gap-0">
-          <div className="w-full flex items-center justify-end gap-2 text-xs text-muted-foreground px-2">
+        <div className="w-full h-full px-2 flex flex-col justify-start items-center gap-0">
+          
+          <div className="w-full flex items-center justify-end gap-2 text-xs text-muted-foreground">
             <ThemeSlider buttonClassName="p-1" />
             <div className="min-w-fit flex justify-between">
               <span className="font-mono">{currentTime}</span>
@@ -29,7 +30,7 @@ export function SideBar3({ className }: NavBarProps) {
           </div>
 
           <div className="w-full hidden md:flex flex-col items-start justify-end gap-2">
-            <div className="w-full h-40 p-2">
+            <div className="w-full h-40 py-2">
               <div className="w-full h-full bg-white border-1 border-secondary-foreground">
                 <ZoomableImage
                   className="w-full h-full"
@@ -53,7 +54,7 @@ export function SideBar3({ className }: NavBarProps) {
                       : "text-muted-foreground"
                   }`}
                 >
-                  <span className="font-inter mx-4">↳</span> 
+                  <span className="font-inter mr-4 ml-2">↳</span> 
                   <span className={`grow group-hover/link:line-through ${pathname === item.href ? "line-through" : ""}`}> {item.label}</span>
                 </Link>
               ))}
@@ -74,7 +75,7 @@ export function SideBar3({ className }: NavBarProps) {
         {/* Bottom content */}
         <div className="px-2 w-full flex flex-col items-center justify-start border--1 border-secondary">
           
-          <Link href="/" className="w-full h-8 p-0 text-muted">
+          <Link href="/" className="w-full h-8 p-0 text-muted-foreground">
             <LogoIcon className="w-full h-full" />
           </Link>
         </div>

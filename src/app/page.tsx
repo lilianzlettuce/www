@@ -2,8 +2,6 @@ import Link from "next/link";
 
 import { getFeaturedProjects, ProjectFrontmatter } from "@/lib/mdx";
 import { NavBar } from "@/components/NavBar";
-import { RevealButton, RevealButton2 } from "@/components/Buttons";
-
 import Hero from "@/components/homePage/Hero";
 import { ProjectCardLarge } from "@/components/workPage/Cards";
 

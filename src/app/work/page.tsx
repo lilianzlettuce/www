@@ -56,84 +56,81 @@ export default function WorkPage() {
   }, [projects, categoryFilters]);
 
   return (
-    <div className="min-h-screen flex flex-row">
-      <SideBar3 className="min-w-60" />
-      <div className="w-full px-4 sm:px-6 lg:px-6 py-0">
+    <div className="w-full px-4 sm:px-6 lg:px-6 py-0">
+      {/* Filtering */}
+      <div className="fixed z-60 top-0 left-64 flex items-center gap-2 mt-4">
+        <ProjectFilter 
+          categories={projectCategories}
+          toggleStyle="min-h-4.5 px-2 py-0 rounded-xs font-roboto-mono text-xs uppercase tracking-widest transition-colors"
+          toggleStyleActive="bg-foreground text-background"
+          toggleStyleInactive="border-1 border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground"
+        />
+      </div>
+
+      <WorkPageHeader />
+
+      <div className="z-30 w-full flex flex-col items-start justify-between gap-2 mb-8">
+        {/* View Mode Buttons */}
+        <div className="flex gap-2">
+          <button className={`p-1 flex items-center gap-1 
+                    font-roboto-mono text-xs lowercase transition-colors 
+                    ${viewMode === "list" ? "text-foreground font-semibold" 
+                      : "text-muted-foreground hover:text-foreground"}`}
+            onClick={() => setViewMode("list")}
+          >
+            
+            <ListIcon className="w-3.5 h-3.5" strokeWidth={2} /> List
+          </button>
+          <button className={`p-1 flex items-center gap-1 
+                    font-roboto-mono text-xs lowercase transition-colors 
+                    ${viewMode === "grid" ? "text-foreground font-semibold" 
+                      : "text-muted-foreground hover:text-foreground"}`}
+            onClick={() => setViewMode("grid")}
+          >
+            <GridIcon className="w-3.5 h-3.5" strokeWidth={2} /> Grid
+          </button>
+        </div>
+
         {/* Filtering */}
-        <div className="fixed z-60 top-0 left-64 flex items-center gap-2 mt-4">
-          <ProjectFilter 
-            categories={projectCategories}
-            toggleStyle="min-h-4.5 px-2 py-0 rounded-xs font-roboto-mono text-xs uppercase tracking-widest transition-colors"
-            toggleStyleActive="bg-foreground text-background"
-            toggleStyleInactive="border-1 border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground"
-          />
+        
+      </div>
+
+      {loading ? (
+        <div className="text-center py-12">
+          <p className="text-mutedForeground text-lg">Loading projects...</p>
         </div>
+      ) : (
+        <div className="w-full flex flex-col z-100 bg-background/80">
+          {/* Project Listings */}
+          {viewMode === "list" && (
+            <ProjectList projects={filteredProjects} />
+          )}
 
-        <WorkPageHeader />
-
-        <div className="z-30 w-full flex flex-col items-start justify-between gap-2 mb-8">
-          {/* View Mode Buttons */}
-          <div className="flex gap-2">
-            <button className={`p-1 flex items-center gap-1 
-                      font-roboto-mono text-xs lowercase transition-colors 
-                      ${viewMode === "list" ? "text-foreground font-semibold" 
-                        : "text-muted-foreground hover:text-foreground"}`}
-              onClick={() => setViewMode("list")}
-            >
-              
-              <ListIcon className="w-3.5 h-3.5" strokeWidth={2} /> List
-            </button>
-            <button className={`p-1 flex items-center gap-1 
-                      font-roboto-mono text-xs lowercase transition-colors 
-                      ${viewMode === "grid" ? "text-foreground font-semibold" 
-                        : "text-muted-foreground hover:text-foreground"}`}
-              onClick={() => setViewMode("grid")}
-            >
-              <GridIcon className="w-3.5 h-3.5" strokeWidth={2} /> Grid
-            </button>
-          </div>
-
-          {/* Filtering */}
-          
-        </div>
-
-        {loading ? (
-          <div className="text-center py-12">
-            <p className="text-mutedForeground text-lg">Loading projects...</p>
-          </div>
-        ) : (
-          <div className="w-full flex flex-col z-100 bg-background/80">
-            {/* Project Listings */}
-            {viewMode === "list" && (
-              <ProjectList projects={filteredProjects} />
-            )}
-
-            {viewMode === "grid" && (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProjects.map((project: ProjectFrontmatter) => (
-                  <ProjectCardBasic key={project.slug} project={project} />
-                ))}
-              </div>
-            )}
-
-            <div className="hidden flex flex-col">
-              {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
-                <ProjectCardLarge key={project.slug} project={project} />
+          {viewMode === "grid" && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProjects.map((project: ProjectFrontmatter) => (
+                <ProjectCardBasic key={project.slug} project={project} />
               ))}
             </div>
+          )}
 
-            {filteredProjects.length === 0 && (
-              <div className="z-10 text-center py-12">
-                <p className="text-mutedForeground text-lg">
-                  No projects found. They&apos;re probably hiding.
-                </p>
-              </div>
-            )}
+          <div className="hidden flex flex-col">
+            {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
+              <ProjectCardLarge key={project.slug} project={project} />
+            ))}
           </div>
-        )}
 
-        <WorkPageHeader2 />
-      </div>
+          {filteredProjects.length === 0 && (
+            <div className="z-10 text-center py-12">
+              <p className="text-mutedForeground text-lg">
+                No projects found. They&apos;re probably hiding.
+              </p>
+            </div>
+          )}
+        </div>
+      )}
+
+      <WorkPageHeader2 />
     </div>
   );
 } 

@@ -1,11 +1,9 @@
 import GooseMarquee from "@/components/GooseMarquee";
-import { NavBar } from "@/components/NavBar";
 import Sprite from "@/components/Sprite";
 
 export default async function PixelPage() {
   return (
     <div className="min-h-screen bg-background">
-      <NavBar />
       <div className="p-20">
         <div className="flex flex-col items-center justify-center gap-0">
           <div className="flex flex-col items-center justify-center gap-0">
