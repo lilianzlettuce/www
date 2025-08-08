@@ -4,12 +4,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useMousePosition } from "@/hooks/useMousePosition";
-import { ExternalLinkIcon } from "../svg/Icons";
+import { ExternalLinkIcon, PlusIcon } from "../svg/Icons";
 import { ProjectFrontmatter } from "@/lib/mdx";
 import { TagLabelFill, TagLabelStroke } from "./Labels";
+import BoxCorners from "../svg/BoxCorners";
 
 type ProjectCardProps = {
     project: ProjectFrontmatter;
+    className?: string;
     index?: number;
     mousePos?: { x: number; y: number };
 }
@@ -158,49 +160,13 @@ export function ProjectCardLarge({ project }: ProjectCardProps) {
             key={project.slug}
             href={`/work/${project.slug}`}
             className="group relative h-75 rounded-none border-1 border-border hover:border-muted-foreground transition-all duration-300 hover:-translate-y-1"
-            style={{ "--corner-size": "4px", 
-                "--corner-offset": "-2px",
-                "--corner-color": "var(--secondaryForeground)" } as React.CSSProperties}
         >
             {/* Decorative corners */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute bg-foreground"
-                    style={{
-                        width: "var(--corner-size)",
-                        height: "var(--corner-size)",
-                        top: "var(--corner-offset)",
-                        left: "var(--corner-offset)",
-                        backgroundColor: "var(--corner-color)"
-                    }}
-                ></div>
-                <div className="absolute"
-                    style={{
-                        width: "var(--corner-size)",
-                        height: "var(--corner-size)",
-                        top: "var(--corner-offset)",
-                        right: "var(--corner-offset)",
-                        backgroundColor: "var(--corner-color)"
-                    }}
-                ></div>
-                <div className="absolute"
-                    style={{
-                        width: "var(--corner-size)",
-                        height: "var(--corner-size)",
-                        bottom: "var(--corner-offset)",
-                        left: "var(--corner-offset)",
-                        backgroundColor: "var(--corner-color)"
-                    }}
-                ></div>
-                <div className="absolute"
-                    style={{
-                        width: "var(--corner-size)",
-                        height: "var(--corner-size)",
-                        bottom: "var(--corner-offset)",
-                        right: "var(--corner-offset)",
-                        backgroundColor: "var(--corner-color)"
-                    }}
-                ></div>
-            </div>
+            <BoxCorners
+                cornerSize="4px"
+                cornerOffset="-2px"
+                cornerColor="var(--secondaryForeground)"
+            />
 
             {/* Project content */}
             <div className="w-full h-full p-4 flex flex-row gap-4">
@@ -258,54 +224,86 @@ export function ProjectCardLarge({ project }: ProjectCardProps) {
     );
 };
 
-export function ProjectCardBasic({ project }: ProjectCardProps) {
+export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCardProps) {
     return (
         <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className="group relative h-90 rounded-none border-1 border-border hover:border-muted-foreground hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-            style={{ "--corner-size": "4px", 
-                "--corner-offset": "-2px",
-                "--corner-color": "var(--secondaryForeground)" } as React.CSSProperties}
+            className={`${className} group relative rounded-none box-border border-1 border-border hover:border-muted-foreground hover:shadow-lg transition-all duration-300 hover:-translate-y-1`}
         >
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute bg-foreground"
-                    style={{
-                        width: "var(--corner-size)",
-                        height: "var(--corner-size)",
-                        top: "var(--corner-offset)",
-                        left: "var(--corner-offset)",
-                        backgroundColor: "var(--corner-color)"
-                    }}
-                ></div>
-                <div className="absolute"
-                    style={{
-                        width: "var(--corner-size)",
-                        height: "var(--corner-size)",
-                        top: "var(--corner-offset)",
-                        right: "var(--corner-offset)",
-                        backgroundColor: "var(--corner-color)"
-                    }}
-                ></div>
-                <div className="absolute"
-                    style={{
-                        width: "var(--corner-size)",
-                        height: "var(--corner-size)",
-                        bottom: "var(--corner-offset)",
-                        left: "var(--corner-offset)",
-                        backgroundColor: "var(--corner-color)"
-                    }}
-                ></div>
-                <div className="absolute"
-                    style={{
-                        width: "var(--corner-size)",
-                        height: "var(--corner-size)",
-                        bottom: "var(--corner-offset)",
-                        right: "var(--corner-offset)",
-                        backgroundColor: "var(--corner-color)"
-                    }}
-                ></div>
+            <BoxCorners
+                icon={<div className="w-full h-full border-t-1 border-l-1 border-muted-foreground"></div>}
+                cornerSize="16px"
+                cornerOffset="-1px"
+                cornerColor="transparent"
+            />
+            <div className="w-full h-full p-4 flex flex-col gap-4">
+                <div className="relative w-full h-full flex items-center justify-center border-1 border-secondary">
+                    {project.image ? (
+                        <Image
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-60 object-cover"
+                            fill={true}
+                        />
+                    ) : (
+                        <div className="text-mutedForeground text-4xl font-bold">
+                            {project.title.charAt(0)}
+                        </div>
+                    )}
+                </div>
+                
+                <div className="h-55 flex flex-col justify-between">
+                    <div>
+                        <div className="flex items-start justify-between">
+                            <h3 className="font-roboto-monotext-base font-semibold text-foreground">
+                                {project.title}
+                            </h3>
+                        </div>
+                        <p className="font-ibm-plex-mono text-sm text-mutedForeground line-clamp-2">
+                            {project.description}
+                        </p>
+                    </div>
+                    
+                    <div className="flex flex-col gap-2">
+                        <div className="flex flex-wrap gap-2 font-roboto-mono text-[0.65rem] tracking-widest uppercase">
+                            {project.tags?.slice(0, 3).map((tag: string) => (
+                                <span
+                                    key={tag}
+                                    className="h-fit px-1 py-0.4 rounded-xs bg-foreground text-background"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                            {project.tags && project.tags.length > 3 && (
+                                <span className="h-fit px-1 py-0.4 rounded-xs bg-muted text-mutedForeground">
+                                    +{project.tags.length - 3}
+                                </span>
+                            )}
+                        </div>
+
+                        <p className="font-roboto-mono text-[0.6rem] tracking-widest">
+                            &#91;{project.date.split("-").reverse().join(".")}&#93;
+                        </p>
+                    </div>
+                </div>
             </div>
+        </Link>
+    );
+};
+
+export function ProjectCardBasic({ project, className = "h-90" }: ProjectCardProps) {
+    return (
+        <Link
+            key={project.slug}
+            href={`/work/${project.slug}`}
+            className={`${className} group relative rounded-none border-1 border-border hover:border-muted-foreground hover:shadow-lg transition-all duration-300 hover:-translate-y-1`}
+        >
+            <BoxCorners
+                cornerSize="4px"
+                cornerOffset="-2px"
+                cornerColor="var(--secondaryForeground)"
+            />
             <div className="w-full h-full p-4 flex flex-col gap-4">
                 <div className="relative w-full h-full flex items-center justify-center border-1 border-secondary">
                     {project.image ? (

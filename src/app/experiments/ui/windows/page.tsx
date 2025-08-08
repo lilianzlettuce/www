@@ -6,6 +6,7 @@ import { WindowMinimal, WindowTechMono } from "@/components/Windows";
 import { BgPattern, GridContainer } from "@/components/svg/BgPatterns";
 import ShrinkCircles from "@/components/canvasGraphics/ShrinkCircles";
 import { DevIcon, DesignIcon, ArtIcon } from "@/components/svg/Icons";
+import BoxCorners from "@/components/svg/BoxCorners";
 
 export default function WindowsExperimentsPage() {
     return (
@@ -38,10 +39,10 @@ export default function WindowsExperimentsPage() {
                                     id="eye-icon"
                                     spriteSize={16}
                                     backgroundImage="/img/sprite/eye-open.png"
-                                    steps={1}
+                                    numFrames={1}
                                     duration={1}
                                     onHover={true}
-                                    hoverSteps={2}
+                                    hoverNumFrames={2}
                                     hoverDuration={0.3}
                                     style={{ scale: "1.05 1.05" }}
                                   />
@@ -129,10 +130,10 @@ export default function WindowsExperimentsPage() {
                           id="eye-icon"
                           spriteSize={16}
                           backgroundImage="/img/sprite/eye-open.png"
-                          steps={1}
+                          numFrames={1}
                           duration={1}
                           onHover={true}
-                          hoverSteps={2}
+                          hoverNumFrames={2}
                           hoverDuration={0.3}
                           style={{ scale: "1.05 1.05" }}
                         />
@@ -162,10 +163,10 @@ export default function WindowsExperimentsPage() {
                           id="eye-icon"
                           spriteSize={16}
                           backgroundImage="/img/sprite/eye-open.png"
-                          steps={1}
+                          numFrames={1}
                           duration={1}
                           onHover={true}
-                          hoverSteps={2}
+                          hoverNumFrames={2}
                           hoverDuration={0.3}
                           style={{ scale: "1.2 1.2" }}
                         />
@@ -265,7 +266,7 @@ export default function WindowsExperimentsPage() {
 
                           {/* Right window display */}
                           <GridContainer 
-                              className="min-w-1/2 h-full pt-2 px-6 border-1 border-border flex items-center justify-center"
+                              className="relative min-w-1/2 h-full pt-2 px-6 border-1 border-border flex items-center justify-center"
                               layers={[
                                   {
                                       spacing: 30,
@@ -299,6 +300,15 @@ export default function WindowsExperimentsPage() {
                                   debounceTime={0}
                                   autoAnimStep={0.03}
                               />*/}
+                              <BoxCorners
+                                  icon={<PlusIcon className="w-full h-full text-secondary-foreground" strokeWidth={2} />}
+                                  cornerSize="16px"
+                                  cornerOffset="-8px"
+                                  cornerColor="transparent"
+                              />
+                              <div className="absolute -top-[40%] -left-[40%] w-full h-full flex items-center justify-center">
+                                you are here.
+                              </div>
                               <ShrinkCircles 
                                   interactionMode="none"
                                   bgColor="none"

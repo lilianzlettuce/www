@@ -6,7 +6,7 @@ import { useMemo, useState, useEffect } from "react";
 import { ProjectFrontmatter } from "@/lib/mdx";
 import { projectCategories } from "@/lib/data";
 
-import { ProjectCardBasic, ProjectListItem, ProjectListItemTechMono, ProjectCardLarge } from "@/components/workPage/Cards";
+import { ProjectCardBasic, ProjectListItem, ProjectListItemTechMono, ProjectCardLarge, ProjectCardTechMono } from "@/components/workPage/Cards";
 import { NavBar, SideBar, SideBar2, SideBar3 } from "@/components/NavBar";
 import { WorkPageHeader, WorkPageHeader2 } from "@/components/workPage/Header";
 import { ProjectFilter, ProjectMultiFilter } from "@/components/workPage/ProjectFilter";
@@ -107,19 +107,40 @@ export default function WorkPage() {
             <ProjectList projects={filteredProjects} />
           )}
 
-          {viewMode === "grid" && (
+          {/* Dev Grid View */}
+          {viewMode === "grid" && categoryFilters.includes("dev") && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProjects.map((project: ProjectFrontmatter) => (
-                <ProjectCardBasic key={project.slug} project={project} />
+                <ProjectCardTechMono 
+                  key={project.slug} 
+                  project={project} 
+                  className="h-90" 
+                />
               ))}
             </div>
           )}
 
-          <div className="hidden flex flex-col">
-            {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
-              <ProjectCardLarge key={project.slug} project={project} />
-            ))}
-          </div>
+          {/* Design Grid View */}
+          {viewMode === "grid" && categoryFilters.includes("design") && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProjects.map((project: ProjectFrontmatter) => (
+                <ProjectCardBasic 
+                  key={project.slug} 
+                  project={project} 
+                  className="h-90" 
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Art Grid View */}
+          {viewMode === "grid" && categoryFilters.includes("art") && (
+            <div className="flex flex-col">
+              {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
+                <ProjectCardLarge key={project.slug} project={project} />
+              ))}
+            </div>
+          )}
 
           {filteredProjects.length === 0 && (
             <div className="z-10 text-center py-12">
