@@ -114,7 +114,7 @@ export default function WorkPage() {
                 <ProjectCardTechMono 
                   key={project.slug} 
                   project={project} 
-                  className="h-90" 
+                  className="min-h-90" 
                 />
               ))}
             </div>

@@ -135,6 +135,7 @@ body {
   --font-inter: var(--font-inter);
   --font-noto-sans: var(--font-noto-sans);
   --font-open-sans: var(--font-open-sans);
+  --font-ibm-plex-sans: var(--font-ibm-plex-sans);
   --font-roboto: var(--font-roboto);
 
   --font-roboto-mono: var(--font-roboto-mono);
