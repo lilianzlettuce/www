@@ -29,6 +29,9 @@ export default async function PixelPage() {
                   backgroundImage="/img/sprite/goose-walk2.png"
                   numFrames={4}
                   duration={1}
+                  onHover={true}
+                  hoverNumFrames={4}
+                  hoverDuration={0.5}
                   style={{ scale: 3 }}
                   iterationCount="1"
                 />
@@ -62,26 +65,26 @@ export default async function PixelPage() {
                   numFrames={1}
                   duration={1}
                   row={0}
-                  hoverRow={2}
+                  hoverRow={1}
                   onHover={true}
-                  hoverNumFrames={5}
-                  hoverDuration={0.5}
+                  hoverNumFrames={1}
+                  hoverDuration={1}
                   style={{ scale: 3 }}
                   iterationCount="1"
                 />
               </div>
 
               <div>
-                <h3 className="text-sm font-medium mb-2">Eye Blink</h3>
+                <h3 className="text-sm font-medium mb-2">Eye Open to Close</h3>
                 <Sprite
-                  id="eye-sprite2"
+                  id="eye-sprite"
                   spriteSize={15}
                   numRows={3}
                   numCols={5}
                   backgroundImage="/img/sprite/eye-sprite.png"
-                  numFrames={5}
+                  numFrames={1}
                   duration={1}
-                  row={2}
+                  row={0}
                   hoverRow={2}
                   onHover={true}
                   hoverNumFrames={5}

@@ -65,6 +65,10 @@ const Sprite = ({
 
   const backgroundSize = `${spriteSheetWidth}px ${spriteSheetHeight}px`;
 
+  // Only apply animation if numFrames > 1
+  const shouldAnimate = numFrames > 1;
+  const shouldHoverAnimate = hoverNumFrames > 1;
+
   return (
     <>
       <div
@@ -77,9 +81,11 @@ const Sprite = ({
           backgroundPosition: `0px -${rowPosition}px`,
           backgroundRepeat: "no-repeat",
           imageRendering: "pixelated",
-          animation: isHovered && onHover
+          animation: isHovered && onHover && shouldHoverAnimate
             ? `${hoverAnimationName} ${hoverDuration}s steps(${hoverSteps}) ${iterationCount} ${fillMode}`
-            : `${idleAnimationName} ${duration}s steps(${steps}) ${iterationCount} ${fillMode}`,
+            : shouldAnimate
+            ? `${idleAnimationName} ${duration}s steps(${steps}) ${iterationCount} ${fillMode}`
+            : "none",
           ...style
         }}
         onMouseEnter={() => {
