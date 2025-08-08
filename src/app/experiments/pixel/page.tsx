@@ -77,7 +77,7 @@ export default async function PixelPage() {
               <div>
                 <h3 className="text-sm font-medium mb-2">Eye Open to Close</h3>
                 <Sprite
-                  id="eye-sprite"
+                  id="eye-sprite2"
                   spriteSize={15}
                   numRows={3}
                   numCols={5}
@@ -89,6 +89,26 @@ export default async function PixelPage() {
                   onHover={true}
                   hoverNumFrames={5}
                   hoverDuration={0.5}
+                  style={{ scale: 3 }}
+                  iterationCount="1"
+                />
+              </div>
+
+              <div>
+                <h3 className="text-sm font-medium mb-2">Eye Close to Open</h3>
+                <Sprite
+                  id="eye-sprite3"
+                  spriteSize={15}
+                  numRows={3}
+                  numCols={5}
+                  backgroundImage="/img/sprite/eye-sprite.png"
+                  numFrames={5}
+                  duration={0.5}
+                  row={2}
+                  hoverRow={0}
+                  onHover={true}
+                  hoverNumFrames={1}
+                  hoverDuration={1}
                   style={{ scale: 3 }}
                   iterationCount="1"
                 />

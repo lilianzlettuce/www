@@ -83,6 +83,8 @@ const Sprite = ({
           imageRendering: "pixelated",
           animation: isHovered && onHover && shouldHoverAnimate
             ? `${hoverAnimationName} ${hoverDuration}s steps(${hoverSteps}) ${iterationCount} ${fillMode}`
+            : isHovered && onHover && !shouldHoverAnimate
+            ? "none"
             : shouldAnimate
             ? `${idleAnimationName} ${duration}s steps(${steps}) ${iterationCount} ${fillMode}`
             : "none",
