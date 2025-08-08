@@ -5,6 +5,8 @@ import React, { useState } from "react";
 interface SpriteProps {
   id: string; // unique id 
   spriteSize?: number; // size of each sprite frame in pixels
+  numRows?: number; // number of rows in the sprite sheet
+  numCols?: number; // number of columns in the sprite sheet
   backgroundImage: string; // URL of the sprite sheet
   steps?: number; // number of animation frames
   duration?: number; // animation duration in seconds
@@ -15,13 +17,16 @@ interface SpriteProps {
   onHover?: boolean; // whether to use hover animation
   hoverSteps?: number; 
   hoverDuration?: number;
-  hoverBackgroundImage?: string; // different sprite sheet for hover animation
+  row?: number; // which row the default animation is on (0-indexed)
+  hoverRow?: number; // which row the hover animation is on (0-indexed)
   hoverIterationCount?: string;
 }
 
 const Sprite = ({
   id,
   spriteSize = 32,
+  numRows = 1,
+  numCols = 1,
   backgroundImage,
   steps = 2,
   duration = 1,
@@ -32,29 +37,29 @@ const Sprite = ({
   onHover = false,
   hoverSteps = 2,
   hoverDuration = 0.2,
-  hoverBackgroundImage
+  row = 0,
+  hoverRow = 0
 }: SpriteProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  
-  // Calculate total width of sprite sheet
-  const spriteSheetWidth = spriteSize * steps;
-  const hoverSpriteSheetWidth = spriteSize * hoverSteps;
+
+  // Calculate total width and height of sprite sheet
+  const spriteSheetWidth = spriteSize * numCols;
+  const spriteSheetHeight = spriteSize * numRows;
+
+  // Calculate width and height of the different sprite sheets
+  const defaultAnimSheetWidth = spriteSize * steps;
+  const hoverAnimSheetWidth = spriteSize * hoverSteps;
   
   // Set unique animation names to avoid conflicts
   const idleAnimationName = `sprite-idle-${id}`;
   const hoverAnimationName = `sprite-hover-${id}`;
 
-  // Determine which background image and animation to use
-  const currentBackgroundImage = isHovered && hoverBackgroundImage 
-    ? hoverBackgroundImage 
-    : backgroundImage;
-  
-  const currentSpriteSheetWidth = isHovered && hoverBackgroundImage 
-    ? hoverSpriteSheetWidth 
-    : spriteSheetWidth;
+  // Calculate row positions for background-position
+  const currentRow = isHovered && onHover ? hoverRow : row;
+  const rowPosition = currentRow * spriteSize;
 
   const finite = iterationCount !== "infinite";
-  const backgroundSize = finite ? `${currentSpriteSheetWidth + spriteSize}px ${spriteSize}px` : `${currentSpriteSheetWidth}px ${spriteSize}px`;
+  const backgroundSize = finite ? `${spriteSheetWidth + spriteSize}px ${spriteSheetHeight}px` : `${spriteSheetWidth}px ${spriteSheetHeight}px`;
 
   return (
     <>
@@ -63,8 +68,9 @@ const Sprite = ({
         style={{
           width: `${spriteSize}px`,
           height: `${spriteSize}px`,
-          backgroundImage: `url(${currentBackgroundImage})`,
+          backgroundImage: `url(${backgroundImage})`,
           backgroundSize: backgroundSize,
+          backgroundPosition: `0px -${rowPosition}px`,
           imageRendering: "pixelated",
           animation: isHovered && onHover
             ? `${hoverAnimationName} ${hoverDuration}s steps(${hoverSteps}) ${iterationCount} ${fillMode}`
@@ -78,19 +84,19 @@ const Sprite = ({
       <style jsx>{`
         @keyframes ${idleAnimationName} {
           from { 
-            background-position: 0px 0px; 
+            background-position: 0px -${row * spriteSize}px; 
           }
           to { 
-            background-position: -${spriteSheetWidth}px 0px; 
+            background-position: -${defaultAnimSheetWidth}px -${row * spriteSize}px; 
           }
         }
         
         @keyframes ${hoverAnimationName} {
           from { 
-            background-position: 0px 0px; 
+            background-position: 0px -${hoverRow * spriteSize}px; 
           }
           to { 
-            background-position: -${hoverSpriteSheetWidth}px 0px; 
+            background-position: -${hoverAnimSheetWidth}px -${hoverRow * spriteSize}px; 
           }
         }
       `}</style>

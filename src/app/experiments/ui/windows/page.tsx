@@ -43,7 +43,6 @@ export default function WindowsExperimentsPage() {
                                     onHover={true}
                                     hoverSteps={2}
                                     hoverDuration={0.3}
-                                    hoverBackgroundImage="/img/sprite/goose-walk.png"
                                     style={{ scale: "1.05 1.05" }}
                                   />
                                 </div>}
@@ -109,14 +108,14 @@ export default function WindowsExperimentsPage() {
                                 <RoundPixelatedArrowIcon className="w-10 h-10" strokeWidth={1.5} />
                             </div>
                         </div>
-                        <p className="text-[0.6rem] flex flex-row items-center justify-between">
+                        <div className="text-[0.6rem] flex flex-row items-center justify-between">
                             <div>
                                 IBM-X340 +++// 
                             </div>
                             <div>
                                 &#91; ■■■■■□□□ &#93;
                             </div>
-                        </p>
+                        </div>
                     </div>
                 </div>
               </WindowTechMono>
@@ -135,7 +134,6 @@ export default function WindowsExperimentsPage() {
                           onHover={true}
                           hoverSteps={2}
                           hoverDuration={0.3}
-                          hoverBackgroundImage="/img/sprite/goose-walk.png"
                           style={{ scale: "1.05 1.05" }}
                         />
                       </div>
@@ -169,7 +167,6 @@ export default function WindowsExperimentsPage() {
                           onHover={true}
                           hoverSteps={2}
                           hoverDuration={0.3}
-                          hoverBackgroundImage="/img/sprite/goose-walk.png"
                           style={{ scale: "1.2 1.2" }}
                         />
                       </div>

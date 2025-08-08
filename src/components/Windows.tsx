@@ -33,7 +33,6 @@ export function WindowTechMono({
                                 onHover={true}
                                 hoverSteps={2}
                                 hoverDuration={0.3}
-                                hoverBackgroundImage="/img/sprite/goose-walk.png"
                                 style={{ scale: 1.1 }}
                             />}
                         </div>
@@ -80,7 +79,6 @@ export function HeroWindow({
                                                         onHover={true}
                                                         hoverSteps={2}
                                                         hoverDuration={0.3}
-                                                        hoverBackgroundImage="/img/sprite/goose-walk.png"
                                                         style={{ scale: "1.2 1.2" }}
                                                     />
                                                 </div>
