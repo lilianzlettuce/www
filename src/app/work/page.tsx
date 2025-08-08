@@ -104,7 +104,9 @@ export default function WorkPage() {
         ) : (
           <div className="w-full flex flex-col z-100 bg-background/80">
             {/* Project Listings */}
-            <ProjectList projects={filteredProjects} />
+            {viewMode === "list" && (
+              <ProjectList projects={filteredProjects} />
+            )}
 
             {viewMode === "grid" && (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

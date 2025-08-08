@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef } from "react";
 import Draggable from "./Draggable";
 import Sprite from "./Sprite";
 import { MinimizeIcon, ExpandIcon, XIcon, ExpandIcon2, PixelatedXIcon } from "./svg/Icons";
@@ -17,24 +20,33 @@ export function WindowTechMono({
     dragHandleIcon, 
     dragHandleText 
 }: WindowProps) {
+    const iconParentRef = useRef<HTMLDivElement>(null);
+
     return (
         <Draggable>
-            <div className={`${className} flex flex-col bg-background text-foreground border border-foreground shadow-lg`}>
+            <div className={`${className} flex flex-col bg-background text-foreground border border-foreground shadow-lg`}
+                ref={iconParentRef}
+            >
                 {/* Window handle */}
                 <div className={`${dragHandleClassName} z-50 handle select-none cursor-grab px-1 py-0 flex justify-between items-center gap-2`}>
                     <div className="flex flex-row items-center gap-2">
                         <div className="mix-blend-difference text-white">
-                            {dragHandleIcon || <Sprite
-                                id="eye-icon"
-                                spriteSize={16}
-                                backgroundImage="/img/sprite/eye-open.png"
-                                steps={1}
-                                duration={1}
-                                onHover={true}
-                                hoverSteps={2}
-                                hoverDuration={0.3}
-                                style={{ scale: 1.1 }}
-                            />}
+                            {dragHandleIcon || <Sprite parentRef={iconParentRef}
+                                                    id="eye-sprite-window-tech-mono"
+                                                    spriteSize={15}
+                                                    numRows={3}
+                                                    numCols={5}
+                                                    backgroundImage="/img/sprite/eye-sprite.png"
+                                                    numFrames={5}
+                                                    duration={0.5}
+                                                    row={2}
+                                                    hoverRow={0}
+                                                    onHover={true}
+                                                    hoverNumFrames={1}
+                                                    hoverDuration={1}
+                                                    style={{ scale: 1.1 }}
+                                                    iterationCount="1"
+                                                />}
                         </div>
                         <div className="text-sm font-tiny5 uppercase">
                             {dragHandleText}
@@ -71,15 +83,20 @@ export function HeroWindow({
                     <div className="flex flex-row items-center gap-2">
                             {dragHandleIcon || <div className="mix-blend-difference">
                                                     <Sprite
-                                                        id="eye-icon"
-                                                        spriteSize={16}
-                                                        backgroundImage="/img/sprite/eye-open.png"
-                                                        steps={1}
+                                                        id="eye-sprite-hero-window"
+                                                        spriteSize={15}
+                                                        numRows={3}
+                                                        numCols={5}
+                                                        backgroundImage="/img/sprite/eye-sprite.png"
+                                                        numFrames={1}
                                                         duration={1}
+                                                        row={0}
+                                                        hoverRow={1}
                                                         onHover={true}
-                                                        hoverSteps={2}
-                                                        hoverDuration={0.3}
-                                                        style={{ scale: "1.2 1.2" }}
+                                                        hoverNumFrames={1}
+                                                        hoverDuration={1}
+                                                        style={{ scale: 1.2 }}
+                                                        iterationCount="1"
                                                     />
                                                 </div>
                             }

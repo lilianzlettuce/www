@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 interface SpriteProps {
   id: string; // unique id 
@@ -20,6 +20,7 @@ interface SpriteProps {
   row?: number; // which row the default animation is on (0-indexed)
   hoverRow?: number; // which row the hover animation is on (0-indexed)
   hoverIterationCount?: string;
+  parentRef?: React.RefObject<HTMLElement | null>; // ref to parent element to detect hover
 }
 
 const Sprite = ({
@@ -38,9 +39,34 @@ const Sprite = ({
   hoverNumFrames = 2,
   hoverDuration = 0.2,
   row = 0,
-  hoverRow = 0
+  hoverRow = 0,
+  parentRef
 }: SpriteProps) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  // Handle parent hover detection
+  useEffect(() => {
+    if (!parentRef?.current) return;
+
+    const parentElement = parentRef.current;
+
+    const handleParentMouseEnter = () => {
+      setIsHovered(true);
+      console.log("parent mouse entered");
+    };
+
+    const handleParentMouseLeave = () => {
+      setIsHovered(false);
+    };
+
+    parentElement.addEventListener("mouseenter", handleParentMouseEnter);
+    parentElement.addEventListener("mouseleave", handleParentMouseLeave);
+
+    return () => {
+      parentElement.removeEventListener("mouseenter", handleParentMouseEnter);
+      parentElement.removeEventListener("mouseleave", handleParentMouseLeave);
+    };
+  }, [parentRef]);
 
   // Calculate total width and height of sprite sheet
   const spriteSheetWidth = spriteSize * numCols;
@@ -91,10 +117,16 @@ const Sprite = ({
           ...style
         }}
         onMouseEnter={() => {
-          setIsHovered(true);
-          console.log("mouse entered");
+          if (!parentRef) {
+            setIsHovered(true);
+            console.log("mouse entered");
+          }
         }}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseLeave={() => {
+          if (!parentRef) {
+            setIsHovered(false);
+          }
+        }}
       />
       
       <style jsx>{`
