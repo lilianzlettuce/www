@@ -41,7 +41,7 @@ const GooseMarquee = ({
               numRows={1}
               numCols={4}
               backgroundImage="/img/sprite/goose-walk2.png"
-              steps={4}
+              numFrames={4}
               duration={1}
               style={{
                 scale: scale,
@@ -63,8 +63,10 @@ const GooseMarquee = ({
               id={`goose-2-${index}`}
               className={`goose-1-${index}`}
               spriteSize={32}
+              numRows={1}
+              numCols={4}
               backgroundImage="/img/sprite/goose-walk2.png"
-              steps={4}
+              numFrames={4}
               duration={1}
               style={{
                 scale: scale,

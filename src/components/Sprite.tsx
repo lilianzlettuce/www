@@ -8,14 +8,14 @@ interface SpriteProps {
   numRows?: number; // number of rows in the sprite sheet
   numCols?: number; // number of columns in the sprite sheet
   backgroundImage: string; // URL of the sprite sheet
-  steps?: number; // number of animation frames
+  numFrames?: number; // number of animation frames
   duration?: number; // animation duration in seconds
   fillMode?: "forwards" | "backwards" | "both" | "none"; // CSS animation-fill-mode
   iterationCount?: string; // CSS animation-iteration-count
   className?: string;
   style?: React.CSSProperties;
   onHover?: boolean; // whether to use hover animation
-  hoverSteps?: number; 
+  hoverNumFrames?: number; 
   hoverDuration?: number;
   row?: number; // which row the default animation is on (0-indexed)
   hoverRow?: number; // which row the hover animation is on (0-indexed)
@@ -28,14 +28,14 @@ const Sprite = ({
   numRows = 1,
   numCols = 1,
   backgroundImage,
-  steps = 2,
+  numFrames = 2,
   duration = 1,
   fillMode = "forwards",
   iterationCount = "infinite",
   className = "",
   style = {},
   onHover = false,
-  hoverSteps = 2,
+  hoverNumFrames = 2,
   hoverDuration = 0.2,
   row = 0,
   hoverRow = 0
@@ -46,8 +46,13 @@ const Sprite = ({
   const spriteSheetWidth = spriteSize * numCols;
   const spriteSheetHeight = spriteSize * numRows;
 
+  // Calculate number of steps for the animation
+  const infinite = iterationCount === "infinite";
+  const steps = infinite ? numFrames : numFrames - 1;
+  const hoverSteps = infinite ? hoverNumFrames : hoverNumFrames - 1;
+
   // Calculate width and height of the different sprite sheets
-  const defaultAnimSheetWidth = spriteSize * steps;
+  const defaultAnimSheetWidth = spriteSize * steps; 
   const hoverAnimSheetWidth = spriteSize * hoverSteps;
   
   // Set unique animation names to avoid conflicts
@@ -58,8 +63,7 @@ const Sprite = ({
   const currentRow = isHovered && onHover ? hoverRow : row;
   const rowPosition = currentRow * spriteSize;
 
-  const finite = iterationCount !== "infinite";
-  const backgroundSize = finite ? `${spriteSheetWidth + spriteSize}px ${spriteSheetHeight}px` : `${spriteSheetWidth}px ${spriteSheetHeight}px`;
+  const backgroundSize = `${spriteSheetWidth}px ${spriteSheetHeight}px`;
 
   return (
     <>
@@ -71,13 +75,17 @@ const Sprite = ({
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: backgroundSize,
           backgroundPosition: `0px -${rowPosition}px`,
+          backgroundRepeat: "no-repeat",
           imageRendering: "pixelated",
           animation: isHovered && onHover
             ? `${hoverAnimationName} ${hoverDuration}s steps(${hoverSteps}) ${iterationCount} ${fillMode}`
             : `${idleAnimationName} ${duration}s steps(${steps}) ${iterationCount} ${fillMode}`,
           ...style
         }}
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseEnter={() => {
+          setIsHovered(true);
+          console.log("mouse entered");
+        }}
         onMouseLeave={() => setIsHovered(false)}
       />
       

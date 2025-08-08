@@ -20,14 +20,14 @@ export default async function PixelPage() {
             <h2 className="text-lg font-semibold mb-4">Sprite Component Examples:</h2>
             <div className="flex gap-8 items-center mb-8">
               <div>
-                <h3 className="text-sm font-medium mb-2">Goose (4 steps, 1s)</h3>
+                <h3 className="text-sm font-medium mb-2">Goose (4 numFrames, 1s)</h3>
                 <Sprite
                   id="finite-goose"
                   spriteSize={32}
                   numRows={1}
                   numCols={4}
                   backgroundImage="/img/sprite/goose-walk2.png"
-                  steps={3}
+                  numFrames={4}
                   duration={1}
                   style={{ scale: 3 }}
                   iterationCount="1"
@@ -42,29 +42,49 @@ export default async function PixelPage() {
                   numRows={1}
                   numCols={4}
                   backgroundImage="/img/sprite/goose-walk2.png"
-                  steps={4}
+                  numFrames={4}
                   duration={1}
                   onHover={true}
-                  hoverSteps={4}
+                  hoverNumFrames={4}
                   hoverDuration={0.5}
                   style={{ scale: 3 }}
                 />
               </div>
 
               <div>
-                <h3 className="text-sm font-medium mb-2">Goose with Different Hover Sprite</h3>
+                <h3 className="text-sm font-medium mb-2">Eye Open to Close</h3>
                 <Sprite
                   id="eye-sprite"
                   spriteSize={15}
                   numRows={3}
                   numCols={5}
                   backgroundImage="/img/sprite/eye-sprite.png"
-                  steps={1}
+                  numFrames={1}
                   duration={1}
                   row={0}
                   hoverRow={2}
                   onHover={true}
-                  hoverSteps={5}
+                  hoverNumFrames={5}
+                  hoverDuration={0.5}
+                  style={{ scale: 3 }}
+                  iterationCount="1"
+                />
+              </div>
+
+              <div>
+                <h3 className="text-sm font-medium mb-2">Eye Blink</h3>
+                <Sprite
+                  id="eye-sprite2"
+                  spriteSize={15}
+                  numRows={3}
+                  numCols={5}
+                  backgroundImage="/img/sprite/eye-sprite.png"
+                  numFrames={5}
+                  duration={1}
+                  row={2}
+                  hoverRow={2}
+                  onHover={true}
+                  hoverNumFrames={5}
                   hoverDuration={0.5}
                   style={{ scale: 3 }}
                   iterationCount="1"
