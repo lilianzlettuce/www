@@ -60,7 +60,6 @@ export default function WorkPage() {
 
   return (
     <div className="min-h-screen">
-      <NavBar className="" />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-left mb-16">
           <h1 className="text-4xl md:text-[400px]/[0.8] scale-x-170 translate-x-100 font-murmure font-bold text-foreground lowercase mb-4">

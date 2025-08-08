@@ -3,19 +3,57 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
+import { Category, getCategoryNames, getCategoryIcon } from "@/lib/data";
+import { 
+  DevIcon, 
+  DesignIcon, 
+  ArtIcon, 
+  SquareIcon, 
+  PixelatedXIcon 
+} from "@/components/svg/Icons";
 
 interface ProjectFilterProps {
-  categories: string[];
+  categories: string[] | Category[];
   toggleStyle?: string;
   toggleStyleActive?: string;
   toggleStyleInactive?: string;
+  showIcons?: boolean;
 }
+
+// Component to render the appropriate icon for a category
+const CategoryIcon = ({ 
+    category, 
+    className = "w-3 h-3", 
+    strokeWidth = 0,
+}: { 
+    category: string; 
+    className?: string; 
+    strokeWidth?: number; 
+}) => {
+  const iconName = getCategoryIcon(category);
+  
+  switch (iconName) {
+    case "DevIcon":
+      return <DevIcon className={className} strokeWidth={strokeWidth} />;
+    case "DesignIcon":
+      return <DesignIcon className={className} strokeWidth={strokeWidth} />;
+    case "ArtIcon":
+      return <ArtIcon className={className} strokeWidth={strokeWidth} />;
+    case "SquareIcon":
+      return <SquareIcon className={className} strokeWidth={strokeWidth} />;
+    case "PixelatedXIcon":
+      return <PixelatedXIcon className={className} strokeWidth={strokeWidth} />;
+    default:
+      return null;
+  }
+};
 
 export function ProjectFilter({ 
     categories, 
     toggleStyle = "px-3 py-1 text-sm rounded-full transition-colors", 
     toggleStyleActive = "bg-foreground text-background", 
-    toggleStyleInactive = "bg-muted text-mutedForeground hover:bg-secondary hover:text-foreground"
+    toggleStyleInactive = "bg-muted text-mutedForeground hover:bg-secondary hover:text-foreground",
+    showIcons = true
 }: ProjectFilterProps) {
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -37,6 +75,11 @@ export function ProjectFilter({
         [router, searchParams]
     );
 
+    // Convert categories to string array if it's Category array
+    const categoryNames = Array.isArray(categories) && categories.length > 0 && typeof categories[0] === 'object' 
+      ? (categories as Category[]).map(cat => cat.name)
+      : categories as string[];
+
     return (
         <div className="">
             <ToggleGroup.Root
@@ -56,7 +99,7 @@ export function ProjectFilter({
                     All
                 </ToggleGroup.Item>
                 
-                {categories.map((category, i) => (
+                {categoryNames.map((category, i) => (
                     <ToggleGroup.Item
                         key={category}
                         value={category}
@@ -64,9 +107,16 @@ export function ProjectFilter({
                         currentCategory === category
                             ? toggleStyleActive
                             : toggleStyleInactive
-                        } ${i === categories.length - 1 && "rotate-180 text-[0.5rem]"}`}
+                        } ${i === categoryNames.length - 1 && "rotate-180 text-[0.5rem]"}`}
                     >
-                        {category.charAt(0).toUpperCase() + category.slice(1)}
+                        <div className="flex items-center gap-1.5">
+                            {showIcons && getCategoryIcon(category) && (
+                                <CategoryIcon category={category} 
+                                    className="w-3 h-3"
+                                    strokeWidth={currentCategory === category ? 0 : 0} />
+                            )}
+                            <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
+                        </div>
                     </ToggleGroup.Item>
                 ))}
             </ToggleGroup.Root>
@@ -74,7 +124,7 @@ export function ProjectFilter({
     );
 } 
 
-export function ProjectMultiFilter({ categories }: ProjectFilterProps) {
+export function ProjectMultiFilter({ categories, showIcons = true }: ProjectFilterProps) {
     const router = useRouter();
     const searchParams = useSearchParams();
   
@@ -97,6 +147,11 @@ export function ProjectMultiFilter({ categories }: ProjectFilterProps) {
         },
         [router, searchParams]
     );
+
+    // Convert categories to string array if it's Category array
+    const categoryNames = Array.isArray(categories) && categories.length > 0 && typeof categories[0] === 'object' 
+      ? (categories as Category[]).map(cat => cat.name)
+      : categories as string[];
   
     return (
       <div className="flex flex-wrap gap-2 items-center">
@@ -121,7 +176,7 @@ export function ProjectMultiFilter({ categories }: ProjectFilterProps) {
           onValueChange={handleCategoryChange}
           className="flex flex-wrap gap-2 items-center"
         >
-            {categories.map((category) => (
+            {categoryNames.map((category) => (
                 <ToggleGroup.Item
                     key={category}
                     value={category}
@@ -131,7 +186,12 @@ export function ProjectMultiFilter({ categories }: ProjectFilterProps) {
                         : "bg-muted text-mutedForeground hover:bg-secondary hover:text-foreground"
                     }`}
                 >
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                    <div className="flex items-center gap-1.5">
+                        {showIcons && getCategoryIcon(category) && (
+                            <CategoryIcon category={category} />
+                        )}
+                        <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
+                    </div>
                 </ToggleGroup.Item>
             ))}
         </ToggleGroup.Root>

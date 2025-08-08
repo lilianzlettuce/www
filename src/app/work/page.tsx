@@ -64,6 +64,7 @@ export default function WorkPage() {
           toggleStyle="min-h-4.5 px-2 py-0 rounded-xs font-roboto-mono text-xs uppercase tracking-widest transition-colors"
           toggleStyleActive="bg-foreground text-background"
           toggleStyleInactive="border-1 border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground"
+          showIcons={true}
         />
       </div>
 

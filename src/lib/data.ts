@@ -12,12 +12,50 @@ export const socialLinks = [
     { href: "https://www.instagram.com/lettuce.0_0/", label: "Instagram" },
 ];
 
-export const projectCategories = [
-    "dev",
-    "design",
-    "art",
-    //"spider",
+export interface Category {
+  name: string;
+  icon?: string;
+  displayName?: string;
+}
 
+export const projectCategories: Category[] = [
+  {
+    name: "dev",
+    icon: "DevIcon",
+    displayName: "Dev"
+  },
+  {
+    name: "design", 
+    icon: "DesignIcon",
+    displayName: "Design"
+  },
+  {
+    name: "art",
+    icon: "ArtIcon", 
+    displayName: "Art"
+  },
+  /*{
+    name: "fabrication",
+    icon: "SquareIcon",
+    displayName: "Fabrication"
+  },*/
+  {
+    name: "B̷̩̺̗͍͓͑͆̈́ͨͦ̐̑̾̆ͩ̚͢͝L̵̡̠͓͎͎̠͕̙̦̦̹͖̗̭̟͔̭̆ͨ͋̈ͪ̅͒̈̍̎ͦ̓̈́̕͞͞ͅO̦̝ͥͪͅŐ͕͙͐Ḋ͖̜̘̜̳͙̝̥̓̓̊͋̌̀̎ͮ͘",
+    //icon: "PixelatedXIcon",
+    displayName: "BLOOD"
+  },
+  // Commented out categories for reference
+  // {
+  //   name: "spider",
+  //   icon: "SpiderIcon",
+  //   displayName: "Spider"
+  // },
+  // {
+  //   name: "ꓷ̢̫̠ͮͫͥ̀Ǫ̷̧̯̟̳̠͈͖̬ͨ͂̒̇͌ͦ́ͨǪ̷̴̥͈͔̇̏̉ͬ͐ͬ̀ͥ̐͠ͅꓶ̨̎ͥ͐ꓭ̸̴̷̨̧͉̺̤̬͙̠̪͚̝̲͚̼̻̫̿̃͑ͣ̃̔ͧͥ͊͒ͧ͟͜͞͝",
+  //   icon: "GlitchIcon",
+  //   displayName: "Glitch"
+  // },
+  //"spider",
 
     //"ꓷ̢̫̠ͮͫͥ̀Ǫ̷̧̯̟̳̠͈͖̬ͨ͂̒̇͌ͦ́ͨǪ̷̴̥͈͔̇̏̉ͬ͐ͬ̀ͥ̐͠ͅꓶ̨̎ͥ͐ꓭ̸̴̷̨̧͉̺̤̬͙̠̪͚̝̲͚̼̻̫̿̃͑ͣ̃̔ͧͥ͊͒ͧ͟͜͞͝",
 
@@ -25,16 +63,27 @@ export const projectCategories = [
 
 
     //"*̷̩̺̗͍͓͑͆̈́ͨͦ̐̑̾̆ͩ̚͢͝*̵̡̠͓͎͎̠͕̙̦̦̹͖̗̭̟͔̭̆ͨ͋̈ͪ̅͒̈̍̎ͦ̓̈́̕͞͞ͅ*̦̝ͥͪͅ*͕͙̋͐*͖̜̘̜̳͙̝̥̇̓̓̊͋̌̀̎ͮ͘",
-    "B̷̩̺̗͍͓͑͆̈́ͨͦ̐̑̾̆ͩ̚͢͝L̵̡̠͓͎͎̠͕̙̦̦̹͖̗̭̟͔̭̆ͨ͋̈ͪ̅͒̈̍̎ͦ̓̈́̕͞͞ͅO̦̝ͥͪͅŐ͕͙͐Ḋ͖̜̘̜̳͙̝̥̓̓̊͋̌̀̎ͮ͘",
 
 
     //"E̛̹̺̿́̓̋͟_̣̯̐́̽̓ͨ̏_̶̧̭͉̟͕̽̑̎ͮ͝Ŗ̢̛͓̹̼̻͕͖̪̰͚̦̫̹̋͊̒ͦ̎ͯ̈̅̍͢͝͝R̹̪͈̓̓̋͌O̭̭̥̱̽R͍͂̀̇͌",
 
 
-    
     //"N̸͉̯͚͙̜̲̒͋̐͛̆͋Ò̴̡̡͇̞͕͙̘̮͎̩͍̦̯̓͋̇̍̃̅ͥ̌̚̕Ņ̵̛͈̘̝̻̥̅ͪͥ̕E̩͕̦̻̋̓",
     //"N̷̛̯̣͍͕̒ͭ̌ͬ̎͒́͞Ő̮̺̟͌̌͟_͕̰̽_̸̤̉͡_̴̡͕͉̠̙ͤ́͑ͭ̿̂́͜N̴̛̲̜̟̦̪̺̹̯͗̉̀̂͌ͪͬͅĘ̰̣͙̙͉͍̥̘ͨ̓͗̋́͛́̉̿͐̊̀̃ͮͯ̅̐̃̒̚͡͡",
 ];
+
+// Helper function to get category names array (for backward compatibility)
+export const getCategoryNames = () => projectCategories.map(cat => cat.name);
+
+// Helper function to get category by name
+export const getCategoryByName = (name: string) => 
+  projectCategories.find(cat => cat.name === name);
+
+// Helper function to get icon for category
+export const getCategoryIcon = (categoryName: string) => {
+  const category = getCategoryByName(categoryName);
+  return category?.icon || null;
+};
 
 export const projects = [
     {

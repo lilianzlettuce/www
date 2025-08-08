@@ -1,5 +1,7 @@
 // Utility functions for general use
 
+import { getCategoryIcon as getCategoryIconFromData } from "./data";
+
 /**
  * Maps a value from one range to another.
  * @param val The value to map
@@ -22,3 +24,6 @@ export function mapTo(
   // Map to new given range
   return newMin + ratio * (newMax - newMin); 
 } 
+
+// Re-export the category icon function for convenience
+export const getCategoryIcon = getCategoryIconFromData; 
