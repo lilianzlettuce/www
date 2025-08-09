@@ -4,6 +4,7 @@ import matter from 'gray-matter';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import TechStack from '@/components/mdx/TechStack';
 import ProjectStats from '@/components/mdx/ProjectStats';
+import { IconButton } from '@/components/Buttons';
 
 const projectsDirectory = path.join(process.cwd(), 'content/projects');
 
@@ -24,6 +25,7 @@ export interface ProjectFrontmatter {
 const components = {
   TechStack,
   ProjectStats,
+  IconButton,
 };
 
 export async function getProjectSlugs(): Promise<string[]> {

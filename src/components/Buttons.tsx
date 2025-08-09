@@ -4,6 +4,18 @@ type ButtonProps = {
   className?: string;
 }
 
+export function IconButton({ 
+    text = "Proceed", 
+    className = "rounded-full px-2 bg-background text-foreground border-1 border-background hover:bg-foreground hover:text-background", 
+    icon = "→" 
+}: ButtonProps) {
+    return (
+        <button className={`${className} box-border group inline-flex items-center gap-1 transition-all duration-200 h-fit`}>
+            {text} {icon}
+        </button>
+    );
+}
+
 export function RevealButton2({ 
     text = "Proceed", 
     className = "rounded-full px-2 bg-foreground text-background border-1 border-foreground hover:bg-background hover:text-foreground", 

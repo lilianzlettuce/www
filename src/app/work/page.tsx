@@ -110,7 +110,7 @@ export default function WorkPage() {
           {viewMode === "grid" && categoryFilters.length === 0 && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProjects.map((project: ProjectFrontmatter) => (
-                <ProjectCardTechMono2 
+                <ProjectCardTechMono
                   key={project.slug} 
                   project={project} 
                   className="min-h-100" 
@@ -123,7 +123,7 @@ export default function WorkPage() {
           {viewMode === "grid" && categoryFilters.includes("dev") && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProjects.map((project: ProjectFrontmatter) => (
-                <ProjectCardTechMono 
+                <ProjectCardTechMono2 
                   key={project.slug} 
                   project={project} 
                   className="min-h-95" 

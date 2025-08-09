@@ -350,12 +350,14 @@ export function ProjectCardTechMono2({ project, className = "h-90" }: ProjectCar
                             />
                         </div>
                         <div className="hidden text-sm font-tiny5 uppercase">
-                            {project.categories.map((category: string) => (
-                                <span key={category}>
-                                    {category},&nbsp;
-                                </span>
-                            ))}
+                            {project.title}
                         </div>
+                        <div className="text-sm font-roboto-mono font-semibold capitalize line-clamp-1">
+                            {project.title}
+                        </div>
+                        <h3 className="hidden font-sans text-base font-semibold text-foreground">
+                            {project.title}
+                        </h3>
                     </div>
                     <div className="flex flex-row items-center justify-between gap-0">
                         <ExpandIcon2 className="hidden w-4.5 h-4.5" strokeWidth={2.5} />
@@ -364,11 +366,6 @@ export function ProjectCardTechMono2({ project, className = "h-90" }: ProjectCar
                         <SquareIcon className="hidden w-4.5 h-4.5 scale-70 text-muted-foreground" strokeWidth={8} />
                         {project.categories.map((category: string) => (
                             <CategoryIcon key={category} category={category} className="w-4.5 h-4.5" />
-                        ))}
-                        {project.categories.map((category: string) => (
-                            <span key={category} className="hidden text-sm font-tiny5 uppercase">
-                                {category}.&nbsp;
-                            </span>
                         ))}
                     </div>
                 </div>
@@ -396,10 +393,10 @@ export function ProjectCardTechMono2({ project, className = "h-90" }: ProjectCar
                         )}
                     </div>
                     
-                    <div className="h-60 flex flex-col justify-between">
+                    <div className="h-50 flex flex-col justify-between">
                         <div className="">
                             <div className="flex items-start justify-between">
-                                <h3 className="font-sans text-base font-semibold text-foreground">
+                                <h3 className="hidden font-sans text-base font-semibold text-foreground">
                                     {project.title}
                                 </h3>
                             </div>
@@ -481,14 +478,12 @@ export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCard
                             />
                         </div>
                         <div className="hidden text-sm font-tiny5 uppercase">
-                            {project.title}
+                            {project.categories.map((category: string) => (
+                                <span key={category}>
+                                    {category},&nbsp;
+                                </span>
+                            ))}
                         </div>
-                        <div className="text-sm font-roboto-mono font-semibold capitalize line-clamp-1">
-                            {project.title}
-                        </div>
-                        <h3 className="hidden font-sans text-base font-semibold text-foreground">
-                            {project.title}
-                        </h3>
                     </div>
                     <div className="flex flex-row items-center justify-between gap-0">
                         <ExpandIcon2 className="hidden w-4.5 h-4.5" strokeWidth={2.5} />
@@ -497,6 +492,11 @@ export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCard
                         <SquareIcon className="hidden w-4.5 h-4.5 scale-70 text-muted-foreground" strokeWidth={8} />
                         {project.categories.map((category: string) => (
                             <CategoryIcon key={category} category={category} className="w-4.5 h-4.5" />
+                        ))}
+                        {project.categories.map((category: string) => (
+                            <span key={category} className="hidden text-sm font-tiny5 uppercase">
+                                {category}.&nbsp;
+                            </span>
                         ))}
                     </div>
                 </div>
@@ -524,10 +524,10 @@ export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCard
                         )}
                     </div>
                     
-                    <div className="h-50 flex flex-col justify-between">
+                    <div className="h-60 flex flex-col justify-between">
                         <div className="">
                             <div className="flex items-start justify-between">
-                                <h3 className="hidden font-sans text-base font-semibold text-foreground">
+                                <h3 className="font-sans text-base font-semibold text-foreground">
                                     {project.title}
                                 </h3>
                             </div>
