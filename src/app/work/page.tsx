@@ -6,8 +6,7 @@ import { useMemo, useState, useEffect } from "react";
 import { ProjectFrontmatter } from "@/lib/mdx";
 import { projectCategories } from "@/lib/data";
 
-import { ProjectCardBasic, ProjectListItem, ProjectListItemTechMono, ProjectCardLarge, ProjectCardTechMono } from "@/components/workPage/Cards";
-import { NavBar, SideBar, SideBar2, SideBar3 } from "@/components/NavBar";
+import { ProjectCardBasic, ProjectCardLarge, ProjectCardTechMono, ProjectCardTechMono2 } from "@/components/workPage/Cards";
 import { WorkPageHeader, WorkPageHeader2 } from "@/components/workPage/Header";
 import { ProjectFilter, ProjectMultiFilter } from "@/components/workPage/ProjectFilter";
 import { GridIcon, ListIcon } from "@/components/svg/Icons";
@@ -107,6 +106,19 @@ export default function WorkPage() {
             <ProjectList projects={filteredProjects} />
           )}
 
+          {/* All Grid View */}
+          {viewMode === "grid" && categoryFilters.length === 0 && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProjects.map((project: ProjectFrontmatter) => (
+                <ProjectCardTechMono2 
+                  key={project.slug} 
+                  project={project} 
+                  className="min-h-100" 
+                />
+              ))}
+            </div>
+          )}
+
           {/* Dev Grid View */}
           {viewMode === "grid" && categoryFilters.includes("dev") && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -114,7 +126,7 @@ export default function WorkPage() {
                 <ProjectCardTechMono 
                   key={project.slug} 
                   project={project} 
-                  className="min-h-90" 
+                  className="min-h-95" 
                 />
               ))}
             </div>

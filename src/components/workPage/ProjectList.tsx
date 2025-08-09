@@ -9,7 +9,7 @@ type ProjectListProps = {
 }
 
 export default function ProjectList({ projects }: ProjectListProps) {
-    const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+    const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: -600 });
     console.log(mousePos);
     
     return (

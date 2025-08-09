@@ -4,11 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import {  useRef } from "react";
 import { useMousePosition } from "@/hooks/useMousePosition";
-import { ExternalLinkIcon, MinimizeIcon, ExpandIcon2, XIcon } from "../svg/Icons";
+import { ExternalLinkIcon, MinimizeIcon, ExpandIcon2, XIcon, ArrowRightBar, BarcodeIcon, SquareIcon } from "../svg/Icons";
 import { ProjectFrontmatter } from "@/lib/mdx";
 import { TagLabelFill, TagLabelStroke } from "./Labels";
 import BoxCorners from "../svg/BoxCorners";
 import Sprite from "../Sprite";
+import CategoryIcon from "./CategoryIcon";
 
 type ProjectCardProps = {
     project: ProjectFrontmatter;
@@ -304,6 +305,137 @@ export function ProjectCardBasic({ project, className = "h-90" }: ProjectCardPro
     );
 };
 
+export function ProjectCardTechMono2({ project, className = "h-90" }: ProjectCardProps) {
+    const eyeSpriteParentRef = useRef<HTMLDivElement>(null);
+
+    return (
+        <Link
+            key={project.slug}
+            href={`/work/${project.slug}`}
+            className={`${className} group relative rounded-none box-border border-1 border-border hover:border-muted-foreground hover:shadow-lg transition-all duration-300 hover:-translate-y-1`}
+        >
+            <BoxCorners
+                cornerSize="4px"
+                cornerOffset="-2px"
+                cornerColor="var(--secondaryForeground)"
+            />
+            {/*<BoxCorners
+                icon={<div className="w-full h-full border-t-1 border-l-1 border-muted-foreground"></div>}
+                cornerSize="16px"
+                cornerOffset="-1px"
+                cornerColor="transparent"
+            />*/}
+            <div ref={eyeSpriteParentRef} 
+                className="h-full flex flex-col"
+            >
+                {/* Window handle */}
+                <div className="select-none cursor-grab border-b-1 border-border px-1 py-1 flex justify-between items-center gap-2">
+                    <div className="flex flex-row items-center gap-2">
+                        <div className="mix-blend-difference text-white">
+                            <Sprite parentRef={eyeSpriteParentRef}
+                                id="eye-sprite-window-tech-mono"
+                                spriteSize={15}
+                                numRows={3}
+                                numCols={5}
+                                backgroundImage="/img/sprite/eye-sprite.png"
+                                numFrames={5}
+                                duration={0.5}
+                                row={2}
+                                hoverRow={0}
+                                onHover={true}
+                                hoverNumFrames={1}
+                                hoverDuration={1}
+                                style={{ scale: 1.1 }}
+                                iterationCount="1"
+                            />
+                        </div>
+                        <div className="hidden text-sm font-tiny5 uppercase">
+                            {project.categories.map((category: string) => (
+                                <span key={category}>
+                                    {category},&nbsp;
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="flex flex-row items-center justify-between gap-0">
+                        <ExpandIcon2 className="hidden w-4.5 h-4.5" strokeWidth={2.5} />
+                        <ArrowRightBar className="hidden w-4.5 h-4.5" strokeWidth={0} />
+                        <BarcodeIcon className="hidden w-4.5 h-4.5" strokeWidth={0} />
+                        <SquareIcon className="hidden w-4.5 h-4.5 scale-70 text-muted-foreground" strokeWidth={8} />
+                        {project.categories.map((category: string) => (
+                            <CategoryIcon key={category} category={category} className="w-4.5 h-4.5" />
+                        ))}
+                        {project.categories.map((category: string) => (
+                            <span key={category} className="hidden text-sm font-tiny5 uppercase">
+                                {category}.&nbsp;
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Content */}
+                <div className="w-full grow p-4 flex flex-col gap-4">
+                    <div className="relative w-full h-full flex items-center justify-center border-1 border-secondary">
+                        <BoxCorners
+                            icon={<div className="w-full h-full border-t-1 border-l-1 border-muted-foreground"></div>}
+                            cornerSize="16px"
+                            cornerOffset="-1px"
+                            cornerColor="transparent"
+                        />
+                        {project.image ? (
+                            <Image
+                                src={project.image}
+                                alt={project.title}
+                                className="w-full h-60 object-cover"
+                                fill={true}
+                            />
+                        ) : (
+                            <div className="text-mutedForeground text-4xl font-bold">
+                                {project.title.charAt(0)}
+                            </div>
+                        )}
+                    </div>
+                    
+                    <div className="h-60 flex flex-col justify-between">
+                        <div className="">
+                            <div className="flex items-start justify-between">
+                                <h3 className="font-sans text-base font-semibold text-foreground">
+                                    {project.title}
+                                </h3>
+                            </div>
+                            <p className="font-ibm-plex-sans text-sm text-mutedForeground line-clamp-2">
+                                {project.description}
+                            </p>
+                        </div>
+                        
+                        <div className="flex flex-col gap-2">
+                            <div className="flex flex-wrap gap-2 font-roboto-mono text-[0.65rem] tracking-widest uppercase">
+                                {project.tags?.slice(0, 3).map((tag: string) => (
+                                    <span
+                                        key={tag}
+                                        className="h-fit px-1 py-0.4 rounded-xs bg-foreground text-background"
+                                    >
+                                        {tag}
+                                    </span>
+                                ))}
+                                {project.tags && project.tags.length > 3 && (
+                                    <span className="h-fit px-1 py-0.4 rounded-xs bg-muted text-mutedForeground">
+                                        +{project.tags.length - 3}
+                                    </span>
+                                )}
+                            </div>
+
+                            <p className="font-roboto-mono text-[0.6rem] tracking-widest">
+                                &#91;{project.date.split("-").reverse().join(".")}&#93;
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Link>
+    );
+};
+
 export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCardProps) {
     const eyeSpriteParentRef = useRef<HTMLDivElement>(null);
 
@@ -324,93 +456,107 @@ export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCard
                 cornerOffset="-1px"
                 cornerColor="transparent"
             />*/}
-            {/* Window handle */}
-            <div className="handle select-none cursor-grab border-b-1 border-border px-1 py-0 flex justify-between items-center gap-2"
-                ref={eyeSpriteParentRef}
+            <div ref={eyeSpriteParentRef} 
+                className="h-full flex flex-col"
             >
-                <div className="flex flex-row items-center gap-2">
-                    <div className="mix-blend-difference text-white">
-                        <Sprite parentRef={eyeSpriteParentRef}
-                            id="eye-sprite-window-tech-mono"
-                            spriteSize={15}
-                            numRows={3}
-                            numCols={5}
-                            backgroundImage="/img/sprite/eye-sprite.png"
-                            numFrames={5}
-                            duration={0.5}
-                            row={2}
-                            hoverRow={0}
-                            onHover={true}
-                            hoverNumFrames={1}
-                            hoverDuration={1}
-                            style={{ scale: 1.1 }}
-                            iterationCount="1"
-                        />
-                    </div>
-                    <div className="text-sm font-tiny5 uppercase">
-                        {project.title}
-                    </div>
-                </div>
-                <div className="flex flex-row items-center justify-between gap-0">
-                    <MinimizeIcon className="w-4.5 h-4.5" strokeWidth={2.5} />
-                    <ExpandIcon2 className="w-4.5 h-4.5" strokeWidth={2.5} />
-                    <XIcon className="w-4.5 h-4.5" strokeWidth={2.5} />
-                </div>
-            </div>
-            <div className="w-full h-full p-4 flex flex-col gap-4">
-                <div className="relative w-full h-full flex items-center justify-center border-1 border-secondary">
-                    <BoxCorners
-                        icon={<div className="w-full h-full border-t-1 border-l-1 border-muted-foreground"></div>}
-                        cornerSize="16px"
-                        cornerOffset="-1px"
-                        cornerColor="transparent"
-                    />
-                    {project.image ? (
-                        <Image
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-60 object-cover"
-                            fill={true}
-                        />
-                    ) : (
-                        <div className="text-mutedForeground text-4xl font-bold">
-                            {project.title.charAt(0)}
+                {/* Window handle */}
+                <div className="select-none cursor-grab border-b-1 border-border px-1 py-1 flex justify-between items-center gap-2">
+                    <div className="flex flex-row items-center gap-2">
+                        <div className="mix-blend-difference text-white">
+                            <Sprite parentRef={eyeSpriteParentRef}
+                                id="eye-sprite-window-tech-mono"
+                                spriteSize={15}
+                                numRows={3}
+                                numCols={5}
+                                backgroundImage="/img/sprite/eye-sprite.png"
+                                numFrames={5}
+                                duration={0.5}
+                                row={2}
+                                hoverRow={0}
+                                onHover={true}
+                                hoverNumFrames={1}
+                                hoverDuration={1}
+                                style={{ scale: 1.1 }}
+                                iterationCount="1"
+                            />
                         </div>
-                    )}
-                </div>
-                
-                <div className="h-60 flex flex-col justify-between">
-                    <div className="">
-                        <div className="flex items-start justify-between">
-                            <h3 className="font-sans text-base font-semibold text-foreground">
-                                {project.title}
-                            </h3>
+                        <div className="hidden text-sm font-tiny5 uppercase">
+                            {project.title}
                         </div>
-                        <p className="font-ibm-plex-sans text-sm text-mutedForeground line-clamp-2">
-                            {project.description}
-                        </p>
+                        <div className="text-sm font-roboto-mono font-semibold capitalize line-clamp-1">
+                            {project.title}
+                        </div>
+                        <h3 className="hidden font-sans text-base font-semibold text-foreground">
+                            {project.title}
+                        </h3>
+                    </div>
+                    <div className="flex flex-row items-center justify-between gap-0">
+                        <ExpandIcon2 className="hidden w-4.5 h-4.5" strokeWidth={2.5} />
+                        <ArrowRightBar className="hidden w-4.5 h-4.5" strokeWidth={0} />
+                        <BarcodeIcon className="hidden w-4.5 h-4.5" strokeWidth={0} />
+                        <SquareIcon className="hidden w-4.5 h-4.5 scale-70 text-muted-foreground" strokeWidth={8} />
+                        {project.categories.map((category: string) => (
+                            <CategoryIcon key={category} category={category} className="w-4.5 h-4.5" />
+                        ))}
+                    </div>
+                </div>
+
+                {/* Content */}
+                <div className="w-full grow p-4 flex flex-col gap-4">
+                    <div className="relative w-full h-full flex items-center justify-center border-1 border-secondary">
+                        <BoxCorners
+                            icon={<div className="w-full h-full border-t-1 border-l-1 border-muted-foreground"></div>}
+                            cornerSize="16px"
+                            cornerOffset="-1px"
+                            cornerColor="transparent"
+                        />
+                        {project.image ? (
+                            <Image
+                                src={project.image}
+                                alt={project.title}
+                                className="w-full h-60 object-cover"
+                                fill={true}
+                            />
+                        ) : (
+                            <div className="text-mutedForeground text-4xl font-bold">
+                                {project.title.charAt(0)}
+                            </div>
+                        )}
                     </div>
                     
-                    <div className="flex flex-col gap-2">
-                        <div className="flex flex-wrap gap-2 font-roboto-mono text-[0.65rem] tracking-widest uppercase">
-                            {project.tags?.slice(0, 3).map((tag: string) => (
-                                <span
-                                    key={tag}
-                                    className="h-fit px-1 py-0.4 rounded-xs bg-foreground text-background"
-                                >
-                                    {tag}
-                                </span>
-                            ))}
-                            {project.tags && project.tags.length > 3 && (
-                                <span className="h-fit px-1 py-0.4 rounded-xs bg-muted text-mutedForeground">
-                                    +{project.tags.length - 3}
-                                </span>
-                            )}
+                    <div className="h-50 flex flex-col justify-between">
+                        <div className="">
+                            <div className="flex items-start justify-between">
+                                <h3 className="hidden font-sans text-base font-semibold text-foreground">
+                                    {project.title}
+                                </h3>
+                            </div>
+                            <p className="font-ibm-plex-sans text-sm text-mutedForeground line-clamp-2">
+                                {project.description}
+                            </p>
                         </div>
+                        
+                        <div className="flex flex-col gap-2">
+                            <div className="flex flex-wrap gap-2 font-roboto-mono text-[0.65rem] tracking-widest uppercase">
+                                {project.tags?.slice(0, 3).map((tag: string) => (
+                                    <span
+                                        key={tag}
+                                        className="h-fit px-1 py-0.4 rounded-xs bg-foreground text-background"
+                                    >
+                                        {tag}
+                                    </span>
+                                ))}
+                                {project.tags && project.tags.length > 3 && (
+                                    <span className="h-fit px-1 py-0.4 rounded-xs bg-muted text-mutedForeground">
+                                        +{project.tags.length - 3}
+                                    </span>
+                                )}
+                            </div>
 
-                        <p className="font-roboto-mono text-[0.6rem] tracking-widest">
-                            &#91;{project.date.split("-").reverse().join(".")}&#93;
-                        </p>
+                            <p className="font-roboto-mono text-[0.6rem] tracking-widest">
+                                &#91;{project.date.split("-").reverse().join(".")}&#93;
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

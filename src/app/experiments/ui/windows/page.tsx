@@ -1,5 +1,5 @@
 import Draggable from "@/components/Draggable";
-import { ArrowLeftIcon, GithubIcon, ExternalLinkIcon, XIcon, MoonIcon, SunIcon, EyeIcon, ExpandIcon, ExpandIcon2, MinimizeIcon, PlusIcon, PlusIconThin, RoundPixelatedArrowIcon, PixelatedXIcon, PixelatedArrowIcon, GridIcon, ListIcon, BarcodeIcon, ArrowRightBar, SquareIcon } from "@/components/svg/Icons";
+import { ArrowLeftIcon, GithubIcon, ExternalLinkIcon, XIcon, MoonIcon, SunIcon, EyeIcon, ExpandIcon, ExpandIcon2, MinimizeIcon, PlusIcon, RoundPixelatedArrowIcon, PixelatedXIcon, PixelatedArrowIcon, GridIcon, ListIcon, BarcodeIcon, ArrowRightBar, SquareIcon } from "@/components/svg/Icons";
 import Sprite from "@/components/Sprite";
 import ZoomableImage from "@/components/ZoomableImage";
 import { WindowMinimal, WindowTechMono } from "@/components/Windows";

@@ -3,14 +3,8 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
-import { Category, getCategoryNames, getCategoryIcon } from "@/lib/data";
-import { 
-  DevIcon, 
-  DesignIcon, 
-  ArtIcon, 
-  SquareIcon, 
-  PixelatedXIcon 
-} from "@/components/svg/Icons";
+import { Category, getCategoryIcon } from "@/lib/data";
+import CategoryIcon from "./CategoryIcon";
 
 interface ProjectFilterProps {
   categories: string[] | Category[];
@@ -19,34 +13,6 @@ interface ProjectFilterProps {
   toggleStyleInactive?: string;
   showIcons?: boolean;
 }
-
-// Component to render the appropriate icon for a category
-const CategoryIcon = ({ 
-    category, 
-    className = "w-3 h-3", 
-    strokeWidth = 0,
-}: { 
-    category: string; 
-    className?: string; 
-    strokeWidth?: number; 
-}) => {
-  const iconName = getCategoryIcon(category);
-  
-  switch (iconName) {
-    case "DevIcon":
-      return <DevIcon className={className} strokeWidth={strokeWidth} />;
-    case "DesignIcon":
-      return <DesignIcon className={className} strokeWidth={strokeWidth} />;
-    case "ArtIcon":
-      return <ArtIcon className={className} strokeWidth={strokeWidth} />;
-    case "SquareIcon":
-      return <SquareIcon className={className} strokeWidth={strokeWidth} />;
-    case "PixelatedXIcon":
-      return <PixelatedXIcon className={className} strokeWidth={strokeWidth} />;
-    default:
-      return null;
-  }
-};
 
 export function ProjectFilter({ 
     categories, 
