@@ -1,3 +1,5 @@
+import BoxCorners from "./svg/BoxCorners";
+
 type ButtonProps = {
   text: string;
   icon?: string | React.ReactNode;
@@ -11,7 +13,25 @@ export function IconButton({
 }: ButtonProps) {
     return (
         <button className={`${className} box-border group inline-flex items-center gap-1 transition-all duration-200 h-fit`}>
+            <BoxCorners
+                icon={<div className="w-full h-full border-t-1 border-l-1 border-muted-foreground"></div>}
+                cornerSize="4px"
+                cornerOffset="-1px"
+                cornerColor="transparent"
+            />
             {text} {icon}
+        </button>
+    );
+}
+
+export function BracketButton({ 
+    text = "Proceed", 
+    className = "rounded-full px-2 bg-background text-foreground border-1 border-background hover:bg-foreground hover:text-background", 
+    icon = "→" 
+}: ButtonProps) {
+    return (
+        <button className={`${className} box-border group inline-flex items-center gap-1 transition-all duration-200 h-fit`}>
+            &#91; {text} {icon} &#93;
         </button>
     );
 }

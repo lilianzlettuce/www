@@ -7,10 +7,11 @@ export default function WorkLayout({
 }) {
   return (
     <div className="min-h-screen flex flex-row">
-      <SideBar3 className="min-w-60" />
+      {children}
+      {/*<SideBar3 className="min-w-60" />
       <div className="w-full">
         {children}
-      </div>
+      </div>*/}
     </div>
   );
 }
