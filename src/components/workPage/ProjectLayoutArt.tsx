@@ -138,30 +138,16 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
   );
 }
 
-export default function ProjectLayout({ frontmatter, children }: ProjectLayoutProps) {
+export default function ProjectLayoutArt({ frontmatter, children }: ProjectLayoutProps) {
   return (
     <div className="relative min-h-screen bg-background flex gap-4 justify-between">
-      <div className="sticky top-0 left-0 w-80 h-10 p-8 flex flex-col items-start justify-start">
+      <div className="sticky top-0 left-0 w-1/2 h-10 p-8 flex flex-col items-start justify-start">
         <div className="w-full mb-1 font-ibm-plex-mono text-xs ">
           &#91; 01 / 04 &#93;
         </div>
-        <div className="w-full my-4">
-          <div className="mb-1 flex flex-col text-xs">
-            <div className="font-bold">
-              {frontmatter.title}
-            </div>
-            <div>
-              audiovisual installation | 2025
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="max-w-6xl w-full px-10 py-6">
-        <ProjectHeaderDefault frontmatter={frontmatter} />
-        <ProjectHeaderDefault2 frontmatter={frontmatter} />
 
         {/* Project Image */}
-        <div className="w-full mb-1">
+        <div className="w-full my-4">
           <div className="mb-1 flex flex-row justify-between text-xs">
             <div className="font-bold">
               {frontmatter.title}
@@ -171,18 +157,22 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
             </div>
           </div>
           {frontmatter.image && (
-            <div className="relative w-full h-[80vh]">
+            <div className="relative w-full">
               <Image
                 src={frontmatter.image}
                 alt={frontmatter.title}
-                fill
-                className="object-cover"
+                className="object-cover w-full h-auto"
+                width={1200}
+                height={800}
                 sizes="100vw"
                 priority
               />
             </div>
           )}
         </div>
+      </div>
+      <div className="max-w-6xl w-1/2 px-10 py-6">
+        <ProjectHeaderDefault2 frontmatter={frontmatter} />
 
         {/* Project Content */}
         <article className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground prose-a:text-primary prose-code:text-foreground prose-pre:bg-muted prose-pre:border prose-pre:border-border">
