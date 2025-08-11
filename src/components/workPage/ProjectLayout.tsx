@@ -74,12 +74,16 @@ function ProjectHeaderDefault({ frontmatter }: ProjectHeaderProps) {
 
 function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
   return (
-    <header className="mb-12 font-uncut-sans">
-      <div className="mb-6">
+    <header className="mb-4 font-uncut-sans">
+      <div className="mb-0">
         
         {/* Project Links */}
-        <div className="flex justify-end mb-2">
-          
+        <div className="flex justify-between mb-2">
+          <IconButton text="Back to Work" icon="→" />
+          <IconButton className="group border-1 border-foreground rounded-sm bg-foreground text-background hover:bg-background hover:text-foreground"
+            text="View Demo" 
+            icon={<div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">→</div>} 
+          />
           {frontmatter.link && (
             <Link
               href={frontmatter.link}
@@ -96,13 +100,33 @@ function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
         </div>
 
         {/* Project Header */}
-        <header className="mb-12 font-uncut-sans">
-          <div className="mb-6">
+        <header className="mb-12 flex flex-row items-start gap-4">
+          <div className="sticky top-0 left-0 w-80 h-10 pt-2 flex flex-col items-start justify-start">
+            <div className="w-full mb-1 font-ibm-plex-mono text-xs ">
+              &#91; 01 / 04 &#93;
+            </div>
+            <div className="w-full my-4">
+              <div className="mb-1 flex flex-col text-xs">
+                <div className="font-bold">
+                  {frontmatter.title}
+                </div>
+                <div>
+                  audiovisual installation | 2025
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Title and description */}
+          <div className="mb-6 font-uncut-sans">
             <h1 className="text-4xl md:text-xl font-bold text-foreground mb-4">
               {frontmatter.title}
             </h1>
             <p className="font-ibm-plex-mono text-xs text-foreground mb-6">
               {frontmatter.description}
+            </p>
+            <p className="font-ibm-plex-mono text-xs text-foreground mb-6">
+              {frontmatter.award}
             </p>
             
             <div className="flex flex-wrap gap-2 mb-6">
@@ -141,7 +165,7 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
 export default function ProjectLayout({ frontmatter, children }: ProjectLayoutProps) {
   return (
     <div className="relative min-h-screen bg-background flex gap-4 justify-between">
-      <div className="sticky top-0 left-0 w-80 h-10 p-8 flex flex-col items-start justify-start">
+      <div className="hidden sticky top-0 left-0 w-80 h-10 p-8 flex flex-col items-start justify-start">
         <div className="w-full mb-1 font-ibm-plex-mono text-xs ">
           &#91; 01 / 04 &#93;
         </div>
@@ -156,8 +180,7 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
           </div>
         </div>
       </div>
-      <div className="max-w-6xl w-full px-10 py-6">
-        <ProjectHeaderDefault frontmatter={frontmatter} />
+      <div className="max-w-3xl mx-auto w-full px-10 py-6">
         <ProjectHeaderDefault2 frontmatter={frontmatter} />
 
         {/* Project Image */}
@@ -171,7 +194,7 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
             </div>
           </div>
           {frontmatter.image && (
-            <div className="relative w-full h-[80vh]">
+            <div className="relative w-full h-[60vh]">
               <Image
                 src={frontmatter.image}
                 alt={frontmatter.title}

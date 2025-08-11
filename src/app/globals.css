@@ -206,6 +206,34 @@ body {
 
 @layer base {
 
+  h2 {
+    font-family: var(--font-uncut-sans);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--foreground);
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-family: var(--font-ibm-plex-mono);
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--foreground);
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    font-family: var(--font-ibm-plex-mono);
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--foreground);
+    letter-spacing: 0.05em;
+  }
+
   input, textarea {
     outline: none;
     padding: 2px 4px;
@@ -228,25 +256,6 @@ body {
 }
 
 @layer components {
-  h2 {
-    font-family: var(--font-uncut-sans);
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: var(--foreground);
-    letter-spacing: 0.05em;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    font-family: var(--font-ibm-plex-mono);
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
-    color: var(--foreground);
-    letter-spacing: 0.05em;
-    line-height: 1.5;
-    margin-bottom: 1rem;
-  }
 
   .navlink {
     font-family: var(--font-body);

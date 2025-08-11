@@ -74,8 +74,8 @@ function ProjectHeaderDefault({ frontmatter }: ProjectHeaderProps) {
 
 function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
   return (
-    <header className="mb-12 font-uncut-sans">
-      <div className="mb-6">
+    <header className="mb-4 font-uncut-sans">
+      <div className="mb-0">
         
         {/* Project Links */}
         <div className="flex justify-end mb-2">
@@ -96,13 +96,33 @@ function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
         </div>
 
         {/* Project Header */}
-        <header className="mb-12 font-uncut-sans">
-          <div className="mb-6">
+        <header className="mb-12 flex flex-row items-start gap-4">
+          <div className="sticky top-0 left-0 w-80 h-10 pt-2 flex flex-col items-start justify-start">
+            <div className="w-full mb-1 font-ibm-plex-mono text-xs ">
+              &#91; 01 / 04 &#93;
+            </div>
+            <div className="w-full my-4">
+              <div className="mb-1 flex flex-col text-xs">
+                <div className="font-bold">
+                  {frontmatter.title}
+                </div>
+                <div>
+                  audiovisual installation | 2025
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Title and description */}
+          <div className="mb-6 font-uncut-sans">
             <h1 className="text-4xl md:text-xl font-bold text-foreground mb-4">
               {frontmatter.title}
             </h1>
             <p className="font-ibm-plex-mono text-xs text-foreground mb-6">
               {frontmatter.description}
+            </p>
+            <p className="font-ibm-plex-mono text-xs text-foreground mb-6">
+              {frontmatter.award}
             </p>
             
             <div className="flex flex-wrap gap-2 mb-6">
@@ -141,7 +161,7 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
 export default function ProjectLayoutArt({ frontmatter, children }: ProjectLayoutProps) {
   return (
     <div className="relative min-h-screen bg-background flex gap-4 justify-between">
-      <div className="sticky top-0 left-0 w-1/2 h-10 p-8 flex flex-col items-start justify-start">
+      <div className="hidden sticky top-0 left-0 w-1/2 h-10 p-8 flex flex-col items-start justify-start">
         <div className="w-full mb-1 font-ibm-plex-mono text-xs ">
           &#91; 01 / 04 &#93;
         </div>
@@ -171,7 +191,7 @@ export default function ProjectLayoutArt({ frontmatter, children }: ProjectLayou
           )}
         </div>
       </div>
-      <div className="max-w-6xl w-1/2 px-10 py-6">
+      <div className="max-w-6xl w-full px-10 py-6">
         <ProjectHeaderDefault2 frontmatter={frontmatter} />
 
         {/* Project Content */}

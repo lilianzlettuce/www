@@ -1,17 +1,18 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { compileMDX } from 'next-mdx-remote/rsc';
-import TechStack from '@/components/mdx/TechStack';
-import ProjectStats from '@/components/mdx/ProjectStats';
-import { IconButton } from '@/components/Buttons';
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { compileMDX } from "next-mdx-remote/rsc";
+import TechStack from "@/components/mdx/TechStack";
+import ProjectStats from "@/components/mdx/ProjectStats";
+import ProjectInfo from "@/components/mdx/ProjectInfo";
 
-const projectsDirectory = path.join(process.cwd(), 'content/projects');
+const projectsDirectory = path.join(process.cwd(), "content/projects");
 
 export interface ProjectFrontmatter {
   title: string;
   subtitle?: string;
   description: string;
+  award?: string;
   image: string;
   tags: string[];
   categories: string[];
@@ -25,24 +26,27 @@ export interface ProjectFrontmatter {
 const components = {
   TechStack,
   ProjectStats,
-  IconButton,
+  ProjectInfo,
 };
 
 export async function getProjectSlugs(): Promise<string[]> {
+  // Get and convert all MDX file names to slugs
   const fileNames = fs.readdirSync(projectsDirectory);
   return fileNames
-    .filter((fileName) => fileName.endsWith('.mdx'))
-    .map((fileName) => fileName.replace(/\.mdx$/, ''));
+    .filter((fileName) => fileName.endsWith(".mdx"))
+    .map((fileName) => fileName.replace(/\.mdx$/, ""));
 }
 
 export async function getProjectBySlug(slug: string) {
+  // Get the full file path to MDX file
   const fullPath = path.join(projectsDirectory, `${slug}.mdx`);
   
   if (!fs.existsSync(fullPath)) {
     return null;
   }
 
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  // Extract frontmatter and content from MDX file
+  const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
   const frontmatter: ProjectFrontmatter = {
@@ -56,6 +60,7 @@ export async function getProjectBySlug(slug: string) {
   };
 }
 
+// Get an array of all project frontmatter
 export async function getAllProjects(): Promise<ProjectFrontmatter[]> {
   const slugs = await getProjectSlugs();
   const projects = await Promise.all(
@@ -75,6 +80,7 @@ export async function getFeaturedProjects(): Promise<ProjectFrontmatter[]> {
   return allProjects.filter((project) => project.featured);
 }
 
+// Compile MDX content to a React component
 export async function compileProjectMDX(content: string) {
   const { content: compiledContent } = await compileMDX({
     source: content,

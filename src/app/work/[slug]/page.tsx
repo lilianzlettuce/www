@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getProjectBySlug, getProjectSlugs, compileProjectMDX } from '@/lib/mdx';
 import ProjectLayout from '@/components/workPage/ProjectLayout';
+import ProjectLayoutArt from '@/components/workPage/ProjectLayoutArt';
 
 export async function generateStaticParams() {
   const slugs = await getProjectSlugs();
