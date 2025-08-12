@@ -74,30 +74,8 @@ function ProjectHeaderDefault({ frontmatter }: ProjectHeaderProps) {
 
 function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
   return (
-    <header className="mb-4 font-uncut-sans">
+    <header className="my-8 font-uncut-sans">
       <div className="mb-0">
-        
-        {/* Project Links */}
-        <div className="flex justify-between mb-2">
-          <IconButton text="Back to Work" icon="→" />
-          <IconButton className="group border-1 border-foreground rounded-sm bg-foreground text-background hover:bg-background hover:text-foreground"
-            text="View Demo" 
-            icon={<div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">→</div>} 
-          />
-          {frontmatter.link && (
-            <Link
-              href={frontmatter.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className=""
-            >
-              <IconButton className="relative group text-sm px-1.5 py-0 border-0 border-foreground rounded-sm"
-                text="View Demo" 
-                icon={<div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">→</div>} 
-              />
-            </Link>
-          )}
-        </div>
 
         {/* Project Header */}
         <header className="mb-12 flex flex-row items-start gap-4">
@@ -165,6 +143,7 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
 export default function ProjectLayout({ frontmatter, children }: ProjectLayoutProps) {
   return (
     <div className="relative min-h-screen bg-background flex gap-4 justify-between">
+      {/* Sticky side info */}
       <div className="hidden sticky top-0 left-0 w-80 h-10 p-8 flex flex-col items-start justify-start">
         <div className="w-full mb-1 font-ibm-plex-mono text-xs ">
           &#91; 01 / 04 &#93;
@@ -180,8 +159,10 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
           </div>
         </div>
       </div>
-      <div className="max-w-3xl mx-auto w-full px-10 py-6">
-        <ProjectHeaderDefault2 frontmatter={frontmatter} />
+
+      {/* Main content */}
+      <div className="max-w-6xl mx-auto w-full px-10 py-6">
+        
 
         {/* Project Image */}
         <div className="w-full mb-1">
@@ -194,7 +175,7 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
             </div>
           </div>
           {frontmatter.image && (
-            <div className="relative w-full h-[60vh]">
+            <div className="relative w-full h-[70vh]">
               <Image
                 src={frontmatter.image}
                 alt={frontmatter.title}
@@ -207,8 +188,33 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
           )}
         </div>
 
+        {/* Project Header */}
+        <ProjectHeaderDefault2 frontmatter={frontmatter} />
+
+        {/* Project Links */}
+        <div className="flex justify-between mb-2">
+          <IconButton text="View Demo" icon="→" />
+          <IconButton className="group border-1 border-foreground rounded-sm bg-foreground text-background hover:bg-background hover:text-foreground"
+            text="View Demo" 
+            icon={<div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">→</div>} 
+          />
+          {frontmatter.link && (
+            <Link
+              href={frontmatter.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className=""
+            >
+              <IconButton className="relative group text-sm px-1.5 py-0 border-0 border-foreground rounded-sm"
+                text="View Demo" 
+                icon={<div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">→</div>} 
+              />
+            </Link>
+          )}
+        </div>
+
         {/* Project Content */}
-        <article className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground prose-a:text-primary prose-code:text-foreground prose-pre:bg-muted prose-pre:border prose-pre:border-border">
+        <article className="mdx-content">
           {children}
         </article>
       </div>

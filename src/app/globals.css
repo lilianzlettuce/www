@@ -226,12 +226,90 @@ body {
     margin-bottom: 1rem;
   }
 
+  blockquote {
+    font-family: var(--font-ibm-plex-mono);
+    font-size: 0.8rem;
+    color: var(--foreground);
+    letter-spacing: 0.05em;
+    border-left: 3px solid var(--mutedForeground);
+    padding-left: 1rem;
+    margin: 1rem 0;
+  }
+
+  hr {
+    border-color: var(--mutedForeground);
+    border-width: 1px;
+    border-style: dotted;
+    border-radius: 1px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
   ul {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--foreground);
+    letter-spacing: 0.05em;
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  ul li {
+    margin-bottom: 0.5rem;
+  }
+
+  ol {
     font-family: var(--font-ibm-plex-mono);
     font-family: var(--font-sans);
     font-size: 0.8rem;
     color: var(--foreground);
     letter-spacing: 0.05em;
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  ol li {
+    margin-bottom: 0.5rem;
+  }
+
+  table {
+    font-family: var(--font-ibm-plex-mono);
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--foreground);
+    letter-spacing: 0.05em;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  table th,
+  table td {
+    border: 1px solid var(--border);
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  table th {
+    background-color: var(--muted);
+    font-weight: 600;
+  }
+
+  /* MDX Content specific styles */
+  .mdx-content ul {
+    list-style-type: disc;
+  }
+
+  .mdx-content ol {
+    list-style-type: decimal;
+  }
+
+  .mdx-content blockquote {
+    font-style: italic;
+  }
+
+  .mdx-content table {
+    border: 1px solid var(--border);
   }
 
   input, textarea {
