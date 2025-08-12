@@ -6,6 +6,7 @@ import { ProjectFrontmatter } from '@/lib/mdx';
 import { TagLabel, TagLabelStroke } from './Labels';
 import { BracketButton, IconButton, RevealButton } from '../Buttons';
 import Image from 'next/image';
+import BoxCorners from '../svg/BoxCorners';
 
 interface ProjectHeaderProps {
   frontmatter: ProjectFrontmatter;
@@ -79,31 +80,63 @@ function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
 
         {/* Project Header */}
         <header className="mb-12 flex flex-row items-start gap-4">
-          <div className="sticky top-0 left-0 w-80 h-10 pt-2 flex flex-col items-start justify-start">
-            <div className="w-full mb-1 font-ibm-plex-mono text-xs ">
+          <div className="sticky top-0 left-0 w-80 h-10 pt-2 flex flex-col gap-1 items-start justify-start">
+            <div className="w-full font-ibm-plex-mono text-xs ">
               &#91; 01 / 04 &#93;
             </div>
-            <div className="w-full my-4">
-              <div className="mb-1 flex flex-col text-xs">
-                <div className="font-bold">
-                  {frontmatter.title}
-                </div>
-                <div>
-                  audiovisual installation | 2025
-                </div>
+            <div className="w-full my-4 flex flex-col text-xs">
+              <div className="font-bold">
+                {frontmatter.title}
               </div>
+              <div>
+                landing page | 2025
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              {frontmatter.link && (
+                <Link
+                  href={frontmatter.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative"
+                >
+                  <IconButton className="relative group text-sm px-1.5 py-0 border-1 border-foreground rounded-sm bg-foreground text-background hover:bg-background hover:text-foreground"
+                    text="View Site" 
+                    icon={<div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">→</div>} 
+                  />
+                </Link>
+              )}
+              {frontmatter.link && (
+                <Link
+                  href={frontmatter.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative border-1 border-border"
+                >
+                  <BoxCorners
+                    icon={<div className="w-full h-full border-t-1 border-l-1 border-foreground"></div>}
+                    cornerSize="5px"
+                    cornerOffset="-1px"
+                    cornerColor="transparent"
+                  />
+                  <IconButton className="relative group text-sm px-1.5 py-0 rounded-sm"
+                    text="View Code" 
+                    icon={<div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">→</div>} 
+                  />
+                </Link>
+              )}
             </div>
           </div>
 
           {/* Title and description */}
           <div className="mb-6 font-uncut-sans">
-            <h1 className="text-4xl md:text-xl font-bold text-foreground mb-4">
+            <h1 className="text-4xl md:text-4xl font-bold text-foreground mb-4">
               {frontmatter.title}
             </h1>
-            <p className="font-ibm-plex-mono text-xs text-foreground mb-6">
+            <p className="text-base text-foreground mb-6">
               {frontmatter.description}
             </p>
-            <p className="font-ibm-plex-mono text-xs text-foreground mb-6">
+            <p className="text-xs text-foreground mb-6">
               {frontmatter.award}
             </p>
             
@@ -171,7 +204,7 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
               {frontmatter.title}
             </div>
             <div>
-              audiovisual installation | 2025
+              website | 2022
             </div>
           </div>
           {frontmatter.image && (
@@ -191,30 +224,8 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
         {/* Project Header */}
         <ProjectHeaderDefault2 frontmatter={frontmatter} />
 
-        {/* Project Links */}
-        <div className="flex justify-between mb-2">
-          <IconButton text="View Demo" icon="→" />
-          <IconButton className="group border-1 border-foreground rounded-sm bg-foreground text-background hover:bg-background hover:text-foreground"
-            text="View Demo" 
-            icon={<div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">→</div>} 
-          />
-          {frontmatter.link && (
-            <Link
-              href={frontmatter.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className=""
-            >
-              <IconButton className="relative group text-sm px-1.5 py-0 border-0 border-foreground rounded-sm"
-                text="View Demo" 
-                icon={<div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">→</div>} 
-              />
-            </Link>
-          )}
-        </div>
-
         {/* Project Content */}
-        <article className="mdx-content">
+        <article className="mdx-content px-0 max-w-2xl mx-auto">
           {children}
         </article>
       </div>

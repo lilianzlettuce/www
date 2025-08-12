@@ -106,7 +106,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 
-  font-size: 0.8rem;
+  font-size: 1rem;
   letter-spacing: 0.05em;
   line-height: 1.5;
   margin-bottom: 1rem;
@@ -219,7 +219,7 @@ body {
   p {
     font-family: var(--font-ibm-plex-mono);
     font-family: var(--font-sans);
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: var(--foreground);
     letter-spacing: 0.05em;
     line-height: 1.5;
@@ -228,7 +228,6 @@ body {
 
   blockquote {
     font-family: var(--font-ibm-plex-mono);
-    font-size: 0.8rem;
     color: var(--foreground);
     letter-spacing: 0.05em;
     border-left: 3px solid var(--mutedForeground);
@@ -246,12 +245,9 @@ body {
   }
 
   ul {
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
-    color: var(--foreground);
     letter-spacing: 0.05em;
     margin: 1rem 0;
-    padding-left: 1.5rem;
+    padding-left: 1rem;
   }
 
   ul li {
@@ -259,10 +255,6 @@ body {
   }
 
   ol {
-    font-family: var(--font-ibm-plex-mono);
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
-    color: var(--foreground);
     letter-spacing: 0.05em;
     margin: 1rem 0;
     padding-left: 1.5rem;
@@ -273,29 +265,30 @@ body {
   }
 
   table {
-    font-family: var(--font-ibm-plex-mono);
-    font-family: var(--font-sans);
-    font-size: 0.8rem;
-    color: var(--foreground);
     letter-spacing: 0.05em;
     border-collapse: collapse;
     width: 100%;
     margin: 1rem 0;
   }
-
   table th,
   table td {
     border: 1px solid var(--border);
     padding: 0.5rem;
     text-align: left;
   }
-
   table th {
     background-color: var(--muted);
     font-weight: 600;
   }
 
   /* MDX Content specific styles */
+  .mdx-content p {
+    color: var(--foreground);
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  
   .mdx-content ul {
     list-style-type: disc;
   }

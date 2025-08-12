@@ -1,13 +1,27 @@
 import BoxCorners from "../svg/BoxCorners";
 
 interface ProjectInfoProps {
-    roles: string[];
-    timeline: string;
-    team: string[];
-    type: string;
+    roles?: string[];
+    duration?: string;
+    timeline?: string;
+    team?: string[];
+    type?: string;
+}
+
+function InfoItem({ label, values }: { label: string, values: string[] }) {
+    return (
+        <div>
+            <h4 className="text-xs text-muted-foreground font-bold mb-1.5">{label}</h4>
+            <div className="text-sm flex flex-col gap-1">
+                {values.map((value) => (
+                    <span key={value}>{value}</span>
+                ))}
+            </div>
+        </div>
+    )
 }
   
-export default function ProjectInfo({ roles, timeline, team, type }: ProjectInfoProps) {
+export default function ProjectInfo({ roles, duration, timeline, team, type }: ProjectInfoProps) {
     return (
         <div className="relative my-8 p-6 bg-background text-foreground border-1 border-muted">
             <BoxCorners
@@ -23,34 +37,25 @@ export default function ProjectInfo({ roles, timeline, team, type }: ProjectInfo
             />*/}
             
             <div className="flex flex-row justify-between gap-2">
-                <div>
-                    <h4>Role</h4>
-                    <div className="flex flex-col gap-0">
-                        {roles.map((role) => (
-                            <span
-                                key={role}
-                                className=""
-                            >
-                                {role}
-                            </span>
-                        ))}
-                    </div>
-                </div>
+                {roles && (
+                    <InfoItem label="Role" values={roles} />
+                )}
 
-                <div>
-                    <h4>Team</h4>
-                    <div>{team.join(", ")}</div>
-                </div>
+                {team && (
+                    <InfoItem label="Team" values={team} />
+                )}
 
-                <div>
-                    <h4>Timeline</h4>
-                    <div>{timeline}</div>
-                </div>
+                {duration && (
+                    <InfoItem label="Duration" values={[duration]} />
+                )}
 
-                <div>
-                    <h4>Type</h4>
-                    <div>{type}</div>
-                </div>
+                {timeline && (
+                    <InfoItem label="Timeline" values={[timeline]} />
+                )}
+
+                {type && (      
+                    <InfoItem label="Type" values={[type]} />
+                )}
             </div>
         </div>
     );
