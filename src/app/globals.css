@@ -255,8 +255,11 @@ body {
   }
 
   /* MDX Content specific styles */
-  .mdx-content p {
+  .mdx-content {
     font-family: var(--font-uncut-sans);
+  }
+
+  .mdx-content p {
     font-size: 1rem;
     letter-spacing: 0.05em;
     line-height: 1.5;

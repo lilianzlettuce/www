@@ -80,7 +80,7 @@ function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
 
         {/* Project Header */}
         <header className="mb-12 flex flex-row items-start gap-4">
-          <div className="sticky top-0 left-0 w-80 h-10 pt-2 flex flex-col gap-1 items-start justify-start">
+          <div className="sticky top-0 left-0 w-50 h-10 pt-2 flex flex-col gap-1 items-start justify-start">
             <div className="w-full font-ibm-plex-mono text-xs ">
               &#91; 01 / 04 &#93;
             </div>
@@ -130,7 +130,7 @@ function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
           </div>
 
           {/* Title and description */}
-          <div className="mb-6 font-uncut-sans">
+          <div className="w-full mb-6 font-uncut-sans">
             <h1 className="text-4xl md:text-4xl font-bold text-foreground mb-4">
               {frontmatter.title}
             </h1>
