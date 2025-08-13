@@ -40,4 +40,4 @@ for file in "$INPUT_DIR"/*; do
     fi
 done
 
-echo "Image organization complete!" 
+echo "Image organization done" 
