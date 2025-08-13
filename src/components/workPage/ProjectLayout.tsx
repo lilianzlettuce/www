@@ -98,11 +98,11 @@ function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
                   href={frontmatter.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative"
+                  className="group relative flex justify-center border-1 border-foreground bg-foreground text-background hover:bg-background hover:text-foreground transition-all duration-300"
                 >
-                  <IconButton className="relative group text-sm px-1.5 py-0 border-1 border-foreground rounded-sm bg-foreground text-background hover:bg-background hover:text-foreground"
+                  <IconButton className="relative text-sm py-0"
                     text="View Site" 
-                    icon={<div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">→</div>} 
+                    icon={<div className="group-hover:rotate-135 -rotate-45 transition-transform duration-300">◼</div>} 
                   />
                 </Link>
               )}
@@ -111,15 +111,16 @@ function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
                   href={frontmatter.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative border-1 border-border"
+                  className="group relative border-1 border-border"
                 >
                   <BoxCorners
                     icon={<div className="w-full h-full border-t-1 border-l-1 border-foreground"></div>}
                     cornerSize="5px"
                     cornerOffset="-1px"
                     cornerColor="transparent"
+                    className="scale-100 group-hover:scale-x-105 group-hover:scale-y-120 transition-all duration-300"
                   />
-                  <IconButton className="relative group text-sm px-1.5 py-0 rounded-sm"
+                  <IconButton className="relative text-sm px-1.5 py-0 rounded-sm"
                     text="View Code" 
                     icon={<div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">→</div>} 
                   />

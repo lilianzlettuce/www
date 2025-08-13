@@ -3,16 +3,18 @@ interface BoxCornersProps {
     cornerSize?: string;
     cornerOffset?: string;
     cornerColor?: string;
+    className?: string;
 }
 
 export default function BoxCorners({ 
     icon, 
     cornerSize = "4px", 
     cornerOffset = "-2px", 
-    cornerColor = "var(--secondaryForeground)" 
+    cornerColor = "var(--secondaryForeground)",
+    className = ""
 }: BoxCornersProps) {
     return (
-        <div className="absolute inset-0 pointer-events-none">
+        <div className={`absolute inset-0 pointer-events-none ${className}`}>
             {/* top left */}
             <div className="absolute"
                 style={{

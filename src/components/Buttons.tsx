@@ -13,7 +13,6 @@ export function IconButton({
 }: ButtonProps) {
     return (
         <button className={`${className} box-border group inline-flex items-center gap-1 transition-all duration-200 h-fit`}>
-            
             {text} {icon}
         </button>
     );
