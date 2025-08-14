@@ -270,13 +270,13 @@ export function NavBar({ className }: NavBarProps) {
   );
 } 
 
-export function NavBarGrid() {
+export function NavBarGrid({ className }: NavBarProps) {
   const pathname = usePathname();
 
   return (
-    <nav className="z-50 sticky top-0 w-full h-8 py-0 m-auto bg-background">
+    <nav className={`${className} z-50 sticky top-0 w-full h-8 py-0 m-auto bg-background`}>
       <div className="w-full h-full flex justify-between items-center gap-2">
-        <Link href="/" className="w-fit h-full text-xl font-bold text-foreground hover:text-mutedForeground transition-colors">
+        <Link href="/" className="w-fit h-full text-xl font-bold text-foreground hover:text-muted-foreground transition-colors">
           <LogoIcon className="w-fit h-full" />
         </Link>
         

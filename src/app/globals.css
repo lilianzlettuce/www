@@ -74,7 +74,7 @@
   --warningForeground: var(--white);
 
   /* Theme filter variables */
-  --invert: 0.05;
+  --invert: 0;
 
   --highlight-bg: var(--foreground);
   --highlight-fg: var(--background);

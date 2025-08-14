@@ -57,7 +57,7 @@ export default function WorkPage() {
 
   return (
     <div className="w-full flex flex-row">
-      <SideBar3 className="min-w-60" />
+      <SideBar3 className="min-w-50" />
       <div className="w-full px-4 sm:px-6 lg:px-6 py-0">
         {/* Filtering */}
         <div className="fixed z-60 top-0 left-64 flex items-center gap-2 mt-4">
