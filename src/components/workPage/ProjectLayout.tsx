@@ -209,7 +209,7 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
             </div>
           </div>
           {frontmatter.image && (
-            <div className="relative w-full h-[70vh]">
+            <div className="relative w-full h-[80vh]">
               <Image
                 src={frontmatter.image}
                 alt={frontmatter.title}
