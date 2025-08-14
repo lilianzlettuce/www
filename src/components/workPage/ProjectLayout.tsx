@@ -209,12 +209,13 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
             </div>
           </div>
           {frontmatter.image && (
-            <div className="relative w-full h-[80vh]">
+            <div className="relative w-full">
               <Image
                 src={frontmatter.image}
                 alt={frontmatter.title}
-                fill
-                className="object-cover"
+                width={1200}
+                height={675}
+                className="w-full h-[90vh] object-cover"
                 sizes="100vw"
                 priority
               />
@@ -226,7 +227,7 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
         <ProjectHeaderDefault2 frontmatter={frontmatter} />
 
         {/* Project Content */}
-        <article className="mdx-content px-0 max-w-2xl mx-auto">
+        <article className="mdx-content px-0 mx-auto">
           {children}
         </article>
       </div>
