@@ -1,18 +1,31 @@
 import { ReactNode } from "react";
 
-export function SplitSection({ children }: { children: ReactNode }) {
+interface SplitSectionProps {
+  children: ReactNode;
+  columns?: number;
+  gap?: number;
+}
+
+export function SplitSection({ children, columns = 2, gap = 8 }: SplitSectionProps) {
   return (
-    <div className="py-10 grid grid-cols-2 gap-8">
+    <div className="min-h-[80vh] py-10 flex flex-col md:flex-row"
+      style={{ gap: `${gap}px` }}
+    >
       {children}
     </div>
   );
 }
 
-export function SplitLeft({ children }: { children: ReactNode }) {
-  return <div className="prose">{children}</div>;
+interface SectionColumnProps {
+  children: ReactNode;
+  size?: number;
 }
 
-export function SplitRight({ children }: { children: ReactNode }) {
-  return <div>{children}</div>;
+export function SectionColumn({ children, size = 1 }: SectionColumnProps) {
+  return (
+    <div style={{ flex: size }}>
+      {children}
+    </div>
+  );
 }
   

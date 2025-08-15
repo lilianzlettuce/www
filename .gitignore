@@ -25,6 +25,7 @@
 *.pem
 /.cursor/
 /raw_videos
+/raw_images
 
 # debug
 npm-debug.log*

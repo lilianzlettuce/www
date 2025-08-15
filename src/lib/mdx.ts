@@ -5,7 +5,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import TechStack from "@/components/mdx/TechStack";
 import ProjectStats from "@/components/mdx/ProjectStats";
 import ProjectInfo from "@/components/mdx/ProjectInfo";
-import { SplitSection, SplitLeft, SplitRight } from "@/components/mdx/SplitSection";
+import { SplitSection, SectionColumn } from "@/components/mdx/SplitSection";
 import { MiddleSection } from "@/components/mdx/MiddleSection";
 
 const projectsDirectory = path.join(process.cwd(), "content/projects");
@@ -30,8 +30,7 @@ const components = {
   ProjectStats,
   ProjectInfo,
   SplitSection,
-  SplitLeft,
-  SplitRight,
+  SectionColumn,
   MiddleSection,
 };
 
