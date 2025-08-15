@@ -7,6 +7,7 @@ import ProjectStats from "@/components/mdx/ProjectStats";
 import ProjectInfo from "@/components/mdx/ProjectInfo";
 import { SplitSection, SectionColumn } from "@/components/mdx/SplitSection";
 import { MiddleSection } from "@/components/mdx/MiddleSection";
+import { MDXImageKnownDimensions, MDXImageFillAspectRatio } from "@/components/mdx/MDXImage";
 
 const projectsDirectory = path.join(process.cwd(), "content/projects");
 
@@ -32,6 +33,8 @@ const components = {
   SplitSection,
   SectionColumn,
   MiddleSection,
+  MDXImageKnownDimensions,
+  MDXImageFillAspectRatio,
 };
 
 export async function getProjectSlugs(): Promise<string[]> {
