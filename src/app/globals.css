@@ -455,7 +455,7 @@ body {
   /* Glitchy text effect (parent element must have positioning set) */
   .glitch-text {
     position: relative;
-    color: white;
+    color: rgb(255, 255, 255);
     font-family: var(--font-mono);
     font-size: 80px;
     text-transform: uppercase;
@@ -464,22 +464,26 @@ body {
   .glitch-text::after {
     content: attr(data-text); /* Pulls text from data-text attribute */
     display: inline-block;
-    padding-left: 0.5rem;position: absolute;
+    padding-left: 0.5rem;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    mix-blend-mode: screen; /* Or difference, for color blending effects */
+    filter: blur(1px);
+    mix-blend-mode: screen; /* screen or difference */
   }
   .glitch-text::before {
-    color: red; /* First glitch color */
-    transform: translate(-2px, 2px); /* Offset for glitch effect */
-    animation: glitch-before 1.5s infinite alternate; /* Animation for movement */
+    color: red; 
+    transform: translate(-2px, 2px); 
+    animation: glitch-before 1.5s infinite alternate;
+    animation: none;
   }
   .glitch-text::after {
-    color: blue; /* Second glitch color */
-    transform: translate(2px, -2px); /* Offset for glitch effect */
-    animation: glitch-after 1.5s infinite alternate; /* Animation for movement */
+    color: blue;
+    transform: translate(2px, -2px);
+    animation: glitch-after 1.5s infinite alternate;
+    animation: none;
   }
   @keyframes glitch-before {
     0%, 100% { transform: translate(-2px, 2px); }

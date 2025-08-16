@@ -4,6 +4,7 @@ import { NavBarGrid, NavBarBasic, NavBarFloating } from "@/components/NavBar";
 import { Button, RevealButton, RevealButton2 } from "@/components/Buttons";
 import Link from "next/link";
 import { PlusIcon, PlusIconThin } from "@/components/svg/Icons";
+import ChromaticAberrationText from "@/components/specialEffects/text/ChromaticAberrationText";
 
 export default function UIExperimentsPage() {
   return (
@@ -25,19 +26,82 @@ export default function UIExperimentsPage() {
           </p>
 
           <h1 className="glitch-text whitespace-nowrap font-psygen uppercase text-[130px] font-bold"
-            data-text="UI Experiments"
+            data-text="CSS Glitch text"
           >
-            UI Experiments
+            CSS Glitch text
           </h1>
-          <h1 className="glitch-text blur-xs whitespace-nowrap font-archivo-black uppercase text-8xl font-bold"
-            data-text="UI Experiments"
+          <h1 className="glitch-text blur-[0px] whitespace-nowrap font-archivo-black uppercase text-8xl font-bold"
+            data-text="Blurry glitch text"
           >
-            UI Experiments
+            Blurry glitch text
           </h1>
-          <h1 className="font-roboto-mono text-4xl font-bold">UI Experiments</h1>
-          <p className="text-lg">
+          <h1 className="glitch-text whitespace-nowrap font-roboto-mono text-4xl font-bold"
+            data-text="Melancholy ice cream"
+          >
+            Melancholy ice cream
+          </h1>
+          <p className="glitch-text whitespace-nowrap text-lg"
+            data-text="This is a page for UI experiments."
+          >
             This is a page for UI experiments.
           </p>
+
+          {/* New ChromaticAberrationText components for debugging */}
+          <div className="mt-8 border-t-2 border-gray-400 pt-8">
+            <h2 className="text-2xl font-bold mb-4">New Component Versions:</h2>
+            
+            <ChromaticAberrationText 
+              className="whitespace-nowrap font-psygen uppercase text-[130px] font-bold"
+              layers={[
+                {
+                  color: "red",
+                  position: { x: 8, y: 2 },
+                  blendMode: "difference",
+                  filter: "blur(1px)",
+                },
+                {
+                  color: "blue",
+                  position: { x: 12, y: -2 },
+                  blendMode: "difference",
+                  filter: "blur(1px)",
+                },
+              ]}
+            >
+              CSS Glitch text
+            </ChromaticAberrationText>
+            
+            <ChromaticAberrationText 
+              className="whitespace-nowrap blur-[1px] font-archivo-black uppercase text-8xl font-bold"
+              layers={[
+                {
+                  color: "red",
+                  position: { x: 8, y: 2 },
+                  blendMode: "screen",
+                  filter: "blur(0px)",
+                },
+                {
+                  color: "blue",
+                  position: { x: 12, y: -2 },
+                  blendMode: "screen",
+                  filter: "blur(0px)",
+                },
+              ]}
+            >
+              Blurry glitch text
+            </ChromaticAberrationText>
+            
+            <ChromaticAberrationText 
+              className="whitespace-nowrap font-roboto-mono text-4xl font-bold"
+            >
+              Melancholy ice cream
+            </ChromaticAberrationText>
+            
+            <ChromaticAberrationText 
+              className="whitespace-nowrap text-lg"
+            >
+              This is a page for UI experiments.
+            </ChromaticAberrationText>
+          </div>
 
           <Button text="Hello" />
 
