@@ -9,10 +9,10 @@ export function Footer() {
         <div className="w-full py-8 border-t border-border ">
             <FooterLogoIcon className="w-full h-full scale-x-100 text-foreground" />
         </div>
-        <div className="w-full flex justify-between items-center border-t border-border font-medium text-sm text-mutedForeground">
-            <p className="">
+        <div className="w-full flex justify-between items-center border-t border-border font-medium text-xs">
+            <div className="">
                 Made with the blood of a thousand (hypothetical) men.
-            </p>
+            </div>
             <div className="flex items-center gap-4">
                 {socialLinks.map((link) => (
                     <Link key={link.href} 
@@ -24,9 +24,9 @@ export function Footer() {
                     </Link>
                 ))}
             </div>
-            <p className="">
+            <div className="">
                 &copy; {new Date().getFullYear()} LETTUCEMEAT.
-            </p>
+            </div>
         </div>
     </footer>
   );
