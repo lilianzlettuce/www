@@ -16,7 +16,7 @@ export default function UIExperimentsPage() {
           <h1 className="whitespace-nowrap font-psygen uppercase text-[130px] font-bold">
             UI Experiments
           </h1>
-          <h1 className="blur-xs whitespace-nowrap font-archivo-black uppercase text-8xl font-bold">
+          <h1 className="whitespace-nowrap font-archivo-black uppercase text-8xl font-bold">
             UI Experiments
           </h1>
           
@@ -25,75 +25,13 @@ export default function UIExperimentsPage() {
             This is a page for UI experiments.
           </p>
 
-          <h1 className="glitch-text whitespace-nowrap font-psygen uppercase text-[130px] font-bold"
-            data-text="CSS Glitch text"
-          >
-            CSS Glitch text
-          </h1>
-          <h1 className="glitch-text blur-[0px] whitespace-nowrap font-archivo-black uppercase text-8xl font-bold"
-            data-text="Blurry glitch text"
-          >
-            Blurry glitch text
-          </h1>
-          <h1 className="glitch-text whitespace-nowrap font-roboto-mono text-4xl font-bold"
-            data-text="Melancholy ice cream"
-          >
-            Melancholy ice cream
-          </h1>
-          <p className="glitch-text whitespace-nowrap text-lg"
-            data-text="This is a page for UI experiments."
-          >
-            This is a page for UI experiments.
-          </p>
+          {/* BlendText components */}
+          <div className="mt-8 border-t-2 border-gray-400 pt-8 flex flex-col items-center justify-center">
+            <h2 className="text-2xl font-bold mb-4">Blend Text</h2>
 
-          {/* New BlendText components for debugging */}
-          <div className="mt-8 border-t-2 border-gray-400 pt-8">
-            <h2 className="text-2xl font-bold mb-4">New Component Versions:</h2>
-
+            {/* CSS Glitch Text */}
             <BlendText 
-              className="mix-blend-normal whitespace-nowrap font-archivo-black lowercase tracking-widest text-[130px] font-bold"
-              mainTextClassName="relative z-0 text-blue-500"
-              layers={[
-                {
-                  color: "red",
-                  position: { x: 8, y: 2 },
-                  blendMode: "screen",
-                  filter: "blur(1px)",
-                },
-                {
-                  color: "blue",
-                  position: { x: 12, y: -2 },
-                  blendMode: "screen",
-                  filter: "blur(1px)",
-                },
-              ]}
-            >
-              CSS 3D text
-            </BlendText>
-
-            <BlendText 
-              className="mix-blend-normal whitespace-nowrap font-psygen uppercase text-[180px] font-bold"
-              mainTextClassName="relative z-0 text-blue-500"
-              layers={[
-                {
-                  color: "rgb(155, 177, 255)",
-                  position: { x: 8, y: 2 },
-                  blendMode: "screen",
-                  filter: "blur(1px)",
-                },
-                {
-                  color: "rgb(155, 177, 255)",
-                  position: { x: 12, y: -2 },
-                  blendMode: "screen",
-                  filter: "blur(1px)",
-                },
-              ]}
-            >
-              CSS 3D text
-            </BlendText>
-
-            <BlendText 
-              className="mix-blend-normal whitespace-nowrap font-psygen uppercase text-[180px] font-bold"
+              className="mix-blend-normal whitespace-nowrap font-psygen uppercase text-[130px] font-bold"
               mainTextClassName="relative z-0 text-blue-400"
               layers={[
                 {
@@ -110,38 +48,13 @@ export default function UIExperimentsPage() {
                 },
               ]}
             >
-              CSS 3D text
+              CSS Glitch Text
             </BlendText>
-            
-            <BlendText 
-              className="mix-blend-normal text-foreground whitespace-nowrap font-psygen uppercase text-[130px] font-bold"
-              mainTextClassName="relative z-[-1]"
-              layers={[
-                {
-                  color: "yellow",
-                  position: { x: -12, y: -2 },
-                  blendMode: "screen",
-                  filter: "blur(1px)",
-                },
-                {
-                  color: "red",
-                  position: { x: 8, y: 2 },
-                  blendMode: "screen",
-                  filter: "blur(1px)",
-                },
-                {
-                  color: "blue",
-                  position: { x: 12, y: -2 },
-                  blendMode: "screen",
-                  filter: "blur(1px)",
-                },
-              ]}
-            >
-              CSS Glitch text
-            </BlendText>
-            
+
+            {/* Chromatic Aberration */}
             <BlendText 
               className="whitespace-nowrap blur-[1px] font-archivo-black uppercase text-8xl font-bold"
+              mainTextClassName="relative z-0 text-blue-300"
               layers={[
                 {
                   color: "red",
@@ -157,20 +70,113 @@ export default function UIExperimentsPage() {
                 },
               ]}
             >
-              Blurry glitch text
+              Chromatic Aberration
             </BlendText>
-            
+
+            {/* Melancholy Ice Cream */}
             <BlendText 
-              className="whitespace-nowrap font-roboto-mono text-4xl font-bold"
+              className="whitespace-nowrap font-roboto-mono uppercase text-4xl font-bold"
+              mainTextClassName="relative z-0 text-blue-300"
             >
               Melancholy ice cream
             </BlendText>
             
+            {/* We are all made of stars */}
             <BlendText 
-              className="whitespace-nowrap text-lg"
+              className="whitespace-nowrap text-lg font-roboto-mono uppercase"
+              mainTextClassName="relative z-0 text-blue-300"
             >
-              This is a page for UI experiments.
+              We are all made of stars
             </BlendText>
+
+            {/* Blend */}
+            <BlendText 
+              className="whitespace-nowrap blur-[0px] font-murmure uppercase text-[230px] font-bold"
+              mainTextClassName="relative z-0 text-blue-300"
+              layers={[
+                {
+                  color: "red",
+                  position: { x: 8, y: 2 },
+                  blendMode: "screen",
+                  filter: "blur(0px)",
+                },
+                {
+                  color: "blue",
+                  position: { x: 12, y: -2 },
+                  blendMode: "screen",
+                  filter: "blur(0px)",
+                },
+              ]}
+            >
+              Blend
+            </BlendText>
+
+            {/* Glow */}
+            <BlendText 
+              className="whitespace-nowrap blur-[0px] font-murmure uppercase text-[230px] font-bold"
+              mainTextClassName="relative z-0 text-blue-300"
+              layers={[
+                {
+                  color: "red",
+                  position: { x: 8, y: 2 },
+                  blendMode: "screen",
+                  filter: "blur(10px)",
+                },
+                {
+                  color: "blue",
+                  position: { x: 12, y: -2 },
+                  blendMode: "screen",
+                  filter: "blur(10px)",
+                },
+              ]}
+            >
+              Glow
+            </BlendText>
+
+
+
+            <BlendText 
+              className="mix-blend-normal whitespace-nowrap font-archivo-black lowercase tracking-widest text-[130px] font-bold"
+              mainTextClassName="relative z-0 text-blue-500"
+              layers={[
+                {
+                  color: "rgb(155, 177, 255)",
+                  position: { x: 8, y: 2 },
+                  blendMode: "screen",
+                  filter: "blur(1px)",
+                },
+                {
+                  color: "rgb(141, 166, 255)",
+                  position: { x: 12, y: -2 },
+                  blendMode: "screen",
+                  filter: "blur(1px)",
+                },
+              ]}
+            >
+              CSS 3D text
+            </BlendText>
+
+            <BlendText 
+              className="mix-blend-normal whitespace-nowrap font-psygen uppercase text-[180px] font-bold"
+              mainTextClassName="relative z-0 text-blue-500"
+              layers={[
+                {
+                  color: "rgb(155, 177, 255)",
+                  position: { x: 8, y: 2 },
+                  blendMode: "screen",
+                  filter: "blur(1px)",
+                },
+                {
+                  color: "rgb(155, 177, 255)",
+                  position: { x: 12, y: -2 },
+                  blendMode: "screen",
+                  filter: "blur(1px)",
+                },
+              ]}
+            >
+              CSS 3D text
+            </BlendText>
+            
           </div>
 
           <Button text="Hello" />
