@@ -52,6 +52,7 @@ export default function UIExperimentsPage() {
 
             <BlendText 
               className="mix-blend-normal whitespace-nowrap font-archivo-black lowercase tracking-widest text-[130px] font-bold"
+              mainTextClassName="relative z-0 text-blue-500"
               layers={[
                 {
                   color: "red",
@@ -67,11 +68,33 @@ export default function UIExperimentsPage() {
                 },
               ]}
             >
-              <span className="relative z-0 text-blue-500">CSS 3D text</span>
+              CSS 3D text
             </BlendText>
 
             <BlendText 
               className="mix-blend-normal whitespace-nowrap font-psygen uppercase text-[180px] font-bold"
+              mainTextClassName="relative z-0 text-blue-500"
+              layers={[
+                {
+                  color: "rgb(155, 177, 255)",
+                  position: { x: 8, y: 2 },
+                  blendMode: "screen",
+                  filter: "blur(1px)",
+                },
+                {
+                  color: "rgb(155, 177, 255)",
+                  position: { x: 12, y: -2 },
+                  blendMode: "screen",
+                  filter: "blur(1px)",
+                },
+              ]}
+            >
+              CSS 3D text
+            </BlendText>
+
+            <BlendText 
+              className="mix-blend-normal whitespace-nowrap font-psygen uppercase text-[180px] font-bold"
+              mainTextClassName="relative z-0 text-blue-400"
               layers={[
                 {
                   color: "red",
@@ -87,12 +110,19 @@ export default function UIExperimentsPage() {
                 },
               ]}
             >
-              <span className="relative z-0 text-pink-500">CSS 3D text</span>
+              CSS 3D text
             </BlendText>
             
             <BlendText 
-              className="mix-blend-normal whitespace-nowrap font-psygen uppercase text-[130px] font-bold"
+              className="mix-blend-normal text-foreground whitespace-nowrap font-psygen uppercase text-[130px] font-bold"
+              mainTextClassName="relative z-[-1]"
               layers={[
+                {
+                  color: "yellow",
+                  position: { x: -12, y: -2 },
+                  blendMode: "screen",
+                  filter: "blur(1px)",
+                },
                 {
                   color: "red",
                   position: { x: 8, y: 2 },
@@ -107,7 +137,7 @@ export default function UIExperimentsPage() {
                 },
               ]}
             >
-              <span className="relative z-[-1] text-blue-300">CSS Glitch text</span>
+              CSS Glitch text
             </BlendText>
             
             <BlendText 

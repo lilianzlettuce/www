@@ -7,7 +7,8 @@ interface ChromaticLayer {
 }
 
 interface BlendTextProps {
-  children: React.ReactNode;
+  children: string; // text to display
+  mainTextClassName?: string;
   layers?: ChromaticLayer[];
   className?: string;
   baseColor?: string;
@@ -18,6 +19,7 @@ interface BlendTextProps {
 
 const BlendText = ({
   children,
+  mainTextClassName = "",
   layers = [
     {
       color: "red",
@@ -39,7 +41,7 @@ const BlendText = ({
       className={`relative ${className}`}
     >
       {/* Base text */}
-      {children}
+      <span className={`relative ${mainTextClassName}`}>{children}</span>
       
       {/* Chromatic aberration layers */}
       {layers.map((layer, index) => (
