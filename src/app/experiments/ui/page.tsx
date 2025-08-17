@@ -4,7 +4,7 @@ import { NavBarGrid, NavBarBasic, NavBarFloating } from "@/components/NavBar";
 import { Button, RevealButton, RevealButton2 } from "@/components/Buttons";
 import Link from "next/link";
 import { PlusIcon, PlusIconThin } from "@/components/svg/Icons";
-import ChromaticAberrationText from "@/components/specialEffects/text/ChromaticAberrationText";
+import BlendText from "@/components/specialEffects/text/BlendText";
 
 export default function UIExperimentsPage() {
   return (
@@ -46,31 +46,71 @@ export default function UIExperimentsPage() {
             This is a page for UI experiments.
           </p>
 
-          {/* New ChromaticAberrationText components for debugging */}
+          {/* New BlendText components for debugging */}
           <div className="mt-8 border-t-2 border-gray-400 pt-8">
             <h2 className="text-2xl font-bold mb-4">New Component Versions:</h2>
-            
-            <ChromaticAberrationText 
-              className="whitespace-nowrap font-psygen uppercase text-[130px] font-bold"
+
+            <BlendText 
+              className="mix-blend-normal whitespace-nowrap font-archivo-black lowercase tracking-widest text-[130px] font-bold"
               layers={[
                 {
                   color: "red",
                   position: { x: 8, y: 2 },
-                  blendMode: "difference",
+                  blendMode: "screen",
                   filter: "blur(1px)",
                 },
                 {
                   color: "blue",
                   position: { x: 12, y: -2 },
-                  blendMode: "difference",
+                  blendMode: "screen",
                   filter: "blur(1px)",
                 },
               ]}
             >
-              CSS Glitch text
-            </ChromaticAberrationText>
+              <span className="relative z-0 text-blue-500">CSS 3D text</span>
+            </BlendText>
+
+            <BlendText 
+              className="mix-blend-normal whitespace-nowrap font-psygen uppercase text-[180px] font-bold"
+              layers={[
+                {
+                  color: "red",
+                  position: { x: 8, y: 2 },
+                  blendMode: "screen",
+                  filter: "blur(1px)",
+                },
+                {
+                  color: "blue",
+                  position: { x: 12, y: -2 },
+                  blendMode: "screen",
+                  filter: "blur(1px)",
+                },
+              ]}
+            >
+              <span className="relative z-0 text-pink-500">CSS 3D text</span>
+            </BlendText>
             
-            <ChromaticAberrationText 
+            <BlendText 
+              className="mix-blend-normal whitespace-nowrap font-psygen uppercase text-[130px] font-bold"
+              layers={[
+                {
+                  color: "red",
+                  position: { x: 8, y: 2 },
+                  blendMode: "screen",
+                  filter: "blur(1px)",
+                },
+                {
+                  color: "blue",
+                  position: { x: 12, y: -2 },
+                  blendMode: "screen",
+                  filter: "blur(1px)",
+                },
+              ]}
+            >
+              <span className="relative z-[-1] text-blue-300">CSS Glitch text</span>
+            </BlendText>
+            
+            <BlendText 
               className="whitespace-nowrap blur-[1px] font-archivo-black uppercase text-8xl font-bold"
               layers={[
                 {
@@ -88,19 +128,19 @@ export default function UIExperimentsPage() {
               ]}
             >
               Blurry glitch text
-            </ChromaticAberrationText>
+            </BlendText>
             
-            <ChromaticAberrationText 
+            <BlendText 
               className="whitespace-nowrap font-roboto-mono text-4xl font-bold"
             >
               Melancholy ice cream
-            </ChromaticAberrationText>
+            </BlendText>
             
-            <ChromaticAberrationText 
+            <BlendText 
               className="whitespace-nowrap text-lg"
             >
               This is a page for UI experiments.
-            </ChromaticAberrationText>
+            </BlendText>
           </div>
 
           <Button text="Hello" />

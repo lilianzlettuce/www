@@ -1,13 +1,13 @@
 interface ChromaticLayer {
   color: string;
   position: { x: number; y: number };
-  blendMode?: "screen" | "difference" | "multiply" | "overlay" | "normal";
+  blendMode?: "screen" | "overlay" | "normal" | "soft-light" | "hard-light" | "color-dodge" | "color-burn" | "difference" | "exclusion" | "hue" | "saturation" | "color" | "luminosity";
   filter?: string;
   animation?: string;
 }
 
-interface ChromaticAberrationTextProps {
-  children: string;
+interface BlendTextProps {
+  children: React.ReactNode;
   layers?: ChromaticLayer[];
   className?: string;
   baseColor?: string;
@@ -16,7 +16,7 @@ interface ChromaticAberrationTextProps {
   textTransform?: string;
 }
 
-const ChromaticAberrationText = ({
+const BlendText = ({
   children,
   layers = [
     {
@@ -33,13 +33,13 @@ const ChromaticAberrationText = ({
     },
   ],
   className = "",
-}: ChromaticAberrationTextProps) => {
+}: BlendTextProps) => {
   return (
     <div
       className={`relative ${className}`}
     >
       {/* Base text */}
-      <span className="relative z-10">{children}</span>
+      {children}
       
       {/* Chromatic aberration layers */}
       {layers.map((layer, index) => (
@@ -62,4 +62,4 @@ const ChromaticAberrationText = ({
   );
 };
 
-export default ChromaticAberrationText;
+export default BlendText;
