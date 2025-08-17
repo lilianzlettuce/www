@@ -5,6 +5,7 @@ import { Button, RevealButton, RevealButton2 } from "@/components/Buttons";
 import Link from "next/link";
 import { PlusIcon, PlusIconThin } from "@/components/svg/Icons";
 import BlendText from "@/components/specialEffects/text/BlendText";
+import ScrambleText from "@/components/specialEffects/text/ScrambleText";
 
 export default function UIExperimentsPage() {
   return (
@@ -25,8 +26,13 @@ export default function UIExperimentsPage() {
             This is a page for UI experiments.
           </p>
 
+          <ScrambleText 
+            text="This is a page for UI experiments." 
+            className="min-w-100 text-lg"
+          />
+
           {/* BlendText components */}
-          <div className="mt-8 border-t-2 border-gray-400 pt-8 flex flex-col items-center justify-center">
+          <div className="mt-8 border-y-2 mb-6 border-gray-400 pt-8 flex flex-col items-center justify-center">
             <h2 className="text-2xl font-bold mb-4">Blend Text</h2>
 
             {/* CSS Glitch Text */}

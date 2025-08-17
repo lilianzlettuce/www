@@ -1,14 +1,22 @@
-import { useScramble } from 'use-scramble';
+import { useScramble } from "use-scramble";
 
-export const ScrambleText = () => {
-  const { ref } = useScramble({
-    text: 'Achilles next, that nimble runner, swift on his feet as the wind',
+interface ScrambleTextProps {
+  text: string;
+  className?: string;
+}
+  
+export default function ScrambleText ({ text, className }: ScrambleTextProps) {
+  const { ref, replay } = useScramble({
+    text: text,
+    playOnMount: true,
     speed: 0.6,
     tick: 1,
     step: 1,
     scramble: 4,
-    seed: 0,
+    seed: 5,
+    //range: [33, 47],
+    overdrive: false,
   });
 
-  return <p ref={ref} />;
+  return <p ref={ref} className={className} onMouseOver={replay} />;
 };
