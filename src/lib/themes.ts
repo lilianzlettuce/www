@@ -24,6 +24,8 @@ export interface ThemeColors {
   successForeground: string;
   warning: string;
   warningForeground: string;
+  textBlendPrimary: string;
+  textBlendSecondary: string;
 }
 
 export const themes: Record<ThemeMode, ThemeColors> = {
@@ -51,6 +53,8 @@ export const themes: Record<ThemeMode, ThemeColors> = {
     successForeground: 'var(--white)',
     warning: 'var(--yellow-500)',
     warningForeground: 'var(--white)',
+    textBlendPrimary: 'var(--black)',
+    textBlendSecondary: 'var(--black)',
   },
   dark: {
     background: 'var(--black)',
@@ -76,6 +80,8 @@ export const themes: Record<ThemeMode, ThemeColors> = {
     successForeground: 'var(--white)',
     warning: 'var(--yellow-500)',
     warningForeground: 'var(--white)',
+    textBlendPrimary: 'var(--blue-300)',
+    textBlendSecondary: 'var(--red)',
   },
   sepia: {
     background: 'var(--sepia-bg)',
@@ -101,6 +107,8 @@ export const themes: Record<ThemeMode, ThemeColors> = {
     successForeground: 'var(--sepia-bg)',
     warning: 'var(--yellow-600)',
     warningForeground: 'var(--sepia-bg)',
+    textBlendPrimary: 'var(--black)',
+    textBlendSecondary: 'var(--black)',
   },
   'high-contrast': {
     background: 'var(--black)',
@@ -126,6 +134,8 @@ export const themes: Record<ThemeMode, ThemeColors> = {
     successForeground: 'var(--black)',
     warning: 'var(--orange)',
     warningForeground: 'var(--black)',
+    textBlendPrimary: 'var(--black)',
+    textBlendSecondary: 'var(--black)',
   },
 };
 
