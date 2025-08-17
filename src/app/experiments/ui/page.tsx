@@ -6,7 +6,7 @@ import Link from "next/link";
 import { PlusIcon, PlusIconThin } from "@/components/svg/Icons";
 import BlendText from "@/components/specialEffects/text/BlendText";
 import ScrambleText from "@/components/specialEffects/text/ScrambleText";
-import SliceText from "@/components/specialEffects/text/SliceText";
+import { SliceText, MultiSliceText, RollingSliceText } from "@/components/specialEffects/text/SliceText";
 
 export default function UIExperimentsPage() {
   return (
@@ -38,6 +38,21 @@ export default function UIExperimentsPage() {
 
             <SliceText 
               text="This is a page for UI experiments." 
+              className="font-roboto-mono text-4xl font-bold"
+            />
+
+            <MultiSliceText 
+              text="rat in three trenchcoats." 
+              slices={5}
+              maxOffset={8}
+              className="font-roboto-mono text-4xl font-bold"
+              reRenderOnHover={true}
+            />
+
+            <RollingSliceText 
+              text="rat in three trenchcoats." 
+              slices={5}
+              maxOffset={8}
               className="font-roboto-mono text-4xl font-bold"
             />
           </div>
