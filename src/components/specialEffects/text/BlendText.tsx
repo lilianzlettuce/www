@@ -1,15 +1,12 @@
-interface ChromaticLayer {
-  color: string;
+interface TextLayer {
+  className?: string;
   position: { x: number; y: number };
-  blendMode?: "screen" | "overlay" | "normal" | "soft-light" | "hard-light" | "color-dodge" | "color-burn" | "difference" | "exclusion" | "hue" | "saturation" | "color" | "luminosity";
-  filter?: string;
-  animation?: string;
 }
 
 interface BlendTextProps {
   children: string; // text to display
   mainTextClassName?: string;
-  layers?: ChromaticLayer[];
+  layers?: TextLayer[];
   className?: string;
   baseColor?: string;
   fontFamily?: string;
@@ -22,16 +19,12 @@ const BlendText = ({
   mainTextClassName = "",
   layers = [
     {
-      color: "red",
+      className: "text-red mix-blend-screen",
       position: { x: 8, y: 2 },
-      blendMode: "screen",
-      filter: "blur(1px)",
     },
     {
-      color: "blue",
+      className: "text-blue mix-blend-screen",
       position: { x: 12, y: -2 },
-      blendMode: "screen",
-      filter: "blur(1px)",
     },
   ],
   className = "",
@@ -47,13 +40,9 @@ const BlendText = ({
       {layers.map((layer, index) => (
         <div
           key={index}
-          className="absolute inset-0 pointer-events-none"
+          className={`absolute inset-0 pointer-events-none ${layer.className}`}
           style={{
-            color: layer.color,
             transform: `translate(${layer.position.x}px, ${layer.position.y}px)`,
-            mixBlendMode: layer.blendMode || "screen",
-            filter: layer.filter || "blur(1px)",
-            animation: layer.animation || "none",
             zIndex: index + 1,
           }}
         >

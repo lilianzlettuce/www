@@ -81,7 +81,7 @@ export const themes: Record<ThemeMode, ThemeColors> = {
     warning: 'var(--yellow-500)',
     warningForeground: 'var(--white)',
     textBlendPrimary: 'var(--blue-300)',
-    textBlendSecondary: 'var(--red)',
+    textBlendSecondary: 'var(--green)',
   },
   sepia: {
     background: 'var(--sepia-bg)',

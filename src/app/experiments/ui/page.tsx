@@ -6,6 +6,7 @@ import Link from "next/link";
 import { PlusIcon, PlusIconThin } from "@/components/svg/Icons";
 import BlendText from "@/components/specialEffects/text/BlendText";
 import ScrambleText from "@/components/specialEffects/text/ScrambleText";
+import SliceText from "@/components/specialEffects/text/SliceText";
 
 export default function UIExperimentsPage() {
   return (
@@ -33,77 +34,70 @@ export default function UIExperimentsPage() {
 
           {/* BlendText components */}
           <div className="mt-8 border-y-2 mb-6 border-gray-400 pt-8 flex flex-col items-center justify-center">
-            <h2 className="text-2xl font-bold mb-4">Blend Text</h2>
+            <h2 className="text-2xl font-bold mb-4">Slice Text</h2>
 
-            {/* CSS Glitch Text */}
-            <BlendText 
-              className="mix-blend-normal whitespace-nowrap font-psygen uppercase text-[130px] font-bold"
-              mainTextClassName="relative z-0 text-text-blend-primary"
-              layers={[
-                {
-                  color: "red",
-                  position: { x: 8, y: 2 },
-                  blendMode: "screen",
-                  filter: "blur(1px)",
-                  animation: "glitch 8s cubic-bezier(.25, .46, .45, .94) both infinite"
-                },
-                {
-                  color: "blue",
-                  position: { x: 12, y: -2 },
-                  blendMode: "screen",
-                  filter: "blur(1px)",
-                  animation: "glitch 8s cubic-bezier(.25, .46, .45, .94) reverse both infinite"
-                },
-              ]}
-            >
-              CSS Glitch Text
-            </BlendText>
+            <SliceText 
+              text="This is a page for UI experiments." 
+              className="font-roboto-mono text-4xl font-bold"
+            />
+          </div>
+
+          {/* BlendText components */}
+          <div className="mt-8 border-y-2 mb-6 border-gray-400 pt-8 flex flex-col items-center justify-center">
+            <h2 className="text-2xl font-bold mb-4">Blend Text</h2>
 
             {/* Chromatic Aberration */}
             <BlendText 
-              className="whitespace-nowrap blur-[2px] font-archivo-black uppercase text-8xl font-bold"
-              mainTextClassName="relative z-0 text-text-blend-primary"
+              className="mix-blend-normal text-center font-psygen uppercase text-[130px]/[1] font-bold"
+              mainTextClassName="relative z-0 text-text-blend-secondary"
               layers={[
                 {
-                  color: "red",
+                  className: "text-red mix-blend-screen blur-1 animate-glitch",
                   position: { x: 8, y: 2 },
-                  blendMode: "screen",
-                  filter: "blur(0px)",
-                  animation: "glitch-erratic .3s both infinite"
                 },
                 {
-                  color: "blue",
+                  className: "text-blue mix-blend-screen blur-1 animate-glitch-reverse",
                   position: { x: 12, y: -2 },
-                  blendMode: "screen",
-                  filter: "blur(0px)",
-                  animation: "glitch-erratic .3s reverse both infinite"
+                },
+              ]}
+            >
+              Chromatic Aberration
+            </BlendText>
+
+            {/* Blur */}
+            <BlendText 
+              className="group whitespace-nowrap blur-[2px] font-archivo-black uppercase text-8xl font-bold"
+              mainTextClassName="relative z-0 text-text-blend-secondary"
+              layers={[
+                {
+                  className: "text-red mix-blend-screen group-hover:animate-glitch-erratic",
+                  position: { x: 8, y: 6 },
+                },
+                {
+                  className: "text-blue mix-blend-screen group-hover:animate-glitch-erratic-reverse",
+                  position: { x: -6, y: -6 },
                 },
               ]}
             >
               Blur
             </BlendText>
 
-            {/* Chromatic Aberration */}
+            {/* Glitch */}
             <BlendText 
-              className="whitespace-nowrap font-murmure uppercase text-[220px] font-bold"
+              className="group whitespace-nowrap font-murmure uppercase text-[220px] font-bold"
               mainTextClassName="relative z-0 text-text-blend-primary"
               layers={[
                 {
-                  color: "red",
+                  className: "text-red mix-blend-screen group-hover:animate-glitch-erratic",
                   position: { x: 8, y: 2 },
-                  blendMode: "screen",
-                  filter: "blur(0px)",
-                  animation: "glitch-erratic .3s both infinite"
                 },
                 {
-                  color: "blue",
+                  className: "text-blue mix-blend-screen group-hover:animate-glitch-erratic-reverse",
                   position: { x: 12, y: -2 },
-                  blendMode: "screen",
-                  filter: "blur(0px)",
                 },
               ]}
             >
-              Chromatic Aberration
+              Glitch
             </BlendText>
 
             {/* Melancholy Ice Cream */}
@@ -128,16 +122,12 @@ export default function UIExperimentsPage() {
               mainTextClassName="relative z-0 text-blue-300"
               layers={[
                 {
-                  color: "red",
+                  className: "text-red blur-xs mix-blend-screen",
                   position: { x: 8, y: 2 },
-                  blendMode: "screen",
-                  filter: "blur(10px)",
                 },
                 {
-                  color: "blue",
+                  className: "text-blue blur-xs mix-blend-screen",
                   position: { x: 12, y: -2 },
-                  blendMode: "screen",
-                  filter: "blur(10px)",
                 },
               ]}
             >
@@ -151,16 +141,12 @@ export default function UIExperimentsPage() {
               mainTextClassName="relative z-0 text-blue-500"
               layers={[
                 {
-                  color: "rgb(155, 177, 255)",
+                  className: "text-blue-400 blur-[1px] mix-blend-screen",
                   position: { x: 8, y: 2 },
-                  blendMode: "screen",
-                  filter: "blur(1px)",
                 },
                 {
-                  color: "rgb(141, 166, 255)",
+                  className: "text-blue-300 blur-[1px] mix-blend-screen",
                   position: { x: 12, y: -2 },
-                  blendMode: "screen",
-                  filter: "blur(1px)",
                 },
               ]}
             >
@@ -172,16 +158,12 @@ export default function UIExperimentsPage() {
               mainTextClassName="relative z-0 text-blue-500"
               layers={[
                 {
-                  color: "rgb(155, 177, 255)",
+                  className: "text-blue-400 blur-[1px] mix-blend-screen",
                   position: { x: 8, y: 2 },
-                  blendMode: "screen",
-                  filter: "blur(1px)",
                 },
                 {
-                  color: "rgb(155, 177, 255)",
+                  className: "text-blue-300 blur-[1px] mix-blend-screen",
                   position: { x: 12, y: -2 },
-                  blendMode: "screen",
-                  filter: "blur(1px)",
                 },
               ]}
             >

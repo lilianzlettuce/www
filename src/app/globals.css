@@ -36,6 +36,7 @@
   /* High contrast colors */
   --yellow: #ffff00;
   --red: #ff0000;
+  --blue: #0000ff;
   --green: #00ff00;
   --orange: #ff8800;
   --gray-dark: #333333;
@@ -75,7 +76,7 @@
   --warningForeground: var(--white);
 
   --textBlendPrimary: var(--black);
-  --textBlendSecondary: var(--red);
+  --textBlendSecondary: var(--black);
 
   /* Theme filter variables */
   --invert: 0;
@@ -184,10 +185,18 @@ body {
 
   --color-text-blend-primary: var(--textBlendPrimary);
   --color-text-blend-secondary: var(--textBlendSecondary);
+  --color-red: var(--red);
+  --color-blue: var(--blue);
+  --color-green: var(--green);
 
   /* Animations */
   --animate-text: textAnim 1s ease forwards;
   --animate-text2: textAnim2 1s ease forwards;
+
+  --animate-glitch: glitch 8s cubic-bezier(.25, .46, .45, .94) both infinite;
+  --animate-glitch-reverse: glitch 8s cubic-bezier(.25, .46, .45, .94) reverse both infinite;
+  --animate-glitch-erratic: glitch-erratic .3s both infinite;
+  --animate-glitch-erratic-reverse: glitch-erratic .3s reverse both infinite;
 
   @keyframes textAnim {
     0% {
@@ -206,6 +215,39 @@ body {
     }
     100% {
       transform: scale(2, 1.6);
+    }
+  }
+
+
+  @keyframes glitch {
+    0%, 100% {
+      transform: translate(-5px, 5px)
+    }
+    24.5%, 25.5% {
+      transform: translate(-5px, -5px)
+    }
+    49.5%, 50.5% {
+      transform: translate(5px, 5px)
+    }
+    74.5%, 75.5% {
+      transform: translate(5px, -5px)
+    }
+  }
+  @keyframes glitch-erratic {
+    0%, 24.999% {
+      transform: translate(-5px, 5px);
+    }
+    25%, 49.999% {
+      transform: translate(-5px, -5px);
+    }
+    50%, 74.999% {
+      transform: translate(5px, 5px);
+    }
+    75%, 99.999% {
+      transform: translate(5px, -5px);
+    }
+    100% {
+      transform: translate(-5px, 5px);
     }
   }
 }
@@ -491,38 +533,6 @@ body {
     transform: translate(2px, -2px);
     animation: glitch-after 1.5s infinite alternate;
     animation: none;
-  }
-  @keyframes glitch {
-    0%, 100% {
-      transform: translate(-5px, 5px)
-    }
-    24.5%, 25.5% {
-      transform: translate(-5px, -5px)
-    }
-    49.5%, 50.5% {
-      transform: translate(5px, 5px)
-    }
-    74.5%, 75.5% {
-      transform: translate(5px, -5px)
-    }
-  }
-
-  @keyframes glitch-erratic {
-    0%, 24.999% {
-      transform: translate(-5px, 5px);
-    }
-    25%, 49.999% {
-      transform: translate(-5px, -5px);
-    }
-    50%, 74.999% {
-      transform: translate(5px, 5px);
-    }
-    75%, 99.999% {
-      transform: translate(5px, -5px);
-    }
-    100% {
-      transform: translate(-5px, 5px);
-    }
   }
 }
 
