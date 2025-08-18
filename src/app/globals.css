@@ -195,8 +195,6 @@ body {
 
   --animate-glitch: glitch 8s cubic-bezier(.25, .46, .45, .94) both infinite;
   --animate-glitch-reverse: glitch 8s cubic-bezier(.25, .46, .45, .94) reverse both infinite;
-  --animate-glitch-erratic: glitch-erratic .3s both infinite;
-  --animate-glitch-erratic-reverse: glitch-erratic .3s reverse both infinite;
 
   @keyframes textAnim {
     0% {
@@ -235,19 +233,19 @@ body {
   }
   @keyframes glitch-erratic {
     0%, 24.999% {
-      transform: translate(-5px, 5px);
+      transform: translate(calc(var(--glitch-offset-x, -5px)), calc(var(--glitch-offset-y, 5px)));
     }
     25%, 49.999% {
-      transform: translate(-5px, -5px);
+      transform: translate(calc(var(--glitch-offset-x, -5px)), calc(var(--glitch-offset-y, -5px)));
     }
     50%, 74.999% {
-      transform: translate(5px, 5px);
+      transform: translate(calc(var(--glitch-offset-x, 5px)), calc(var(--glitch-offset-y, 5px)));
     }
     75%, 99.999% {
-      transform: translate(5px, -5px);
+      transform: translate(calc(var(--glitch-offset-x, 5px)), calc(var(--glitch-offset-y, -5px)));
     }
     100% {
-      transform: translate(-5px, 5px);
+      transform: translate(calc(var(--glitch-offset-x, -5px)), calc(var(--glitch-offset-y, 5px)));
     }
   }
 
@@ -260,7 +258,64 @@ body {
     }
   }
   
+  @keyframes roll-down {
+    0% {
+      clip-path: inset(0 0 100% 0);
+    }
+    100% {
+      clip-path: inset(100% 0 0 0);
+    }
+  }
 }
+
+@layer utilities {
+  /* One “band” mask centered vertically (we’ll move it with mask-position) */
+  .glitch-bar {
+    /* Customizable via CSS vars */
+    --h: 12%;            /* band thickness as % of element height */
+    --dx: 8px;           /* horizontal displacement for this bar */
+    --dur: 2.5s;         /* duration for the roll */
+    --delay: 0s;
+
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    will-change: mask-position, -webkit-mask-position, transform;
+    transform: translateX(var(--dx));
+
+    /* Non-repeating, tall mask so we can sweep from above to below */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent calc(50% - var(--h)/2),
+      #000        calc(50% - var(--h)/2),
+      #000        calc(50% + var(--h)/2),
+      transparent calc(50% + var(--h)/2)
+    );
+            mask-image: linear-gradient(
+      to bottom,
+      transparent calc(50% - var(--h)/2),
+      #000        calc(50% - var(--h)/2),
+      #000        calc(50% + var(--h)/2),
+      transparent calc(50% + var(--h)/2)
+    );
+
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+
+    /* 300% height lets us start above and end below the element */
+    -webkit-mask-size: 100% 300%;
+            mask-size: 100% 300%;
+
+    animation: roll-mask var(--dur) linear infinite;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes roll-mask {
+    0%   { -webkit-mask-position: 0% -50%; mask-position: 0% -50%; }
+    100% { -webkit-mask-position: 0% 150%; mask-position: 0% 150%; }
+  }
+}
+
 
 @layer base {
 

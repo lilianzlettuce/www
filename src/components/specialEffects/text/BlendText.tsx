@@ -4,7 +4,7 @@ interface TextLayer {
 }
 
 interface BlendTextProps {
-  children: string; // text to display
+  children: string | React.ReactNode; // text to display
   mainTextClassName?: string;
   layers?: TextLayer[];
   className?: string;

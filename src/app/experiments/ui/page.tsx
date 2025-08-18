@@ -36,24 +36,30 @@ export default function UIExperimentsPage() {
           <div className="mt-8 border-y-2 mb-6 border-gray-400 pt-8 flex flex-col items-center justify-center">
             <h2 className="text-2xl font-bold mb-4">Slice Text</h2>
 
-            <SliceText 
-              text="This is a page for UI experiments." 
+            <MultiSliceText 
+              text="This is page for UI experiments." 
+              slices={3}
+              maxOffset={12}
+              minOffset={4}
               className="font-roboto-mono text-4xl font-bold"
+              reRenderOnHover={true}
+              randomizeHeights={true}
             />
 
             <MultiSliceText 
               text="rat in three trenchcoats." 
-              slices={5}
+              slices={3}
               maxOffset={8}
               className="font-roboto-mono text-4xl font-bold"
               reRenderOnHover={true}
             />
 
             <RollingSliceText 
-              text="rat in three trenchcoats." 
+              text="rolling slice." 
               slices={5}
-              maxOffset={8}
-              className="font-roboto-mono text-4xl font-bold"
+              bandHeightPct={5}
+              maxOffset={3}
+              className="font-roboto-mono whitespace-nowrap text-9xl font-bold"
             />
           </div>
 
@@ -79,22 +85,70 @@ export default function UIExperimentsPage() {
               Chromatic Aberration
             </BlendText>
 
+            {/* Chromatic Aberration with slice */}
+            <BlendText 
+              className="mix-blend-normal text-center font-psygen uppercase text-[130px]/[1] font-bold"
+              mainTextClassName="relative z-0 text-text-blend-secondary"
+              layers={[
+                {
+                  className: "text-red mix-blend-screen blur-1 animate-glitch",
+                  position: { x: 8, y: 2 },
+                },
+                {
+                  className: "text-blue mix-blend-screen blur-1 animate-glitch-reverse",
+                  position: { x: 12, y: -2 },
+                },
+              ]}
+            >
+              <RollingSliceText 
+                text="with slice." 
+                slices={5}
+                bandHeightPct={5}
+                maxOffset={3}
+                className="font-roboto-mono whitespace-nowrap text-9xl font-bold"
+              />
+            </BlendText>
+
             {/* Blur */}
             <BlendText 
               className="group whitespace-nowrap blur-[2px] font-archivo-black uppercase text-8xl font-bold"
               mainTextClassName="relative z-0 text-text-blend-secondary"
               layers={[
                 {
-                  className: "text-red mix-blend-screen group-hover:animate-glitch-erratic",
+                  className: "text-red mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_both_infinite]",
                   position: { x: 8, y: 6 },
                 },
                 {
-                  className: "text-blue mix-blend-screen group-hover:animate-glitch-erratic-reverse",
+                  className: "text-blue mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_reverse_both_infinite]",
                   position: { x: -6, y: -6 },
                 },
               ]}
             >
               Blur
+            </BlendText>
+
+            {/* Distortion */}
+            <BlendText 
+              className="group whitespace-nowrap blur-[1px] font-archivo-black uppercase text-8xl font-bold"
+              mainTextClassName="relative z-0 text-text-blend-secondary"
+              layers={[
+                {
+                  className: "text-red mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_both_infinite]",
+                  position: { x: 8, y: 6 },
+                },
+                {
+                  className: "text-blue mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_reverse_both_infinite]",
+                  position: { x: -6, y: -6 },
+                },
+              ]}
+            >
+              <MultiSliceText 
+                text="distortion." 
+                slices={3}
+                maxOffset={8}
+                className="text-8xl"
+                reRenderOnHover={true}
+              />
             </BlendText>
 
             {/* Glitch */}
@@ -103,11 +157,11 @@ export default function UIExperimentsPage() {
               mainTextClassName="relative z-0 text-text-blend-primary"
               layers={[
                 {
-                  className: "text-red mix-blend-screen group-hover:animate-glitch-erratic",
+                  className: "text-red mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_both_infinite]",
                   position: { x: 8, y: 2 },
                 },
                 {
-                  className: "text-blue mix-blend-screen group-hover:animate-glitch-erratic-reverse",
+                  className: "text-blue mix-blend-screen",
                   position: { x: 12, y: -2 },
                 },
               ]}
@@ -119,8 +173,42 @@ export default function UIExperimentsPage() {
             <BlendText 
               className="whitespace-nowrap font-roboto-mono uppercase text-4xl font-bold"
               mainTextClassName="relative z-0 text-blue-300"
+              layers={[
+                {
+                  className: "text-red mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_both_infinite]",
+                  position: { x: 8, y: 6 },
+                },
+                {
+                  className: "text-blue mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_reverse_both_infinite]",
+                  position: { x: -6, y: -6 },
+                },
+              ]}
             >
               Melancholy ice cream
+            </BlendText>
+
+            {/* Melancholy Ice Cream with slice */}
+            <BlendText 
+              className="group whitespace-nowrap font-roboto-mono uppercase text-4xl font-bold"
+              mainTextClassName="relative z-0 text-text-blend-primary"
+              layers={[
+                {
+                  className: "text-red mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_both_1]",
+                  position: { x: 8, y: 2 },
+                },
+                {
+                  className: "text-blue mix-blend-screen",
+                  position: { x: 12, y: -2 },
+                },
+              ]}
+            >
+              <MultiSliceText 
+                text="melancholy ice cream with slice" 
+                slices={3}
+                maxOffset={8}
+                className="text-4xl"
+                reRenderOnHover={true}
+              />
             </BlendText>
             
             {/* We are all made of stars */}
