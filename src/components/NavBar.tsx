@@ -8,6 +8,7 @@ import { ThemeToggle, ThemeSlider } from "@/components/ThemeToggle";
 import { navItems } from "@/lib/data";
 import ZoomableImage from "./ZoomableImage";
 import { useLiveTime } from "@/hooks/useUserInfo";
+import { MultiSliceText, SliceText } from "./specialEffects/text/SliceText";
 
 type NavBarProps = {
   className?: string;
@@ -239,18 +240,23 @@ export function NavBar({ className }: NavBarProps) {
           <div className="w-28 h-full flex items-center justify-center">
             <ThemeSlider buttonClassName="p-1" />
           </div>
-          <div className="w-2/3 h-full flex items-center gap-0 font-mono font-bold lowercase text-sm capitalize">
+          <div className="w-2/3 h-full flex items-center gap-0 font-bold lowercase text-sm capitalize">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`w-full h-full flex items-center justify-center text-xs font-medium px-8 border-l border-border ${
+                className={`group w-full h-full flex items-center justify-center text-xs font-medium px-8 border-l border-border ${
                   pathname === item.href
                     ? "text-foreground decoration-1 line-through"
                     : "text-mutedForeground hover:line-through"
                 }`}
               >
-                {item.label}
+                <SliceText 
+                  className="font-mono text-xs font-bold"
+                  reRenderOnHover={true}
+                >
+                  {item.label}
+                </SliceText>
               </Link>
             ))}
           </div>

@@ -5,14 +5,15 @@ import { useEffect, useState, useMemo } from "react";
 interface SliceTextProps {
   children: string | React.ReactNode;
   className?: string;
+  reRenderOnHover?: boolean;
 }
 
-export function SliceText({ children, className }: SliceTextProps) {
+export function SliceText({ children, className, reRenderOnHover = false }: SliceTextProps) {
   return (
     <div className={`relative inline-block font-bold text-4xl ${className}`}>
       {/* Top slice */}
       <span
-        className="absolute top-0 left-0 w-full overflow-hidden"
+        className="absolute top-0 left-0 group-hover:left-[-1px] w-full overflow-hidden"
         style={{ clipPath: "inset(0 0 50% 0)" }}
       >
         {children}
@@ -20,7 +21,7 @@ export function SliceText({ children, className }: SliceTextProps) {
 
       {/* Bottom slice, shifted slightly */}
       <span
-        className="absolute top-0 left-1 w-full overflow-hidden"
+        className="absolute top-0 left-0 group-hover:left-[1px] w-full overflow-hidden"
         style={{ clipPath: "inset(50% 0 0 0)" }}
       >
         {children}
