@@ -37,30 +37,33 @@ export default function UIExperimentsPage() {
             <h2 className="text-2xl font-bold mb-4">Slice Text</h2>
 
             <MultiSliceText 
-              text="This is page for UI experiments." 
               slices={3}
               maxOffset={12}
               minOffset={4}
               className="font-roboto-mono text-4xl font-bold"
               reRenderOnHover={true}
               randomizeHeights={true}
-            />
+            >
+              This is page for UI experiments.
+            </MultiSliceText>
 
             <MultiSliceText 
-              text="rat in three trenchcoats." 
               slices={3}
               maxOffset={8}
-              className="font-roboto-mono text-4xl font-bold"
+              className="my-4 font-roboto-mono text-4xl font-bold"
               reRenderOnHover={true}
-            />
+            >
+              rat in three trenchcoats.
+            </MultiSliceText>
 
             <RollingSliceText 
-              text="rolling slice." 
               slices={5}
               bandHeightPct={5}
               maxOffset={3}
-              className="font-roboto-mono whitespace-nowrap text-9xl font-bold"
-            />
+              className="my-4 font-roboto-mono whitespace-nowrap text-9xl font-bold"
+            >
+              rolling slice.
+            </RollingSliceText>
           </div>
 
           {/* BlendText components */}
@@ -101,12 +104,13 @@ export default function UIExperimentsPage() {
               ]}
             >
               <RollingSliceText 
-                text="with slice." 
                 slices={5}
                 bandHeightPct={5}
                 maxOffset={3}
                 className="font-roboto-mono whitespace-nowrap text-9xl font-bold"
-              />
+              >
+                with slice.
+              </RollingSliceText>
             </BlendText>
 
             {/* Blur */}
@@ -143,12 +147,13 @@ export default function UIExperimentsPage() {
               ]}
             >
               <MultiSliceText 
-                text="distortion." 
                 slices={3}
                 maxOffset={8}
                 className="text-8xl"
                 reRenderOnHover={true}
-              />
+              >
+                distortion.
+              </MultiSliceText>
             </BlendText>
 
             {/* Glitch */}
@@ -187,29 +192,32 @@ export default function UIExperimentsPage() {
               Melancholy ice cream
             </BlendText>
 
-            {/* Melancholy Ice Cream with slice */}
-            <BlendText 
-              className="group whitespace-nowrap font-roboto-mono uppercase text-4xl font-bold"
-              mainTextClassName="relative z-0 text-text-blend-primary"
-              layers={[
-                {
-                  className: "text-red mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_both_1]",
-                  position: { x: 8, y: 2 },
-                },
-                {
-                  className: "text-blue mix-blend-screen",
-                  position: { x: 12, y: -2 },
-                },
-              ]}
-            >
-              <MultiSliceText 
-                text="melancholy ice cream with slice" 
-                slices={3}
-                maxOffset={8}
-                className="text-4xl"
-                reRenderOnHover={true}
-              />
-            </BlendText>
+            {/* rat in three trenchcoats */}
+            <div style={{ "--glitch-offset-y": "3px" } as React.CSSProperties}>
+              <BlendText 
+                className="group whitespace-nowrap font-roboto-mono font-bold"
+                mainTextClassName="relative z-0 text-text-blend-secondary"
+                layers={[
+                  {
+                    className: "text-red mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_both_1]",
+                    position: { x: -4, y: 2 },
+                  },
+                  {
+                    className: "text-blue mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_both_1]",
+                    position: { x: 2, y: -3 },
+                  },
+                ]}
+              >
+                <MultiSliceText 
+                  slices={3}
+                  maxOffset={8}
+                  className="text-3xl"
+                  reRenderOnHover={true}
+                >
+                  rat in three trenchcoats.
+                </MultiSliceText>
+              </BlendText>
+            </div>
             
             {/* We are all made of stars */}
             <BlendText 

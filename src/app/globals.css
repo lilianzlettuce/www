@@ -233,19 +233,19 @@ body {
   }
   @keyframes glitch-erratic {
     0%, 24.999% {
-      transform: translate(calc(var(--glitch-offset-x, -5px)), calc(var(--glitch-offset-y, 5px)));
+      transform: translate(calc(-1 * var(--glitch-offset-x, 5px)), calc(var(--glitch-offset-y, 5px)));
     }
     25%, 49.999% {
-      transform: translate(calc(var(--glitch-offset-x, -5px)), calc(var(--glitch-offset-y, -5px)));
+      transform: translate(calc(-1 * var(--glitch-offset-x, 5px)), calc(-1 * var(--glitch-offset-y, 5px)));
     }
     50%, 74.999% {
       transform: translate(calc(var(--glitch-offset-x, 5px)), calc(var(--glitch-offset-y, 5px)));
     }
     75%, 99.999% {
-      transform: translate(calc(var(--glitch-offset-x, 5px)), calc(var(--glitch-offset-y, -5px)));
+      transform: translate(calc(var(--glitch-offset-x, 5px)), calc(-1 * var(--glitch-offset-y, 5px)));
     }
     100% {
-      transform: translate(calc(var(--glitch-offset-x, -5px)), calc(var(--glitch-offset-y, 5px)));
+      transform: translate(calc(-1 * var(--glitch-offset-x, 5px)), calc(var(--glitch-offset-y, 5px)));
     }
   }
 

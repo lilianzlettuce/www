@@ -3,11 +3,11 @@
 import { useEffect, useState, useMemo } from "react";
 
 interface SliceTextProps {
-  text: string;
+  children: string | React.ReactNode;
   className?: string;
 }
 
-export function SliceText({ text, className }: SliceTextProps) {
+export function SliceText({ children, className }: SliceTextProps) {
   return (
     <div className={`relative inline-block font-bold text-4xl ${className}`}>
       {/* Top slice */}
@@ -15,7 +15,7 @@ export function SliceText({ text, className }: SliceTextProps) {
         className="absolute top-0 left-0 w-full overflow-hidden"
         style={{ clipPath: "inset(0 0 50% 0)" }}
       >
-        {text}
+        {children}
       </span>
 
       {/* Bottom slice, shifted slightly */}
@@ -23,17 +23,17 @@ export function SliceText({ text, className }: SliceTextProps) {
         className="absolute top-0 left-1 w-full overflow-hidden"
         style={{ clipPath: "inset(50% 0 0 0)" }}
       >
-        {text}
+        {children}
       </span>
 
       {/* Invisible base text (to keep layout size) */}
-      <span className="invisible">{text}</span>
+      <span className="invisible">{children}</span>
     </div>
   );
 }
 
 interface MultiSliceTextProps {
-  text: string;
+  children: string | React.ReactNode;
   slices?: number; // default: 4
   minOffset?: number; // px
   maxOffset?: number; // px
@@ -43,7 +43,7 @@ interface MultiSliceTextProps {
 }
 
 export function MultiSliceText({
-  text,
+  children,
   slices = 4,
   minOffset = 4,
   maxOffset = 8,
@@ -117,7 +117,7 @@ export function MultiSliceText({
 
   return (
     <div 
-      className={`relative inline-block font-bold text-4xl ${className}`}
+      className={`relative inline-block font-bold ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -133,27 +133,27 @@ export function MultiSliceText({
               transform: `translateX(${offset}px)`,
             }}
           >
-            {text}
+            {children}
           </span>
         );
       })}
 
       {/* Invisible base for spacing */}
-      <span className="invisible">{text}</span>
+      <span className="invisible">{children}</span>
     </div>
   );
 }
 
 
 interface OscillatingSliceTextProps {
-  text: string;
+  children: string | React.ReactNode;
   slices?: number;
   maxOffset?: number;
   className?: string;
 }
 
 export function OscillatingSliceText({
-  text,
+  children,
   slices = 6,
   maxOffset = 10,
   className,
@@ -175,18 +175,18 @@ export function OscillatingSliceText({
               transform: `translateX(${(i % 2 === 0 ? 1 : -1) * maxOffset}px)`,
             }}
           >
-            {text}
+            {children}
           </span>
         );
       })}
 
-      <span className="invisible">{text}</span>
+      <span className="invisible">{children}</span>
     </div>
   );
 }
 
 type Props = {
-  text: string;
+  children: string | React.ReactNode;
   slices?: number;       // number of rolling bars
   bandHeightPct?: number; // 4–20 is typical
   maxOffset?: number;   // horizontal displacement range
@@ -195,7 +195,7 @@ type Props = {
 };
 
 export function RollingSliceText({
-  text,
+  children,
   slices = 3,
   bandHeightPct = 5,
   maxOffset = 2,
@@ -215,7 +215,7 @@ export function RollingSliceText({
   return (
     <div className={`relative inline-block ${className}`}>
       {/* Base text */}
-      <span className="relative z-0">{text}</span>
+      <span className="relative z-0">{children}</span>
 
       {/* Rolling bars */}
       {bars.map(({ dx, delay }, i) => (
@@ -232,7 +232,7 @@ export function RollingSliceText({
             }
           }
         >
-          {text}
+          {children}
         </span>
       ))}
     </div>
