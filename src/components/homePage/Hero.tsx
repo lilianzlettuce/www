@@ -1,7 +1,7 @@
 import { BrainDarkMouseDark, BrainDarkMouseLight, BrainLight } from "./ToneCanvas";
 import { HeroWindow } from "../Windows";
 import ZoomableImage from "../ZoomableImage";
-import CycleText from "../specialEffects/text/CycleText";
+import { CycleText, CycleTextBlend } from "../specialEffects/text/CycleText";
 
 export default function Hero() {
     
@@ -29,22 +29,24 @@ export default function Hero() {
           <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" tooltipText="POKE" />
         </div>
         <div className="relative z-10 text-left max-w-lg w-1/3 px-4 sm:px-6 lg:px-8">
-          <h1 className="font-geist-sans text-md md:text-2xl font-medium text-foreground mb-6">
+          <h1 className="font-ibm-plex-mono text-md md:text-2xl font-bold text-foreground mb-6">
             Hello, I&apos;m&nbsp;
-              <CycleText 
-                className="inline-block whitespace-nowrap text-foreground font-bold italic"
+              <CycleTextBlend
+                className="inline-block whitespace-nowrap font-bold italic"
                 texts={[
-                  "Lilian",
+                  //"Lilian",
                   "lettuce",
                   "not a robot.",
                   "a rat in three trenchcoats.",
                   "just some guy on the internet.",
                   "a bag of meat.",
-                  "not even here.",
+                  "never gonna give you up.",
+                  //"not even here.",
                   "your mother",
                 ]}
                 scrambleProps={{
                   range: [33, 47],
+                  replayOnHover: true,
                 }}
               />
           </h1>

@@ -94,7 +94,7 @@ export function MultiSliceText({
   };
 
   useEffect(() => {
-    generateOffsets();
+    setOffsets(new Array(slices).fill(0));
     generateSlicePositions();
   }, [slices, maxOffset, randomizeHeights]);
 

@@ -219,16 +219,16 @@ body {
 
   @keyframes glitch {
     0%, 100% {
-      transform: translate(-5px, 5px)
+      transform: translate(calc(-1 * var(--glitch-offset-x, 5px)), calc(var(--glitch-offset-y, 5px)));
     }
     24.5%, 25.5% {
-      transform: translate(-5px, -5px)
+      transform: translate(calc(-1 * var(--glitch-offset-x, 5px)), calc(-1 * var(--glitch-offset-y, 5px)));
     }
     49.5%, 50.5% {
-      transform: translate(5px, 5px)
+      transform: translate(calc(var(--glitch-offset-x, 5px)), calc(var(--glitch-offset-y, 5px)));
     }
     74.5%, 75.5% {
-      transform: translate(5px, -5px)
+      transform: translate(calc(var(--glitch-offset-x, 5px)), calc(-1 * var(--glitch-offset-y, 5px)));
     }
   }
   @keyframes glitch-erratic {

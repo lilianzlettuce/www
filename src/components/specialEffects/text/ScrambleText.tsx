@@ -10,6 +10,7 @@ interface ScrambleTextProps {
   seed?: number;
   range?: [number, number];
   overdrive?: boolean;
+  replayOnHover?: boolean;
 }
   
 export default function ScrambleText ({ 
@@ -21,7 +22,8 @@ export default function ScrambleText ({
   scramble = 4,
   seed = 5,
   range = [65, 125],
-  overdrive = false
+  overdrive = false,
+  replayOnHover = false
 }: ScrambleTextProps) {
   const { ref, replay } = useScramble({
     text: text,
@@ -35,5 +37,5 @@ export default function ScrambleText ({
     overdrive,
   });
 
-  return <p ref={ref} className={className} onMouseOver={replay} />;
+  return <p ref={ref} className={className} onMouseOver={replayOnHover ? replay : undefined} />;
 };

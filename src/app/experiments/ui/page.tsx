@@ -6,8 +6,8 @@ import Link from "next/link";
 import { PlusIcon, PlusIconThin } from "@/components/svg/Icons";
 import BlendText from "@/components/specialEffects/text/BlendText";
 import ScrambleText from "@/components/specialEffects/text/ScrambleText";
-import { SliceText, MultiSliceText, RollingSliceText } from "@/components/specialEffects/text/SliceText";
-import CycleText from "@/components/specialEffects/text/CycleText";
+import { MultiSliceText, RollingSliceText } from "@/components/specialEffects/text/SliceText";
+import { CycleText } from "@/components/specialEffects/text/CycleText";
 
 export default function UIExperimentsPage() {
   return (
@@ -189,7 +189,7 @@ export default function UIExperimentsPage() {
               Glitch
             </BlendText>
 
-            {/* rat in three trenchcoats */}
+            {/* destroy the universe */}
             <div 
               className="mb-8"
               style={{ "--glitch-offset-y": "3px" } as React.CSSProperties}
