@@ -5,6 +5,7 @@ import { useScroll, useMotionValueEvent } from "motion/react";
 import { useState } from "react";
 import { ArtIcon, DevIcon, DesignIcon } from "../svg/Icons";
 import { GridContainer } from "../svg/BgPatterns";
+import ScrambleText from "../specialEffects/text/ScrambleText";
 
 export function WorkPageHeader2() {
     return (
@@ -55,6 +56,7 @@ export function WorkPageHeader2() {
 
                             {/* Right window display */}
                             <GridContainer 
+                                id="work-page-header-2-grid"
                                 className="min-w-1/2 h-full pt-2 px-6 border-1 border-border flex items-center justify-center"
                                 layers={[
                                     {
@@ -156,13 +158,16 @@ export function WorkPageHeader() {
     return (
         <div className="pt-30 min-h-[50vh] flex flex-row gap-4">
           <div className="min-w-1/2 text-left my-16">
-            <h1 className="animate-text translate-x-2 w-fit text-4xl md:text-6xl/[0.8] scale-x-100 translate-x-0 font-micro5 font-bold text-foreground uppercase mb-4">
-              Work
-            </h1>
-            <p className="text-xs font-roboto-mono tracking-tighter text-muted-foreground max-w-2xl">
-                status: 45% - - - complete rehaul in progress
-                <br/> come forth ↓
-            </p>
+            <ScrambleText
+                text="Work"
+                className="w-fit text-4xl md:text-7xl/[0.8] font-micro5 font-bold text-foreground uppercase mb-4"
+                replayOnHover={true}
+            />
+            <ScrambleText
+                text="status: 45% - - - complete rehaul in progress
+                <br/> come forth ↓"
+                className="text-xs font-roboto-mono tracking-tighter text-muted-foreground max-w-2xl"
+            />
           </div>
 
           <div className="z-0 relative w-fit h-fit">

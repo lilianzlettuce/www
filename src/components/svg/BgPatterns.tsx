@@ -2,6 +2,7 @@ interface GridContainerProps {
     className?: string;        // Additional styling
     layers?: GridContainerLayer[];  // Multiple layers
     children: React.ReactNode;
+    id: string;
 }
   
 interface GridContainerLayer {
@@ -18,14 +19,15 @@ interface GridContainerLayer {
 export const GridContainer = ({ 
     className = "",
     layers = [],
-    children
+    children,
+    id
 }: GridContainerProps) => {
     const generatePlusPattern = (layer: GridContainerLayer, index: number) => {
         const { spacing, strokeWidth, strokeLength, color, opacity, offset = { x: 0, y: 0 } } = layer;
         
         return (
             <pattern 
-                id={`plus-grid-${index}`} 
+                id={`${id}-${index}`} 
                 patternUnits="userSpaceOnUse" 
                 width={spacing} 
                 height={spacing}
@@ -69,7 +71,7 @@ export const GridContainer = ({
                         key={index}
                         width="100%" 
                         height="100%" 
-                        fill={`url(#plus-grid-${index})`}
+                        fill={`url(#${id}-${index})`}
                     />
                 ))}
             </svg>

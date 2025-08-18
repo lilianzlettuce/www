@@ -8,7 +8,8 @@ import { ThemeToggle, ThemeSlider } from "@/components/ThemeToggle";
 import { navItems } from "@/lib/data";
 import ZoomableImage from "./ZoomableImage";
 import { useLiveTime } from "@/hooks/useUserInfo";
-import { MultiSliceText, SliceText } from "./specialEffects/text/SliceText";
+import { SliceText } from "./specialEffects/text/SliceText";
+import { GridContainer } from "./svg/BgPatterns";
 
 type NavBarProps = {
   className?: string;
@@ -32,31 +33,62 @@ export function SideBar3({ className }: NavBarProps) {
 
           <div className="w-full hidden md:flex flex-col items-start justify-end gap-2">
             <div className="w-full h-40 py-2">
-              <div className="w-full h-full bg-white border-1 border-secondary-foreground">
-                <ZoomableImage
-                  className="w-full h-full"
-                  src="/img/halftone/heart.png"
-                  alt="zoomed halftone heart image"
-                  backgroundSize={500}
-                  initialX={-215}
-                  initialY={-55}
-                  draggable={false}
-                />
-              </div>
+              <GridContainer 
+                id="side-bar-3-grid"
+                className="w-full h-full p-4 border-1 border-border flex items-center justify-center"
+                layers={[
+                  {
+                    spacing: 20,
+                    strokeWidth: 0.9,
+                    strokeLength: 18,
+                    color: "rgba(255,255,255)",
+                    opacity: 0.12
+                  },
+                  {
+                    spacing: 16,
+                    strokeWidth: 3,
+                    strokeLength: 3,
+                    color: "rgba(255,255,255)",
+                    opacity: 0
+                  },
+                ]} 
+              >
+                <div className="hidden z-10 w-full h-full bg-white border-1 border-secondary-foreground">
+                  <ZoomableImage
+                    className="w-full h-full"
+                    src="/img/halftone/heart.png"
+                    alt="zoomed halftone heart image"
+                    backgroundSize={500}
+                    initialX={-215}
+                    initialY={-55}
+                    draggable={false}
+                  />
+                </div>
+              </GridContainer>
             </div>
             <div className="w-full h-fit flex flex-col items-center gap-0 font-mono font-bold lowercase text-sm capitalize">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`group/link w-full h-10 flex items-center justify-start text-xs font-medium px-0 border-b-0 border-border ${
+                  className={`group w-full h-10 flex items-center justify-start text-xs font-medium px-0 border-b-0 border-border ${
                     pathname === item.href
                       ? "text-foreground"
                       : "text-muted-foreground"
                   }`}
                 >
+                  {/* Line through on hover: */}
+                  {/*<span className="font-inter mr-4 ml-2">↳</span> 
+                  <span className={`grow group-hover:line-through ${pathname === item.href ? "line-through" : ""}`}> {item.label}</span>
+                  */}
+
                   <span className="font-inter mr-4 ml-2">↳</span> 
-                  <span className={`grow group-hover/link:line-through ${pathname === item.href ? "line-through" : ""}`}> {item.label}</span>
+                  <SliceText 
+                    className="font-mono text-xs font-bold"
+                    reRenderOnHover={true}
+                  >
+                    <span className={`grow group-hover:text-foreground ${pathname === item.href ? "line-through" : ""}`}> {item.label}</span>
+                  </SliceText>
                 </Link>
               ))}
             </div>
@@ -282,7 +314,7 @@ export function NavBarGrid({ className }: NavBarProps) {
   return (
     <nav className={`${className} z-50 sticky top-0 w-full h-8 py-0 m-auto bg-background`}>
       <div className="w-full h-full flex justify-between items-center gap-2">
-        <Link href="/" className="w-fit h-full text-xl font-bold text-foreground hover:text-muted-foreground transition-colors">
+        <Link href="/" className="w-fit h-full text-xl font-bold text-foreground">
           <LogoIcon className="w-fit h-full" />
         </Link>
         
@@ -292,13 +324,18 @@ export function NavBarGrid({ className }: NavBarProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`w-24 h-full flex items-center justify-center text-xs font-medium px-8 border-l border-border ${
+                className={`group w-24 h-full flex items-center justify-center text-xs font-medium px-8 border-l border-border ${
                   pathname === item.href
                     ? "text-foreground decoration-1 line-through"
                     : "text-mutedForeground hover:line-through"
                 }`}
               >
-                {item.label}
+                <SliceText 
+                  className="font-mono text-xs font-bold"
+                  reRenderOnHover={true}
+                >
+                  {item.label}
+                </SliceText>
               </Link>
             ))}
           </div>
