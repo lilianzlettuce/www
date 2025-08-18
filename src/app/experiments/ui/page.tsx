@@ -7,6 +7,7 @@ import { PlusIcon, PlusIconThin } from "@/components/svg/Icons";
 import BlendText from "@/components/specialEffects/text/BlendText";
 import ScrambleText from "@/components/specialEffects/text/ScrambleText";
 import { SliceText, MultiSliceText, RollingSliceText } from "@/components/specialEffects/text/SliceText";
+import CycleText from "@/components/specialEffects/text/CycleText";
 
 export default function UIExperimentsPage() {
   return (
@@ -32,7 +33,21 @@ export default function UIExperimentsPage() {
             className="min-w-100 text-lg"
           />
 
-          {/* BlendText components */}
+          <div className="my-8 p-8 border-y-2 border-gray-400 pt-8 flex flex-col items-center justify-center">
+            <h2 className="text-2xl font-bold mb-4">Cycle Text</h2>
+
+            <CycleText 
+              texts={[
+                "destroy the universe.",
+                "build something new.",
+                "start over again."
+              ]}
+              duration={4}
+              className="text-3xl font-mono"
+            />
+          </div>
+
+          {/* Slice text components */}
           <div className="mt-8 border-y-2 mb-6 border-gray-400 pt-8 flex flex-col items-center justify-center">
             <h2 className="text-2xl font-bold mb-4">Slice Text</h2>
 
@@ -174,28 +189,46 @@ export default function UIExperimentsPage() {
               Glitch
             </BlendText>
 
-            {/* Melancholy Ice Cream */}
-            <BlendText 
-              className="whitespace-nowrap font-roboto-mono uppercase text-4xl font-bold"
-              mainTextClassName="relative z-0 text-blue-300"
-              layers={[
-                {
-                  className: "text-red mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_both_infinite]",
-                  position: { x: 8, y: 6 },
-                },
-                {
-                  className: "text-blue mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_reverse_both_infinite]",
-                  position: { x: -6, y: -6 },
-                },
-              ]}
+            {/* rat in three trenchcoats */}
+            <div 
+              className="mb-8"
+              style={{ "--glitch-offset-y": "3px" } as React.CSSProperties}
             >
-              Melancholy ice cream
-            </BlendText>
+              <BlendText 
+                className="group cursor-pointer whitespace-nowrap font-roboto-mono font-bold"
+                mainTextClassName="relative z-0 text-text-blend-secondary"
+                layers={[
+                  {
+                    className: "text-red mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_both_1]",
+                    position: { x: -4, y: 2 },
+                  },
+                  {
+                    className: "text-blue mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_both_1]",
+                    position: { x: 2, y: -3 },
+                  },
+                ]}
+              >
+                <MultiSliceText 
+                  slices={3}
+                  maxOffset={8}
+                  className="text-3xl"
+                  reRenderOnHover={true}
+                >
+                  <ScrambleText 
+                    text="destroy the universe." 
+                    className="min-w-100 text-8xl"
+                  />
+                </MultiSliceText>
+              </BlendText>
+            </div>
 
             {/* rat in three trenchcoats */}
-            <div style={{ "--glitch-offset-y": "3px" } as React.CSSProperties}>
+            <div 
+              className="mb-8"
+              style={{ "--glitch-offset-y": "3px" } as React.CSSProperties}
+            >
               <BlendText 
-                className="group whitespace-nowrap font-roboto-mono font-bold"
+                className="group cursor-pointer whitespace-nowrap font-roboto-mono font-bold"
                 mainTextClassName="relative z-0 text-text-blend-secondary"
                 layers={[
                   {
@@ -218,6 +251,24 @@ export default function UIExperimentsPage() {
                 </MultiSliceText>
               </BlendText>
             </div>
+
+            {/* Melancholy Ice Cream */}
+            <BlendText 
+              className="whitespace-nowrap font-roboto-mono uppercase text-4xl font-bold"
+              mainTextClassName="relative z-0 text-blue-300"
+              layers={[
+                {
+                  className: "text-red mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_both_infinite]",
+                  position: { x: 8, y: 6 },
+                },
+                {
+                  className: "text-blue mix-blend-screen group-hover:animate-[glitch-erratic_0.3s_reverse_both_infinite]",
+                  position: { x: -6, y: -6 },
+                },
+              ]}
+            >
+              Melancholy ice cream
+            </BlendText>
             
             {/* We are all made of stars */}
             <BlendText 

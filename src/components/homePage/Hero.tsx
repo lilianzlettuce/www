@@ -1,6 +1,7 @@
 import { BrainDarkMouseDark, BrainDarkMouseLight, BrainLight } from "./ToneCanvas";
 import { HeroWindow } from "../Windows";
 import ZoomableImage from "../ZoomableImage";
+import CycleText from "../specialEffects/text/CycleText";
 
 export default function Hero() {
     
@@ -29,7 +30,23 @@ export default function Hero() {
         </div>
         <div className="relative z-10 text-left max-w-lg w-1/3 px-4 sm:px-6 lg:px-8">
           <h1 className="font-geist-sans text-md md:text-2xl font-medium text-foreground mb-6">
-            Hello, I&apos;m <span className="text-foreground font-bold italic">a rat in three trenchcoats</span>.
+            Hello, I&apos;m&nbsp;
+              <CycleText 
+                className="inline-block whitespace-nowrap text-foreground font-bold italic"
+                texts={[
+                  "Lilian",
+                  "lettuce",
+                  "not a robot.",
+                  "a rat in three trenchcoats.",
+                  "just some guy on the internet.",
+                  "a bag of meat.",
+                  "not even here.",
+                  "your mother",
+                ]}
+                scrambleProps={{
+                  range: [33, 47],
+                }}
+              />
           </h1>
           <p className="font-roboto-mono text-md md:text-lg text-mutedForeground mb-8 max-w-2xl mx-auto">
             UI Engineer and artist exploring spaces between pixels and atoms.
