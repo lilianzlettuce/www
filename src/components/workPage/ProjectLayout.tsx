@@ -195,27 +195,19 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
       </div>
 
       {/* Main content */}
-      <div className="max-w-6xl mx-auto w-full px-10 py-6">
+      <div className="max-w-6xl mx-auto w-full px-10 py-0">
         
 
         {/* Project Image */}
         <div className="w-full mb-1">
-          <div className="mb-1 flex flex-row justify-between text-xs">
-            <div className="font-bold">
-              {frontmatter.title}
-            </div>
-            <div>
-              website | 2022
-            </div>
-          </div>
           {frontmatter.image && (
-            <div className="relative w-full aspect-3/2">
+            <div className="relative w-11/12 aspect-3/2 mx-auto">
               <Image
                 src={frontmatter.image}
                 alt={frontmatter.title}
                 fill
                 className="object-cover"
-                sizes="100vw"
+                sizes="80vw"
                 priority
               />
             </div>

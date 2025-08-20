@@ -331,7 +331,47 @@ body {
 
   h2 {
     font-family: var(--font-uncut-sans);
+    font-size: 4rem;
+    font-weight: 500;
+    color: var(--foreground);
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-family: var(--font-uncut-sans);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--foreground);
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  h4 {
+    font-family: var(--font-uncut-sans);
     font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--foreground);
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  h5 {
+    font-family: var(--font-uncut-sans);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--foreground);
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  h6 {
+    font-family: var(--font-uncut-sans);
+    font-size: 0.8rem;
     font-weight: 800;
     color: var(--foreground);
     letter-spacing: 0.05em;

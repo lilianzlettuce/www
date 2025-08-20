@@ -8,15 +8,126 @@ date: "2024-11-15"
 link: "https://www.scoutforschools.com/"
 ---
 
-# Scout Landing Page
+<ProjectHeader
+    title="Scout"
+    description="Landing page for Scout, a YC-backed startup. Implemented site from scratch based off of existing UI prototypes using modern NextJS/Typescript stack, created responsive UX and animations building on design language and assets."
+
+>
+    <ProjectInfo 
+      roles={["Frontend Developer"]} 
+      timeline="3 months"
+      team={["1 developer, 1 designer"]}
+      stack={["Next.js", "React", "Typescript", "TailwindCSS"]}
+    />
+</ProjectHeader>
+
+<ProjectInfo 
+      roles={["Fullstack Developer", "Creative Lead"]} 
+      timeline="August 2022 - December 2022"
+      team={["3 developers/designers"]}
+    />
 
 A modern, responsive landing page for Scout, a YC-backed startup, built with cutting-edge web technologies and focused on exceptional user experience.
 
 ## Overview
 
-This project involved creating a complete landing page from scratch based on existing UI prototypes. The implementation focused on delivering a seamless user experience with modern animations and responsive design.
+I delivered a __ website launching Scout, an AI startup.
 
-![Hero screenshot](/projects/scout/hero_liquid_glass.png)
+The project involved buidling a landing page from scratch based on existing UI prototypes. The implementation focused on delivering a seamless user experience with modern animations and responsive design.
+
+<SplitSection>
+  <SectionColumn size={2}>
+    ### Background
+  </SectionColumn>
+  <SectionColumn size={3}>
+    #### Scout is a YC-backed startup building an AI-powered student information system to automate administrative tasks for schools.
+
+    Scout is an AI-powered student information system that helps schools run more efficiently, so teachers can spend less time on administrative tasks and more time connecting with their students.
+    
+    The company had recently pivoted, and decided they wanted a custom-coded landing page.
+
+    I was given:
+    - Existing UI prototypes from a designer
+    - Existing site created using Wordpress 
+  </SectionColumn>
+</SplitSection>
+
+<SplitSection>
+  <SectionColumn size={2}>
+    ### Problem
+  </SectionColumn>
+  <SectionColumn size={3}>
+    The current landing page featured the most up-to-date content about the company, but was built using stock graphics on a site-builder. 
+    Conversely, the new UI prototypes provided by the designer did not entirely cover the most updated content.
+  </SectionColumn>
+</SplitSection>
+
+<SplitSection>
+  <SectionColumn size={2}>
+    ## Goals
+  </SectionColumn>
+  <SectionColumn size={3}>
+    → Build a new site landing page that reflects Scout’s playful visual identity while effectively communicating what the company does→ Incorporate existing designs, taking creative liberties to implement new content in the same design language
+    
+    → Create new components, interactions, and assets that fit existing design language
+    
+    → Maintain visual cohesion  
+  </SectionColumn>
+</SplitSection>
+
+## Context
+#### Background
+    #### Scout is a YC-backed startup building an AI-powered student information system to automate administrative tasks for schools.
+
+    Scout is an AI-powered student information system that helps schools run more efficiently, so teachers can spend less time on administrative tasks and more time connecting with their students.
+    
+    The company had recently pivoted, and decided they wanted a custom-coded landing page.
+
+    I was given:
+    - Existing UI prototypes from a designer
+    - Existing site created using Wordpress 
+
+    #### Problem
+    The current landing page featured the most up-to-date content about the company, but was built using stock graphics on a site-builder. 
+    Conversely, the new UI prototypes provided by the designer did not entirely cover the most updated content.
+
+    #### Goals
+    → Build a new site landing page that reflects Scout’s playful visual identity while effectively communicating what the company does→ Incorporate existing designs, taking creative liberties to implement new content in the same design language
+    → Create new components, interactions, and assets that fit existing design language
+    → Maintain visual cohesion 
+
+## Implementation 
+### Custom-coded Site
+
+We decided on a modern Next.js/React/Typescript stack for its scalability and performance. 
+The site takes advantage of reusable components, server-side rendering, and --static-site generation--.
+
+
+Interactions and animations to improve the user experience 
+Challenges:
+Figuring out how to properly use SSR, putting side-effects directly in the render, not being able to use state or hooks
+Managing state for animations on the client side
+
+
+### Expanding on design language... UX? Interactions
+### Elevating UX
+
+Interactive components to showcase Scout’s features
+
+Themed micro-animations for buttons, page sections, etc.
+
+### Blog Integration
+Integrated Sanity CMS so the team can easily publish blog posts without touching the source code.
+
+
+Wrote queries for fetching post metadata and content, 
+Defined “schemas/types” for post data structures
+
+Challenges with strict typing in Typescript, had to find workaround
+
+### Accessible and Mobile-Friendly
+Ensured delightful UI/UX across all devices with responsive resizing and cross-platform compatibility.
+
 
 ## Key Features
 

@@ -11,6 +11,7 @@ interface MDXImageProps {
   preset?: "hero" | "project-documentation" | "thumbnail";
 }
 
+
 const presets = {
   hero: {
     width: undefined,
@@ -82,18 +83,3 @@ export function MDXImageFillAspectRatio({
         </div>
     );
 }
-  /* 
-  Presets:
-  hero: fill
-  sizes="100vw"
-
-  project documentation: width={1200}
-  height={800}
-  sizes="(max-width: 768px) 100vw, 1200px"
-
-  thumbnail: width={400}
-  height={300}
-  sizes="(max-width: 768px) 50vw,
-         (max-width: 1200px) 33vw,
-         25vw"
-  */

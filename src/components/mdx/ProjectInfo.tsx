@@ -11,8 +11,8 @@ interface ProjectInfoProps {
 function InfoItem({ label, values }: { label: string, values: string[] }) {
     return (
         <div>
-            <h4 className="text-xs text-muted-foreground font-bold mb-1.5">{label}</h4>
-            <div className="text-sm flex flex-col gap-1">
+            <h4 className="text-xs uppercase text-muted-foreground font-bold mb-1.5">{label}</h4>
+            <div className="text-base flex flex-col gap-1">
                 {values.map((value) => (
                     <span key={value}>{value}</span>
                 ))}
