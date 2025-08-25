@@ -167,7 +167,7 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
     <header className="z-50 sticky top-0 left-0 w-full flex flex-row items-start gap-4">
       <div className="w-full h-10 pt-4 flex flex-row gap-1 items-start justify-between">
           
-          <div className="w-full flex flex-col text-xs">
+          <div className="w-full flex flex-col text-xs text-muted-foreground">
             <div className="font-bold">
               {frontmatter.title}
             </div>
