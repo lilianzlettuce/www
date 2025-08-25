@@ -164,11 +164,52 @@ function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
 
 function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
   return (
-    <header className="mb-12 font-uncut-sans">
-      <div className="mb-6">
-        <h1 className="text-4xl md:text-xl font-bold text-foreground mb-4">
-          {frontmatter.title}
-        </h1>
+    <header className="z-50 sticky top-0 left-0 w-full flex flex-row items-start gap-4">
+      <div className="w-full h-10 pt-4 flex flex-row gap-1 items-start justify-between">
+          
+          <div className="w-full flex flex-col text-xs">
+            <div className="font-bold">
+              {frontmatter.title}
+            </div>
+            <div>
+              landing page | 2025
+            </div>
+          </div>
+        <div className="h-5 flex flex-row gap-2">
+          {frontmatter.link && (
+            <Link
+              href={frontmatter.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative w-25 flex items-center justify-center border-1 border-foreground bg-foreground text-background hover:bg-background hover:text-foreground transition-all duration-300"
+            >
+              <IconButton className="relative text-xs py-0"
+                text="Visit Site" 
+                icon={<div className="group-hover:rotate-135 -rotate-45 transition-transform duration-300">◼</div>} 
+              />
+            </Link>
+          )}
+          {frontmatter.link && (
+            <Link
+              href={frontmatter.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group w-25 relative flex items-center justify-center border-1 border-border"
+            >
+              <BoxCorners
+                icon={<div className="w-full h-full border-t-1 border-l-1 border-foreground"></div>}
+                cornerSize="5px"
+                cornerOffset="-1px"
+                cornerColor="transparent"
+                className="scale-100 group-hover:scale-x-105 group-hover:scale-y-120 transition-all duration-300"
+              />
+              <IconButton className="relative text-xs py-0"
+                text="View Code" 
+                icon={<div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">→</div>} 
+              />
+            </Link>
+          )}
+        </div>
       </div>
     </header>
   );
@@ -196,6 +237,9 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
 
       {/* Main content */}
       <div className="max-w-6xl mx-auto w-full px-10 py-0">
+
+      {/* Project Header */}
+      <ProjectHeaderMinimal frontmatter={frontmatter} />
         
 
         {/* Project Image */}
@@ -225,9 +269,6 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
             </div>
            */}
         </div>
-
-        {/* Project Header */}
-        <ProjectHeaderDefault2 frontmatter={frontmatter} />
 
         {/* Project Content */}
         <article className="mdx-content px-0 mx-auto">

@@ -1,18 +1,19 @@
 import BoxCorners from "../svg/BoxCorners";
 
+interface ProjectInfoItem {
+    label: string;
+    values: string[];
+}
+
 interface ProjectInfoProps {
-    roles?: string[];
-    duration?: string;
-    timeline?: string;
-    team?: string[];
-    type?: string;
+    items: ProjectInfoItem[];
 }
 
 function InfoItem({ label, values }: { label: string, values: string[] }) {
     return (
         <div>
             <h4 className="text-xs uppercase text-muted-foreground font-bold mb-1.5">{label}</h4>
-            <div className="text-base flex flex-col gap-1">
+            <div className="text-base flex flex-col gap-0">
                 {values.map((value) => (
                     <span key={value}>{value}</span>
                 ))}
@@ -21,7 +22,7 @@ function InfoItem({ label, values }: { label: string, values: string[] }) {
     )
 }
   
-export default function ProjectInfo({ roles, duration, timeline, team, type }: ProjectInfoProps) {
+export default function ProjectInfo({ items }: ProjectInfoProps) {
     return (
         <div className="relative my-8 p-6 bg-background text-foreground border-1 border-muted">
             <BoxCorners
@@ -37,25 +38,9 @@ export default function ProjectInfo({ roles, duration, timeline, team, type }: P
             />*/}
             
             <div className="flex flex-row justify-between gap-2">
-                {roles && (
-                    <InfoItem label="Role" values={roles} />
-                )}
-
-                {team && (
-                    <InfoItem label="Team" values={team} />
-                )}
-
-                {duration && (
-                    <InfoItem label="Duration" values={[duration]} />
-                )}
-
-                {timeline && (
-                    <InfoItem label="Timeline" values={[timeline]} />
-                )}
-
-                {type && (      
-                    <InfoItem label="Type" values={[type]} />
-                )}
+                {items?.map(({ label, values }) => (
+                    <InfoItem key={label} label={label} values={values} />
+                ))}
             </div>
         </div>
     );
