@@ -105,7 +105,7 @@ export function SideBar3({ className }: NavBarProps) {
         {/* Bottom content */}
         <div className="px-2 w-full flex flex-col items-center justify-start border--1 border-secondary">
           
-          <Link href="/" className="w-full h-8 p-0 text-muted-foreground">
+          <Link href="/" className="w-full h-7 p-0 text-muted-foreground">
             <LogoIcon className="w-full h-full" />
           </Link>
         </div>

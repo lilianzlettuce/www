@@ -1,3 +1,5 @@
+"use client";
+
 import { useScramble } from "use-scramble";
 
 interface ScrambleTextProps {

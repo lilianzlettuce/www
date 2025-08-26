@@ -17,8 +17,7 @@ export default async function Home() {
       {/* Featured Section */}
       <div className="w-full flex flex-col items-start justify-center">
         <div className="font-psygen leading-none">
-          <h2 className="text-[8rem]">Featured</h2>
-          <h1 className="text-[12rem]">Projects</h1>
+          <h1 className="text-[12rem]">Selected Work</h1>
         </div>
       </div>
       <div className="flex flex-col">
