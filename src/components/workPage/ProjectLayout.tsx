@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeftIcon, PixelatedArrowIcon } from '@/components/svg/Icons';
+import { ArrowLeftIcon, PixelatedArrowIcon, SquareIcon } from '@/components/svg/Icons';
 import { ProjectFrontmatter } from '@/lib/mdx';
 import { TagLabel, TagLabelStroke } from './Labels';
 import { BracketButton, IconButton, RevealButton } from '../Buttons';
@@ -100,7 +100,7 @@ function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
                   rel="noopener noreferrer"
                   className="group relative flex justify-center border-1 border-foreground bg-foreground text-background hover:bg-background hover:text-foreground transition-all duration-300"
                 >
-                  <IconButton className="relative text-sm py-0"
+                  <IconButton className="relative text-sm py-0 group"
                     text="View Site" 
                     icon={<div className="group-hover:rotate-135 -rotate-45 transition-transform duration-300">◼</div>} 
                   />
@@ -185,7 +185,10 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
             >
               <IconButton className="relative text-xs py-0"
                 text="Visit Site" 
-                icon={<div className="group-hover:rotate-135 -rotate-45 transition-transform duration-300">◼</div>} 
+                icon={<SquareIcon 
+                  className="w-3 h-3 text-[10px] group-hover:rotate-135 -rotate-45 transition-all duration-300" 
+                  strokeWidth={0}
+                />} 
               />
             </Link>
           )}

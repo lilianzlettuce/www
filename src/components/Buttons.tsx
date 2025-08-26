@@ -12,8 +12,9 @@ export function IconButton({
     icon = "→" 
 }: ButtonProps) {
     return (
-        <button className={`${className} box-border group inline-flex items-center gap-1 transition-all duration-200 h-fit`}>
-            {text} {icon}
+        <button className={`${className} box-border inline-flex items-center gap-1 transition-all duration-200 h-fit`}>
+            <div>{text}</div> 
+            <div>{icon}</div>
         </button>
     );
 }
