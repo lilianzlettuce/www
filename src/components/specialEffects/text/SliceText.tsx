@@ -1,14 +1,13 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 
 interface SliceTextProps {
   children: string | React.ReactNode;
   className?: string;
-  reRenderOnHover?: boolean;
 }
 
-export function SliceText({ children, className, reRenderOnHover = false }: SliceTextProps) {
+export function SliceText({ children, className }: SliceTextProps) {
   return (
     <div className={`relative inline-block font-bold text-4xl ${className}`}>
       {/* Top slice */}
@@ -226,10 +225,10 @@ export function RollingSliceText({
           style={
             {
               // CSS vars for this bar
-              ["--dx" as any]: `${dx}px`,
-              ["--dur" as any]: `${durationSec}s`,
-              ["--delay" as any]: `${delay}s`,
-              ["--h" as any]: `${bandHeightPct}%`,
+              ["--dx" as string]: `${dx}px`,
+              ["--dur" as string]: `${durationSec}s`,
+              ["--delay" as string]: `${delay}s`,
+              ["--h" as string]: `${bandHeightPct}%`,
             }
           }
         >

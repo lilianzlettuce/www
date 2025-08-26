@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {  useRef } from "react";
 import { useMousePosition } from "@/hooks/useMousePosition";
-import { ExternalLinkIcon, MinimizeIcon, ExpandIcon2, XIcon, ArrowRightBar, BarcodeIcon, SquareIcon } from "../svg/Icons";
+import { ExternalLinkIcon, ExpandIcon2, ArrowRightBar, BarcodeIcon, SquareIcon } from "../svg/Icons";
 import { ProjectFrontmatter } from "@/lib/mdx";
 import { TagLabelFill, TagLabelStroke } from "./Labels";
 import BoxCorners from "../svg/BoxCorners";

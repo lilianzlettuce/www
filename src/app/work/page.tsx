@@ -1,19 +1,19 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, Suspense } from "react";
 
 import { ProjectFrontmatter } from "@/lib/mdx";
 import { projectCategories } from "@/lib/data";
 
 import { ProjectCardBasic, ProjectCardLarge, ProjectCardTechMono, ProjectCardTechMono2 } from "@/components/workPage/Cards";
 import { WorkPageHeader, WorkPageHeader2 } from "@/components/workPage/Header";
-import { ProjectFilter, ProjectMultiFilter } from "@/components/workPage/ProjectFilter";
+import { ProjectFilter } from "@/components/workPage/ProjectFilter";
 import { GridIcon, ListIcon } from "@/components/svg/Icons";
 import ProjectList from "@/components/workPage/ProjectList";
 import { SideBar3 } from "@/components/NavBar";
 
-export default function WorkPage() {
+function WorkPageContent() {
   const searchParams = useSearchParams();
   const categoryFilters = searchParams.getAll("category");
   const [projects, setProjects] = useState<ProjectFrontmatter[]>([]);
@@ -170,5 +170,13 @@ export default function WorkPage() {
         <WorkPageHeader2 />
       </div>
     </div>
+  );
+}
+
+export default function WorkPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <WorkPageContent />
+    </Suspense>
   );
 } 

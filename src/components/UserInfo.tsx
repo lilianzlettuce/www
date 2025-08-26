@@ -9,7 +9,6 @@ interface UserInfoProps {
   showScreen?: boolean;
   showConnection?: boolean;
   showBattery?: boolean;
-  updateInterval?: number;
 }
 
 export const LiveUserInfo = () => {
@@ -62,7 +61,6 @@ export const UserInfo = ({
   showScreen = true,
   showConnection = true,
   showBattery = true,
-  updateInterval = 1000
 }: UserInfoProps) => {
   const { userInfo, isLoading, error } = useStaticUserInfo();
   //console.log(currentTime);

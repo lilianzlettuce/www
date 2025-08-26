@@ -47,14 +47,23 @@ export const useLiveTime = (options: UseUserInfoOptions = {}) => {
     return currentTime;
 };
 
+// BatteryManager type
+interface BatteryManager {
+    level: number;
+    charging: boolean;
+    chargingTime: number;
+    dischargingTime: number;
+}
+
 export const useLiveBattery = (options: UseUserInfoOptions = {}) => {
     const { updateInterval = 60000 } = options;
     const [currentBatteryInfo, setCurrentBatteryInfo] = useState<BatteryInfo | null>(null);
     useEffect(() => {
         const updateBattery = async () => {
-            if ("getBattery" in navigator) {
+            const nav = navigator as Navigator & { getBattery?: () => Promise<BatteryManager> };
+            if (typeof nav.getBattery === "function") {
                 try {
-                    const battery = await (navigator as any).getBattery();
+                    const battery = await nav.getBattery();
                     const batteryInfo = {
                         level: battery.level,
                         charging: battery.charging,
@@ -62,7 +71,7 @@ export const useLiveBattery = (options: UseUserInfoOptions = {}) => {
                         dischargingTime: battery.dischargingTime,
                     };
                     setCurrentBatteryInfo(batteryInfo);
-                } catch (error) {
+                } catch {
                     console.warn("Battery API not available");
                 }
             }
@@ -82,6 +91,13 @@ export const useStaticUserInfo = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        interface NetworkInformation {
+            effectiveType?: string;
+            downlink?: number;
+            rtt?: number;
+            saveData?: boolean;
+        }
+
         const getUserInfo = async (): Promise<UserInfoData> => {
             try {
                 // Time and timezone
@@ -115,13 +131,25 @@ export const useStaticUserInfo = () => {
                     pixelRatio: window.devicePixelRatio,
                 };
 
+                const nav = navigator as Navigator & {
+                    connection?: NetworkInformation;
+                    mozConnection?: NetworkInformation;
+                    webkitConnection?: NetworkInformation;
+                    getBattery?: () => Promise<BatteryManager>;
+                };
+
+                const connection: NetworkInformation =
+                    nav.connection ||
+                    nav.mozConnection ||
+                    nav.webkitConnection ||
+                    {};
+
                 // Connection info
-                const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
                 const connectionInfo = {
-                    effectiveType: connection?.effectiveType || "Unknown",
-                    downlink: connection?.downlink || 0,
-                    rtt: connection?.rtt || 0,
-                    saveData: connection?.saveData || false,
+                    effectiveType: connection.effectiveType ?? "Unknown",
+                    downlink: connection.downlink ?? 0,
+                    rtt: connection.rtt ?? 0,
+                    saveData: connection.saveData ?? false,
                 };
 
                 // Battery info
@@ -132,16 +160,16 @@ export const useStaticUserInfo = () => {
                     dischargingTime: 0,
                 };
 
-                if ("getBattery" in navigator) {
+                if (typeof nav.getBattery === "function") {
                     try {
-                        const battery = await (navigator as any).getBattery();
+                        const battery = await nav.getBattery();
                         batteryInfo = {
                             level: battery.level,
                             charging: battery.charging,
                             chargingTime: battery.chargingTime,
                             dischargingTime: battery.dischargingTime,
                         };
-                    } catch (error) {
+                    } catch {
                         console.warn("Battery API not available");
                     }
                 }
@@ -156,7 +184,7 @@ export const useStaticUserInfo = () => {
                     connection: connectionInfo,
                     battery: batteryInfo,
                 };
-            } catch (err) {
+            } catch {
                 throw new Error("Failed to gather user information");
             }
         };

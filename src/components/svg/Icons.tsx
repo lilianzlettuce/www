@@ -154,10 +154,13 @@ export function SquareIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps
   );
 }
 
-export function BarcodeIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
+export function BarcodeIcon({ className = "w-6 h-6", strokeWidth = 0 }: IconProps) {
   return (
     <svg className={className} viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="currentColor" d="M4.5 19.5v-15h4.8v15H4.5Zm6 0v-15h1.1v15h-1.1Zm3.5 0v-15h1.2v15H14ZM17.6 19.5v-15h1.2v15h-1.2Zm6 0v-15h2.3v15h-2.4Zm3.5 0v-15h1.2v15h-1.2ZM30.7 19.5v-15h1.2v15h-1.2Zm2.4 0v-15h2.4v15H33Zm4.7 0v-15H39v15h-1.2ZM43.8 19.5v-15h4.7v15h-4.7Zm7.1 0v-15h1.2v15H51Zm2.4 0v-15h1.2v15h-1.2Z"/>
+      <path fill={strokeWidth > 0 ? "none" : "currentColor"} 
+            stroke={strokeWidth > 0 ? "currentColor" : "none"} 
+            strokeWidth={strokeWidth} 
+            d="M4.5 19.5v-15h4.8v15H4.5Zm6 0v-15h1.1v15h-1.1Zm3.5 0v-15h1.2v15H14ZM17.6 19.5v-15h1.2v15h-1.2Zm6 0v-15h2.3v15h-2.4Zm3.5 0v-15h1.2v15h-1.2ZM30.7 19.5v-15h1.2v15h-1.2Zm2.4 0v-15h2.4v15H33Zm4.7 0v-15H39v15h-1.2ZM43.8 19.5v-15h4.7v15h-4.7Zm7.1 0v-15h1.2v15H51Zm2.4 0v-15h1.2v15h-1.2Z"/>
     </svg>
   );
 }

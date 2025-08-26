@@ -1,5 +1,3 @@
-import BoxCorners from "./svg/BoxCorners";
-
 type ButtonProps = {
   text: string;
   icon?: string | React.ReactNode;

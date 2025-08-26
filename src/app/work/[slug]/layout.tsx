@@ -1,4 +1,4 @@
-import { NavBar, NavBarGrid, SideBar, SideBar2, SideBar3 } from "@/components/NavBar";
+import { /*NavBar, NavBarGrid, SideBar, SideBar2,*/ SideBar3 } from "@/components/NavBar";
 
 export default function WorkLayout({
   children,

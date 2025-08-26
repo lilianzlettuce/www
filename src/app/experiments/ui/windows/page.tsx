@@ -266,6 +266,7 @@ export default function WindowsExperimentsPage() {
 
                           {/* Right window display */}
                           <GridContainer 
+                              id="ui-windows-grid-container"
                               className="relative min-w-1/2 h-full pt-2 px-6 border-1 border-border flex items-center justify-center"
                               layers={[
                                   {

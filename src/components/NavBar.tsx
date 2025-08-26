@@ -83,10 +83,7 @@ export function SideBar3({ className }: NavBarProps) {
                   */}
 
                   <span className="font-inter mr-4 ml-2">↳</span> 
-                  <SliceText 
-                    className="font-mono text-xs font-bold"
-                    reRenderOnHover={true}
-                  >
+                  <SliceText className="font-mono text-xs font-bold">
                     <span className={`grow group-hover:text-foreground ${pathname === item.href ? "line-through" : ""}`}> {item.label}</span>
                   </SliceText>
                 </Link>
@@ -283,10 +280,7 @@ export function NavBar({ className }: NavBarProps) {
                     : "text-mutedForeground hover:line-through"
                 }`}
               >
-                <SliceText 
-                  className="font-mono text-xs font-bold"
-                  reRenderOnHover={true}
-                >
+                <SliceText className="font-mono text-xs font-bold">
                   {item.label}
                 </SliceText>
               </Link>
@@ -330,10 +324,7 @@ export function NavBarGrid({ className }: NavBarProps) {
                     : "text-mutedForeground hover:line-through"
                 }`}
               >
-                <SliceText 
-                  className="font-mono text-xs font-bold"
-                  reRenderOnHover={true}
-                >
+                <SliceText className="font-mono text-xs font-bold">
                   {item.label}
                 </SliceText>
               </Link>

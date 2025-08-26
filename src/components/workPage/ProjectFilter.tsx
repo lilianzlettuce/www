@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
+import { Suspense, useCallback } from "react";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { Category, getCategoryIcon } from "@/lib/data";
 import CategoryIcon from "./CategoryIcon";
@@ -14,7 +14,7 @@ interface ProjectFilterProps {
   showIcons?: boolean;
 }
 
-export function ProjectFilter({ 
+function ProjectFilterContent({ 
     categories, 
     toggleStyle = "px-3 py-1 text-sm rounded-full transition-colors", 
     toggleStyleActive = "bg-foreground text-background", 
@@ -47,50 +47,56 @@ export function ProjectFilter({
       : categories as string[];
 
     return (
-        <div className="">
-            <ToggleGroup.Root
-                type="single"
-                value={currentCategory || ""}
-                onValueChange={(value) => handleCategoryChange(value || null)}
-                className="flex flex-wrap gap-2 items-center"
+        <ToggleGroup.Root
+            type="single"
+            value={currentCategory || ""}
+            onValueChange={(value) => handleCategoryChange(value || null)}
+            className="flex flex-wrap gap-2 items-center"
+        >
+            <ToggleGroup.Item
+                value=""
+                className={`${toggleStyle} ${
+                    !currentCategory
+                    ? toggleStyleActive
+                    : toggleStyleInactive
+                }`}
             >
+                All
+            </ToggleGroup.Item>
+            
+            {categoryNames.map((category, i) => (
                 <ToggleGroup.Item
-                    value=""
+                    key={category}
+                    value={category}
                     className={`${toggleStyle} ${
-                        !currentCategory
+                    currentCategory === category
                         ? toggleStyleActive
                         : toggleStyleInactive
-                    }`}
+                    } ${i === categoryNames.length - 1 && "rotate-180 text-[0.5rem]"}`}
                 >
-                    All
+                    <div className="flex items-center gap-1.5">
+                        {showIcons && getCategoryIcon(category) && (
+                            <CategoryIcon category={category} 
+                                className="w-3 h-3"
+                                strokeWidth={currentCategory === category ? 0 : 0} />
+                        )}
+                        <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
+                    </div>
                 </ToggleGroup.Item>
-                
-                {categoryNames.map((category, i) => (
-                    <ToggleGroup.Item
-                        key={category}
-                        value={category}
-                        className={`${toggleStyle} ${
-                        currentCategory === category
-                            ? toggleStyleActive
-                            : toggleStyleInactive
-                        } ${i === categoryNames.length - 1 && "rotate-180 text-[0.5rem]"}`}
-                    >
-                        <div className="flex items-center gap-1.5">
-                            {showIcons && getCategoryIcon(category) && (
-                                <CategoryIcon category={category} 
-                                    className="w-3 h-3"
-                                    strokeWidth={currentCategory === category ? 0 : 0} />
-                            )}
-                            <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
-                        </div>
-                    </ToggleGroup.Item>
-                ))}
-            </ToggleGroup.Root>
-        </div>
+            ))}
+        </ToggleGroup.Root>
     );
-} 
+}
 
-export function ProjectMultiFilter({ categories, showIcons = true }: ProjectFilterProps) {
+export function ProjectFilter(props: ProjectFilterProps) {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ProjectFilterContent {...props} />
+        </Suspense>
+    );
+}
+
+function ProjectMultiFilterContent({ categories, showIcons = true }: ProjectFilterProps) {
     const router = useRouter();
     const searchParams = useSearchParams();
   
@@ -120,47 +126,55 @@ export function ProjectMultiFilter({ categories, showIcons = true }: ProjectFilt
       : categories as string[];
   
     return (
-      <div className="flex flex-wrap gap-2 items-center">
-        <button
-            onClick={() => {
-                const params = new URLSearchParams(searchParams);
-                params.delete("category");
-                router.push(`/work?${params.toString()}`);
-            }}
-            className={`px-3 py-1 text-sm rounded-full transition-colors ${
-                currentCategories.length === 0
-                ? "bg-foreground text-background"
-                : "bg-muted text-mutedForeground hover:bg-secondary hover:text-foreground"
-            }`}
-        >
-            All
-        </button>
-        
-        <ToggleGroup.Root
-          type="multiple"
-          value={currentCategories}
-          onValueChange={handleCategoryChange}
-          className="flex flex-wrap gap-2 items-center"
-        >
-            {categoryNames.map((category) => (
-                <ToggleGroup.Item
-                    key={category}
-                    value={category}
-                    className={`px-3 py-1 text-sm rounded-full transition-colors ${
-                        currentCategories.includes(category)
-                        ? "bg-foreground text-background"
-                        : "bg-muted text-mutedForeground hover:bg-secondary hover:text-foreground"
-                    }`}
-                >
-                    <div className="flex items-center gap-1.5">
-                        {showIcons && getCategoryIcon(category) && (
-                            <CategoryIcon category={category} />
-                        )}
-                        <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
-                    </div>
-                </ToggleGroup.Item>
-            ))}
-        </ToggleGroup.Root>
-      </div>
+        <div className="flex flex-wrap gap-2 items-center">
+            <button
+                onClick={() => {
+                    const params = new URLSearchParams(searchParams);
+                    params.delete("category");
+                    router.push(`/work?${params.toString()}`);
+                }}
+                className={`px-3 py-1 text-sm rounded-full transition-colors ${
+                    currentCategories.length === 0
+                    ? "bg-foreground text-background"
+                    : "bg-muted text-mutedForeground hover:bg-secondary hover:text-foreground"
+                }`}
+            >
+                All
+            </button>
+            
+            <ToggleGroup.Root
+            type="multiple"
+            value={currentCategories}
+            onValueChange={handleCategoryChange}
+            className="flex flex-wrap gap-2 items-center"
+            >
+                {categoryNames.map((category) => (
+                    <ToggleGroup.Item
+                        key={category}
+                        value={category}
+                        className={`px-3 py-1 text-sm rounded-full transition-colors ${
+                            currentCategories.includes(category)
+                            ? "bg-foreground text-background"
+                            : "bg-muted text-mutedForeground hover:bg-secondary hover:text-foreground"
+                        }`}
+                    >
+                        <div className="flex items-center gap-1.5">
+                            {showIcons && getCategoryIcon(category) && (
+                                <CategoryIcon category={category} />
+                            )}
+                            <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
+                        </div>
+                    </ToggleGroup.Item>
+                ))}
+            </ToggleGroup.Root>
+        </div>
     );
-  } 
+}
+
+export function ProjectMultiFilter(props: ProjectFilterProps) {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ProjectMultiFilterContent {...props} />
+        </Suspense>
+    );
+} 

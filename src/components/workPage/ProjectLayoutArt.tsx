@@ -1,10 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeftIcon, PixelatedArrowIcon } from '@/components/svg/Icons';
+import { PixelatedArrowIcon } from '@/components/svg/Icons';
 import { ProjectFrontmatter } from '@/lib/mdx';
 import { TagLabel, TagLabelStroke } from './Labels';
-import { BracketButton, IconButton, RevealButton } from '../Buttons';
+import { IconButton, RevealButton } from '../Buttons';
 import Image from 'next/image';
 
 interface ProjectHeaderProps {
@@ -16,7 +16,7 @@ interface ProjectLayoutProps {
   children: React.ReactNode;
 }
 
-function ProjectHeaderDefault({ frontmatter }: ProjectHeaderProps) {
+export function ProjectHeaderDefault({ frontmatter }: ProjectHeaderProps) {
   return (
     <header className="mb-12 font-uncut-sans">
       <div className="mb-6">
@@ -72,7 +72,7 @@ function ProjectHeaderDefault({ frontmatter }: ProjectHeaderProps) {
   );
 }
 
-function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
+export function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
   return (
     <header className="mb-4 font-uncut-sans">
       <div className="mb-0">
@@ -150,7 +150,7 @@ function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
   );
 }
 
-function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
+export function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
   return (
     <header className="mb-12 font-uncut-sans">
       <div className="mb-6">

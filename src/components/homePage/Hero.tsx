@@ -1,7 +1,7 @@
-import { BrainDarkMouseDark, BrainDarkMouseLight, BrainLight } from "./ToneCanvas";
+import { BrainDarkMouseDark, /*BrainDarkMouseLight, BrainLight*/ } from "./ToneCanvas";
 import { HeroWindow } from "../Windows";
 import ZoomableImage from "../ZoomableImage";
-import { CycleText, CycleTextBlend } from "../specialEffects/text/CycleText";
+import { /*CycleText,*/ CycleTextBlend } from "../specialEffects/text/CycleText";
 
 export default function Hero() {
     
