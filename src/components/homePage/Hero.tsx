@@ -34,7 +34,7 @@ export default function Hero() {
               <CycleTextBlend
                 className="inline-block whitespace-nowrap font-bold italic"
                 texts={[
-                  //"Lilian",
+                  "Lilian",
                   "lettuce",
                   "not a robot.",
                   "a rat in three trenchcoats.",
