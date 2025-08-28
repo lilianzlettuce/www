@@ -2,7 +2,7 @@ export const navItems = [
     //{ href: "/", label: "Home" },
     { href: "/work", label: "Work" },
     { href: "/about", label: "About" },
-    { href: "/stuff", label: "???" },
+    { href: "https://lilianzlettuce.github.io/thing/", label: "???" },
 ];
 
 export const socialLinks = [
