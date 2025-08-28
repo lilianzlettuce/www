@@ -165,9 +165,9 @@ export function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
 function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
   return (
     <header className="z-50 sticky top-0 left-0 w-full flex flex-row items-start gap-4">
-      <div className="w-full h-10 pt-4 flex flex-row gap-1 items-start justify-between">
+      <div className="w-full h-10 pt-4 flex flex-row gap-1 items-start justify-end">
           
-          <div className="w-full flex flex-col text-xs text-muted-foreground">
+          <div className="hidden w-full flex flex-col text-xs text-muted-foreground">
             <div className="font-bold">
               {frontmatter.title}
             </div>
@@ -181,7 +181,7 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
               href={frontmatter.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative w-25 flex items-center justify-center border-1 border-foreground bg-foreground text-background hover:bg-background hover:text-foreground transition-all duration-300"
+              className="hidden group relative w-25 flex items-center justify-center border-1 border-foreground bg-foreground text-background hover:bg-background hover:text-foreground transition-all duration-300"
             >
               <IconButton className="relative text-xs py-0"
                 text="Visit Site" 
@@ -207,7 +207,7 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
                 className="scale-100 group-hover:scale-x-105 group-hover:scale-y-120 transition-all duration-300"
               />
               <IconButton className="relative text-xs py-0"
-                text="View Code" 
+                text="Visit Site" 
                 icon={<div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">→</div>} 
               />
             </Link>

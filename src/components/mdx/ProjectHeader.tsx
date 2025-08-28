@@ -10,10 +10,10 @@ export function ProjectHeader({ title, description, children }: ProjectHeaderPro
         <div className="w-60 text-sm uppercase">
           Brief
         </div>
-        <div className="w-9/12 flex flex-col justify-between">
-          <div className="mb-16 max-w-2/3">
-            <h1 className="text-4xl font-bold mb-7">{title}</h1>
-            <p className="text-lg">{description}</p>
+        <div className="w-7/12 flex flex-col justify-between">
+          <div className="mb-16 max-w-125">
+            <h3>{title}</h3>
+            <div className="text-lg">{description}</div>
           </div>
           {children}
         </div>

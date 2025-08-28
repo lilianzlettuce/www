@@ -24,6 +24,18 @@ function InfoItem({ label, values }: { label: string, values: string[] }) {
   
 export default function ProjectInfo({ items }: ProjectInfoProps) {
     return (
+        <div className="relative my-8 p-0 bg-background text-foreground"> 
+            <div className="flex flex-row justify-between gap-2">
+                {items?.map(({ label, values }) => (
+                    <InfoItem key={label} label={label} values={values} />
+                ))}
+            </div>
+        </div>
+    );
+} 
+
+export function BorderedProjectInfo({ items }: ProjectInfoProps) {
+    return (
         <div className="relative my-8 p-6 bg-background text-foreground border-1 border-muted">
             <BoxCorners
                 icon={<div className="w-full h-full border-t-1 border-l-1 border-muted-foreground"></div>}
