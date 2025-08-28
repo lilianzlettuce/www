@@ -23,7 +23,7 @@ export default function About() {
         <div className="flex py-12">
           <div>
             <p className="text-base max-w-2xl">
-              Hello — I’m Lilian! I'm a student studying Computer Science at Purdue University, and I like making things, especially when it involves mixed reality, web based solutions, human-computer interaction, and game development.
+              Hello — I&apos;m Lilian! I&apos;m a student studying Computer Science at Purdue University, and I like making things, especially when it involves mixed reality, web based solutions, human-computer interaction, and game development.
             </p>
           </div>
           
@@ -151,7 +151,7 @@ export default function About() {
   );
 } 
 
-export function AboutPageHeader() {
+function AboutPageHeader() {
   return (
       <div className="w-full min-h-[50vh] py-3 flex flex-row gap-4">
           <div className="relative w-full h-full">
