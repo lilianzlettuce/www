@@ -8,150 +8,96 @@ date: "2022-12-01"
 link: "https://www.purduehackers.com/"
 ---
 
-<SplitSection>
-  <SectionColumn size={1}>
-    ## Overview
-  </SectionColumn>
-  <SectionColumn size={1}>
-    <ProjectInfo 
-      roles={["Fullstack Developer", "Creative Lead"]} 
-      timeline="August 2022 - December 2022"
-      team={["3 developers/designers"]}
-    />
-    This project serves as the primary digital presence for Purdue Hackers, showcasing the organization's mission, events, and community. The site is designed to engage current members and attract new participants to the hacking community.
-  </SectionColumn>
-</SplitSection>
+<ProjectHeader
+  title="Purdue Hackers - Passports"
+  description="Physical/digital passport initiative for Purdue Hackers; design and fabrication across multiple mediums."
+>
+  <ProjectInfo
+    items={[
+      { label: "Tags", values: ["Product Design", "Fabrication", "Physical Prototyping", "Student Organization", "Vinyl Heat Press", "Cricut", "Riso Printing"] },
+      { label: "Categories", values: ["dev", "design"] },
+      { label: "Date", values: ["2022-12-01"] },
+      { label: "Role", values: ["Fullstack Developer", "Creative Lead"] },
+      { label: "Timeline", values: ["August 2022 - December 2022"] },
+      { label: "Team", values: ["3 developers/designers"] },
+    ]}
+  />
+</ProjectHeader>
 
 <SplitSection>
-  <SectionColumn size={1}>
-    # Brief
+  <SectionColumn size={4}>
+    ###### Background
   </SectionColumn>
-  <SectionColumn size={1}>
-    ## Background (Context & Problem)
-    When I first joined the Purdue Hackers organizing team in my freshman year, the club's website was in dire need of an upgrade.
-    As part of the engineering team, I was tasked with building a dynamic experience that reflected our club's core vision and values. 
+  <SectionColumn size={12}>
+    #### Overview
+    This project serves as the primary digital presence for Purdue Hackers, showcasing the organization's mission, events, and community. The site is designed to engage current members and attract new participants to the hacking community.
+
+    <br/><br/><br/>
+
+    #### Brief
+    When I first joined the Purdue Hackers organizing team in my freshman year, the club's website was in dire need of an upgrade. As part of the engineering team, I was tasked with building a dynamic experience that reflected our club's core vision and values. 
 
     - Current site is out of date, need an updated site to reflect new branding and represent our online presence
     - Need a dedicated website to communicate what the club does and how interested individuals can get involved
   </SectionColumn>
+  <SectionColumn size={2}>
+  </SectionColumn>
 </SplitSection>
 
-<ProjectInfo 
-  roles={["Fullstack Developer", "Creative Lead"]} 
-  timeline="August 2022 - December 2022"
-  team={["3 developers/designers"]}
-  type="Landing Page"
-/>
-
-<ProjectStats
-  stats={[
-    {label: "reunion", value: 3, unit: "cows"},
-    {label: "boats filled", value: 20, unit: ""}
-  ]}
-  title="test"
-/>
-
 <SplitSection>
-  <SectionColumn size={1}>
-    # Goals
+  <SectionColumn size={4}>
+    ###### Implementation
+  </SectionColumn>
+  <SectionColumn size={12}>
+    #### Goals
+    - Create an engaging and informative landing page to introduce Purdue Hackers to the public
+    - Highlight the club's mission, past projects, and upcoming events
+    - Provide a clear and user-friendly process for joining the club
+
+    <br/><br/><br/>
+
+    #### Visuals
+    ![Hero screenshot](/projects/purdue-hackers/hero_mac-air.webp)
+    
+    ![Hero screenshot](/projects/purdue-hackers/invitation.webp)
+
+    ![Hero screenshot](/projects/purdue-hackers/hack-night_mac-air.webp)
+
+    ![Hero screenshot](/projects/purdue-hackers/hero.webp)
+
+    <br/><br/><br/>
+
+    #### Technical Implementation
+    Built with modern web technologies to ensure reliability and maintainability for a student-run organization.
+
+    <br/><br/><br/>
+
+    #### Process
+    - Whiteboard/paper prototyping
+    - Lofi/Hifi prototypes with Figma
+    - Technical implementation and iterations
+
+    ![Invitation](/projects/purdue-hackers/invitation.png)
+
+    <br/><br/><br/>
+
+    #### Pages
+    We went for a Neobrutalist Retro UI aesthetic (High contrast, draggable windows, fun/unique graphics and interactions)
+    - Hero 
+    - Welcome email message (interactive email component)
+    - Hack Night (previous events, secret windows, countdown)
+    - CTA (custom graphics)
+
+    <br/><br/><br/>
+
+    #### Impact
+    The landing page serves as a crucial touchpoint for the Purdue Hackers community, helping to grow membership and showcase the organization's impact on campus.
+
+    <br/><br/><br/>
+
+    #### Next steps
+    - Club is constantly growing and evolving, website should change in stride to reflect club's identity
   </SectionColumn>
   <SectionColumn size={2}>
-    - Create an engaging and informative landing page to introduce Purdue Hackers to the public
-    - Highlight the club's mission, past projects, and upcoming events
-    - Provide a clear and user-friendly process for joining the club
   </SectionColumn>
 </SplitSection>
-
-<SplitSection>
-  <SectionColumn size={1}>
-    ![Hero screenshot](/projects/purdue-hackers/hero_mac-air.webp)
-  </SectionColumn>
-  <SectionColumn size={1}>
-    ![Hero screenshot](/projects/purdue-hackers/invitation.webp)
-  </SectionColumn>
-</SplitSection>
-
-
-![Hero screenshot](/projects/purdue-hackers/hack-night_mac-air.webp)
-
-<SplitSection>
-  <SectionColumn size={1}>
-    # Goals
-    - Create an engaging and informative landing page to introduce Purdue Hackers to the public
-    - Highlight the club's mission, past projects, and upcoming events
-    - Provide a clear and user-friendly process for joining the club
-  </SectionColumn>
-  <SectionColumn size={1}>
-    ![Hero screenshot](/projects/purdue-hackers/hero.webp)
-  </SectionColumn>
-</SplitSection>
-
-<MiddleSection>
-  ## Goals
-  - Create an engaging and informative landing page to introduce Purdue Hackers to the public
-  - Highlight the club's mission, past projects, and upcoming events
-  - Provide a clear and user-friendly process for joining the club
-  - Ensure the site is mobile-friendly and accessible to all users
-
-  ## Constraints
-  - The website must align with the club’s branding and visual identity
-  -- (coherent branding and visual identity was kind of non-existent at this point, we were making it up as we go along)
-  - Should be deployable using free or low-cost hosting services
-  - Should be easy to maintain and update with new content
-  - Ship by the end of school year (2 semesters time)
-
-  ## Key Features
-
-  - **Brand Identity**: Unique visual design capturing our identity as an organization
-  - **Community Showcase**: Highlights member projects and achievements
-  - **Event Information**: Centralized location for hackathon and workshop details
-  - **Member Resources**: Access to tools, tutorials, and community guidelines
-  - **Responsive Design**: Optimized for students accessing from various devices
-</MiddleSection>
-
-![Invitation mockup](/projects/purdue-hackers/invitation_desktop.png)
-
-
-<MiddleSection>
-  ## Technical Implementation
-
-  Built with modern web technologies to ensure reliability and maintainability for a student-run organization.
-
-  <TechStack 
-    technologies={["Next.js", "TypeScript", "Tailwind CSS", "Sanity", "Prisma", "PostgreSQL", "NextAuth.js"]}
-    title="Technology Stack"
-  />
-
-  ## Process
-
-  - Whiteboard/paper prototyping
-  - Lofi/Hifi prototypes with Figma
-  - Technical implementation and iterations
-
-  ![Invitation](/projects/purdue-hackers/invitation.png)
-
-  ## Pages
-
-  We went for a Neobrutalist Retro UI aesthetic 
-  (High contrast, draggable windows, fun/unique graphics and interactions)
-
-  - Hero 
-  - Welcome email message, 
-  -- Interactive email component (secret messages)
-  - Hack Night 
-  -- Previous events, secret windows, (broken) hack night countdown
-  -- Moon spray effect 
-  - CTA
-  -- Sad plant, shitty drawings I drew in Figma that were supposed to be just placeholders
-
-  ## What I learned???
-  - 
-
-  ## Impact
-
-  The landing page serves as a crucial touchpoint for the Purdue Hackers community, helping to grow membership and showcase the organization's impact on campus.
-
-  ## Next steps
-  - Club is constantly growing and evolving, website should change in stride to reflect club's identity
-  - 
-</MiddleSection>
