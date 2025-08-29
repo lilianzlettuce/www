@@ -18,13 +18,13 @@ export default function ImageFrameDemo() {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-800">Website Screenshot</h2>
           <div className="flex justify-center">
-            <ImageFrame width={600} height={400}>
-              <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <h3 className="text-2xl font-bold mb-2">My Website</h3>
-                  <p className="text-lg opacity-90">Beautiful UI Design</p>
-                </div>
-              </div>
+            <ImageFrame className="w-180">
+              <Image
+                src="/projects/scout/hero_mac-air.webp"
+                alt="Scout"
+                fill
+                className="object-cover"
+              />
             </ImageFrame>
           </div>
         </div>
@@ -33,7 +33,7 @@ export default function ImageFrameDemo() {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-800">App Interface</h2>
           <div className="flex justify-center">
-            <ImageFrame width={500} height={350}>
+            <ImageFrame className="w-200">
               <div className="w-full h-full bg-white p-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-semibold text-gray-800">Dashboard</h3>
@@ -58,7 +58,7 @@ export default function ImageFrameDemo() {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-800">Image Content</h2>
           <div className="flex justify-center">
-            <ImageFrame width={700} height={450}>
+            <ImageFrame className="w-100">
               <Image
                 src="/img/lowRes/brain.png"
                 alt="Brain illustration"
@@ -73,7 +73,7 @@ export default function ImageFrameDemo() {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-800">Video Player</h2>
           <div className="flex justify-center">
-            <ImageFrame width={650} height={420}>
+            <ImageFrame className="w-200">
               <div className="w-full h-full bg-black flex items-center justify-center">
                 <div className="text-center text-white">
                   <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
@@ -90,7 +90,7 @@ export default function ImageFrameDemo() {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-800">Mobile App</h2>
           <div className="flex justify-center">
-            <ImageFrame width={400} height={300}>
+            <ImageFrame className="w-120">
               <div className="w-full h-full bg-gradient-to-b from-green-400 to-blue-500 p-4">
                 <div className="flex items-center justify-between mb-6">
                   <div className="text-white font-bold">Fitness App</div>
