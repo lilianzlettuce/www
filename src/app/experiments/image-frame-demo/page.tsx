@@ -1,13 +1,13 @@
-import { ImageFrame } from "@/components/mdx/ImageFrame";
+import { DeviceMockup } from "@/components/mdx/DeviceMockup";
 import Image from "next/image";
 
-export default function ImageFrameDemo() {
+export default function DeviceMockupDemo() {
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-6xl mx-auto space-y-12">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            ImageFrame Component Demo
+            DeviceMockup Component Demo
           </h1>
           <p className="text-lg text-gray-600">
             Showcasing the Mac Air frame mockup with different content types
@@ -18,14 +18,14 @@ export default function ImageFrameDemo() {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-800">Website Screenshot</h2>
           <div className="flex justify-center">
-            <ImageFrame className="w-180">
+            <DeviceMockup className="w-180">
               <Image
                 src="/projects/scout/hero_mac-air.webp"
                 alt="Scout"
                 fill
-                className="object-cover"
+                className="object-cover object-top-left"
               />
-            </ImageFrame>
+            </DeviceMockup>
           </div>
         </div>
 
@@ -33,7 +33,7 @@ export default function ImageFrameDemo() {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-800">App Interface</h2>
           <div className="flex justify-center">
-            <ImageFrame className="w-200">
+            <DeviceMockup className="w-200">
               <div className="w-full h-full bg-white p-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-semibold text-gray-800">Dashboard</h3>
@@ -50,7 +50,7 @@ export default function ImageFrameDemo() {
                   </div>
                 </div>
               </div>
-            </ImageFrame>
+            </DeviceMockup>
           </div>
         </div>
 
@@ -58,14 +58,14 @@ export default function ImageFrameDemo() {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-800">Image Content</h2>
           <div className="flex justify-center">
-            <ImageFrame className="w-100">
+            <DeviceMockup className="w-100">
               <Image
                 src="/img/lowRes/brain.png"
                 alt="Brain illustration"
                 fill
                 className="object-cover"
               />
-            </ImageFrame>
+            </DeviceMockup>
           </div>
         </div>
 
@@ -73,7 +73,7 @@ export default function ImageFrameDemo() {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-800">Video Player</h2>
           <div className="flex justify-center">
-            <ImageFrame className="w-200">
+            <DeviceMockup className="w-200">
               <div className="w-full h-full bg-black flex items-center justify-center">
                 <div className="text-center text-white">
                   <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
@@ -82,7 +82,7 @@ export default function ImageFrameDemo() {
                   <p className="text-lg">Video Player Interface</p>
                 </div>
               </div>
-            </ImageFrame>
+            </DeviceMockup>
           </div>
         </div>
 
@@ -90,7 +90,7 @@ export default function ImageFrameDemo() {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-800">Mobile App</h2>
           <div className="flex justify-center">
-            <ImageFrame className="w-120">
+            <DeviceMockup className="w-120">
               <div className="w-full h-full bg-gradient-to-b from-green-400 to-blue-500 p-4">
                 <div className="flex items-center justify-between mb-6">
                   <div className="text-white font-bold">Fitness App</div>
@@ -107,7 +107,7 @@ export default function ImageFrameDemo() {
                   </div>
                 </div>
               </div>
-            </ImageFrame>
+            </DeviceMockup>
           </div>
         </div>
       </div>

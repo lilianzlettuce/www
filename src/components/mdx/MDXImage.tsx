@@ -21,7 +21,7 @@ const presets = {
   "project-documentation": {
     width: 1200,
     height: 800,
-    sizes: "(max-width: 768px) 100vw, 1200px"
+    sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 600px, 600px"
   },
   thumbnail: {
     width: 400,
@@ -30,31 +30,45 @@ const presets = {
   }
 };
 
-export function MDXImageKnownDimensions({ 
+export function MDXImage({ 
   src, 
   alt, 
+  aspectRatio, 
   width, 
   height, 
   sizes, 
   preset 
 }: MDXImageProps) {
-    const presetConfig = preset ? presets[preset] : null;
-    const finalWidth = width ?? presetConfig?.width ?? 800;
-    const finalHeight = height ?? presetConfig?.height ?? 600;
-    const finalSizes = sizes ?? presetConfig?.sizes ?? "(max-width: 768px) 100vw, 50vw";
+  const presetConfig = preset ? presets[preset] : null;
+  const finalSizes = sizes ?? presetConfig?.sizes ?? "(max-width: 768px) 100vw, 50vw";
 
-    return (
-        <div className="relative w-full">
-            <Image
-                src={src}
-                alt={alt}
-                width={finalWidth}
-                height={finalHeight}
-                sizes={finalSizes}
-                className="w-full h-auto object-cover"
-            />
-        </div>
-    );
+  return (
+    width && height ? (
+      <div className="relative w-full" style={{ aspectRatio }}>
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          sizes={finalSizes}
+          className="w-full h-full object-cover"
+        />
+      </div>
+    ) : (
+      <div
+        className="relative w-full"
+        style={{ aspectRatio: aspectRatio ?? "3/2" }}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={finalSizes}
+          className="w-full h-full object-cover"
+        />
+      </div>
+    )
+  );
 }
 
 export function MDXImageFillAspectRatio({ 
@@ -64,22 +78,22 @@ export function MDXImageFillAspectRatio({
   sizes, 
   preset 
 }: MDXImageProps) {
-    const presetConfig = preset ? presets[preset] : null;
-    const finalSizes = sizes ?? presetConfig?.sizes ?? "(max-width: 768px) 100vw, 50vw";
+  const presetConfig = preset ? presets[preset] : null;
+  const finalSizes = sizes ?? presetConfig?.sizes ?? "(max-width: 768px) 100vw, 50vw";
 
-    return (
-        <div className="relative w-full"
-            style={{
-                aspectRatio: aspectRatio,
-            }}
-        >
-            <Image
-                src={src}
-                alt={alt}
-                fill
-                sizes={finalSizes}
-                className="object-cover"
-            />
-        </div>
-    );
+  return (
+    <div className="relative w-full"
+      style={{
+        aspectRatio: aspectRatio,
+      }}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes={finalSizes}
+        className="object-cover"
+      />
+    </div>
+  );
 }

@@ -241,10 +241,9 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
       {/* Main content */}
       <div className="max-w-6xl mx-auto w-full px-10 py-0">
 
-      {/* Project Header */}
-      <ProjectHeaderMinimal frontmatter={frontmatter} />
+        {/* Project Header */}
+        <ProjectHeaderMinimal frontmatter={frontmatter} />
         
-
         {/* Project Image */}
         <div className="w-full mb-1">
           {frontmatter.image && (
@@ -259,18 +258,17 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
               />
             </div>
           )} 
-          {/* <div className="relative w-full">
+          <div className="relative w-11/12 aspect-3/2 mx-auto">
               <Image
                 src={frontmatter.image}
                 alt={frontmatter.title}
                 width={1200}
                 height={675}
-                className="w-full h-auto object-cover"
+                className="w-full h-full object-cover"
                 sizes="100vw"
                 priority
               />
-            </div>
-           */}
+          </div>
         </div>
 
         {/* Project Content */}

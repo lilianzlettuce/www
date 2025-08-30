@@ -1,14 +1,14 @@
 import { ReactNode } from "react";
 
-interface ImageFrameProps {
+interface DeviceMockupProps {
   children: ReactNode;
   className?: string;
 }
 
-export function ImageFrame({ 
+export function DeviceMockup({ 
   children, 
   className = "w-120", 
-}: ImageFrameProps) {
+}: DeviceMockupProps) {
   return (
     <div 
       className={`relative inline-block h-fit ${className}`}
@@ -65,8 +65,6 @@ export function ImageFrame({
       <div 
         className="w-[76%] h-[80%] absolute top-[5%] overflow-hidden inset-0 mx-auto z-15"
       >
-        <div className="w-10 bg-red-500">
-        </div>
         {children}
       </div>
     </div>
