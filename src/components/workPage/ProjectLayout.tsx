@@ -245,7 +245,7 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
         <ProjectHeaderMinimal frontmatter={frontmatter} />
         
         {/* Project Image */}
-        <div className="w-full mb-1">
+        <div className="hidden w-full mb-1">
           {frontmatter.image && (
             <div className="relative w-11/12 aspect-3/2 mx-auto">
               <Image

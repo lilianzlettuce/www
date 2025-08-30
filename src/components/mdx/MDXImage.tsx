@@ -1,5 +1,6 @@
 // components/MDXImage.tsx
 import Image from "next/image";
+import { DeviceMockup } from "./DeviceMockup";
 
 interface MDXImageProps {   
   src: string;
@@ -8,20 +9,26 @@ interface MDXImageProps {
   height?: number;
   aspectRatio?: string;
   sizes?: string;
-  preset?: "hero" | "project-documentation" | "thumbnail";
+  preset?: "hero" | "header" | "project-documentation" | "thumbnail";
+  frame?: "none" | "mockup" | string;
 }
 
 
 const presets = {
   hero: {
-    width: undefined,
-    height: undefined,
-    sizes: "100vw"
+    width: 2560,
+    height: 1664,
+    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 90vw, (max-width: 1280px) 90vw, 90vw"
+  },
+  header: {
+    width: 2560,
+    height: 1664,
+    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 60vw, (max-width: 1280px) 80vw, 90vw"
   },
   "project-documentation": {
     width: 1200,
     height: 800,
-    sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 600px, 600px"
+    sizes: "(max-width: 768px) 100vw, (max-width: 1024px) 600px, 600px"
   },
   thumbnail: {
     width: 400,
@@ -30,7 +37,7 @@ const presets = {
   }
 };
 
-export function MDXImage({ 
+export function BaseImage({ 
   src, 
   alt, 
   aspectRatio, 
@@ -71,29 +78,26 @@ export function MDXImage({
   );
 }
 
-export function MDXImageFillAspectRatio({ 
-  src, 
-  alt, 
-  aspectRatio = "3/2", 
-  sizes, 
-  preset 
-}: MDXImageProps) {
-  const presetConfig = preset ? presets[preset] : null;
-  const finalSizes = sizes ?? presetConfig?.sizes ?? "(max-width: 768px) 100vw, 50vw";
+export function MDXImage({ frame = "none", ...props }: MDXImageProps) {
+  if (frame === "none") {
+    return <BaseImage {...props} />;
+  }
 
+  if (frame === "mockup") {
+    return (
+      <DeviceMockup className="w-full">
+        <BaseImage {...props} />
+      </DeviceMockup>
+    );
+  }
+
+  // If frame is a color string, wrap in a div with padding and background color
   return (
-    <div className="relative w-full"
-      style={{
-        aspectRatio: aspectRatio,
-      }}
+    <div 
+      className="p-12 rounded-lg" 
+      style={{ backgroundColor: frame }}
     >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes={finalSizes}
-        className="object-cover"
-      />
+      <BaseImage {...props} />
     </div>
   );
-}
+};

@@ -1,7 +1,7 @@
 import { DeviceMockup } from "@/components/mdx/DeviceMockup";
 import Image from "next/image";
 
-export default function DeviceMockupDemo() {
+export default function DeviceMockupPage() {
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-6xl mx-auto space-y-12">
@@ -20,10 +20,13 @@ export default function DeviceMockupDemo() {
           <div className="flex justify-center">
             <DeviceMockup className="w-180">
               <Image
+                className="object-cover object-top-left"
                 src="/projects/scout/hero_mac-air.webp"
                 alt="Scout"
-                fill
-                className="object-cover object-top-left"
+                width={2560}
+                height={1664}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 600px, 600px"
+                priority
               />
             </DeviceMockup>
           </div>
@@ -64,6 +67,7 @@ export default function DeviceMockupDemo() {
                 alt="Brain illustration"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 600px, 600px"
               />
             </DeviceMockup>
           </div>
