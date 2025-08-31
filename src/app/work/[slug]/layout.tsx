@@ -11,7 +11,7 @@ export default function WorkLayout({
       <div className="w-full min-h-screen flex flex-row">
         <SideBar3 className="min-w-50" />
         <div className="w-full">
-            {children}
+          {children}
         </div>
       </div>
     </div>

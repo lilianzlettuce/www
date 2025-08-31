@@ -7,7 +7,7 @@ interface ProjectCardProps {
 
 export function ProjectListItem({ listIcon = "→", children }: ProjectCardProps) {
     return (
-        <div className="relative mb-4 p-4 pb-0 bg-background text-foreground border-1 border-muted">
+        <div className="mdx-no-margin relative mb-4 py-4 px-6 bg-background text-foreground border-1 border-muted">
             <BoxCorners
                 icon={<div className="w-full h-full border-t-1 border-l-1 border-muted-foreground"></div>}
                 cornerSize="8px"
@@ -20,7 +20,7 @@ export function ProjectListItem({ listIcon = "→", children }: ProjectCardProps
                 cornerColor="var(--secondaryForeground)"
             />*/}
             
-            <div className="text-base flex flex-row items-start gap-2">
+            <div className="text-base flex flex-row items-center gap-6">
                 <div className="text-foreground">{listIcon}</div>
                 <div className="text-foreground">{children}</div>
             </div>

@@ -433,6 +433,10 @@ body {
     margin-bottom: 1rem;
   }
 
+  .mdx-content .mdx-no-margin p {
+    margin-bottom: 0;
+  }
+
   .mdx-content blockquote {
     font-style: italic;
   }
