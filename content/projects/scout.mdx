@@ -15,15 +15,7 @@ link: "https://www.scoutforschools.com/"
   width={2560}
   height={1664}
   frame="mockup"
-/>
-
-<MDXImage 
-  src="/projects/scout/hero_mac-air.webp" 
-  alt="Hero" 
-  preset="hero"
-  width={2560}
-  height={1664}
-  frame="none"
+  className="w-4/5 my-10"
 />
 
 <ProjectHeader
@@ -39,6 +31,35 @@ link: "https://www.scoutforschools.com/"
     ]}
   />
 </ProjectHeader>
+
+<SplitSection>
+  <SectionColumn size={0}>
+  </SectionColumn>
+  <SectionColumn size={5}>
+    <MDXImage 
+      src="/projects/scout/deco_iphone.webp" 
+      alt="Hero" 
+      preset="project-documentation"
+      width={593}
+      height={574}
+      frame="none"
+      className="w-full my-10"
+    />
+  </SectionColumn>
+  <SectionColumn size={5}>
+    <MDXImage 
+      src="/projects/scout/deco_mac-air.webp" 
+      alt="Hero" 
+      preset="project-documentation"
+      width={593}
+      height={574}
+      frame="none"
+      className="w-full my-10"
+    />
+  </SectionColumn>
+  <SectionColumn size={0}>
+  </SectionColumn>
+</SplitSection>
 
 <SplitSection>
   <SectionColumn size={4}>
@@ -84,6 +105,7 @@ link: "https://www.scoutforschools.com/"
     The site takes advantage of reusable components, server-side rendering, and static-site generation.
 
     Interactions and animations to improve the user experience 
+
     Challenges:
     Figuring out how to properly use SSR, putting side-effects directly in the render, not being able to use state or hooks
     Managing state for animations on the client side
@@ -98,19 +120,96 @@ link: "https://www.scoutforschools.com/"
 
     <br/><br/><br/>
 
+    
+  </SectionColumn>
+  <SectionColumn size={2}>
+  </SectionColumn>
+</SplitSection>
+
+<SplitSection>
+  <SectionColumn size={4}>
+    ###### Results
+  </SectionColumn>
+  <SectionColumn size={12}>
+    #### Accessible and Mobile-Friendly
+    Ensured delightful UI/UX across all devices with responsive resizing and cross-platform compatibility.
+  </SectionColumn>
+  <SectionColumn size={2}>
+  </SectionColumn>
+</SplitSection>
+
+<SplitSection>
+  <SectionColumn size={0}>
+  </SectionColumn>
+  <SectionColumn size={5}>
+    <MDXImage 
+      src="/projects/scout/hero_iphone.webp" 
+      alt="Hero" 
+      preset="project-documentation"
+      width={1603}
+      height={2839}
+      frame="none"
+      className="w-full my-10"
+    />
+  </SectionColumn>
+  <SectionColumn size={5}>
+    <MDXImage 
+      src="/projects/scout/home-cards_iphone.webp" 
+      alt="Hero" 
+      preset="project-documentation"
+      width={1603}
+      height={2839}
+      frame="none"
+      className="w-full my-10"
+    />
+  </SectionColumn>
+  <SectionColumn size={5}>
+    <MDXImage 
+      src="/projects/scout/cta_iphone.webp" 
+      alt="Hero" 
+      preset="project-documentation"
+      width={1603}
+      height={2839}
+      frame="none"
+      className="w-full my-10"
+    />
+  </SectionColumn>
+  <SectionColumn size={0}>
+  </SectionColumn>
+</SplitSection>
+
+<SplitSection>
+  <SectionColumn size={4}>
+  </SectionColumn>
+  <SectionColumn size={12}>
     #### Blog Integration
     Integrated Sanity CMS so the team can easily publish blog posts without touching the source code.
-
 
     Wrote queries for fetching post metadata and content, 
     Defined “schemas/types” for post data structures
 
     Challenges with strict typing in Typescript, had to find workaround
 
-    <br/><br/><br/>
+    <MDXImage 
+      src="/projects/scout/blog-post_mac-air.webp" 
+      alt="Hero" 
+      preset="header"
+      width={2560}
+      height={3600}
+      frame="rgb(50, 50, 50)"
+      className=""
+      baseImageClassName="rounded-xl"
+    />
 
-    #### Accessible and Mobile-Friendly
-    Ensured delightful UI/UX across all devices with responsive resizing and cross-platform compatibility.
+    <MDXImage 
+      src="/projects/scout/blog-listings_mac-air.webp" 
+      alt="Hero" 
+      preset="header"
+      width={2560}
+      height={3600}
+      frame="mockup"
+      className="w-full my-10"
+    />
   </SectionColumn>
   <SectionColumn size={2}>
   </SectionColumn>

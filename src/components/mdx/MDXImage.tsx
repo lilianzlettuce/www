@@ -11,6 +11,7 @@ interface MDXImageProps {
   sizes?: string;
   preset?: "hero" | "header" | "project-documentation" | "thumbnail";
   frame?: "none" | "mockup" | string;
+  className?: string;
 }
 
 
@@ -44,14 +45,15 @@ export function BaseImage({
   width, 
   height, 
   sizes, 
-  preset 
+  preset,
+  className 
 }: MDXImageProps) {
   const presetConfig = preset ? presets[preset] : null;
   const finalSizes = sizes ?? presetConfig?.sizes ?? "(max-width: 768px) 100vw, 50vw";
 
   return (
     width && height ? (
-      <div className="relative w-full" style={{ aspectRatio }}>
+      <div className={`relative w-full overflow-hidden ${className || ""}`} style={{ aspectRatio }}>
         <Image
           src={src}
           alt={alt}
@@ -63,7 +65,7 @@ export function BaseImage({
       </div>
     ) : (
       <div
-        className="relative w-full"
+        className={`relative w-full ${className || ""}`}
         style={{ aspectRatio: aspectRatio ?? "3/2" }}
       >
         <Image
@@ -78,26 +80,33 @@ export function BaseImage({
   );
 }
 
-export function MDXImage({ frame = "none", ...props }: MDXImageProps) {
+export function MDXImage({ 
+  frame = "none", 
+  className,
+  baseImageClassName,
+  ...props 
+}: MDXImageProps & { baseImageClassName?: string }) {
   if (frame === "none") {
-    return <BaseImage {...props} />;
+    return <BaseImage {...props} className={baseImageClassName} />;
   }
 
   if (frame === "mockup") {
     return (
-      <DeviceMockup className="w-full">
-        <BaseImage {...props} />
-      </DeviceMockup>
+      <div className="w-full flex justify-center">
+        <DeviceMockup className={`${className || ""}`}>
+          <BaseImage {...props} className={baseImageClassName} />
+        </DeviceMockup>
+      </div>
     );
   }
 
   // If frame is a color string, wrap in a div with padding and background color
   return (
     <div 
-      className="p-12 rounded-lg" 
+      className={`p-12 ${className || ""}`}
       style={{ backgroundColor: frame }}
     >
-      <BaseImage {...props} />
+      <BaseImage {...props} className={baseImageClassName} />
     </div>
   );
 };

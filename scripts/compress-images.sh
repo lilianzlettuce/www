@@ -1,6 +1,7 @@
 #!/bin/bash
 # Compress images in the input directory to webp format
 # Example: ./scripts/compress-images.sh ./public/img false
+# Example: ./scripts/compress-images.sh ./public/projects/scout true
 
 # Param 1: Input directory (default: ../public/img)
 # Param 2: Delete originals (default: false)
