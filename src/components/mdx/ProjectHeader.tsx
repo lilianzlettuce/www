@@ -6,7 +6,7 @@ interface ProjectHeaderProps {
 
 export function ProjectHeader({ title, description, children }: ProjectHeaderProps) {
   return (
-    <div className="w-full py-16 flex items-start justify-start">
+    <div className="w-full pt-16 flex items-start justify-start">
         <div className="w-60 text-sm uppercase">
           Brief
         </div>
