@@ -2,13 +2,12 @@ import { ReactNode } from "react";
 
 interface SplitSectionProps {
   children: ReactNode;
-  gap?: number;
+  className?: string;
 }
 
-export function SplitSection({ children, gap = 8 }: SplitSectionProps) {
+export function SplitSection({ children, className = "my-20 gap-2" }: SplitSectionProps) {
   return (
-    <div className="my-20 p-0 flex flex-col md:flex-row"
-      style={{ gap: `${gap}px` }}
+    <div className={`p-0 flex flex-col md:flex-row ${className}`}
     >
       {children}
     </div>
