@@ -7,6 +7,7 @@ import { TagLabel, TagLabelStroke } from './Labels';
 import { IconButton, RevealButton } from '../Buttons';
 import Image from 'next/image';
 import BoxCorners from '../svg/BoxCorners';
+import { ScrollIndicator } from '../ScrollIndicator';
 
 interface ProjectHeaderProps {
   frontmatter: ProjectFrontmatter;
@@ -167,21 +168,26 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
     <header className="z-50 sticky top-0 left-0 w-full flex flex-row items-start gap-4">
       <div className="w-full h-10 pt-4 flex flex-row gap-1 items-start justify-end">
           
-          <div className="hidden w-full flex flex-col text-xs text-muted-foreground">
-            <div className="font-bold">
-              {frontmatter.title}
-            </div>
-            <div>
-              landing page | 2025
-            </div>
+        <div className="hidden w-full flex flex-col text-xs text-muted-foreground">
+          <div className="font-bold">
+            {frontmatter.title}
           </div>
+          <div>
+            landing page | 2025
+          </div>
+        </div>
+
+        <p className="fixed right-0 bottom-0 text-[0.65rem]">
+            DEV / ART ++/
+        </p>
+        
         <div className="hidden h-5 flex flex-row gap-2">
           {frontmatter.link && (
             <Link
               href={frontmatter.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden group relative w-25 flex items-center justify-center border-1 border-foreground bg-foreground text-background hover:bg-background hover:text-foreground transition-all duration-300"
+              className="group relative w-25 flex items-center justify-center border-1 border-foreground bg-foreground text-background hover:bg-background hover:text-foreground transition-all duration-300"
             >
               <IconButton className="relative text-xs py-0"
                 text="Visit Site" 
@@ -240,6 +246,7 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
 
       {/* Main content */}
       <div className="max-w-6xl mx-auto w-full px-10 py-0">
+        <ScrollIndicator className="fixed top-8 right-8" />
 
         {/* Project Header */}
         <ProjectHeaderMinimal frontmatter={frontmatter} />
