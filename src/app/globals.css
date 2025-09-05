@@ -424,10 +424,10 @@ body {
   /* MDX Content specific styles */
   .mdx-content {
     font-family: var(--font-uncut-sans);
+    font-size: 1rem;
   }
 
   .mdx-content p {
-    font-size: 1rem;
     letter-spacing: 0.05em;
     line-height: 1.5;
     margin-bottom: 1rem;

@@ -1,14 +1,21 @@
 import { ReactNode } from "react";
 
-interface SplitSectionProps {
+interface SectionProps {
   children: ReactNode;
   className?: string;
 }
 
-export function SplitSection({ children, className = "my-20 gap-2" }: SplitSectionProps) {
+export function Section({ children, className = "my-20 gap-2" }: SectionProps) {
   return (
-    <div className={`p-0 flex flex-col md:flex-row ${className}`}
-    >
+    <div className={`${className}`}>
+      {children}
+    </div>
+  );
+}
+
+export function SplitSection({ children, className = "my-20 gap-2" }: SectionProps) {
+  return (
+    <div className={`p-0 flex flex-col md:flex-row ${className}`}>
       {children}
     </div>
   );

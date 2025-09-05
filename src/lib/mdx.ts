@@ -6,7 +6,7 @@ import TechStack from "@/components/mdx/TechStack";
 import ProjectStats from "@/components/mdx/ProjectStats";
 import ProjectInfo from "@/components/mdx/ProjectInfo";
 import { ProjectListItem } from "@/components/mdx/ProjectCard";
-import { SplitSection, SectionColumn } from "@/components/mdx/SplitSection";
+import { Section, SplitSection, SectionColumn } from "@/components/mdx/Section";
 import { MDXImage } from "@/components/mdx/MDXImage";
 import { ProjectHeader } from "@/components/mdx/ProjectHeader";
 
@@ -31,6 +31,7 @@ const components = {
   TechStack,
   ProjectStats,
   ProjectInfo,
+  Section,
   SplitSection,
   SectionColumn,
   MDXImage,

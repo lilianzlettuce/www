@@ -20,7 +20,7 @@ export function SideBar3({ className }: NavBarProps) {
   const currentTime = useLiveTime();
 
   return (
-    <nav className={`${className} z-50 sticky top-0 left-0 min-w-50 h-screen py-2 bg-background`}>
+    <nav className={`${className} z-100 sticky top-0 left-0 min-w-50 h-screen py-2 bg-background`}>
       <div className="w-full h-full border-r border-muted p-0 flex flex-col justify-between">
         <div className="w-full h-full px-2 flex flex-col justify-start items-center gap-0">
           
@@ -105,7 +105,7 @@ export function SideBar3({ className }: NavBarProps) {
         {/* Bottom content */}
         <div className="px-2 w-full flex flex-col items-center justify-start border--1 border-secondary">
           
-          <Link href="/" className="w-full h-7 p-0 text-muted-foreground">
+          <Link href="/" className="w-full h-7 p-0 text-muted">
             <LogoIcon className="w-full h-full" />
           </Link>
         </div>
@@ -306,7 +306,7 @@ export function NavBarGrid({ className }: NavBarProps) {
   const pathname = usePathname();
 
   return (
-    <nav className={`${className} z-50 sticky top-0 w-full h-8 py-0 m-auto bg-background`}>
+    <nav className={`${className} z-80 sticky top-0 w-full h-8 py-0 m-auto bg-background`}>
       <div className="w-full h-full flex justify-between items-center gap-2">
         <Link href="/" className="w-fit h-full text-xl font-bold text-foreground">
           <LogoIcon className="w-fit h-full" />

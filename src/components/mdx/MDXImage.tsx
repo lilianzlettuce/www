@@ -87,7 +87,11 @@ export function MDXImage({
   ...props 
 }: MDXImageProps & { baseImageClassName?: string }) {
   if (frame === "none") {
-    return <BaseImage {...props} className={baseImageClassName} />;
+    return (
+      <div className={`${className || ""}`}>
+        <BaseImage {...props} className={baseImageClassName} />
+      </div>
+    );
   }
 
   if (frame === "mockup") {

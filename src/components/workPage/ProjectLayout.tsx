@@ -175,7 +175,7 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
               landing page | 2025
             </div>
           </div>
-        <div className="h-5 flex flex-row gap-2">
+        <div className="hidden h-5 flex flex-row gap-2">
           {frontmatter.link && (
             <Link
               href={frontmatter.link}
