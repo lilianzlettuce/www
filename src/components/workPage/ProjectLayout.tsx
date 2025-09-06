@@ -166,7 +166,7 @@ export function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
 function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
   return (
     <header className="z-50 sticky top-0 left-0 w-full flex flex-row items-start gap-4">
-      <div className="w-full h-10 pt-4 flex flex-row gap-1 items-start justify-end">
+      <div className="w-full h-10 pt-4 flex flex-row gap-1 items-start justify-start">
           
         <div className="hidden w-full flex flex-col text-xs text-muted-foreground">
           <div className="font-bold">
@@ -181,7 +181,7 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
             DEV / ART ++/
         </p>
         
-        <div className="hidden h-5 flex flex-row gap-2">
+        <div className=" h-5 flex flex-row gap-2">
           {frontmatter.link && (
             <Link
               href={frontmatter.link}
@@ -228,7 +228,7 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
   return (
     <div className="relative min-h-screen bg-background flex gap-4 justify-between">
       {/* Sticky side info */}
-      <div className="hidden sticky top-0 left-0 w-80 h-10 p-8 flex flex-col items-start justify-start">
+      <div className=" sticky top-0 left-0 w-80 h-10 p-8 flex flex-col items-start justify-start">
         <div className="w-full mb-1 font-ibm-plex-mono text-xs ">
           &#91; 01 / 04 &#93;
         </div>
