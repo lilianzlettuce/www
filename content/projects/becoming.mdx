@@ -76,20 +76,23 @@ link: "https://youtu.be/WGYg-UNLEUU"
       
     </SectionColumn>
     <SectionColumn size={6} className="h-[90vh] flex flex-col justify-between text-sm">
-      <ProjectInfo
+      <ProjectInfoRow
         items={[
           { label: "Tools", values: ["Arduino", "Processing", "Hardware", "Sensors"] },
           { label: "Role", values: ["Artist", "Developer"] },
           { label: "Timeline", values: ["6 months"] },
           { label: "Team", values: ["Solo project"] },
         ]}
-        labelClassName="font-jetbrains-mono font-normal text-muted-foreground uppercase text-xs mb-1"
+        labelClassName="font-jetbrains-mono font-normal text-muted-foreground uppercase text-xs"
         valuesClassName="text-sm"
       />
 
       Becoming’ recontextualizes a custom playable device as a living entity that responds to both interaction through an analog interface, and audiovisual stimuli detected from the surrounding environment. Using adaptive animations and ambient soundscapes, the piece creates a volatile space that evokes thoughts of transformation, growth, and destruction. It tells the story of a machine grappling with fate and embraces human nature through the eyes of something artificial.
+      
+      <u>[View Demo >>]</u>
+      [View Paper >>]
 
-      Accepted into the 2025 International Conference on New Interfaces for Musical Expression (NIME)
+      This work was performed at the 2025 International Conference on New Interfaces for Musical Expression (NIME)
     </SectionColumn>
   </SplitSection>
 </Section>
@@ -111,22 +114,8 @@ link: "https://youtu.be/WGYg-UNLEUU"
     frame="none"
     className="w-full"
   />
-  <Section className="text-xs">
-    Graphics projection onto AV screen and speaker system | 2024
-  </Section>
 
   <SplitSection className="my-2 mb-8 gap-2">
-    <SectionColumn size={6}>
-      <MDXImage 
-        src="/projects/becoming/screen-1.webp" 
-        alt="Hero" 
-        preset="header"
-        width={3754}
-        height={2835}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
     <SectionColumn size={6}>
       <MDXImage 
         src="/projects/becoming/projection-3.webp" 
@@ -138,9 +127,20 @@ link: "https://youtu.be/WGYg-UNLEUU"
         className="w-full"
       />
     </SectionColumn>
+    <SectionColumn size={6}>
+      <MDXImage 
+        src="/projects/becoming/screen-1.webp" 
+        alt="Hero" 
+        preset="header"
+        width={3754}
+        height={2835}
+        frame="none"
+        className="w-full"
+      />
+    </SectionColumn>
   </SplitSection>
 
-  <Section className="text-xs">
+  <Section className="w-full flex justify-end text-xs font-medium font-roboto-mono">
     Analog device interface | 2025
   </Section>
 
