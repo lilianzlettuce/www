@@ -24,11 +24,13 @@ export function SplitSection({ children, className = "my-20 gap-2" }: SectionPro
 interface SectionColumnProps {
   children: ReactNode;
   size?: number;
+  className?: string;
 }
 
-export function SectionColumn({ children, size = 1 }: SectionColumnProps) {
+export function SectionColumn({ children, size = 1, className = "" }: SectionColumnProps) {
   return (
-    <div style={{ flex: size }}>
+    <div style={{ flex: size }} 
+        className={className}>
       {children}
     </div>
   );

@@ -9,15 +9,50 @@ award: "Performance @ The International Conference on New Interfaces for Musical
 link: "https://youtu.be/WGYg-UNLEUU"
 ---
 
-<SplitSection className="text-xs font-mono">
-  Concept → Context → Media
-</SplitSection>
+<Section className="mt-20 w-full md:w-[85%] lg:w-[90%] ml-0 md:ml-15 lg:ml-0 text-sm">
+  <SplitSection className="my-2 mb-8 gap-2">
+    <SectionColumn size={6}>
+      ###### [01/01]
+    </SectionColumn>
+    <SectionColumn size={6}>
+      <MDXImage 
+        src="/projects/becoming/projection-1.webp" 
+        alt="Hero" 
+        preset="header"
+        width={3754}
+        height={2835}
+        frame="none"
+        className="w-full"
+      />
+    </SectionColumn>
+  </SplitSection>
 
-<SplitSection className="text-xs font-mono">
-  <SectionColumn size={3}>
-    ###### Becoming
-  </SectionColumn>
-  <SectionColumn size={12}>
+  <SplitSection className="my-2 mb-8 gap-2">
+    <SectionColumn size={6}>
+      **Becoming** | 2025
+      
+    </SectionColumn>
+    <SectionColumn size={6} className="h-[90vh] flex flex-col justify-between text-sm">
+      <ProjectInfo
+        items={[
+          { label: "Tools", values: ["Arduino", "Processing", "Hardware", "Sensors"] },
+          { label: "Role", values: ["Artist", "Developer"] },
+          { label: "Timeline", values: ["6 months"] },
+          { label: "Team", values: ["Solo project"] },
+        ]}
+      />
+
+      Becoming’ recontextualizes a custom playable device as a living entity that responds to both interaction through an analog interface, and audiovisual stimuli detected from the surrounding environment. Using adaptive animations and ambient soundscapes, the piece creates a volatile space that evokes thoughts of transformation, growth, and destruction. It tells the story of a machine grappling with fate and embraces human nature through the eyes of something artificial.
+
+      Accepted into the 2025 International Conference on New Interfaces for Musical Expression (NIME)
+    </SectionColumn>
+  </SplitSection>
+
+  <SplitSection className="text-xs font-mono">
+    Concept → Context → Media
+  </SplitSection>
+
+  <Section className="w-[100vw] h-[100vh] flex justify-center items-center">
     <MDXImage 
       src="/projects/becoming/projection-1.webp" 
       alt="Hero" 
@@ -25,36 +60,43 @@ link: "https://youtu.be/WGYg-UNLEUU"
       width={3754}
       height={2835}
       frame="none"
-      className="w-4/5"
+      className="w-2/5"
     />
-  </SectionColumn>
-  <SectionColumn size={2}>
-  </SectionColumn>
-</SplitSection>
+  </Section>
 
-<ProjectHeader
-  title="Becoming"
-  description="Custom playable device that responds to both interaction through an analog interface, and audiovisual stimuli detected from the surrounding environment."
->
-  <ProjectInfo
-    items={[
-      { label: "Tools", values: ["Arduino", "Processing", "Hardware", "Sensors"] },
-      { label: "Role", values: ["Artist", "Developer"] },
-      { label: "Timeline", values: ["August 2024 - May 2025"] },
-      { label: "Team", values: ["Solo project"] },
-    ]}
-  />
-</ProjectHeader>
+  <SplitSection className="my-2 mb-8 gap-2">
+    <SectionColumn size={6}>
+      #### Becoming
+      2025
+      
+    </SectionColumn>
+    <SectionColumn size={6} className="h-[90vh] flex flex-col justify-between text-sm">
+      <ProjectInfo
+        items={[
+          { label: "Tools", values: ["Arduino", "Processing", "Hardware", "Sensors"] },
+          { label: "Role", values: ["Artist", "Developer"] },
+          { label: "Timeline", values: ["6 months"] },
+          { label: "Team", values: ["Solo project"] },
+        ]}
+      />
+
+      Becoming’ recontextualizes a custom playable device as a living entity that responds to both interaction through an analog interface, and audiovisual stimuli detected from the surrounding environment. Using adaptive animations and ambient soundscapes, the piece creates a volatile space that evokes thoughts of transformation, growth, and destruction. It tells the story of a machine grappling with fate and embraces human nature through the eyes of something artificial.
+
+      Accepted into the 2025 International Conference on New Interfaces for Musical Expression (NIME)
+    </SectionColumn>
+  </SplitSection>
+</Section>
+
+<br/><br/><br/><br/>
+
 
 <Section className="mt-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-sm">
-  Becoming’ recontextualizes a custom playable device as a living entity that responds to both interaction through an analog interface, and audiovisual stimuli detected from the surrounding environment. Using adaptive animations and ambient soundscapes, the piece creates a volatile space that evokes thoughts of transformation, growth, and destruction. It tells the story of a machine grappling with fate and embraces human nature through the eyes of something artificial. 
-  
-  The visual component arises through layers upon layers of blood red lines that coalesce into abstract shapes, mirroring processes of growth and decay. The accompanying soundscape layers mechanical noises with ambient sounds like human voices from the surrounding space, emphasizing the tension between artificial systems and organic environments. Through its unpredictable behavior, the work challenges the audience to reflect on questions of agency, determinism, and the fluid nature of identity.
-  
-  <br/><br/><br/>
+  <Section className="w-full flex justify-end text-xs font-medium font-roboto-mono">
+    Graphics projection | 2024
+  </Section>
 
   <MDXImage 
-    src="/projects/becoming/projection-1.webp" 
+    src="/projects/becoming/projection-2.webp" 
     alt="Hero" 
     preset="header"
     width={3754}
@@ -62,10 +104,14 @@ link: "https://youtu.be/WGYg-UNLEUU"
     frame="none"
     className="w-full"
   />
+  <Section className="text-xs">
+    Graphics projection onto AV screen and speaker system | 2024
+  </Section>
+
   <SplitSection className="my-2 mb-8 gap-2">
     <SectionColumn size={6}>
       <MDXImage 
-        src="/projects/becoming/projection-2.webp" 
+        src="/projects/becoming/screen-1.webp" 
         alt="Hero" 
         preset="header"
         width={3754}
@@ -106,17 +152,6 @@ link: "https://youtu.be/WGYg-UNLEUU"
   </SplitSection>
 
   <SplitSection className="my-2 gap-2">
-    <SectionColumn size={6}>
-      <MDXImage 
-        src="/projects/becoming/box-front-3.webp" 
-        alt="Hero" 
-        preset="header"
-        width={3754}
-        height={2835}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
     <SectionColumn size={6}>
       <MDXImage 
         src="/projects/becoming/box-front-2.webp" 

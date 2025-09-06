@@ -24,7 +24,7 @@ function InfoItem({ label, values }: { label: string, values: string[] }) {
   
 export default function ProjectInfo({ items }: ProjectInfoProps) {
     return (
-        <div className="relative my-8 p-0 bg-background text-foreground"> 
+        <div className="relative my-0 p-0 bg-background text-foreground"> 
             <div className="flex flex-row justify-between gap-2">
                 {items?.map(({ label, values }) => (
                     <InfoItem key={label} label={label} values={values} />
