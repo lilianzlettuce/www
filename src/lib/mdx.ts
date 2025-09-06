@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
 import TechStack from "@/components/mdx/TechStack";
 import ProjectStats from "@/components/mdx/ProjectStats";
-import ProjectInfo from "@/components/mdx/ProjectInfo";
+import { ProjectInfo, ProjectInfoRow } from "@/components/mdx/ProjectInfo";
 import { ProjectListItem } from "@/components/mdx/ProjectCard";
 import { Section, SplitSection, SectionColumn } from "@/components/mdx/Section";
 import { MDXImage } from "@/components/mdx/MDXImage";
@@ -31,6 +31,7 @@ const components = {
   TechStack,
   ProjectStats,
   ProjectInfo,
+  ProjectInfoRow,
   Section,
   SplitSection,
   SectionColumn,
