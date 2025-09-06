@@ -228,7 +228,7 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
   return (
     <div className="relative min-h-screen bg-background flex gap-4 justify-between">
       {/* Sticky side info */}
-      <div className=" sticky top-0 left-0 w-80 h-10 p-8 flex flex-col items-start justify-start">
+      <div className=" sticky top-0 left-0 w-80 h-10 p-8 flex flex-col gap-[340] items-start justify-start">
         <div className="w-full mb-1 font-ibm-plex-mono text-xs ">
           &#91; 01 / 04 &#93;
         </div>

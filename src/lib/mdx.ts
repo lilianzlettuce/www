@@ -7,7 +7,7 @@ import ProjectStats from "@/components/mdx/ProjectStats";
 import { ProjectInfo, ProjectInfoRow } from "@/components/mdx/ProjectInfo";
 import { ProjectListItem } from "@/components/mdx/ProjectCard";
 import { Section, SplitSection, SectionColumn } from "@/components/mdx/Section";
-import { MDXImage } from "@/components/mdx/MDXImage";
+import { MDXMedia } from "@/components/mdx/MDXMedia";
 import { ProjectHeader } from "@/components/mdx/ProjectHeader";
 
 const projectsDirectory = path.join(process.cwd(), "content/projects");
@@ -35,7 +35,7 @@ const components = {
   Section,
   SplitSection,
   SectionColumn,
-  MDXImage,
+  MDXMedia,
   ProjectHeader,
   ProjectListItem,
 };
