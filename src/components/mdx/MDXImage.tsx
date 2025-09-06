@@ -1,6 +1,7 @@
 // components/MDXImage.tsx
 import Image from "next/image";
 import { DeviceMockup } from "./DeviceMockup";
+import BoxCorners from "../svg/BoxCorners";
 
 interface MDXImageProps {   
   src: string;
@@ -60,7 +61,7 @@ export function BaseImage({
           width={width}
           height={height}
           sizes={finalSizes}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-top"
         />
       </div>
     ) : (
@@ -73,7 +74,7 @@ export function BaseImage({
           alt={alt}
           fill
           sizes={finalSizes}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-top"
         />
       </div>
     )
@@ -107,9 +108,20 @@ export function MDXImage({
   // If frame is a color string, wrap in a div with padding and background color
   return (
     <div 
-      className={`p-12 ${className || ""}`}
+      className={`${className || "p12"} relative`}
       style={{ backgroundColor: frame }}
     >
+      <BoxCorners
+        icon={<div className="w-full h-full border-t-1 border-l-1 border-muted-foreground"></div>}
+        cornerSize="8px"
+        cornerOffset="-1px"
+        cornerColor="transparent"
+      /> 
+      {/*<BoxCorners
+          cornerSize="4px"
+          cornerOffset="-2px"
+          cornerColor="var(--secondaryForeground)"
+      />*/}
       <BaseImage {...props} className={baseImageClassName} />
     </div>
   );

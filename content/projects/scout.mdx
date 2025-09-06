@@ -33,8 +33,6 @@ link: "https://www.scoutforschools.com/"
 </ProjectHeader>
 
 <SplitSection>
-  <SectionColumn size={0}>
-  </SectionColumn>
   <SectionColumn size={5}>
     <MDXImage 
       src="/projects/scout/deco_iphone.webp" 
@@ -57,8 +55,6 @@ link: "https://www.scoutforschools.com/"
       className="w-full"
     />
   </SectionColumn>
-  <SectionColumn size={0}>
-  </SectionColumn>
 </SplitSection>
 
 <SplitSection>
@@ -68,17 +64,15 @@ link: "https://www.scoutforschools.com/"
   <SectionColumn size={12}>
     #### Scout is a YC-backed startup building an AI-powered student information system to automate administrative tasks for schools.
 
-    <div className="text-lg">
-      The company had recently pivoted, and wanted a custom-coded landing page to launch their product.
-      Given existing UI prototypes from a designer, I was tasked with building a the site from scratch. 
-      The implementation focused on delivering a seamless user experience with modern animations and responsive design.
-    </div>
+    The company had recently pivoted, and wanted a custom-coded landing page to launch their product.
+    Given existing UI prototypes from a designer, I was tasked with building the site from scratch. 
+    The implementation focused on delivering a seamless user experience with modern animations and responsive design.
 
     <br/><br/><br/>
 
     #### The Challenge
 
-    The company's existing landing page featured the most up-to-date information on product details, but was built using stock graphics on a site-builder. 
+    The existing landing page featured the most up-to-date information on product details, but was built using stock graphics on a site-builder. 
     Conversely, the new UI prototypes provided by the designer did not effectively convey the most updated content.
 
     <br/><br/><br/>
@@ -110,23 +104,61 @@ link: "https://www.scoutforschools.com/"
     We decided on a modern Next.js/React/Typescript stack for its scalability and performance. 
     The site takes advantage of reusable components, server-side rendering, and static-site generation.
 
-    Interactions and animations to improve the user experience 
+    Implementing this architecture required careful consideration of how to properly use SSR and manage side-effects within the render cycle. I had to balance managing state for animations on the client side while maintaining the benefits of server-side rendering, ensuring the site delivered both performance and rich interactive elements.
 
-    Challenges:
-    Figuring out how to properly use SSR, putting side-effects directly in the render, not being able to use state or hooks
-    Managing state for animations on the client side
-
-    <br/><br/><br/>
+    <br/><br/>
 
     #### Elevating UX and Interactions
 
-    Interactive components to showcase Scout’s features
+    I created interactive components to showcase Scout's features, including animated cards and dynamic content sections that engage users as they scroll through the page.
 
-    Themed micro-animations for buttons, page sections, etc.
+    Themed micro-animations for buttons, page sections, and other UI elements help reinforce Scout's playful brand identity while maintaining professional functionality.
 
-    <br/><br/><br/>
+    <SplitSection className="mt-0 gap-2">
+      <SectionColumn size={5}>
+        <MDXImage 
+          src="/projects/scout/deco_iphone.webp" 
+          alt="Hero" 
+          preset="project-documentation"
+          width={593}
+          height={574}
+          frame="none"
+          className="w-full"
+        />
+      </SectionColumn>
+      <SectionColumn size={5}>
+        <MDXImage 
+          src="/projects/scout/deco_mac-air.webp" 
+          alt="Hero" 
+          preset="project-documentation"
+          width={593}
+          height={574}
+          frame="none"
+          className="w-full"
+        />
+      </SectionColumn>
+    </SplitSection>
 
+    <br/><br/>
+
+    #### Blog Integration
     
+    I integrated Sanity CMS so the team can easily publish blog posts without touching the source code. This involved writing custom queries for fetching post metadata and content, and defining schemas and types for post data structures.
+
+    Working with strict typing in TypeScript required careful type definitions for the CMS data, and I had to find creative workarounds for complex nested content structures while maintaining type safety throughout the integration.
+
+    <br/>
+    
+    <MDXImage 
+      src="/projects/scout/blog-post_mac-air.webp" 
+      alt="Hero" 
+      preset="header"
+      width={2560}
+      height={3600}
+      frame="rgb(20, 20, 20)"
+      className="p-12"
+      baseImageClassName="rounded-lg aspect-3/3"
+    />
   </SectionColumn>
   <SectionColumn size={2}>
   </SectionColumn>
@@ -137,8 +169,25 @@ link: "https://www.scoutforschools.com/"
     ###### Results
   </SectionColumn>
   <SectionColumn size={12}>
+    #### Performance and SEO
+    
+    The implementation leverages Next.js's built-in optimizations for fast loading times and excellent SEO performance. Server-side rendering ensures content is immediately available to users and search engines, while static generation provides optimal performance for the marketing content.
+
+    <MDXImage 
+      src="/projects/scout/blog-listings_mac-air.webp" 
+      alt="Hero" 
+      preset="header"
+      width={2560}
+      height={3600}
+      frame="mockup"
+      className="w-full my-10"
+    />
+
+    <br/><br/>
+
     #### Accessible and Mobile-Friendly
-    Ensured delightful UI/UX across all devices with responsive resizing and cross-platform compatibility.
+    
+    I ensured delightful UI/UX across all devices with responsive resizing and cross-platform compatibility. The site features a mobile-first design approach with smooth animations that work consistently across desktop, tablet, and mobile devices.
   </SectionColumn>
   <SectionColumn size={2}>
   </SectionColumn>
@@ -181,42 +230,5 @@ link: "https://www.scoutforschools.com/"
     />
   </SectionColumn>
   <SectionColumn size={0}>
-  </SectionColumn>
-</SplitSection>
-
-<SplitSection>
-  <SectionColumn size={4}>
-  </SectionColumn>
-  <SectionColumn size={12}>
-    #### Blog Integration
-    Integrated Sanity CMS so the team can easily publish blog posts without touching the source code.
-
-    Wrote queries for fetching post metadata and content, 
-    Defined “schemas/types” for post data structures
-
-    Challenges with strict typing in Typescript, had to find workaround
-
-    <MDXImage 
-      src="/projects/scout/blog-post_mac-air.webp" 
-      alt="Hero" 
-      preset="header"
-      width={2560}
-      height={3600}
-      frame="none"
-      className=""
-      baseImageClassName="rounded-none"
-    />
-
-    <MDXImage 
-      src="/projects/scout/blog-listings_mac-air.webp" 
-      alt="Hero" 
-      preset="header"
-      width={2560}
-      height={3600}
-      frame="mockup"
-      className="w-full my-10"
-    />
-  </SectionColumn>
-  <SectionColumn size={2}>
   </SectionColumn>
 </SplitSection>
