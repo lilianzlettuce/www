@@ -18,6 +18,7 @@ interface MDXMediaProps {
   autoPlay?: boolean;
   muted?: boolean;
   playsInline?: boolean;
+  loop?: boolean;
   preload?: "none" | "metadata" | "auto";
 }
 
@@ -97,6 +98,7 @@ export function BaseVideo({
   autoPlay = true,
   muted = true,
   playsInline = true,
+  loop = false,
   preload = "metadata",
   className 
 }: MDXMediaProps) {
@@ -112,6 +114,7 @@ export function BaseVideo({
           autoPlay={autoPlay}
           muted={muted}
           playsInline={playsInline}
+          loop={loop}
           preload={preload}
           className="w-full h-full object-cover object-top"
           aria-label={alt}
