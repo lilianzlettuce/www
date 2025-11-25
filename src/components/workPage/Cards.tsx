@@ -47,13 +47,13 @@ export function ProjectListItem({ project, index = 0, mousePos }: ProjectCardPro
                 </div>
                 
                 <div className="w-full h-full flex flex-row items-center justify-between transition-all duration-300 text-foreground group-hover/list:text-muted-foreground group-hover/list-item:text-foreground">
-                    <div className="min-w-fit flex flex-row items-start gap-6">
+                    <div className="min-w-fit flex flex-row items-center gap-6">
                         <div className="font-roboto-mono text-[0.65rem] text-muted-foreground">
                         &#91;{index.toString().padStart(2, '0')}&#93;
                         </div>
-                        <h3 className="font-sans text-xl/5 font-medium">
+                        <div className="font-sans text-xl font-medium">
                             {project.title}
-                        </h3>
+                        </div>
                         <p className="hidden font-ibm-plex-mono text-sm text-mutedForeground line-clamp-2">
                             {project.description}
                         </p>
@@ -67,6 +67,74 @@ export function ProjectListItem({ project, index = 0, mousePos }: ProjectCardPro
                                     tag={tag}
                                     className="group-hover/list:border-muted-foreground group-hover/list:text-muted-foreground
                                         group-hover/list-item:border-foreground group-hover/list-item:text-foreground"
+                                />
+                            ))}
+                            {project.tags && project.tags.length > 3 && (
+                                <span className="h-fit px-1 py-0.4 rounded-xs bg-muted text-mutedForeground">
+                                    +{project.tags.length - 3}
+                                </span>
+                            )}
+                        </div>
+
+                        <p className="">
+                            {project.date.split("-").reverse().join(".")}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </Link>
+    );
+};
+
+export function ProjectListItemMinimal({ project, index = 0, mousePos }: ProjectCardProps) {
+    return (
+        <Link
+            key={project.slug}
+            href={`/work/${project.slug}`}
+            className="group/list-item relative w-full h-fit rounded-none border-t-1 border-border hover:border-pink-300 transition-all duration-300"
+        >
+            <div className="relative w-full h-full p-5 flex flex-row items-center gap-4 border-b-1 border-background hover:border-pink-300 transition-all duration-300">
+                <div className="fixed z-10 left-1/4 w-100 h-65 aspect-auto hidden group-hover/list-item:flex items-center justify-center"
+                    style={{
+                        left: mousePos?.x ? mousePos.x + 50 : 0,
+                        top: mousePos?.y ? mousePos.y - 15 : 0,
+                    }}
+                >
+                    {project.image ? (
+                        <Image
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover"
+                            fill={true}
+                        />
+                    ) : (
+                        <div className="text-mutedForeground text-4xl font-bold">
+                            {project.title.charAt(0)}
+                        </div>
+                    )}
+                </div>
+                
+                <div className="w-full h-full flex flex-row items-center justify-between transition-all duration-300 text-foreground group-hover/list:text-muted-foreground group-hover/list-item:text-foreground">
+                    <div className="min-w-fit flex flex-row items-center gap-6">
+                        <div className="font-roboto-mono text-[0.65rem] text-muted-foreground">
+                        &#91;{index.toString().padStart(2, '0')}&#93;
+                        </div>
+                        <div className="font-sans text-base font-medium">
+                            {project.title}
+                        </div>
+                        <p className="hidden font-ibm-plex-mono text-sm text-mutedForeground line-clamp-2">
+                            {project.description}
+                        </p>
+                    </div>
+                    
+                    <div className="min-w-fit flex items-center gap-6 font-roboto-mono text-[0.65rem] tracking-widest">
+                        <div className="w-full flex flex-wrap gap-2 uppercase">
+                            {project.tags?.slice(0, 3).map((tag: string) => (
+                                <TagLabelStroke
+                                    key={tag}
+                                    tag={tag}
+                                    className="group-hover/list:border-muted-foreground group-hover/list:text-muted-foreground
+                                        group-hover/list-item:border-pink-300 group-hover/list-item:text-pink-300"
                                 />
                             ))}
                             {project.tags && project.tags.length > 3 && (

@@ -7,7 +7,7 @@ import { ProjectFrontmatter } from "@/lib/mdx";
 import { projectCategories } from "@/lib/data";
 
 import { ProjectCardBasic, ProjectCardLarge, ProjectCardTechMono, ProjectCardTechMono2 } from "@/components/workPage/Cards";
-import { WorkPageHeaderMinimal, WorkPageHeader2 } from "@/components/workPage/Header";
+import { WorkPageHeaderMinimal } from "@/components/workPage/Header";
 import { ProjectFilter } from "@/components/workPage/ProjectFilter";
 import { GridIcon, ListIcon } from "@/components/svg/Icons";
 import ProjectList from "@/components/workPage/ProjectList";
@@ -105,8 +105,12 @@ function WorkPageContent() {
         ) : (
           <div className="w-full flex flex-col z-100 bg-background/80">
             {/* Project Listings */}
-            {viewMode === "list" && (
-              <ProjectList projects={filteredProjects} />
+            {viewMode === "list" && categoryFilters.includes("art") && (
+              <ProjectList projects={filteredProjects} variant="minimal" />
+            )}
+
+            {viewMode === "list" && !categoryFilters.includes("art") && (
+              <ProjectList projects={filteredProjects} variant="default" />
             )}
 
             {/* All Grid View */}

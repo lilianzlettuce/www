@@ -106,7 +106,7 @@ function WorkPageContent() {
           <div className="w-full flex flex-col z-100 bg-background/80">
             {/* Project Listings */}
             {viewMode === "list" && (
-              <ProjectList projects={filteredProjects} />
+              <ProjectList projects={filteredProjects} variant="default" />
             )}
 
             {/* All Grid View */}
