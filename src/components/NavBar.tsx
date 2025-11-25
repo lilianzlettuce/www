@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { LogoIcon, SquareIcon } from "@/components/svg/Icons";
+import { LogoIcon } from "@/components/svg/Icons";
 import { ThemeToggle, ThemeSlider } from "@/components/ThemeToggle";
 import { navItems } from "@/lib/data";
 import ZoomableImage from "./ZoomableImage";
@@ -106,8 +106,7 @@ export function SideBar3({ className }: NavBarProps) {
         {/* Bottom content */}
         <div className="px-2 w-full flex flex-col items-start justify-start border--1 border-secondary">
           <Link href="/" className="w-full h-fit p-0 px-2 text-foreground flex items-end justify-start gap-2">
-            
-              <div className="w-full min-w-full overflow-hidden font-libre-barcode-128 text-muted-foreground text-4xl font-bold">
+              <div className="hidden w-full min-w-full overflow-hidden font-libre-barcode-128 text-muted-foreground text-4xl font-bold">
                 <ScrambleText className=""
                   text="lettuceworksongeese"
                 />

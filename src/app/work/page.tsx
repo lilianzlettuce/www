@@ -7,7 +7,7 @@ import { ProjectFrontmatter } from "@/lib/mdx";
 import { projectCategories } from "@/lib/data";
 
 import { ProjectCardBasic, ProjectCardLarge, ProjectCardTechMono, ProjectCardTechMono2 } from "@/components/workPage/Cards";
-import { WorkPageHeader, WorkPageHeader2 } from "@/components/workPage/Header";
+import { WorkPageHeaderMinimal, WorkPageHeader2 } from "@/components/workPage/Header";
 import { ProjectFilter } from "@/components/workPage/ProjectFilter";
 import { GridIcon, ListIcon } from "@/components/svg/Icons";
 import ProjectList from "@/components/workPage/ProjectList";
@@ -63,14 +63,14 @@ function WorkPageContent() {
         <div className="fixed z-60 top-0 left-64 flex items-center gap-2 mt-4">
           <ProjectFilter 
             categories={projectCategories}
-            toggleStyle="min-h-4.5 px-2 py-0 rounded-xs font-roboto-mono text-xs uppercase tracking-widest transition-colors"
+            toggleStyle="min-h-4.5 px-2 py-0 font-roboto-mono text-xs uppercase tracking-widest transition-colors"
             toggleStyleActive="bg-foreground text-background"
-            toggleStyleInactive="border-1 border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground"
+            toggleStyleInactive="border-0 border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground"
             showIcons={true}
           />
         </div>
 
-        <WorkPageHeader />
+        <WorkPageHeaderMinimal />
 
         <div className="z-30 w-full flex flex-col items-start justify-between gap-2 mb-8">
           {/* View Mode Buttons */}
@@ -166,8 +166,6 @@ function WorkPageContent() {
             )}
           </div>
         )}
-
-        <WorkPageHeader2 />
       </div>
     </div>
   );

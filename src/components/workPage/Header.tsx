@@ -143,6 +143,45 @@ export function WorkPageHeader2() {
     );
 }
 
+export function WorkPageHeaderMinimal() {
+    const { scrollY } = useScroll();
+    
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        console.log(latest);
+    });
+    
+    return (
+        <div className="pt-30 min-h-[50vh] flex flex-row gap-4">
+          <div className="min-w-1/2 text-left my-16">
+            <ScrambleText
+                text="Work"
+                className="w-fit text-4xl font-libre-barcode-128 text-foreground mb-4"
+                replayOnHover={true}
+            />
+            <ScrambleText
+                text="status: 45% - - - complete rehaul in progress
+                <br/> come forth ↓"
+                className="text-xs font-roboto-mono tracking-tighter text-muted-foreground max-w-2xl"
+            />
+          </div>
+
+          <div className="z-0 relative w-fit h-fit">
+            <WindowTechMono className=" w-fit h-fit">
+              <div className="w-45 h-50 p-2 border-1 border-foreground font-ibm-plex-mono text-xs">
+                <div className="w-full h-full p-2 border-1 border-foreground">
+                  <div className="w-full h-full p-2 border-1 border-foreground">
+                    <div className="w-full h-full p-2 border-1 border-foreground">
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </WindowTechMono>
+          </div>
+        </div>
+    );
+}
+
 export function WorkPageHeader() {
     const { scrollY } = useScroll();
     const [gridGap, setGridGap] = useState(3);
