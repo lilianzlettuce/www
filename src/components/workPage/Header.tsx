@@ -165,8 +165,8 @@ export function WorkPageHeaderMinimal() {
             />
           </div>
 
-          <div className="z-0 relative w-fit h-fit">
-            <WindowTechMono className=" w-fit h-fit">
+          <div className="z-0 absolute top-0 right-0 w-1/3 h-1/3 p-8 flex justify-end">
+            <WindowTechMono className="relative top-0 right-0 w-fit h-fit">
               <div className="w-45 h-50 p-2 border-1 border-foreground font-ibm-plex-mono text-xs">
                 <div className="w-full h-full p-2 border-1 border-foreground">
                   <div className="w-full h-full p-2 border-1 border-foreground">

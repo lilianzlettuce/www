@@ -4,13 +4,21 @@
 # Example: ./scripts/compress-images.sh ./public/projects/scout true
 
 # Param 1: Input directory (default: ../public/img)
-# Param 2: Delete originals (default: false)
+# Param 2: Output directory (default: ../public/img/webp)
+# Param 3: Delete originals (default: false)
 INPUT_DIR="${1:-../public/img}"
-DELETE_ORIGINALS="${2:-false}"
+OUTPUT_DIR="${2:-../public/img/webp}"
+DELETE_ORIGINALS="${3:-false}"
 
 # Check if input directory exists
 if [ ! -d "$INPUT_DIR" ]; then
     echo "Error: Input directory $INPUT_DIR does not exist"
+    exit 1
+fi
+
+# Check if output directory exists
+if [ ! -d "$OUTPUT_DIR" ]; then
+    echo "Error: Output directory $OUTPUT_DIR does not exist"
     exit 1
 fi
 
@@ -68,9 +76,9 @@ for file in "$INPUT_DIR"/*; do
     ext=$(get_extension "$filename")
     
     # Create temporary files for comparison
-    lossy_file="${INPUT_DIR}/${name}_lossy.webp"
-    lossless_file="${INPUT_DIR}/${name}_lossless.webp"
-    final_file="${INPUT_DIR}/${name}.webp"
+    lossy_file="${OUTPUT_DIR}/${name}_lossy.webp"
+    lossless_file="${OUTPUT_DIR}/${name}_lossless.webp"
+    final_file="${OUTPUT_DIR}/${name}.webp"
 
     # Create lossy version
     echo "  Creating lossy version..."

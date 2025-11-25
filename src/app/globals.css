@@ -34,6 +34,7 @@
   --sepia-card: #faf5f0;
   
   /* High contrast colors */
+  --magenta: rgb(255, 92, 255);
   --yellow: #ffff00;
   --red: #ff0000;
   --blue: #0000ff;
@@ -188,6 +189,7 @@ body {
   --color-red: var(--red);
   --color-blue: var(--blue);
   --color-green: var(--green);
+  --color-magenta: var(--magenta);
 
   /* Animations */
   --animate-text: textAnim 1s ease forwards;

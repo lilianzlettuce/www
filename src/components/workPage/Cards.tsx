@@ -91,9 +91,9 @@ export function ProjectListItemMinimal({ project, index = 0, mousePos }: Project
         <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className="group/list-item relative w-full h-fit rounded-none border-t-1 border-border hover:border-pink-300 transition-all duration-300"
+            className="group/list-item relative w-full h-fit rounded-none border-t-1 border-border hover:border-magenta transition-all duration-300"
         >
-            <div className="relative w-full h-full p-5 flex flex-row items-center gap-4 border-b-1 border-background hover:border-pink-300 transition-all duration-300">
+            <div className="relative w-full h-full p-5 flex flex-row items-center gap-4 border-b-1 border-background hover:border-magenta transition-all duration-300">
                 <div className="fixed z-10 left-1/4 w-100 h-65 aspect-auto hidden group-hover/list-item:flex items-center justify-center"
                     style={{
                         left: mousePos?.x ? mousePos.x + 50 : 0,
@@ -134,7 +134,7 @@ export function ProjectListItemMinimal({ project, index = 0, mousePos }: Project
                                     key={tag}
                                     tag={tag}
                                     className="group-hover/list:border-muted-foreground group-hover/list:text-muted-foreground
-                                        group-hover/list-item:border-pink-300 group-hover/list-item:text-pink-300"
+                                        group-hover/list-item:border-foreground group-hover/list-item:text-foreground"
                                 />
                             ))}
                             {project.tags && project.tags.length > 3 && (
