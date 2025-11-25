@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { LogoIcon } from "@/components/svg/Icons";
+import { LogoIcon, SquareIcon } from "@/components/svg/Icons";
 import { ThemeToggle, ThemeSlider } from "@/components/ThemeToggle";
 import { navItems } from "@/lib/data";
 import ZoomableImage from "./ZoomableImage";
 import { useLiveTime } from "@/hooks/useUserInfo";
 import { SliceText } from "./specialEffects/text/SliceText";
+import ScrambleText from "./specialEffects/text/ScrambleText";
 import { GridContainer } from "./svg/BgPatterns";
 
 type NavBarProps = {
@@ -20,7 +21,7 @@ export function SideBar3({ className }: NavBarProps) {
   const currentTime = useLiveTime();
 
   return (
-    <nav className={`${className} z-100 sticky top-0 left-0 min-w-50 h-screen py-2 bg-background`}>
+    <nav className={`${className} z-100 sticky top-0 left-0 w-50 min-w-50 h-screen py-2 bg-background`}>
       <div className="w-full h-full border-r border-muted p-0 flex flex-col justify-between">
         <div className="w-full h-full px-2 flex flex-col justify-start items-center gap-0">
           
@@ -103,11 +104,15 @@ export function SideBar3({ className }: NavBarProps) {
         </div>
 
         {/* Bottom content */}
-        <div className="px-2 w-full flex flex-col items-center justify-start border--1 border-secondary">
-          
-          <Link href="/" className="w-full h-7 p-0 text-muted">
-            <LogoIcon className="w-full h-full" />
-          </Link>
+        <div className="px-2 w-full flex flex-col items-start justify-start border--1 border-secondary">
+          <Link href="/" className="w-full h-fit p-0 px-2 text-foreground flex items-end justify-start gap-2">
+            
+              <div className="w-full min-w-full overflow-hidden font-libre-barcode-128 text-muted-foreground text-4xl font-bold">
+                <ScrambleText className=""
+                  text="lettuceworksongeese"
+                />
+              </div>
+            </Link>
         </div>
       </div>
     </nav>

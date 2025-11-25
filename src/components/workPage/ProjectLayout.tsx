@@ -181,7 +181,7 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
             DEV / ART ++/
         </p>
         
-        <div className=" h-5 flex flex-row gap-2">
+        <div className="hidden h-5 flex flex-row gap-2">
           {frontmatter.link && (
             <Link
               href={frontmatter.link}
