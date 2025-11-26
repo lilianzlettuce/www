@@ -22,8 +22,8 @@ export function SideBar3({ className }: NavBarProps) {
 
   return (
     <nav className={`${className} z-100 sticky top-0 left-0 w-50 min-w-50 h-screen py-2 bg-background`}>
-      <div className="w-full h-full border-r border-muted p-0 flex flex-col justify-between">
-        <div className="w-full h-full px-2 flex flex-col justify-start items-center gap-0">
+      <div className="w-full h-full border-r border-border p-0 flex flex-col justify-between">
+        <div className="w-full h-full px-3 flex flex-col justify-start items-center gap-0">
           
           <div className="w-full flex items-center justify-end gap-2 text-xs text-muted-foreground">
             <ThemeSlider buttonClassName="p-1" />

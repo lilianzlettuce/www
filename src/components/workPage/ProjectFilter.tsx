@@ -72,7 +72,7 @@ function ProjectFilterContent({
                     currentCategory === category
                         ? toggleStyleActive
                         : toggleStyleInactive
-                    } ${i === categoryNames.length - 1 && "rotate-180 text-[0.5rem]"}`}
+                    } ${i === categoryNames.length - 1 && "rotate-180 text-[0.5rem] uppercase"}`}
                 >
                     <div className="flex items-center gap-1.5">
                         {showIcons && getCategoryIcon(category) && (

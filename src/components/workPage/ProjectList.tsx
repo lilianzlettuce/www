@@ -34,11 +34,11 @@ export default function ProjectList({ projects, variant = "default" }: ProjectLi
                 />
                 ) : (
                     <ProjectListItemMinimal 
-                    key={project.slug} 
-                    project={project} 
-                    index={index} 
-                    mousePos={mousePos} 
-                />
+                        key={project.slug} 
+                        project={project} 
+                        index={index} 
+                        mousePos={mousePos} 
+                    />
                 )
             ))}
         </div>

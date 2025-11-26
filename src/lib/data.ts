@@ -16,23 +16,27 @@ export interface Category {
   name: string;
   icon?: string;
   displayName?: string;
+  subheaderText?: string;
 }
 
 export const projectCategories: Category[] = [
   {
     name: "dev",
     icon: "DevIcon",
-    displayName: "Dev"
+    displayName: "Dev", 
+    subheaderText: "web dev, swe, code"
   },
   {
     name: "design", 
     icon: "DesignIcon",
-    displayName: "Design"
+    displayName: "Design",
+    subheaderText: "ux/ui, branding, visuals and graphics"
   },
   {
     name: "art",
     icon: "ArtIcon", 
-    displayName: "Art"
+    displayName: "Art",
+    subheaderText: "new media, time-based work, interactive installations"
   },
   /*{
     name: "fabrication",
@@ -42,7 +46,8 @@ export const projectCategories: Category[] = [
   {
     name: "B̷̩̺̗͍͓͑͆̈́ͨͦ̐̑̾̆ͩ̚͢͝L̵̡̠͓͎͎̠͕̙̦̦̹͖̗̭̟͔̭̆ͨ͋̈ͪ̅͒̈̍̎ͦ̓̈́̕͞͞ͅO̦̝ͥͪͅŐ͕͙͐Ḋ͖̜̘̜̳͙̝̥̓̓̊͋̌̀̎ͮ͘",
     //icon: "PixelatedXIcon",
-    displayName: "BLOOD"
+    displayName: "BLOOD",
+    subheaderText: " "
   },
   // Commented out categories for reference
   // {

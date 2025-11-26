@@ -60,20 +60,35 @@ function WorkPageContent() {
       <SideBar3 className="min-w-50" />
       <div className="w-full px-4 sm:px-6 lg:px-6 py-0">
         {/* Filtering */}
-        <div className="fixed z-60 top-0 left-64 flex items-center gap-2 mt-4">
+        <div className="fixed z-60 top-0 left-54 flex items-center gap-2 mt-4">
           <ProjectFilter 
             categories={projectCategories}
-            toggleStyle="min-h-4.5 px-2 py-0 font-roboto-mono text-xs uppercase tracking-widest transition-colors"
+            toggleStyle="min-h-4.5 px-1 py-0 font-roboto-mono text-xs lowercase rounded-none tracking-widest transition-colors"
             toggleStyleActive="bg-foreground text-background"
             toggleStyleInactive="border-0 border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground"
-            showIcons={true}
+            showIcons={false}
           />
         </div>
 
-        <WorkPageHeaderMinimal />
+        <WorkPageHeaderMinimal 
+          headerText={categoryFilters.length > 0 ? categoryFilters.join(", ") : "All"}
+          subheaderText={projectCategories.find(cat => cat.name === categoryFilters[0])?.subheaderText 
+            || "status: 45% - - - complete rehaul in progress <br/> come forth ↓"}
+        />
 
-        <div className="z-30 w-full flex flex-col items-start justify-between gap-2 mb-8">
-          {/* View Mode Buttons */}
+        <div className="z-30 w-full flex flex-row items-start justify-between gap-2 mb-8">
+          {/* Filtering */}
+          <div className="hidden">
+            <ProjectFilter 
+              categories={projectCategories}
+              toggleStyle="min-h-4.5 px-1 py-0 font-roboto-mono text-xs lowercase rounded-none tracking-widest transition-colors"
+              toggleStyleActive="bg-foreground text-background"
+              toggleStyleInactive="border-0 border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground"
+              showIcons={false}
+            />
+          </div>
+
+          {/* List/Grid Buttons */}
           <div className="flex gap-2">
             <button className={`p-1 flex items-center gap-1 
                       font-roboto-mono text-xs lowercase transition-colors 
@@ -93,9 +108,6 @@ function WorkPageContent() {
               <GridIcon className="w-3.5 h-3.5" strokeWidth={2} /> Grid
             </button>
           </div>
-
-          {/* Filtering */}
-          
         </div>
 
         {loading ? (

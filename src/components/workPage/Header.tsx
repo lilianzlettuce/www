@@ -7,6 +7,11 @@ import { ArtIcon, DevIcon, DesignIcon } from "../svg/Icons";
 import { GridContainer } from "../svg/BgPatterns";
 import ScrambleText from "../specialEffects/text/ScrambleText";
 
+interface WorkPageHeaderProps {
+    headerText: string;
+    subheaderText: string;
+}
+
 export function WorkPageHeader2() {
     return (
         <div className="w-full min-h-[50vh] py-3 flex flex-row gap-4">
@@ -143,7 +148,7 @@ export function WorkPageHeader2() {
     );
 }
 
-export function WorkPageHeaderMinimal() {
+export function WorkPageHeaderMinimal({ headerText, subheaderText }: WorkPageHeaderProps) {
     const { scrollY } = useScroll();
     
     useMotionValueEvent(scrollY, "change", (latest) => {
@@ -154,13 +159,12 @@ export function WorkPageHeaderMinimal() {
         <div className="pt-30 min-h-[50vh] flex flex-row gap-4">
           <div className="min-w-1/2 text-left my-16">
             <ScrambleText
-                text="Work"
+                text={headerText}
                 className="w-fit text-4xl font-libre-barcode-128 text-foreground mb-4"
                 replayOnHover={true}
             />
             <ScrambleText
-                text="status: 45% - - - complete rehaul in progress
-                <br/> come forth ↓"
+                text={subheaderText}
                 className="text-xs font-roboto-mono tracking-tighter text-muted-foreground max-w-2xl"
             />
           </div>
