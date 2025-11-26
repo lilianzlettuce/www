@@ -449,7 +449,7 @@ body {
 
   .mdx-content a {
     color: var(--foreground);
-    background-color: transparent;
+    background-color: blue;
     font-weight: 600;
   }
 
