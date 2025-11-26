@@ -447,6 +447,16 @@ body {
     border: 1px solid var(--border);
   }
 
+  .mdx-content a {
+    color: var(--foreground);
+    background-color: transparent;
+    font-weight: 600;
+  }
+
+  .mdx-content a:hover {
+    background-color: var(--magenta);
+  }
+
   input, textarea {
     outline: none;
     padding: 2px 4px;

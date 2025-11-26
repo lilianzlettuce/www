@@ -93,7 +93,7 @@ export function ProjectListItemMinimal({ project, index = 0, mousePos }: Project
             href={`/work/${project.slug}`}
             className="group/list-item relative w-full h-fit rounded-none border-t-1 border-border hover:border-foreground transition-all duration-300"
         >
-            <div className="relative w-full h-full p-5 flex flex-row items-center gap-4 border-b-1 border-background hover:border-foreground transition-all duration-300">
+            <div className="relative w-full h-full p-5 flex flex-row items-center gap-4 border-b-1 border-background group-hover/list-item:border-foreground transition-all duration-300">
                 <div className="fixed z-10 left-1/4 w-100 h-65 aspect-auto hidden group-hover/list-item:flex items-center justify-center"
                     style={{
                         left: mousePos?.x ? mousePos.x + 50 : 0,
@@ -130,12 +130,13 @@ export function ProjectListItemMinimal({ project, index = 0, mousePos }: Project
                     <div className="min-w-fit flex items-center gap-6 font-roboto-mono text-[0.65rem] tracking-widest">
                         <div className="w-full flex flex-wrap gap-2 uppercase">
                             {project.tags?.slice(0, 3).map((tag: string) => (
-                                <TagLabel
-                                    key={tag}
-                                    tag={tag}
-                                    className="group-hover/list:border-muted-foreground group-hover/list:text-muted-foreground
-                                        group-hover/list-item:border-foreground group-hover/list-item:text-foreground"
-                                />
+                                <span key={tag}>
+                                    <TagLabel
+                                        tag={tag}
+                                        className="group-hover/list:border-muted-foreground group-hover/list:text-muted-foreground
+                                            group-hover/list-item:border-foreground group-hover/list-item:text-foreground"
+                                    /> /
+                                </span>
                             ))}
                             {project.tags && project.tags.length > 3 && (
                                 <span className="h-fit px-1 py-0.4 rounded-xs bg-muted text-mutedForeground">
