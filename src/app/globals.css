@@ -93,6 +93,9 @@
   filter: hue-rotate(45deg);
   filter: invert(var(--invert)) hue-rotate(0deg);
 
+  /* Size variables */
+  --sidebar-width: 80px;
+
   overflow-x: hidden;
 }
 
@@ -127,8 +130,7 @@ body {
               "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
               "Liberation Mono", "Courier New", monospace;
-
-  --font-display: var(--font-psygen)
+  --font-display: var(--font-psygen);
 
   /* Local fonts */
   --font-satoshi: var(--font-satoshi);
@@ -190,6 +192,10 @@ body {
   --color-blue: var(--blue);
   --color-green: var(--green);
   --color-magenta: var(--magenta);
+
+  /* Spacing/size variables */
+  --spacing-sidebar-width: var(--sidebar-width);
+  --size-sidebar-width: var(--sidebar-width);
 
   /* Animations */
   --animate-text: textAnim 1s ease forwards;

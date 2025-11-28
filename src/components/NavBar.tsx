@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { projectCategories } from "@/lib/data";
+
 import { LogoIcon } from "@/components/svg/Icons";
 import { ThemeToggle, ThemeSlider } from "@/components/ThemeToggle";
 import { navItems } from "@/lib/data";
@@ -11,6 +13,7 @@ import { useLiveTime } from "@/hooks/useUserInfo";
 import { SliceText } from "./specialEffects/text/SliceText";
 import ScrambleText from "./specialEffects/text/ScrambleText";
 import { GridContainer } from "./svg/BgPatterns";
+import { ProjectFilter } from "./workPage/ProjectFilter";
 
 type NavBarProps = {
   className?: string;
@@ -21,9 +24,9 @@ export function SideBar3({ className }: NavBarProps) {
   const currentTime = useLiveTime();
 
   return (
-    <nav className={`${className} z-100 sticky top-0 left-0 w-50 min-w-50 h-screen py-2 bg-background`}>
+    <nav className={`${className} z-100 sticky top-0 left-0 w-50 h-screen py-2 bg-background`}>
       <div className="w-full h-full border-r border-border p-0 flex flex-col justify-between">
-        <div className="w-full h-full px-3 flex flex-col justify-start items-center gap-0">
+        <div className="w-full h-full px-4 flex flex-col justify-start items-center gap-0">
           
           <div className="w-full flex items-center justify-end gap-2 text-xs text-muted-foreground">
             <ThemeSlider buttonClassName="p-1" />
@@ -67,6 +70,13 @@ export function SideBar3({ className }: NavBarProps) {
                 </div>
               </GridContainer>
             </div>
+            <ProjectFilter 
+              categories={projectCategories}
+              toggleStyle="min-h-4.5 px-1 py-0 font-roboto-mono text-xs lowercase rounded-none tracking-widest transition-colors"
+              toggleStyleActive="bg-foreground text-background"
+              toggleStyleInactive="border-0 border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground"
+              showIcons={false}
+            />
             <div className="w-full h-fit flex flex-col items-center gap-0 font-mono font-bold lowercase text-sm capitalize">
               {navItems.map((item) => (
                 <Link
@@ -78,11 +88,6 @@ export function SideBar3({ className }: NavBarProps) {
                       : "text-muted-foreground"
                   }`}
                 >
-                  {/* Line through on hover: */}
-                  {/*<span className="font-inter mr-4 ml-2">↳</span> 
-                  <span className={`grow group-hover:line-through ${pathname === item.href ? "line-through" : ""}`}> {item.label}</span>
-                  */}
-
                   <span className="font-inter mr-4 ml-2">↳</span> 
                   <SliceText className="font-mono text-xs font-bold">
                     <span className={`grow group-hover:text-foreground ${pathname === item.href ? "line-through" : ""}`}> {item.label}</span>
@@ -105,13 +110,24 @@ export function SideBar3({ className }: NavBarProps) {
 
         {/* Bottom content */}
         <div className="px-2 w-full flex flex-col items-start justify-start border--1 border-secondary">
-          <Link href="/" className="w-full h-fit p-0 px-2 text-foreground flex items-end justify-start gap-2">
-              <div className="hidden w-full min-w-full overflow-hidden font-libre-barcode-128 text-muted-foreground text-4xl font-bold">
-                <ScrambleText className=""
-                  text="lettuceworksongeese"
-                />
-              </div>
-            </Link>
+        <div className="w-full h-fit flex flex-col items-center gap-0 font-mono font-bold lowercase text-sm capitalize">
+              {/*navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`group w-full h-10 flex items-center justify-start text-xs font-medium px-0 border-b-0 border-border ${
+                    pathname === item.href
+                      ? "text-foreground"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  <span className="font-inter mr-4 ml-2">↳</span> 
+                  <SliceText className="font-mono text-xs font-bold">
+                    <span className={`grow group-hover:text-foreground ${pathname === item.href ? "line-through" : ""}`}> {item.label}</span>
+                  </SliceText>
+                </Link>
+              ))*/}
+            </div>
         </div>
       </div>
     </nav>

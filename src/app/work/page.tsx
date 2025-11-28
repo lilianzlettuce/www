@@ -6,7 +6,7 @@ import { useMemo, useState, useEffect, Suspense } from "react";
 import { ProjectFrontmatter } from "@/lib/mdx";
 import { projectCategories } from "@/lib/data";
 
-import { ProjectCardBasic, ProjectCardLarge, ProjectCardTechMono, ProjectCardTechMono2 } from "@/components/workPage/Cards";
+import { ProjectCardBasic, ProjectCardLarge, ProjectCardTechMono, ProjectCardMinimal, ProjectCardMinimal2 } from "@/components/workPage/Cards";
 import { WorkPageHeaderMinimal } from "@/components/workPage/Header";
 import { ProjectFilter } from "@/components/workPage/ProjectFilter";
 import { GridIcon, ListIcon } from "@/components/svg/Icons";
@@ -57,10 +57,10 @@ function WorkPageContent() {
 
   return (
     <div className="w-full flex flex-row">
-      <SideBar3 className="min-w-50" />
+      <SideBar3 className="w-50 min-w-50" />
       <div className="w-full px-4 sm:px-6 lg:px-6 py-0">
         {/* Filtering */}
-        <div className="fixed z-60 top-0 left-54 flex items-center gap-2 mt-4">
+        <div className="hidden absolute z-60 top-0 left-74 flex items-center gap-2 mt-4">
           <ProjectFilter 
             categories={projectCategories}
             toggleStyle="min-h-4.5 px-1 py-0 font-roboto-mono text-xs lowercase rounded-none tracking-widest transition-colors"
@@ -77,17 +77,6 @@ function WorkPageContent() {
         />
 
         <div className="z-30 w-full flex flex-row items-start justify-between gap-2 mb-8">
-          {/* Filtering */}
-          <div className="hidden">
-            <ProjectFilter 
-              categories={projectCategories}
-              toggleStyle="min-h-4.5 px-1 py-0 font-roboto-mono text-xs lowercase rounded-none tracking-widest transition-colors"
-              toggleStyleActive="bg-foreground text-background"
-              toggleStyleInactive="border-0 border-border bg-background text-muted-foreground hover:border-foreground hover:text-foreground"
-              showIcons={false}
-            />
-          </div>
-
           {/* List/Grid Buttons */}
           <div className="flex gap-2">
             <button className={`p-1 flex items-center gap-1 
@@ -129,7 +118,7 @@ function WorkPageContent() {
             {viewMode === "grid" && categoryFilters.length === 0 && (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProjects.map((project: ProjectFrontmatter) => (
-                  <ProjectCardTechMono
+                  <ProjectCardBasic
                     key={project.slug} 
                     project={project} 
                     className="min-h-100" 
@@ -142,7 +131,7 @@ function WorkPageContent() {
             {viewMode === "grid" && categoryFilters.includes("dev") && (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProjects.map((project: ProjectFrontmatter) => (
-                  <ProjectCardTechMono2 
+                  <ProjectCardTechMono 
                     key={project.slug} 
                     project={project} 
                     className="min-h-95" 
@@ -153,9 +142,9 @@ function WorkPageContent() {
 
             {/* Design Grid View */}
             {viewMode === "grid" && categoryFilters.includes("design") && (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="flex flex-col">
                 {filteredProjects.map((project: ProjectFrontmatter) => (
-                  <ProjectCardBasic 
+                  <ProjectCardLarge 
                     key={project.slug} 
                     project={project} 
                     className="h-90" 
@@ -166,11 +155,18 @@ function WorkPageContent() {
 
             {/* Art Grid View */}
             {viewMode === "grid" && categoryFilters.includes("art") && (
-              <div className="flex flex-col">
-                {filteredProjects.slice(0, 7).map((project: ProjectFrontmatter) => (
-                  <ProjectCardLarge key={project.slug} project={project} />
-                ))}
-              </div>
+              <>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {filteredProjects.map((project: ProjectFrontmatter) => (
+                    <ProjectCardMinimal key={project.slug} project={project} />
+                  ))}
+                </div>
+                <div className="flex flex-col">
+                  {filteredProjects.map((project: ProjectFrontmatter) => (
+                    <ProjectCardMinimal2 key={project.slug} project={project} />
+                  ))}
+                </div>
+              </>
             )}
 
             {filteredProjects.length === 0 && (

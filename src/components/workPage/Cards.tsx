@@ -51,7 +51,7 @@ export function ProjectListItem({ project, index = 0, mousePos }: ProjectCardPro
                         <div className="font-roboto-mono text-[0.65rem] text-muted-foreground">
                         &#91;{index.toString().padStart(2, '0')}&#93;
                         </div>
-                        <div className="font-sans text-xl font-medium">
+                        <div className="font-sans text-base font-medium">
                             {project.title}
                         </div>
                         <p className="hidden font-ibm-plex-mono text-sm text-mutedForeground line-clamp-2">
@@ -117,7 +117,7 @@ export function ProjectListItemMinimal({ project, index = 0, mousePos }: Project
                 <div className="w-full h-full flex flex-row items-center justify-between transition-all duration-300 text-foreground group-hover/list:text-muted-foreground group-hover/list-item:text-foreground">
                     <div className="min-w-fit flex flex-row items-center gap-6">
                         <div className="font-roboto-mono text-[0.65rem] text-muted-foreground">
-                        &#91;{index.toString().padStart(2, '0')}&#93;
+                            &#91;{index.toString().padStart(2, '0')}&#93;
                         </div>
                         <div className="font-sans text-base font-medium">
                             {project.title}
@@ -374,7 +374,7 @@ export function ProjectCardBasic({ project, className = "h-90" }: ProjectCardPro
     );
 };
 
-export function ProjectCardTechMono2({ project, className = "h-90" }: ProjectCardProps) {
+export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCardProps) {
     const eyeSpriteParentRef = useRef<HTMLDivElement>(null);
 
     return (
@@ -502,26 +502,20 @@ export function ProjectCardTechMono2({ project, className = "h-90" }: ProjectCar
     );
 };
 
-export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCardProps) {
+export function ProjectCardMinimal2({ project, className = "h-90" }: ProjectCardProps) {
     const eyeSpriteParentRef = useRef<HTMLDivElement>(null);
 
     return (
         <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className={`${className} group relative rounded-none box-border border-1 border-border hover:border-muted-foreground hover:shadow-lg transition-all duration-300 hover:-translate-y-1`}
+            className={`${className} group relative h-full rounded-none box-border border-1 border-border hover:border-muted-foreground hover:shadow-lg transition-all duration-300 hover:-translate-y-1`}
         >
             <BoxCorners
                 cornerSize="4px"
                 cornerOffset="-2px"
                 cornerColor="var(--secondaryForeground)"
             />
-            {/*<BoxCorners
-                icon={<div className="w-full h-full border-t-1 border-l-1 border-muted-foreground"></div>}
-                cornerSize="16px"
-                cornerOffset="-1px"
-                cornerColor="transparent"
-            />*/}
             <div ref={eyeSpriteParentRef} 
                 className="h-full flex flex-col"
             >
@@ -572,7 +566,7 @@ export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCard
 
                 {/* Content */}
                 <div className="w-full grow p-4 flex flex-col gap-4">
-                    <div className="relative w-full h-full flex items-center justify-center border-1 border-secondary">
+                <div className="relative w-full aspect-4/3 flex items-center justify-center border-1 border-secondary overflow-hidden">
                         <BoxCorners
                             icon={<div className="w-full h-full border-t-1 border-l-1 border-muted-foreground"></div>}
                             cornerSize="16px"
@@ -583,8 +577,8 @@ export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCard
                             <Image
                                 src={project.image}
                                 alt={project.title}
-                                className="w-full h-60 object-cover"
-                                fill={true}
+                                className="object-cover"
+                                fill
                             />
                         ) : (
                             <div className="text-mutedForeground text-4xl font-bold">
@@ -593,7 +587,7 @@ export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCard
                         )}
                     </div>
                     
-                    <div className="h-60 flex flex-col justify-between">
+                    <div className="h-fit flex flex-col justify-between">
                         <div className="">
                             <div className="flex items-start justify-between">
                                 <h3 className="font-sans text-base font-semibold text-foreground">
@@ -608,11 +602,12 @@ export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCard
                         <div className="flex flex-col gap-2">
                             <div className="flex flex-wrap gap-2 font-roboto-mono text-[0.65rem] tracking-widest uppercase">
                                 {project.tags?.slice(0, 3).map((tag: string) => (
-                                    <span
-                                        key={tag}
-                                        className="h-fit px-1 py-0.4 rounded-xs bg-foreground text-background"
-                                    >
-                                        {tag}
+                                    <span key={tag}>
+                                        <TagLabel
+                                            tag={tag}
+                                            className="group-hover/list:border-muted-foreground group-hover/list:text-muted-foreground
+                                                group-hover/list-item:border-foreground group-hover/list-item:text-foreground"
+                                        /> /
                                     </span>
                                 ))}
                                 {project.tags && project.tags.length > 3 && (
@@ -623,6 +618,79 @@ export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCard
                             </div>
 
                             <p className="font-roboto-mono text-[0.6rem] tracking-widest">
+                                &#91;{project.date.split("-").reverse().join(".")}&#93;
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Link>
+    );
+};
+
+export function ProjectCardMinimal({ project, className = "h-90" }: ProjectCardProps) {
+    const eyeSpriteParentRef = useRef<HTMLDivElement>(null);
+
+    return (
+        <Link
+            key={project.slug}
+            href={`/work/${project.slug}`}
+            className={`${className} group relative h-full rounded-none box-border`}
+        >
+            <div ref={eyeSpriteParentRef} 
+                className="h-full flex flex-col"
+            >
+                {/* Content */}
+                <div className="w-full grow p-0 flex flex-col gap-4">
+                    <div className="relative w-full aspect-4/3 flex items-center justify-center overflow-hidden">
+                        <BoxCorners
+                            icon={<div className="w-full h-full border-t-1 border-l-1 border-muted-foreground"></div>}
+                            cornerSize="16px"
+                            cornerOffset="-1px"
+                            cornerColor="transparent"
+                        />
+                        {project.image ? (
+                            <Image
+                                src={project.image}
+                                alt={project.title}
+                                className="object-cover"
+                                fill
+                            />
+                        ) : (
+                            <div className="text-mutedForeground text-4xl font-bold">
+                                {project.title.charAt(0)}
+                            </div>
+                        )}
+                    </div>
+                    
+                    <div className="h-fit flex flex-col justify-between">
+                        <div className="">
+                            <div className="flex items-start justify-between">
+                                <h3 className="font-sans text-sm font-semibold text-foreground">
+                                    {project.title}
+                                </h3>
+                            </div>
+                        </div>
+                        
+                        <div className=" flex flex-col gap-2">
+                            <div className="text-muted-foreground flex flex-wrap gap-2 font-roboto-mono text-[0.65rem] tracking-widest uppercase">
+                                {project.tags?.slice(0, 2).map((tag: string) => (
+                                    <span key={tag}>
+                                        <TagLabel
+                                            tag={tag}
+                                            className="group-hover/list:border-muted-foreground group-hover/list:text-muted-foreground
+                                                group-hover/list-item:border-foreground group-hover/list-item:text-foreground"
+                                        /> /
+                                    </span>
+                                ))}
+                                {project.tags && project.tags.length > 2 && (
+                                    <span className="h-fit px-1 py-0.4 rounded-xs bg-muted text-mutedForeground">
+                                        +{project.tags.length - 2}
+                                    </span>
+                                )}
+                            </div>
+
+                            <p className="hidden font-roboto-mono text-[0.6rem] tracking-widest">
                                 &#91;{project.date.split("-").reverse().join(".")}&#93;
                             </p>
                         </div>
