@@ -9,7 +9,7 @@ import { projectCategories } from "@/lib/data";
 import { ProjectCardBasic, ProjectCardLarge, ProjectCardTechMono, ProjectCardMinimal, ProjectCardMinimal2 } from "@/components/workPage/Cards";
 import { WorkPageHeaderMinimal } from "@/components/workPage/Header";
 import { ProjectFilter } from "@/components/workPage/ProjectFilter";
-import { GridIcon, ListIcon, SpinnerIcon, SquareIcon } from "@/components/svg/Icons";
+import { GridIcon, ListIcon, SquareIcon } from "@/components/svg/Icons";
 import ProjectList from "@/components/workPage/ProjectList";
 import { SideBarMinimal } from "@/components/NavBar";
 import Spinner from "@/components/Spinner";

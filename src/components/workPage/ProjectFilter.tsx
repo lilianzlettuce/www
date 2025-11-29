@@ -65,7 +65,7 @@ function ProjectFilterContent({
                         ${!showIcons && (!currentCategory) ? "inline-block" : "hidden"}`}>
                     {'>'}
                 </span>
-                <span>All</span>
+                <span>all</span>
             </ToggleGroup.Item>
             
             {categoryNames.map((category, i) => (

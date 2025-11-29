@@ -25,8 +25,8 @@ export function SideBarMinimal({ className }: NavBarProps) {
   return (
     <nav className={`${className} z-100 sticky top-0 left-0 max-w-60 min-w-60 h-screen py-2 bg-background`}>
       <div className="w-full h-full border-r border-secondary p-0 flex flex-col justify-between">
-        <div className="w-full h-full px-4 flex flex-col justify-start items-center gap-2">
-          <div className="w-full flex items-center justify-end gap-2 text-xs text-muted-foreground">
+        <div className="w-full h-full px-0 flex flex-col justify-start items-center gap-2">
+          <div className="w-full px-4 flex items-center justify-end gap-2 text-xs text-muted-foreground">
             <ThemeSlider buttonClassName="p-1" />
             <div className="min-w-fit flex justify-between">
               <span className="font-mono">{currentTime}</span>
@@ -35,7 +35,7 @@ export function SideBarMinimal({ className }: NavBarProps) {
 
           <div className="w-full hidden md:flex flex-col items-start justify-end gap-4">
             {/* Grid box */}
-            <div className="w-full h-40 py-0">
+            <div className="w-full h-40 m-auto px-4 py-0">
               <GridContainer 
                 id="side-bar-3-grid"
                 className="w-full h-full p-4 border-1 border-secondary flex items-center justify-center"
@@ -56,7 +56,7 @@ export function SideBarMinimal({ className }: NavBarProps) {
                   },
                 ]} 
               >
-                <div className="opacity-50 z-10 w-full h-full bg-white border-1 border-secondary-foreground">
+                <div className="opacity-0 z-10 w-full h-full bg-white border-1 border-secondary-foreground">
                   <ZoomableImage
                     className="w-full h-full"
                     src="/img/halftone/heart.png"
@@ -70,6 +70,7 @@ export function SideBarMinimal({ className }: NavBarProps) {
               </GridContainer>
             </div>
 
+            <div className="w-full px-4">
             {/* Project filter */}
             <ProjectFilter 
               categories={projectCategories}
@@ -78,6 +79,7 @@ export function SideBarMinimal({ className }: NavBarProps) {
               toggleStyleInactive="border-0 border-border bg-background text-muted-foreground hover:rotate-y-0 hover:border-foreground hover:text-foreground"
               showIcons={false}
             />
+            </div>
             <div className="hidden w-full h-fit flex flex-col items-center gap-0 font-mono font-bold lowercase capitalize">
               {navItems.map((item) => (
                 <Link
