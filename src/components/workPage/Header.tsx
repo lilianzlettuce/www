@@ -160,7 +160,7 @@ export function WorkPageHeaderMinimal({ headerText, subheaderText }: WorkPageHea
           <div className="min-w-1/2 text-left my-16">
             <ScrambleText
                 text={headerText}
-                className="w-fit text-4xl font-libre-barcode-128 text-foreground mb-4"
+                className="w-fit text-4xl font-libre-barcode-128-text rotate-x-180 text-foreground mb-4"
                 replayOnHover={true}
             />
             <ScrambleText

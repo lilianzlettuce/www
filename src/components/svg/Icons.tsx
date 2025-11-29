@@ -246,3 +246,25 @@ export function RoundPixelatedArrowIcon({ className = "w-6 h-6", strokeWidth = 0
     </svg>
   );
 }
+
+export function SpinnerIcon({ className = "w-6 h-6", strokeWidth = 2 }: IconProps) {
+  return (
+      <svg className={className} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle 
+            className="opacity-30"
+            fill={strokeWidth > 0 ? "none" : "currentColor"} 
+            stroke={strokeWidth > 0 ? "currentColor" : "none"} 
+            strokeWidth={strokeWidth}
+            cx="12" cy="12" r="8"></circle>
+          <path
+            className="opacity-100"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={strokeWidth}
+            d="M12 4
+               A8 8 0 1 1 4 12"
+            aria-label="spinner segment"
+          />
+      </svg>
+  );
+}

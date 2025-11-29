@@ -9,9 +9,10 @@ import { projectCategories } from "@/lib/data";
 import { ProjectCardBasic, ProjectCardLarge, ProjectCardTechMono, ProjectCardMinimal, ProjectCardMinimal2 } from "@/components/workPage/Cards";
 import { WorkPageHeaderMinimal } from "@/components/workPage/Header";
 import { ProjectFilter } from "@/components/workPage/ProjectFilter";
-import { GridIcon, ListIcon } from "@/components/svg/Icons";
+import { GridIcon, ListIcon, SpinnerIcon, SquareIcon } from "@/components/svg/Icons";
 import ProjectList from "@/components/workPage/ProjectList";
-import { SideBar3 } from "@/components/NavBar";
+import { SideBarMinimal } from "@/components/NavBar";
+import Spinner from "@/components/Spinner";
 
 function WorkPageContent() {
   const searchParams = useSearchParams();
@@ -57,8 +58,8 @@ function WorkPageContent() {
 
   return (
     <div className="w-full flex flex-row">
-      <SideBar3 className="w-50 min-w-50" />
-      <div className="w-full px-4 sm:px-6 lg:px-6 py-0">
+      <SideBarMinimal className="" />
+      <div className="w-full px-4 sm:px-6 lg:px-0 py-0">
         {/* Filtering */}
         <div className="hidden absolute z-60 top-0 left-74 flex items-center gap-2 mt-4">
           <ProjectFilter 
@@ -70,38 +71,41 @@ function WorkPageContent() {
           />
         </div>
 
-        <WorkPageHeaderMinimal 
-          headerText={categoryFilters.length > 0 ? categoryFilters.join(", ") : "All"}
-          subheaderText={projectCategories.find(cat => cat.name === categoryFilters[0])?.subheaderText 
-            || "status: 45% - - - complete rehaul in progress <br/> come forth ↓"}
-        />
+        <div className="px-4 sm:px-6">
+          <WorkPageHeaderMinimal 
+            headerText={categoryFilters.length > 0 ? categoryFilters.join(", ") : "All"}
+            subheaderText={projectCategories.find(cat => cat.name === categoryFilters[0])?.subheaderText 
+              || "status: 45% - - - complete rehaul in progress <br/> come forth ↓"}
+          />
 
-        <div className="z-30 w-full flex flex-row items-start justify-between gap-2 mb-8">
-          {/* List/Grid Buttons */}
-          <div className="flex gap-2">
-            <button className={`p-1 flex items-center gap-1 
-                      font-roboto-mono text-xs lowercase transition-colors 
-                      ${viewMode === "list" ? "text-foreground font-semibold" 
-                        : "text-muted-foreground hover:text-foreground"}`}
-              onClick={() => setViewMode("list")}
-            >
-              
-              <ListIcon className="w-3.5 h-3.5" strokeWidth={2} /> List
-            </button>
-            <button className={`p-1 flex items-center gap-1 
-                      font-roboto-mono text-xs lowercase transition-colors 
-                      ${viewMode === "grid" ? "text-foreground font-semibold" 
-                        : "text-muted-foreground hover:text-foreground"}`}
-              onClick={() => setViewMode("grid")}
-            >
-              <GridIcon className="w-3.5 h-3.5" strokeWidth={2} /> Grid
-            </button>
+          <div className="z-30 w-full flex flex-row items-start justify-between gap-2 mb-8">
+            {/* List/Grid Buttons */}
+            <div className="flex gap-2">
+              <button className={`p-1 flex items-center gap-1 
+                        font-roboto-mono text-xs lowercase transition-colors 
+                        ${viewMode === "list" ? "text-foreground font-semibold" 
+                          : "text-muted-foreground hover:text-foreground"}`}
+                onClick={() => setViewMode("list")}
+              >
+                
+                <ListIcon className="w-3.5 h-3.5" strokeWidth={2} /> List
+              </button>
+              <button className={`p-1 flex items-center gap-1 
+                        font-roboto-mono text-xs lowercase transition-colors 
+                        ${viewMode === "grid" ? "text-foreground font-semibold" 
+                          : "text-muted-foreground hover:text-foreground"}`}
+                onClick={() => setViewMode("grid")}
+              >
+                <GridIcon className="w-3.5 h-3.5" strokeWidth={2} /> Grid
+              </button>
+            </div>
           </div>
         </div>
 
         {loading ? (
-          <div className="text-center py-12">
-            <p className="text-mutedForeground text-lg">Loading projects...</p>
+          <div className="text-center py-12 flex items-center justify-center gap-2">
+            <Spinner className="w-fit h-fit" icon={<SquareIcon className="w-4 h-4" strokeWidth={2} />} />
+            <p className="text-mutedForeground text-base">Loading projects...</p>
           </div>
         ) : (
           <div className="w-full flex flex-col z-100 bg-background/80">

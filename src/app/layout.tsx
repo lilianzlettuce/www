@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Geist, Geist_Mono, Inter, Noto_Sans, Open_Sans, IBM_Plex_Sans, Roboto,
   Roboto_Mono, DM_Mono, IBM_Plex_Mono, JetBrains_Mono,
-  Silkscreen, Tiny5, Micro_5, Archivo_Black, Libre_Barcode_128
+  Silkscreen, Tiny5, Micro_5, Archivo_Black, Libre_Barcode_128, Libre_Barcode_128_Text
 } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
@@ -134,6 +134,11 @@ const libreBarcode128 = Libre_Barcode_128({
   weight: ["400"],
 });
 
+const libreBarcode128Text = Libre_Barcode_128_Text({
+  variable: "--font-libre-barcode-128-text",
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 export const metadata: Metadata = {
   title: "Lilian Zhao",
@@ -151,7 +156,7 @@ export default function RootLayout({
       className={`${satoshi.variable} ${uncutSans.variable} ${psygen.variable} ${murmure.variable} ${code7x5.variable} ${bpDotsSquareBold.variable} ${unifontExMono.variable}
           ${geistSans.variable} ${geistMono.variable} ${inter.variable} ${notoSans.variable} ${openSans.variable} ${ibmPlexSans.variable} ${roboto.variable}
           ${robotoMono.variable} ${dmMono.variable} ${ibmPlexMono.variable} ${jetbrainsMono.variable}
-          ${silkscreen.variable} ${tiny5.variable} ${micro5.variable} ${archivoBlack.variable} ${libreBarcode128.variable}
+          ${silkscreen.variable} ${tiny5.variable} ${micro5.variable} ${archivoBlack.variable} ${libreBarcode128.variable} ${libreBarcode128Text.variable}
       `}
     >
       <body className="antialiased">

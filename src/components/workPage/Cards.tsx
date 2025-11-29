@@ -67,7 +67,7 @@ export function ProjectListItem({ project, index = 0, mousePos }: ProjectCardPro
                                 />
                             ))}
                             {project.tags && project.tags.length > 3 && (
-                                <span className="h-fit px-1 py-0.4 rounded-xs bg-muted text-mutedForeground">
+                                <span className="h-fit px-1 py-0.4 rounded-xs bg-muted">
                                     +{project.tags.length - 3}
                                 </span>
                             )}
@@ -88,9 +88,10 @@ export function ProjectListItemMinimal({ project, index = 0, mousePos }: Project
         <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className="group/list-item relative w-full h-fit rounded-none border-t-1 border-border hover:border-foreground transition-all duration-300"
+            className="group/list-item relative w-full h-16 rounded-none box-content border-t-1 border-secondary"
         >
-            <div className="relative w-full h-full p-5 flex flex-row items-center gap-4 border-b-1 border-background group-hover/list-item:border-foreground transition-all duration-300">
+            <div className="relative w-full h-full px-5 flex flex-row items-center gap-4">
+                {/* Image */}
                 <div className="fixed z-10 left-1/4 w-100 h-65 aspect-auto hidden group-hover/list-item:flex items-center justify-center"
                     style={{
                         left: mousePos?.x ? mousePos.x + 50 : 0,
@@ -113,15 +114,12 @@ export function ProjectListItemMinimal({ project, index = 0, mousePos }: Project
                 
                 <div className="w-full h-full flex flex-row items-center justify-between transition-all duration-300 text-foreground group-hover/list:text-muted-foreground group-hover/list-item:text-foreground">
                     <div className="min-w-fit flex flex-row items-center gap-6">
-                        <div className="font-roboto-mono text-[0.65rem] text-muted-foreground">
+                        <div className="font-roboto-mono text-[0.65rem] text-muted-foreground group-hover/list-item:text-foreground">
                             &#91;{index.toString().padStart(2, '0')}&#93;
                         </div>
-                        <div className="font-sans text-base font-medium">
+                        <div className="font-sans text-base font-medium group-hover/list-item:text-foreground">
                             {project.title}
                         </div>
-                        <p className="hidden font-ibm-plex-mono text-sm text-mutedForeground line-clamp-2">
-                            {project.description}
-                        </p>
                     </div>
                     
                     <div className="min-w-fit flex items-center gap-6 font-roboto-mono text-[0.65rem] tracking-widest">
@@ -130,13 +128,12 @@ export function ProjectListItemMinimal({ project, index = 0, mousePos }: Project
                                 <span key={tag}>
                                     <TagLabel
                                         tag={tag}
-                                        className="group-hover/list:border-muted-foreground group-hover/list:text-muted-foreground
-                                            group-hover/list-item:border-foreground group-hover/list-item:text-foreground"
+                                        className="group-hover/list:text-muted-foreground group-hover/list-item:text-foreground"
                                     /> /
                                 </span>
                             ))}
                             {project.tags && project.tags.length > 3 && (
-                                <span className="h-fit px-1 py-0.4 rounded-xs bg-muted text-mutedForeground">
+                                <span className="h-fit px-1 py-0.4 rounded-xs bg-muted">
                                     +{project.tags.length - 3}
                                 </span>
                             )}
