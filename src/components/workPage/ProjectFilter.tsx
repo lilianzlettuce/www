@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useCallback } from "react";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { Category, getCategoryIcon } from "@/lib/data";
@@ -23,7 +23,8 @@ function ProjectFilterContent({
 }: ProjectFilterProps) {
     const router = useRouter();
     const searchParams = useSearchParams();
-
+    const pathname = usePathname();
+    
     const currentCategory = searchParams.get("category");
 
     const handleCategoryChange = useCallback(
@@ -56,7 +57,7 @@ function ProjectFilterContent({
             <ToggleGroup.Item
                 value=""
                 className={`group/item flex items-center justify-center ${toggleStyle} ${
-                    !currentCategory
+                    !currentCategory && pathname === "/work"
                     ? toggleStyleActive
                     : toggleStyleInactive
                 }`}
