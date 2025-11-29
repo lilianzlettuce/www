@@ -54,9 +54,6 @@ export function ProjectListItem({ project, index = 0, mousePos }: ProjectCardPro
                         <div className="font-sans text-base font-medium">
                             {project.title}
                         </div>
-                        <p className="hidden font-ibm-plex-mono text-sm text-mutedForeground line-clamp-2">
-                            {project.description}
-                        </p>
                     </div>
                     
                     <div className="min-w-fit flex items-center gap-6 font-roboto-mono text-[0.65rem] tracking-widest">
@@ -663,16 +660,12 @@ export function ProjectCardMinimal({ project, className = "h-90" }: ProjectCardP
                         )}
                     </div>
                     
-                    <div className="h-fit flex flex-col justify-between">
-                        <div className="">
-                            <div className="flex items-start justify-between">
-                                <h3 className="font-sans text-sm font-semibold text-foreground">
-                                    {project.title}
-                                </h3>
-                            </div>
+                    <div className="h-fit flex flex-col justify-between gap-3">
+                        <div className="font-sans text-sm font-semibold text-foreground">
+                            {project.title}
                         </div>
                         
-                        <div className=" flex flex-col gap-2">
+                        <div className="flex flex-col gap-2">
                             <div className="text-muted-foreground flex flex-wrap gap-2 font-roboto-mono text-[0.65rem] tracking-widest uppercase">
                                 {project.tags?.slice(0, 2).map((tag: string) => (
                                     <span key={tag}>

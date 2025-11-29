@@ -57,7 +57,7 @@ export const themes: Record<ThemeMode, ThemeColors> = {
     textBlendSecondary: 'var(--black)',
   },
   dark: {
-    background: 'var(--black)',
+    background: 'var(--gray-950)',
     foreground: 'var(--white)',
     primary: 'var(--blue-500)',
     primaryForeground: 'var(--white)',

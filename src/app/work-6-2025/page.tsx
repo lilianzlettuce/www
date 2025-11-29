@@ -6,7 +6,7 @@ import { useMemo, useState, useEffect, Suspense } from "react";
 import { ProjectFrontmatter } from "@/lib/mdx";
 import { projectCategories } from "@/lib/data";
 
-import { ProjectCardBasic, ProjectCardLarge, ProjectCardTechMono, ProjectCardTechMono2 } from "@/components/workPage/Cards";
+import { ProjectCardBasic, ProjectCardLarge, ProjectCardTechMono, ProjectCardMinimal } from "@/components/workPage/Cards";
 import { WorkPageHeader, WorkPageHeader2 } from "@/components/workPage/Header";
 import { ProjectFilter } from "@/components/workPage/ProjectFilter";
 import { GridIcon, ListIcon } from "@/components/svg/Icons";
@@ -126,7 +126,7 @@ function WorkPageContent() {
             {viewMode === "grid" && categoryFilters.includes("dev") && (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProjects.map((project: ProjectFrontmatter) => (
-                  <ProjectCardTechMono2 
+                  <ProjectCardMinimal
                     key={project.slug} 
                     project={project} 
                     className="min-h-95" 

@@ -11,7 +11,6 @@ import { navItems } from "@/lib/data";
 import ZoomableImage from "./ZoomableImage";
 import { useLiveTime } from "@/hooks/useUserInfo";
 import { SliceText } from "./specialEffects/text/SliceText";
-import ScrambleText from "./specialEffects/text/ScrambleText";
 import { GridContainer } from "./svg/BgPatterns";
 import { ProjectFilter } from "./workPage/ProjectFilter";
 
