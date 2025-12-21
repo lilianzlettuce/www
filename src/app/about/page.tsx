@@ -19,10 +19,20 @@ export default function About() {
       <AboutPageHeader />
     
       {/* Header */}
-      <section className="border-b border-gray-200">
+      <section className="">
         <div className="flex py-12">
-          <div>
-            <p className="text-base max-w-2xl">
+          <div className="w-[48%] mr-4">
+            <p className="font-mono text-sm max-w-2xl">
+              Hello — I&apos;m lettuce! I make stuff sometimes
+              <br/>
+              <br/>
+              I started rebuilding my website 6 months ago and trashed my previous about. I am now struggling to formulate good description of who I am. Until then we will have to make do with this...
+              <br/>
+              <br/>
+              <br/>
+              right now I am working on: finishing this website
+            </p>
+            <p className="hidden text-base max-w-2xl">
               Hello — I&apos;m Lilian! I&apos;m a student studying Computer Science at Purdue University, and I like making things, especially when it involves mixed reality, web based solutions, human-computer interaction, and game development.
             </p>
           </div>
@@ -40,27 +50,29 @@ export default function About() {
             debounceTime={3000}
           />*/}
           
-          <ShrinkCircles 
-            className="w-fit h-fit"
-            interactionMode="none"
-            showStats={false}
-            imageSrc="/img/lowRes/pineapple4.jpg"
-            scaleFactor={1.8}
-            gridGap={3}
-            attractionDistance={200}
-            shrinkFactor={1}
-            minRadius={0.5}
-            maxRadius={4}
-            delayFactor={0.85}
-            delayCap={0.1}
-            debounceTime={3000}
-            autoAnimStep={0.03}
-          />
+          <div className="w-1/2">
+            <ShrinkCircles 
+              className="w-fit h-fit"
+              interactionMode="none"
+              showStats={false}
+              imageSrc="/img/lowRes/pineapple4.jpg"
+              scaleFactor={1.8}
+              gridGap={3}
+              attractionDistance={200}
+              shrinkFactor={1}
+              minRadius={0.5}
+              maxRadius={4}
+              delayFactor={0.85}
+              delayCap={0.1}
+              debounceTime={3000}
+              autoAnimStep={0.03}
+            />
+          </div>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-16">
+      <section className="hidden py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Left Column - Photo and Contact */}

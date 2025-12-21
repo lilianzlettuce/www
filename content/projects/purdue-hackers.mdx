@@ -8,15 +8,17 @@ date: "2022-12-01"
 link: "https://www.purduehackers.com/"
 ---
 
-<MDXMedia 
-  src="/projects/purdue-hackers/hero_mac-air.webp" 
-  alt="Hero screenshot" 
-  preset="header"
-  width={2560}
-  height={1664}
-  frame="mockup"
-  className="w-4/5"
-/>
+<Section className="w-full h-[90vh] flex justify-center items-center">
+  <MDXMedia 
+    src="/projects/purdue-hackers/hero_mac-air.webp" 
+    alt="Hero screenshot" 
+    preset="header"
+    width={2560}
+    height={1664}
+    frame="mockup"
+    className="w-5/5 my-10"
+  />
+</Section>
 
 <ProjectHeader
   title="Purdue Hackers - Landing Page"
@@ -24,13 +26,9 @@ link: "https://www.purduehackers.com/"
 >
   <ProjectInfo
     items={[
-      { label: "Tags", values: ["Next.js", "React", "Student Organization", "Landing Page", "Web Development"] },
-      { label: "Categories", values: ["dev", "design"] },
-      { label: "Date", values: ["2022-12-01"] },
       { label: "Role", values: ["Fullstack Developer", "Creative Lead"] },
-      { label: "Timeline", values: ["August 2022 - December 2022"] },
+      { label: "Duration", values: ["August 2022 - December 2022"] },
       { label: "Team", values: ["3 developers/designers"] },
-      { label: "Type", values: ["Landing Page"] },
     ]}
   />
 </ProjectHeader>
