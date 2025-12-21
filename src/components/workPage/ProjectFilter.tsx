@@ -5,6 +5,7 @@ import { Suspense, useCallback } from "react";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { Category, getCategoryIcon } from "@/lib/data";
 import CategoryIcon from "./CategoryIcon";
+import Link from "next/link";
 
 interface ProjectFilterProps {
   categories: string[] | Category[];
@@ -30,6 +31,7 @@ function ProjectFilterContent({
     const handleCategoryChange = useCallback(
         (category: string | null) => {
             const params = new URLSearchParams(searchParams);
+            console.log("in handling cat change")
             
             if (category) {
                 params.set("category", category);
@@ -54,30 +56,54 @@ function ProjectFilterContent({
             onValueChange={(value) => handleCategoryChange(value || null)}
             className="w-full flex flex-wrap gap-0 gap-y-4 items-center justify-between"
         >
-            <ToggleGroup.Item
-                value=""
-                className={`group/item flex items-center justify-center ${toggleStyle} ${
-                    !currentCategory && pathname === "/work"
-                    ? toggleStyleActive
-                    : toggleStyleInactive
-                }`}
-            >
-                <span className={`group-hover/item:inline-block 
-                        ${!showIcons && (!currentCategory) ? "inline-block" : "hidden"}`}>
-                    {'>'}
-                </span>
-                <span>all</span>
-            </ToggleGroup.Item>
+            {pathname === "/work" ?
+                <ToggleGroup.Item
+                    value=""
+                    className={`group/item flex items-center justify-center ${toggleStyle} 
+                        ${ !currentCategory && pathname === "/work"
+                            ? toggleStyleActive : toggleStyleInactive
+                        }
+                    `}
+                >
+                    <span className={`group-hover/item:inline-block text-magenta
+                        ${!currentCategory && pathname === "/work" 
+                            && !showIcons && (!currentCategory) 
+                            ? "inline-block" : "hidden"}`}
+                    >
+                        {'>'}
+                    </span>
+                    <span>:all</span>
+                </ToggleGroup.Item>
+            :
+                <Link
+                    href="/work"
+                    className={`group/item flex items-center justify-center ${toggleStyle} 
+                        ${ !currentCategory && pathname === "/work"
+                            ? toggleStyleActive : toggleStyleInactive
+                        }
+                    `}
+                >
+                    <span className={`group-hover/item:inline-block text-magenta
+                        ${!currentCategory && pathname === "/work" 
+                            && !showIcons && (!currentCategory) 
+                            ? "inline-block" : "hidden"}`}
+                    >
+                        {'>'}
+                    </span>
+                    <span>:all</span>
+                </Link>
+            }
             
             {categoryNames.map((category, i) => (
                 <ToggleGroup.Item
                     key={category}
                     value={category}
                     className={`group/item flex items-center justify-center ${toggleStyle} ${
-                    currentCategory === category
-                        ? toggleStyleActive
-                        : toggleStyleInactive
-                    } ${i === categoryNames.length - 1 && "rotate-180 text-[0.5rem] uppercase"}`}
+                        currentCategory === category
+                            ? toggleStyleActive
+                            : toggleStyleInactive
+                        } ${i === categoryNames.length - 1 && "rotate-180 text-[0.5rem] uppercase"}`
+                    }
                 >
                     <div className="flex items-center gap-0.5">
                         {showIcons && getCategoryIcon(category) && (
@@ -85,11 +111,11 @@ function ProjectFilterContent({
                                 className="w-3 h-3"
                                 strokeWidth={currentCategory === category ? 0 : 0} />
                         )}
-                        <span className={`group-hover/item:inline-block 
+                        <span className={`group-hover/item:inline-block text-magenta
                                 ${!showIcons && (currentCategory === category) ? "inline-block" : "hidden"}`}>
                             {'>'}
                         </span>
-                        <span>{">" + category.charAt(0).toUpperCase() + category.slice(1)}</span>
+                        <span>{":" + category.charAt(0).toUpperCase() + category.slice(1)}</span>
                     </div>
                 </ToggleGroup.Item>
             ))}

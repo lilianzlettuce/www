@@ -46,7 +46,9 @@ function WorkPageContent() {
   // Filter projects based on categories
   const filteredProjects = useMemo(() => {
     if (categoryFilters.length === 0) {
-      return projects;
+      return projects.filter(project =>
+        project.categories && project.categories.length > 0
+      );
     }
     
     return projects.filter(project => 
