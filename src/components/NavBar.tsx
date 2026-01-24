@@ -75,8 +75,8 @@ export function SideBarMinimal({ className }: NavBarProps) {
             <ProjectFilter 
               categories={projectCategories}
               toggleStyle="px-0 py-0 font-roboto-mono font-semibold text-xs leading-none lowercase rounded-none tracking-widest"
-              toggleStyleActive="text-foreground rotate-y-0"
-              toggleStyleInactive="border-0 border-border bg-background text-muted-foreground hover:rotate-y-0 hover:border-foreground hover:text-foreground"
+              toggleStyleActive="text-foreground hover:rotate-x-0 hover:uppercase"
+              toggleStyleInactive="border-0 border-border bg-background text-muted-foreground hover:rotate-x-180 hover:uppercase hover:border-foreground hover:text-foreground"
               showIcons={false}
             />
             </div>

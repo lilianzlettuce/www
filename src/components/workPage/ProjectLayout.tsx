@@ -1,11 +1,12 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { PixelatedArrowIcon, SquareIcon } from '@/components/svg/Icons';
 import { ProjectFrontmatter } from '@/lib/mdx';
 import { TagLabel, TagLabelStroke } from './Labels';
 import { IconButton, RevealButton } from '../Buttons';
-import Image from 'next/image';
 import BoxCorners from '../svg/BoxCorners';
 import { ScrollIndicator } from '../ScrollIndicator';
 
@@ -164,15 +165,23 @@ export function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
 }
 
 function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
+  const router = useRouter();
+  
   return (
     <header className="z-50 sticky top-0 left-0 w-full flex flex-row items-start gap-4">
       <div className="w-full h-10 pt-4 flex flex-row gap-1 items-start justify-start">
           
-        <div className="hidden w-full flex flex-col text-xs text-muted-foreground">
-          <div className="font-bold">
+        <div className=" w-full flex flex-col text-xs text-muted-foreground">
+          <div className="hidden font-bold">
             {frontmatter.title}
           </div>
-          <div>
+          <button className="group font-roboto-mono font-semibold hover:rotate-x-180 hover:uppercase hover:text-foreground"
+              onClick={() => router.back()}>
+            <span className="inline-block group-hover:hidden">{'>>'}&nbsp;</span>
+            <span className="hidden group-hover:inline-block">{'<<'}&nbsp;</span>
+            go back
+          </button>
+          <div className="hidden">
             landing page | 2025
           </div>
         </div>

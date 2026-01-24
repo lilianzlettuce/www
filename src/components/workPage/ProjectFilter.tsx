@@ -65,7 +65,7 @@ function ProjectFilterContent({
                         }
                     `}
                 >
-                    <span className={`group-hover/item:inline-block text-magenta
+                    <span className={`text-magenta
                         ${!currentCategory && pathname === "/work" 
                             && !showIcons && (!currentCategory) 
                             ? "inline-block" : "hidden"}`}
@@ -83,7 +83,7 @@ function ProjectFilterContent({
                         }
                     `}
                 >
-                    <span className={`group-hover/item:inline-block text-magenta
+                    <span className={`text-magenta
                         ${!currentCategory && pathname === "/work" 
                             && !showIcons && (!currentCategory) 
                             ? "inline-block" : "hidden"}`}
@@ -111,7 +111,7 @@ function ProjectFilterContent({
                                 className="w-3 h-3"
                                 strokeWidth={currentCategory === category ? 0 : 0} />
                         )}
-                        <span className={`group-hover/item:inline-block text-magenta
+                        <span className={`text-magenta
                                 ${!showIcons && (currentCategory === category) ? "inline-block" : "hidden"}`}>
                             {'>'}
                         </span>
