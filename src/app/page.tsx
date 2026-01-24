@@ -4,7 +4,7 @@ import { getFeaturedProjects, ProjectFrontmatter } from "@/lib/mdx";
 import { NavBar } from "@/components/NavBar";
 import Hero from "@/components/homePage/Hero";
 import { ProjectCardLarge } from "@/components/workPage/Cards";
-import { PixelatedArrowIcon, SquareIcon } from '@/components/svg/Icons';
+import { PixelatedArrowIcon } from '@/components/svg/Icons';
 import { IconButton } from "@/components/Buttons";
 import BoxCorners from "@/components/svg/BoxCorners";
 
