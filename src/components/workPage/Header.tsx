@@ -157,7 +157,7 @@ export function WorkPageHeaderMinimal({ headerText, subheaderText }: WorkPageHea
     
     return (
         <div className="pt-10 flex flex-row gap-4">
-          <div className="min-w-1/2 text-left my-16">
+          <div className="min-w-1/2 h-24 text-left my-16">
             <ScrambleText
                 text={headerText}
                 className="w-fit text-4xl font-libre-barcode-128-text rotate-x-180 text-foreground mb-4"

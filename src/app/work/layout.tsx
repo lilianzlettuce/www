@@ -1,5 +1,28 @@
 //import { SideBar3 } from "@/components/NavBar";
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  
+  /*if (!project) {
+    return {
+      title: 'Project Not Found',
+    };
+  }*/
+
+  const title = `Work | Lilian Zhao`;
+  const description =  "All past and in progress works across code, design, art, and more.";
+
+  return {
+    title: title,
+    description: description,
+    openGraph: {
+      title: title,
+      description: description,
+      images: [],
+    },
+  };
+}
+
 export default function WorkLayout({
   children,
 }: {

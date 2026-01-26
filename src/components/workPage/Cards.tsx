@@ -336,7 +336,7 @@ export function ProjectCardBasic({ project, className = "h-90" }: ProjectCardPro
                                 {project.title}
                             </h3>
                         </div>
-                        <p className="font-ibm-plex-sans text-sm text-mutedForeground line-clamp-2">
+                        <p className="hidden font-ibm-plex-sans text-xs text-mutedForeground line-clamp-2">
                             {project.description}
                         </p>
                     </div>

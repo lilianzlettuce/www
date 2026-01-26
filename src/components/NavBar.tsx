@@ -71,14 +71,14 @@ export function SideBarMinimal({ className }: NavBarProps) {
             </div>
 
             <div className="w-full px-4">
-            {/* Project filter */}
-            <ProjectFilter 
-              categories={projectCategories}
-              toggleStyle="px-0 py-0 font-roboto-mono font-semibold text-xs leading-none lowercase rounded-none tracking-widest"
-              toggleStyleActive="text-foreground hover:rotate-x-0 hover:uppercase"
-              toggleStyleInactive="border-0 border-border bg-background text-muted-foreground hover:rotate-x-180 hover:uppercase hover:border-foreground hover:text-foreground"
-              showIcons={false}
-            />
+              {/* Project filter */}
+              <ProjectFilter 
+                categories={projectCategories}
+                toggleStyle="px-0 py-0 font-roboto-mono font-semibold text-xs leading-none lowercase rounded-none tracking-widest"
+                toggleStyleActive="text-foreground hover:rotate-x-0 hover:uppercase"
+                toggleStyleInactive="border-0 border-border bg-background text-muted-foreground hover:rotate-x-180 hover:uppercase hover:border-foreground hover:text-foreground"
+                showIcons={false}
+              />
             </div>
             <div className="hidden w-full h-fit flex flex-col items-center gap-0 font-mono font-bold lowercase capitalize">
               {navItems.map((item) => (
