@@ -77,7 +77,7 @@ export function HeroWindow({
 }: WindowProps) {
     return (
         <Draggable>
-            <div className={`${className} z-50 absolute p-1 flex flex-col bg-none text-foreground border-2 border-foreground shadow-lg`}>
+            <div className={`${className} absolute p-1 flex flex-col bg-none text-foreground border-2 border-foreground shadow-lg`}>
                 {/* Window handle */}
                 <div className={`${dragHandleClassName} handle select-none cursor-grab bg-background px-1 pb-1 flex flex-row justify-between items-center`}>
                     <div className="flex flex-row items-center gap-2">

@@ -9,7 +9,7 @@ export default function Hero() {
       <section className="relative h-screen min-h-screen py-[400px] flex items-center justify-start">
         <div className="absolute inset-0 bg-grid-pattern opacity-50"></div>
         <div className="h-fit absolute left-5/12">
-          <HeroWindow className="w-[300px] h-fit -translate-x-10 translate-y-4"
+          <HeroWindow className="z-10 w-[300px] h-fit -translate-x-10 translate-y-4"
             dragHandleText="Greetings"
           >
             <div className="w-full h-38 bg-white">
@@ -50,7 +50,7 @@ export default function Hero() {
                 }}
               />
           </h1>
-          <p className="font-roboto-mono text-md md:text-lg text-mutedForeground mb-8 max-w-2xl mx-auto">
+          <p className="font-roboto-mono text-md md:text-sm text-foreground mb-8 max-w-2xl mx-auto">
             UI Engineer and artist exploring spaces between pixels and atoms.
           </p>
         </div>

@@ -7,11 +7,11 @@ import { ProjectFrontmatter } from "@/lib/mdx";
 import { projectCategories } from "@/lib/data";
 
 import { ProjectCardBasic, ProjectCardLarge, ProjectCardTechMono, ProjectCardMinimal, ProjectCardMinimal2 } from "@/components/workPage/Cards";
-import { WorkPageHeaderMinimal } from "@/components/workPage/Header";
+import { WorkPageHeader, WorkPageHeader2, WorkPageHeaderContrast, WorkPageHeaderMinimal } from "@/components/workPage/Header";
 import { ProjectFilter } from "@/components/workPage/ProjectFilter";
 import { GridIcon, ListIcon, SquareIcon } from "@/components/svg/Icons";
 import ProjectList from "@/components/workPage/ProjectList";
-import { NavBar, SideBarMinimal } from "@/components/NavBar";
+import { NavBarMinimal, SideBarMinimal } from "@/components/NavBar";
 import Spinner from "@/components/Spinner";
 
 function WorkPageContent() {
@@ -60,7 +60,7 @@ function WorkPageContent() {
 
   return (
     <div className="w-full">
-      <NavBar className="h-6 absolute inset-0 top-0 left-0"/>
+      <NavBarMinimal className="h-6 absolute inset-0 top-0 left-0"/>
       <div className="w-full flex flex-col">
         <SideBarMinimal className="hidden" />
         <div className="w-full px-4 sm:px-6 lg:px-0 py-0">
@@ -76,8 +76,8 @@ function WorkPageContent() {
           </div>
 
           <div className="px-4 sm:px-6">
-            <WorkPageHeaderMinimal 
-              headerText={categoryFilters.length > 0 ? categoryFilters.join(", ") : "All"}
+            <WorkPageHeaderContrast
+              headerText={categoryFilters.length > 0 ? categoryFilters.join(", ") : "All work"}
               subheaderText={projectCategories.find(cat => cat.name === categoryFilters[0])?.subheaderText 
                 || "status: 45% - - - complete rehaul in progress <br/> come forth ↓"}
             />
@@ -109,7 +109,7 @@ function WorkPageContent() {
                 <ProjectFilter 
                   categories={projectCategories}
                   toggleStyle="px-1.5 py-0 font-roboto-mono font-medium text-xs leading-none lowercase rounded-none tracking-widest"
-                  toggleStyleActive="text-foreground uppercase hover:rotate-x-180 hover:text-magenta"
+                  toggleStyleActive="text-foreground uppercase text-magenta hover:rotate-x-180 hover:text-magenta"
                   toggleStyleInactive="border-0 border-border bg-background text-muted-foreground hover:rotate-x-180 hover:uppercase hover:border-foreground hover:text-magenta"
                   showIcons={true}
                 />

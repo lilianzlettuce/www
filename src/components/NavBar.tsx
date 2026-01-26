@@ -392,12 +392,72 @@ export function SideBar({ className }: NavBarProps) {
   );
 } 
 
+export function NavBarMinimal({ className }: NavBarProps) {
+  const pathname = usePathname();
+
+  return (
+    <nav className={`${className} z-50 sticky top-0 w-full py-0 m-auto bg-background`}>
+      <div className="w-full h-full flex justify-between items-center gap-2">
+        <Link href="/" className="hidden w-fit h-full text-xl font-bold text-muted-foreground hover:text-magenta transition-colors">
+          <LogoIcon className="w-fit h-full" />
+        </Link>
+        
+        <div className="w-full h-full px-4 sm:px-6 lg:px-2 hidden md:flex items-center justify-between gap-2 border-b border-border">
+          <Link
+            href={"/"}
+            className={` hover:text-magenta ${
+              pathname === "/"
+                ? "text-foreground decoration-1 line-through"
+                : "text-mutedForeground hover:line-through"
+            }`}
+          >
+            <SliceText className="font-mono text-xs font-bold tracking-[3px]">
+              ~lettuce
+            </SliceText>
+          </Link>
+          <div className="w-full h-full md:flex items-center justify-end gap-2">
+            <div className="w-28 h-full flex items-center justify-center">
+              <ThemeSlider buttonClassName="p-1" />
+            </div>
+            <div className="w-2/3 h-full flex items-center gap-0 font-bold lowercase text-sm capitalize">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`group w-full h-full flex items-center justify-center text-xs font-medium px-8 border-l border-border ${
+                    pathname === item.href
+                      ? "text-foreground decoration-1 line-through"
+                      : "text-mutedForeground hover:line-through"
+                  }`}
+                >
+                  <SliceText className="font-mono text-xs font-bold tracking-[3px]">
+                    {item.label}
+                  </SliceText>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile menu button */}
+        <div className="md:hidden flex items-center space-x-4">
+          <ThemeToggle />
+          <button className="text-mutedForeground hover:text-foreground">
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+} 
 
 export function NavBar({ className }: NavBarProps) {
   const pathname = usePathname();
 
   return (
-    <nav className={`${className} z-50 sticky top-0 w-full py-0 m-auto bg-background`}>
+    <nav className={`${className} z-80 sticky top-0 w-full py-0 m-auto bg-background`}>
       <div className="w-full h-full flex justify-between items-center gap-2">
         <Link href="/" className="w-fit h-full text-xl font-bold text-foreground hover:text-mutedForeground transition-colors">
           <LogoIcon className="w-fit h-full" />

@@ -12,7 +12,50 @@ interface WorkPageHeaderProps {
     subheaderText: string;
 }
 
-export function WorkPageHeader2() {
+export function WorkPageHeaderContrast({ headerText, subheaderText }: WorkPageHeaderProps) {
+    const { scrollY } = useScroll();
+    
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        console.log(latest);
+    });
+    
+    return (
+        <div className="pt-10 flex flex-row gap-4">
+            <div className="min-w-1/2 h-24 text-left my-16">
+                <ScrambleText
+                    text={headerText}
+                    className="w-fit text-4xl md:text-7xl/[0.8] font-unifont-ex-mono font-base text-foreground uppercase mb-4"
+                    replayOnHover={true}
+                />
+                <ScrambleText
+                    text={headerText}
+                    className="hidden w-fit text-4xl font-libre-barcode-128-text rotate-x-180 text-foreground mb-4"
+                    replayOnHover={true}
+                />
+                <ScrambleText
+                    text={subheaderText}
+                    className="text-xs font-roboto-mono tracking-tighter text-muted-foreground max-w-2xl"
+                />
+            </div>
+
+            <div className="z-10 absolute top-6 right-0 w-1/3 h-1/3 p-8 flex justify-end">
+                <WindowTechMono className="relative top-0 right-0 w-fit h-fit">
+                <div className="w-55 h-60 p-2 border-1 border-foreground font-ibm-plex-mono text-xs">
+                    <div className="w-full h-full p-2 border-1 border-foreground">
+                    <div className="w-full h-full p-2 border-1 border-foreground">
+                        <div className="w-full h-full p-2 border-1 border-foreground">
+                        
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </WindowTechMono>
+            </div>
+        </div>
+    );
+}
+
+export function WorkPageHeader2({ headerText, subheaderText }: WorkPageHeaderProps) {
     return (
         <div className="w-full min-h-[50vh] py-3 flex flex-row gap-4">
             <div className="relative w-full h-full">
@@ -28,7 +71,7 @@ export function WorkPageHeader2() {
                             <div className="flex flex-col gap-4">
                                 <div className="text-left">
                                     <h1 className="text-4xl md:text-6xl/[0.8] scale-x-100 translate-x-0 font-micro5 font-bold text-foreground uppercase mb-4">
-                                        Work
+                                        {headerText}
                                     </h1>
                                     <p className="text-xs text-mutedForeground max-w-2xl">
                                         What are you even searching for?
@@ -169,7 +212,7 @@ export function WorkPageHeaderMinimal({ headerText, subheaderText }: WorkPageHea
             />
           </div>
 
-          <div className="z-0 absolute top-0 right-0 w-1/3 h-1/3 p-8 flex justify-end">
+          <div className="z-10 absolute top-6 right-0 w-1/3 h-1/3 p-8 flex justify-end">
             <WindowTechMono className="relative top-0 right-0 w-fit h-fit">
               <div className="w-45 h-50 p-2 border-1 border-foreground font-ibm-plex-mono text-xs">
                 <div className="w-full h-full p-2 border-1 border-foreground">
@@ -186,7 +229,7 @@ export function WorkPageHeaderMinimal({ headerText, subheaderText }: WorkPageHea
     );
 }
 
-export function WorkPageHeader() {
+export function WorkPageHeader({ headerText, subheaderText }: WorkPageHeaderProps) {
     const { scrollY } = useScroll();
     const [gridGap, setGridGap] = useState(3);
     const [defaultRadius, setDefaultRadius] = useState(1.6);
@@ -202,13 +245,12 @@ export function WorkPageHeader() {
         <div className="pt-30 min-h-[50vh] flex flex-row gap-4">
           <div className="min-w-1/2 text-left my-16">
             <ScrambleText
-                text="Work"
+                text={headerText}
                 className="w-fit text-4xl md:text-7xl/[0.8] font-micro5 font-bold text-foreground uppercase mb-4"
                 replayOnHover={true}
             />
             <ScrambleText
-                text="status: 45% - - - complete rehaul in progress
-                <br/> come forth ↓"
+                text={subheaderText}
                 className="text-xs font-roboto-mono tracking-tighter text-muted-foreground max-w-2xl"
             />
           </div>

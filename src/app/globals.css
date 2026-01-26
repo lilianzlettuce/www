@@ -82,8 +82,8 @@
   /* Theme filter variables */
   --invert: 0;
 
-  --highlight-bg: var(--foreground);
-  --highlight-fg: var(--background);
+  --highlight-bg: var(--magenta);
+  --highlight-fg: var(--foreground);
 
   /* Filter variables */
   filter: saturate(100%);
@@ -140,6 +140,7 @@ body {
   --font-code7x5: var(--font-code7x5);
   --font-bp-dots-square-bold: var(--font-bp-dots-square-bold);
   --font-unifont-ex-mono: var(--font-unifont-ex-mono);
+  --font-departure-mono: var(--font-departure-mono);
 
   /* Google fonts */
   --font-geist-sans: var(--font-geist-sans);
