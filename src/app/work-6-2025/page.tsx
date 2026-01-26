@@ -70,7 +70,7 @@ function WorkPageContent() {
           />
         </div>
 
-        <WorkPageHeader />
+        <WorkPageHeader headerText="work" subheaderText="this is subheader" />
 
         <div className="z-30 w-full flex flex-col items-start justify-between gap-2 mb-8">
           {/* View Mode Buttons */}
@@ -167,7 +167,7 @@ function WorkPageContent() {
           </div>
         )}
 
-        <WorkPageHeader2 />
+        <WorkPageHeader2 headerText="work" subheaderText="hello friends" />
       </div>
     </div>
   );
