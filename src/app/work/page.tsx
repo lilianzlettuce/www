@@ -82,7 +82,7 @@ function WorkPageContent() {
                 || "status: 45% - - - complete rehaul in progress <br/> come forth ↓"}
             />
 
-            <div className="z-30 w-full flex flex-row items-center justify-between gap-2 mb-8">
+            <div className="z-30 w-full flex flex-row items-center justify-start gap-2 mb-8">
               {/* List/Grid Buttons */}
               <div className="flex gap-2">
                 <button className={`p-1 flex items-center gap-1 
@@ -108,10 +108,10 @@ function WorkPageContent() {
                 {/* Project filter */}
                 <ProjectFilter 
                   categories={projectCategories}
-                  toggleStyle="px-2 py-0 font-roboto-mono font-semibold text-xs leading-none lowercase rounded-none tracking-widest"
-                  toggleStyleActive="text-foreground uppercase hover:rotate-x-180"
-                  toggleStyleInactive="border-0 border-border bg-background text-muted-foreground hover:rotate-x-180 hover:uppercase hover:border-foreground hover:text-foreground"
-                  showIcons={false}
+                  toggleStyle="px-1.5 py-0 font-roboto-mono font-medium text-xs leading-none lowercase rounded-none tracking-widest"
+                  toggleStyleActive="text-foreground uppercase hover:rotate-x-180 hover:text-magenta"
+                  toggleStyleInactive="border-0 border-border bg-background text-muted-foreground hover:rotate-x-180 hover:uppercase hover:border-foreground hover:text-magenta"
+                  showIcons={true}
                 />
               </div>
             </div>

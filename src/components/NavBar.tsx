@@ -418,7 +418,7 @@ export function NavBar({ className }: NavBarProps) {
                     : "text-mutedForeground hover:line-through"
                 }`}
               >
-                <SliceText className="font-mono text-xs font-bold">
+                <SliceText className="font-mono text-xs font-bold tracking-[3px]">
                   {item.label}
                 </SliceText>
               </Link>

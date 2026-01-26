@@ -72,7 +72,7 @@ function ProjectFilterContent({
                     >
                         {'>'}
                     </span>
-                    <span>:all</span>
+                    <span>all</span>
                 </ToggleGroup.Item>
             :
                 <Link
@@ -90,7 +90,7 @@ function ProjectFilterContent({
                     >
                         {'>'}
                     </span>
-                    <span>:all</span>
+                    <span>all</span>
                 </Link>
             }
             
@@ -115,7 +115,7 @@ function ProjectFilterContent({
                                 ${!showIcons && (currentCategory === category) ? "inline-block" : "hidden"}`}>
                             {'>'}
                         </span>
-                        <span>{":" + category.charAt(0).toUpperCase() + category.slice(1)}</span>
+                        <span>{"" + category.charAt(0).toUpperCase() + category.slice(1)}</span>
                     </div>
                 </ToggleGroup.Item>
             ))}
