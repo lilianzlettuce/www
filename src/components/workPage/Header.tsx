@@ -181,7 +181,7 @@ export function WorkPageHeader2({ headerText, subheaderText }: WorkPageHeaderPro
                         <div className="w-full flex flex-row justify-between font-roboto-mono">
                             <div className="flex flex-col items-start gap-2">
                                 <p className="text-xs">
-                                    No rest for the wicked.
+                                    {subheaderText}
                                 </p>
                                 <div className="flex flex-row items-center gap-2">
                                     <DevIcon className="w-3 h-3" strokeWidth={2} />

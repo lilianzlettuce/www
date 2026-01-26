@@ -415,7 +415,7 @@ export function NavBarMinimal({ className }: NavBarProps) {
               ~lettuce
             </SliceText>
           </Link>
-          <div className="w-full h-full md:flex items-center justify-end gap-2">
+          <div className="w-3/4 h-full md:flex items-center justify-end gap-2">
             <div className="w-28 h-full flex items-center justify-center">
               <ThemeSlider buttonClassName="p-1" />
             </div>
