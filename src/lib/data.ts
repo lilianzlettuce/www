@@ -24,19 +24,19 @@ export const projectCategories: Category[] = [
     name: "dev",
     icon: "DevIcon",
     displayName: "Dev", 
-    subheaderText: "web dev, swe, code"
+    subheaderText: "web dev, swe, code."
   },
   {
     name: "design", 
     icon: "DesignIcon",
     displayName: "Design",
-    subheaderText: "ux/ui, branding, visuals and graphics"
+    subheaderText: "ux/ui, branding, visuals and graphics."
   },
   {
     name: "art",
     icon: "ArtIcon", 
     displayName: "Art",
-    subheaderText: "new media, time-based work, interactive installations"
+    subheaderText: "new media, time-based work, interactive installations."
   },
   /*{
     name: "fabrication",

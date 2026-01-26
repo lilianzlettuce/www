@@ -168,10 +168,10 @@ function AboutPageHeader() {
       <div className="w-full min-h-[50vh] py-3 flex flex-row gap-4">
           <div className="relative w-full h-full">
               <div className="hidden absolute -top-60 left-0 w-190 h-150 bg-white">
-              <Image src="/img/halftone/brain-bg-black.png" 
-                  alt="Work" 
-                  fill={true}
-                  className="w-full h-full object-cover" />
+                <Image src="/img/halftone/brain-bg-black.png" 
+                    alt="Work" 
+                    fill={true}
+                    className="w-full h-full object-cover" />
               </div>
               <WindowTechMono className="w-full min-h-100">
                   <div className="w-full h-full p-4 flex flex-col gap-4">
