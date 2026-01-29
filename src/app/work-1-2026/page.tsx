@@ -7,7 +7,7 @@ import { ProjectFrontmatter } from "@/lib/mdx";
 import { projectCategories } from "@/lib/data";
 
 import { ProjectCardBasic, ProjectCardLarge, ProjectCardTechMono, ProjectCardMinimal, ProjectCardMinimal2 } from "@/components/workPage/Cards";
-import { WorkPageHeaderMinimal } from "@/components/workPage/Header";
+import { WorkPageHeaderContrast } from "@/components/workPage/Header";
 import { ProjectFilter } from "@/components/workPage/ProjectFilter";
 import { GridIcon, ListIcon, SquareIcon } from "@/components/svg/Icons";
 import ProjectList from "@/components/workPage/ProjectList";
@@ -74,8 +74,8 @@ function WorkPageContent() {
         </div>
 
         <div className="px-4 sm:px-6">
-          <WorkPageHeaderMinimal 
-            headerText={categoryFilters.length > 0 ? categoryFilters.join(", ") : "All"}
+          <WorkPageHeaderContrast
+            headerText={categoryFilters.length > 0 ? categoryFilters.join(", ") : "All work"}
             subheaderText={projectCategories.find(cat => cat.name === categoryFilters[0])?.subheaderText 
               || "status: 45% - - - complete rehaul in progress <br/> come forth ↓"}
           />

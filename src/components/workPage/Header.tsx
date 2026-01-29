@@ -20,7 +20,7 @@ export function WorkPageHeaderContrast({ headerText, subheaderText }: WorkPageHe
     });
     
     return (
-        <div className="pt-10 flex flex-row gap-4">
+        <div className="pt-10 flex flex-row gap-4 justify-between">
             <div className="min-w-1/2 h-24 text-left my-16">
                 <ScrambleText
                     text={`${headerText}-`}
@@ -38,13 +38,13 @@ export function WorkPageHeaderContrast({ headerText, subheaderText }: WorkPageHe
                 />
             </div>
 
-            <div className="z-10 absolute top-6 right-0 w-1/3 h-1/3 p-8 flex justify-end">
+            <div className="z-10 top-1 right-0 flex justify-end">
                 <WindowTechMono className="relative top-0 right-0 w-fit h-fit overflow-hidden">
                     <div className="flex flex-row p-0">
                         <div className="hidden w-25 h-60 p-2 font-ibm-plex-mono text-xs overflow-hidden">
                             hi
                         </div>
-                        <div className="w-80 h-60 p-2 border-1 border-foreground font-ibm-plex-mono text-xs overflow-hidden">
+                        <div className="w-60 h-55 p-2 border-1 border-foreground font-ibm-plex-mono text-xs overflow-hidden">
                             <div className="w-full h-full p-2 border-1 border-foreground">
                                 <div className="w-full h-full p-2 border-1 border-foreground">
                                     <div className="w-full h-full p-2 border-1 border-foreground bg-foreground overflow-hidden">
