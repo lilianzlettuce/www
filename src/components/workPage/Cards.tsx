@@ -25,7 +25,7 @@ export function ProjectListItem({ project, index = 0, mousePos }: ProjectCardPro
             href={`/work/${project.slug}`}
             className="group/list-item relative w-full h-fit rounded-none border-t-1 border-border hover:border-muted-foreground transition-all duration-300"
         >
-            <div className="relative w-full h-full p-5 flex flex-row items-center gap-4 border-b-1 border-background hover:border-muted-foreground transition-all duration-300">
+            <div className="relative w-full h-full p-2.5 sm:p-5 flex flex-row items-center gap-4 border-b-1 border-background hover:border-muted-foreground transition-all duration-300">
                 <div className="fixed z-10 left-1/4 w-100 h-65 aspect-auto hidden group-hover/list-item:flex items-center justify-center"
                     style={{
                         left: mousePos?.x ? mousePos.x + 50 : 0,
@@ -51,13 +51,13 @@ export function ProjectListItem({ project, index = 0, mousePos }: ProjectCardPro
                         <div className="font-roboto-mono text-[0.65rem] text-muted-foreground">
                         &#91;{index.toString().padStart(2, '0')}&#93;
                         </div>
-                        <div className="font-sans text-base font-medium">
+                        <div className="font-sans text-sm sm:text-base font-medium">
                             {project.title}
                         </div>
                     </div>
                     
                     <div className="min-w-fit flex items-center gap-6 font-roboto-mono text-[0.65rem] tracking-widest">
-                        <div className="w-full flex flex-wrap gap-2 uppercase">
+                        <div className="w-full hidden sm:flex flex-wrap gap-2 uppercase">
                             {project.tags?.slice(0, 3).map((tag: string) => (
                                 <TagLabelStroke
                                     key={tag}

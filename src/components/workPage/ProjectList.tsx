@@ -11,27 +11,21 @@ type ProjectListProps = {
 
 export default function ProjectList({ projects, variant = "default" }: ProjectListProps) {
     const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: -600 });
-    console.log(mousePos);
+    //console.log(mousePos);
     
     return (
         <div className="group/list w-full flex flex-col"
-            onMouseMove={e => {
-                setMousePos({ x: e.clientX, y: e.clientY }); 
-                console.log(mousePos);
-            }}
-            onMouseEnter={e => {
-                setMousePos({ x: e.clientX, y: e.clientY }); 
-                console.log(mousePos);
-            }}
+            onMouseMove={e => setMousePos({ x: e.clientX, y: e.clientY })}
+            onMouseEnter={e => setMousePos({ x: e.clientX, y: e.clientY })}
         >
             {projects.map((project: ProjectFrontmatter, index: number) => (
                 variant === "default" ? (
                     <ProjectListItem 
-                    key={project.slug} 
-                    project={project} 
-                    index={index} 
-                    mousePos={mousePos} 
-                />
+                        key={project.slug} 
+                        project={project} 
+                        index={index} 
+                        mousePos={mousePos} 
+                    />
                 ) : (
                     <ProjectListItemMinimal 
                         key={project.slug} 

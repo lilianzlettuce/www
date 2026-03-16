@@ -63,7 +63,7 @@ function WorkPageContent() {
       <NavBarMinimal className="h-6 absolute inset-0 top-0 left-0"/>
       <div className="w-full flex flex-col">
         <SideBarMinimal className="hidden" />
-        <div className="w-full px-4 sm:px-6 lg:px-0 py-0">
+        <div className="w-full px-0 py-0">
           {/* Filtering */}
           <div className="hidden flex items-center gap-2 mt-4">
             <ProjectFilter 

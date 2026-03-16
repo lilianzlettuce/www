@@ -13,12 +13,6 @@ interface WorkPageHeaderProps {
 }
 
 export function WorkPageHeaderContrast({ headerText, subheaderText }: WorkPageHeaderProps) {
-    const { scrollY } = useScroll();
-    
-    useMotionValueEvent(scrollY, "change", (latest) => {
-        console.log(latest);
-    });
-    
     return (
         <div className="pt-10 flex flex-row gap-4 justify-between">
             <div className="min-w-1/2 h-24 text-left my-16">
@@ -38,7 +32,7 @@ export function WorkPageHeaderContrast({ headerText, subheaderText }: WorkPageHe
                 />
             </div>
 
-            <div className="z-10 top-1 right-0 flex justify-end">
+            <div className="hidden sm:block z-10 top-1 right-0 flex justify-end">
                 <WindowTechMono className="relative top-0 right-0 w-fit h-fit overflow-hidden">
                     <div className="flex flex-row p-0">
                         <div className="hidden w-25 h-60 p-2 font-ibm-plex-mono text-xs overflow-hidden">
@@ -208,12 +202,6 @@ export function WorkPageHeader2({ headerText, subheaderText }: WorkPageHeaderPro
 }
 
 export function WorkPageHeaderMinimal({ headerText, subheaderText }: WorkPageHeaderProps) {
-    const { scrollY } = useScroll();
-    
-    useMotionValueEvent(scrollY, "change", (latest) => {
-        console.log(latest);
-    });
-    
     return (
         <div className="pt-10 flex flex-row gap-4">
           <div className="min-w-1/2 h-24 text-left my-16">
