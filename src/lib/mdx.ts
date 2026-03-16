@@ -6,7 +6,7 @@ import TechStack from "@/components/mdx/TechStack";
 import ProjectStats from "@/components/mdx/ProjectStats";
 import { ProjectInfo, ProjectInfoRow } from "@/components/mdx/ProjectInfo";
 import { ProjectListItem } from "@/components/mdx/ProjectCard";
-import { Section, SplitSection, SectionColumn } from "@/components/mdx/Section";
+import { Section, SplitSection, SectionColumn, CaseStudySection } from "@/components/mdx/Section";
 import { MDXMedia } from "@/components/mdx/MDXMedia";
 import { ProjectHeader } from "@/components/mdx/ProjectHeader";
 
@@ -35,6 +35,7 @@ const components = {
   Section,
   SplitSection,
   SectionColumn,
+  CaseStudySection,
   MDXMedia,
   ProjectHeader,
   ProjectListItem,

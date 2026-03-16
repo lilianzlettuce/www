@@ -22,7 +22,7 @@ export function SplitSection({ children, className = "my-20 gap-2" }: SectionPro
 }
 
 interface SectionColumnProps {
-  children: ReactNode;
+  children?: ReactNode;
   size?: number;
   className?: string;
 }
@@ -35,4 +35,28 @@ export function SectionColumn({ children, size = 1, className = "" }: SectionCol
     </div>
   );
 }
-  
+
+interface CaseStudySectionProps {
+  header: string;
+  children: ReactNode;
+  className?: string;
+}
+
+export function CaseStudySection({ 
+  header, 
+  children, 
+  className = "my-20 gap-2" 
+}: CaseStudySectionProps) {
+  return (
+    <SplitSection className={`${className}`}>
+      <SectionColumn size={4} className="h6">
+        <h6>{header}</h6>
+      </SectionColumn>
+      <SectionColumn size={12}>
+        {children}
+      </SectionColumn>
+      <SectionColumn size={4}>
+      </SectionColumn>
+    </SplitSection>
+  );
+}

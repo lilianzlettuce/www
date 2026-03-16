@@ -3,7 +3,7 @@ interface TechStackProps {
   title?: string;
 }
 
-export default function TechStack({ technologies, title = "Technologies Used" }: TechStackProps) {
+export default function TechStack({ technologies = [], title = "Technologies Used" }: TechStackProps) {
   return (
     <div className="my-8 p-6 bg-gray-50 rounded-lg border border-gray-200">
       <h3 className="text-lg font-semibold text-gray-900 mb-4">{title}</h3>
