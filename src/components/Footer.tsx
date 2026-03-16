@@ -5,7 +5,7 @@ import { socialLinks } from "@/lib/data";
 
 export function Footer() {
   return (
-    <footer className="w-screen h-[50vh] sm:h-[80vh] px-2 py-1 flex flex-col justify-between bg-background">
+    <footer className="w-screen h-[60vh] sm:h-[80vh] px-2 py-1 flex flex-col justify-between bg-background">
         <div className="w-full py-8 border-t border-border ">
             <FooterLogoIcon className="w-full h-full scale-x-100 rotate-z-180 text-foreground" />
         </div>
@@ -21,11 +21,11 @@ export function Footer() {
                     </Link>
                 ))}
             </div>
-            <div className="w-full flex justify-between items-center border-t border-border font-medium text-xs">
-                Made with more bones than you can eat.
+            <div className="w-full pt-20 flex justify-between items-center border-t border-border font-medium text-xs">
+                &copy; {new Date().getFullYear()} LETTUCEMEAT.
             </div>
             <div className="w-full flex justify-between items-center border-t border-border font-medium text-xs">
-                &copy; {new Date().getFullYear()} LETTUCEMEAT.
+                Made with more bones than you can eat.
             </div>
         </div>
         <div className="hidden sm:block">
