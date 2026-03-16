@@ -9,8 +9,8 @@ export function Footer() {
         <div className="w-full py-8 border-t border-border ">
             <FooterLogoIcon className="w-full h-full scale-x-100 rotate-z-180 text-foreground" />
         </div>
-        <div>
-            <div className="w-full flex sm:hidden justify-between gap-4">
+        <div className="flex flex-col sm:hidden">
+            <div className="w-full flex justify-between gap-4">
                 {socialLinks.map((link) => (
                     <Link key={link.href} 
                         href={link.href}
@@ -21,6 +21,14 @@ export function Footer() {
                     </Link>
                 ))}
             </div>
+            <div className="w-full flex justify-between items-center border-t border-border font-medium text-xs">
+                Made with more bones than you can eat.
+            </div>
+            <div className="w-full flex justify-between items-center border-t border-border font-medium text-xs">
+                &copy; {new Date().getFullYear()} LETTUCEMEAT.
+            </div>
+        </div>
+        <div className="hidden sm:block">
             <div className="w-full flex justify-between items-center border-t border-border font-medium text-xs">
                 <div className="">
                     Made with more bones than you can eat.
