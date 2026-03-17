@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { getFeaturedProjects, ProjectFrontmatter } from "@/lib/mdx";
-import { NavBar } from "@/components/NavBar";
+import { NavBar, NavBarMinimal } from "@/components/NavBar";
 import Hero from "@/components/homePage/Hero";
 import { ProjectCardLarge } from "@/components/workPage/Cards";
 import { PixelatedArrowIcon } from '@/components/svg/Icons';
@@ -13,7 +13,8 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen">
-      <NavBar className="h-6" />
+      <NavBar className="h-6 hidden" />
+      <NavBarMinimal className="h-6 absolute inset-0 top-0 left-0"/>    
 
       <Hero />
 

@@ -396,7 +396,7 @@ export function NavBarMinimal({ className }: NavBarProps) {
   const pathname = usePathname();
 
   return (
-    <nav className={`${className} z-50 sticky top-0 w-full py-0 bg-background`}>
+    <nav className={`${className} z-100 sticky top-0 w-full py-0 bg-background`}>
       <div className="w-full h-full px-0 sm:px-6 lg:px-2 flex flex-col sm:flex-row items-center justify-between sm:gap-2 border-b border-border">
         <div className="w-full sm:w-fit px-2 grow flex justify-between">
           <Link

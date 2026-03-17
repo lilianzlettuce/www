@@ -6,14 +6,14 @@ import { /*CycleText,*/ CycleTextBlend } from "../specialEffects/text/CycleText"
 export default function Hero() {
     
     return (
-      <section className="relative h-screen min-h-screen sm:py-[400px] flex flex-col sm:flex-row items-center justify-start">
+      <section className="relative h-screen min-h-screen py-10 sm:py-[400px] flex flex-col sm:flex-row items-center justify-start">
         <div className="absolute inset-0 bg-grid-pattern opacity-50"></div>
         {/* Text */}
-        <div className="relative z-10 text-left max-w-lg w-1/3 px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 text-left w-11/12 sm:w-1/2 h-30 sm:h-fit px-4 sm:px-6 lg:px-8">
           <h1 className="font-ibm-plex-mono text-base md:text-2xl font-bold text-foreground mb-6">
             Hello, I&apos;m&nbsp;
               <CycleTextBlend
-                className="inline-block whitespace-nowrap text-base md:text-2xl font-bold italic"
+                className="w-40 inline-block whitespace-nowrap text-base md:text-2xl font-bold italic"
                 texts={[
                   "Lilian",
                   "lettuce",
@@ -36,8 +36,8 @@ export default function Hero() {
           </p>
         </div>
         {/* Graphics */}
-        <div className="h-fit relative sm:left-1/12">
-          <HeroWindow className="z-10 w-[300px] h-fit -translate-x-10 translate-y-4"
+        <div className="h-fit relative top-1/12 sm:top-0 left-1/12">
+          <HeroWindow className="z-10 w-60 sm:w-[300px] h-40 sm:h-fit -translate-x-20 -translate-y-10 sm:-translate-x-10 sm:translate-y-4"
             dragHandleText="Greetings"
           >
             <div className="w-full h-38 bg-white">
@@ -51,10 +51,12 @@ export default function Hero() {
               />
             </div>
           </HeroWindow>
-          {/*<BrainLight imageSrc="/img/lowRes/brain.png" />
-          <BrainDarkMouseLight imageSrc="/img/lowRes/brain.png" />
-          <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" tooltipText="POKE" />*/}
-          <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" tooltipText="POKE" />
+          <div className="sm:w-full sm:h-full">
+            {/*<BrainLight imageSrc="/img/lowRes/brain.png" />
+            <BrainDarkMouseLight imageSrc="/img/lowRes/brain.png" />
+            <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" tooltipText="POKE" />*/}
+            <BrainDarkMouseDark imageSrc="/img/lowRes/brain.png" tooltipText="POKE" />
+          </div>
         </div>
     </section>
     );
