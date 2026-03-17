@@ -396,47 +396,41 @@ export function NavBarMinimal({ className }: NavBarProps) {
   const pathname = usePathname();
 
   return (
-    <nav className={`${className} z-50 sticky top-0 w-full py-0 m-auto bg-background`}>
-      <div className="w-full h-full flex justify-between items-center gap-2">
-        <Link href="/" className="hidden w-fit h-full text-xl font-bold text-muted-foreground hover:text-magenta transition-colors">
-          <LogoIcon className="w-fit h-full" />
-        </Link>
-        
-        <div className="w-full h-full px-4 sm:px-6 lg:px-2 flex sm:flex items-center justify-between gap-2 border-b border-border">
-          <div className="grow flex justify-between">
+    <nav className={`${className} z-50 sticky top-0 w-full py-0 bg-background`}>
+      <div className="w-full h-full px-0 sm:px-6 lg:px-2 flex flex-col sm:flex-row items-center justify-between sm:gap-2 border-b border-border">
+        <div className="w-full sm:w-fit px-2 grow flex justify-between">
+          <Link
+            href={"/"}
+            className={` hover:text-magenta ${
+              pathname === "/"
+                ? "text-foreground decoration-1 line-through"
+                : "text-mutedForeground hover:line-through"
+            }`}
+          >
+            <SliceText className="font-mono text-xs font-bold tracking-[3px]">
+              ~lettuce
+            </SliceText>
+          </Link>
+          <div className="w-28 h-full flex items-center justify-center">
+            <ThemeSlider buttonClassName="p-1" />
+          </div>
+        </div>
+        <div className="bg-background w-full sm:w-110 min-w-fit h-full flex items-center gap-0 font-bold lowercase text-sm capitalize border-b border-border sm:border-none">
+          {navItems.map((item) => (
             <Link
-              href={"/"}
-              className={` hover:text-magenta ${
-                pathname === "/"
+              key={item.href}
+              href={item.href}
+              className={`group grow h-full flex items-center justify-center text-xs font-medium px-8 border-l border-border ${
+                pathname === item.href
                   ? "text-foreground decoration-1 line-through"
                   : "text-mutedForeground hover:line-through"
               }`}
             >
               <SliceText className="font-mono text-xs font-bold tracking-[3px]">
-                ~lettuce
+                {item.label}
               </SliceText>
             </Link>
-            <div className="w-20 sm:w-28 h-full flex items-center justify-center">
-              <ThemeSlider buttonClassName="p-1" />
-            </div>
-          </div>
-          <div className="w-110 min-w-fit h-full flex items-center gap-0 font-bold lowercase text-sm capitalize">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`group grow h-full flex items-center justify-center text-xs font-medium px-8 border-l border-border ${
-                  pathname === item.href
-                    ? "text-foreground decoration-1 line-through"
-                    : "text-mutedForeground hover:line-through"
-                }`}
-              >
-                <SliceText className="font-mono text-xs font-bold tracking-[3px]">
-                  {item.label}
-                </SliceText>
-              </Link>
-            ))}
-          </div>
+          ))}
         </div>
 
         {/* Mobile menu button */}
