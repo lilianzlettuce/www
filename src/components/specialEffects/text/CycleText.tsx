@@ -91,7 +91,7 @@ export function CycleTextBlend({
                 <MultiSliceText 
                   slices={3}
                   maxOffset={8}
-                  className="text-3xl"
+                  className=""
                   reRenderOnHover={true}
                 >
                     <ScrambleText 
