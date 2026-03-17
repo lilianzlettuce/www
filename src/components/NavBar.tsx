@@ -403,39 +403,39 @@ export function NavBarMinimal({ className }: NavBarProps) {
         </Link>
         
         <div className="w-full h-full px-4 sm:px-6 lg:px-2 flex sm:flex items-center justify-between gap-2 border-b border-border">
-          <Link
-            href={"/"}
-            className={` hover:text-magenta ${
-              pathname === "/"
-                ? "text-foreground decoration-1 line-through"
-                : "text-mutedForeground hover:line-through"
-            }`}
-          >
-            <SliceText className="font-mono text-xs font-bold tracking-[3px]">
-              ~lettuce
-            </SliceText>
-          </Link>
-          <div className="md:w-3/4 h-full flex items-center justify-end gap-2">
+          <div className="grow flex justify-between">
+            <Link
+              href={"/"}
+              className={` hover:text-magenta ${
+                pathname === "/"
+                  ? "text-foreground decoration-1 line-through"
+                  : "text-mutedForeground hover:line-through"
+              }`}
+            >
+              <SliceText className="font-mono text-xs font-bold tracking-[3px]">
+                ~lettuce
+              </SliceText>
+            </Link>
             <div className="w-20 sm:w-28 h-full flex items-center justify-center">
               <ThemeSlider buttonClassName="p-1" />
             </div>
-            <div className="w-2/3 h-full flex items-center gap-0 font-bold lowercase text-sm capitalize">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`group w-full h-full flex items-center justify-center text-xs font-medium px-8 border-l border-border ${
-                    pathname === item.href
-                      ? "text-foreground decoration-1 line-through"
-                      : "text-mutedForeground hover:line-through"
-                  }`}
-                >
-                  <SliceText className="font-mono text-xs font-bold tracking-[3px]">
-                    {item.label}
-                  </SliceText>
-                </Link>
-              ))}
-            </div>
+          </div>
+          <div className="w-110 min-w-fit h-full flex items-center gap-0 font-bold lowercase text-sm capitalize">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`group grow h-full flex items-center justify-center text-xs font-medium px-8 border-l border-border ${
+                  pathname === item.href
+                    ? "text-foreground decoration-1 line-through"
+                    : "text-mutedForeground hover:line-through"
+                }`}
+              >
+                <SliceText className="font-mono text-xs font-bold tracking-[3px]">
+                  {item.label}
+                </SliceText>
+              </Link>
+            ))}
           </div>
         </div>
 
