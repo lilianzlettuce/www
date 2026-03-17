@@ -9,7 +9,7 @@ interface SliceTextProps {
 
 export function SliceText({ children, className }: SliceTextProps) {
   return (
-    <div className={`relative inline-block font-bold text-4xl ${className}`}>
+    <div className={`relative inline-block font-bold text-4xl leading-none ${className}`}>
       {/* Top slice */}
       <span
         className="absolute top-0 left-0 group-hover:left-[-1px] w-full overflow-hidden"

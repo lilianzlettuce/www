@@ -175,7 +175,7 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
           <div className="hidden font-bold">
             {frontmatter.title}
           </div>
-          <button className="group font-roboto-mono font-semibold hover:rotate-x-180 hover:uppercase hover:text-foreground"
+          <button className="group h-3 flex items-center font-roboto-mono font-semibold leading-none hover:rotate-x-180 hover:uppercase text-foreground hover:text-background hover:bg-foreground"
               onClick={() => router.back()}>
             <span className="inline-block group-hover:hidden">{'>>'}&nbsp;</span>
             <span className="hidden group-hover:inline-block">{'<<'}&nbsp;</span>

@@ -415,7 +415,7 @@ export function NavBarMinimal({ className }: NavBarProps) {
             <ThemeSlider buttonClassName="p-1" />
           </div>
         </div>
-        <div className="bg-background w-full sm:w-110 min-w-fit h-full flex items-center gap-0 font-bold lowercase text-sm capitalize border-b border-border sm:border-none">
+        <div className="bg-background w-full sm:w-110 min-w-fit h-full hidden sm:flex items-center gap-0 font-bold lowercase text-sm capitalize border-b border-border sm:border-none">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -423,10 +423,10 @@ export function NavBarMinimal({ className }: NavBarProps) {
               className={`group grow h-full flex items-center justify-center text-xs font-medium px-8 border-l border-border ${
                 pathname === item.href
                   ? "text-foreground decoration-1 line-through"
-                  : "text-mutedForeground hover:line-through"
+                  : "text-muted-foreground hover:line-through"
               }`}
             >
-              <SliceText className="font-mono text-xs font-bold tracking-[3px]">
+              <SliceText className={`font-mono text-xs font-bold tracking-[2px]`}>
                 {item.label}
               </SliceText>
             </Link>
