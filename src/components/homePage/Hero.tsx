@@ -4,7 +4,6 @@ import ZoomableImage from "../ZoomableImage";
 import { /*CycleText,*/ CycleTextBlend } from "../specialEffects/text/CycleText";
 
 export default function Hero() {
-    
     return (
       <section className="relative h-screen min-h-screen py-10 sm:py-[400px] flex flex-col sm:flex-row items-center justify-start">
         <div className="absolute inset-0 bg-grid-pattern opacity-50"></div>

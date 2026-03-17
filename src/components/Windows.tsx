@@ -104,7 +104,7 @@ export function HeroWindow({
                     <div className="text-md font-tiny5 uppercase">
                         {dragHandleText}
                     </div>
-                    <div className="flex flex-row items-center justify-between gap-2">
+                    <div className="flex flex-row items-center justify-between gap-2 text-foreground">
                         <div className="w-4.5 h-4.5 box-border border-2 border-foreground flex items-center justify-center">
                             <MinimizeIcon className="scale-125" strokeWidth={2.5} />
                         </div>
