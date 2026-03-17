@@ -169,16 +169,15 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
   
   return (
     <header className="z-50 sticky top-0 left-0 w-full flex flex-row items-start gap-4">
-      <div className="w-full h-10 pt-4 flex flex-row gap-1 items-start justify-start">
-          
+      <div className="w-full h-10 pt-4 flex flex-row gap-1 items-start justify-start">    
         <div className=" w-full flex flex-col text-xs text-muted-foreground">
           <div className="hidden font-bold">
             {frontmatter.title}
           </div>
-          <button className="group h-3 flex items-center font-roboto-mono font-semibold leading-none hover:rotate-x-180 hover:uppercase text-foreground hover:text-background hover:bg-foreground"
+          <button className="p-0 group h-3 flex items-center font-roboto-mono font-semibold leading-none hover:rotate-x-180 hover:uppercase text-foreground"
               onClick={() => router.back()}>
-            <span className="inline-block group-hover:hidden">{'>>'}&nbsp;</span>
-            <span className="hidden group-hover:inline-block">{'<<'}&nbsp;</span>
+            <span className="inline-block group-hover:hidden">{'<<'}&nbsp;</span>
+            <span className="hidden group-hover:inline-block">{'>>'}&nbsp;</span>
             go back
           </button>
           <div className="hidden">
@@ -254,7 +253,7 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
       </div>
 
       {/* Main content */}
-      <div className="max-w-6xl mx-auto w-full px-10 pr-12 py-0">
+      <div className="max-w-6xl mx-auto w-full px-5 sm:px-10 sm:pr-12 py-0">
         <ScrollIndicator className="fixed top-8 right-4" />
 
         {/* Project Header */}

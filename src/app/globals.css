@@ -436,6 +436,11 @@ body {
     font-family: var(--font-uncut-sans);
     font-size: 1rem;
   }
+  @media (max-width: 640px) {
+    .mdx-content {
+      font-size: 0.9rem;
+    }
+  }
 
   .mdx-content p {
     letter-spacing: 0.05em;
