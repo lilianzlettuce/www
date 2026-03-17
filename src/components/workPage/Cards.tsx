@@ -224,7 +224,7 @@ export function ProjectCardLarge({ project }: ProjectCardProps) {
         <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className="group relative h-75 rounded-none border-1 border-border hover:border-muted-foreground transition-all duration-300 hover:-translate-y-1"
+            className="group relative sm:h-75 rounded-none border-1 border-border hover:border-muted-foreground transition-all duration-300 hover:-translate-y-1"
         >
             {/* Decorative corners */}
             <BoxCorners
@@ -234,8 +234,8 @@ export function ProjectCardLarge({ project }: ProjectCardProps) {
             />
 
             {/* Project content */}
-            <div className="w-full h-full p-4 flex flex-row gap-4">
-                <div className="relative w-100 h-full flex items-center justify-center border-1 border-secondary">
+            <div className="w-full h-full p-4 flex flex-col sm:flex-row gap-4">
+                <div className="relative sm:w-100 h-60 sm:h-full flex items-center justify-center border-1 border-secondary">
                     {project.image ? (
                         <Image
                             src={project.image}
@@ -250,10 +250,10 @@ export function ProjectCardLarge({ project }: ProjectCardProps) {
                     )}
                 </div>
                 
-                <div className="w-1/2 h-full flex flex-col justify-between">
+                <div className="sm:w-1/2 h-full flex flex-col justify-between gap-4">
                     <div>
                         <div className="flex items-start justify-between">
-                            <h3 className="font-roboto-monotext-base font-semibold text-foreground">
+                            <h3 className="font-roboto-mono text-lg sm:text-3xl font-semibold text-foreground">
                                 {project.title}
                             </h3>
                         </div>
@@ -289,12 +289,12 @@ export function ProjectCardLarge({ project }: ProjectCardProps) {
     );
 };
 
-export function ProjectCardBasic({ project, className = "h-90" }: ProjectCardProps) {
+export function ProjectCardBasic({ project, className = "" }: ProjectCardProps) {
     return (
         <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className={`${className} group relative rounded-none box-border border-1 border-border hover:border-muted-foreground hover:shadow-lg transition-all duration-300 hover:-translate-y-1`}
+            className={`${className} group relative h-fit rounded-none box-border border-1 border-border hover:border-muted-foreground hover:shadow-lg transition-all duration-300 hover:-translate-y-1`}
         >
             <BoxCorners
                 cornerSize="4px"
@@ -307,8 +307,8 @@ export function ProjectCardBasic({ project, className = "h-90" }: ProjectCardPro
                 cornerOffset="-1px"
                 cornerColor="transparent"
             />*/}
-            <div className="w-full h-full p-4 flex flex-col gap-4">
-                <div className="relative w-full h-full flex items-center justify-center border-1 border-secondary">
+            <div className="w-full h-fit p-4 flex flex-col gap-4">
+                <div className="relative aspect-4/3 flex items-center justify-center border-1 border-secondary">
                     <BoxCorners
                         icon={<div className="w-full h-full border-t-1 border-l-1 border-muted-foreground"></div>}
                         cornerSize="16px"
@@ -319,7 +319,7 @@ export function ProjectCardBasic({ project, className = "h-90" }: ProjectCardPro
                         <Image
                             src={project.image}
                             alt={project.title}
-                            className="w-full h-60 object-cover"
+                            className="w-full h-fit sm:h-60 object-cover"
                             fill={true}
                         />
                     ) : (
@@ -329,7 +329,7 @@ export function ProjectCardBasic({ project, className = "h-90" }: ProjectCardPro
                     )}
                 </div>
                 
-                <div className="h-60 flex flex-col justify-between">
+                <div className="h-fit sm:h-30 flex flex-col justify-between">
                     <div className="">
                         <div className="flex items-start justify-between">
                             <h3 className="font-sans text-base font-semibold text-foreground">
@@ -435,7 +435,7 @@ export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCard
 
                 {/* Content */}
                 <div className="w-full grow p-4 flex flex-col gap-4">
-                    <div className="relative w-full h-full flex items-center justify-center border-1 border-secondary">
+                    <div className="relative w-full h-70 sm:h-full flex items-center justify-center border-1 border-secondary">
                         <BoxCorners
                             icon={<div className="w-full h-full border-t-1 border-l-1 border-muted-foreground"></div>}
                             cornerSize="16px"
@@ -456,7 +456,7 @@ export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCard
                         )}
                     </div>
                     
-                    <div className="h-50 flex flex-col justify-between">
+                    <div className="h-fit sm:h-50 flex flex-col justify-between gap-4">
                         <div className="">
                             <div className="flex items-start justify-between">
                                 <h3 className="hidden font-sans text-base font-semibold text-foreground">
@@ -637,12 +637,6 @@ export function ProjectCardMinimal({ project, className = "h-90" }: ProjectCardP
                 {/* Content */}
                 <div className="w-full grow p-0 flex flex-col gap-4">
                     <div className="relative w-full aspect-4/3 flex items-center justify-center overflow-hidden">
-                        <BoxCorners
-                            icon={<div className="w-full h-full border-t-1 border-l-1 border-muted-foreground"></div>}
-                            cornerSize="16px"
-                            cornerOffset="-1px"
-                            cornerColor="transparent"
-                        />
                         {project.image ? (
                             <Image
                                 src={project.image}
@@ -700,7 +694,7 @@ export function ProjectCardDefault({ project }: ProjectCardProps) {
         >
             <div className="aspect-video bg-muted flex items-center justify-center">
                 {project.image ? (
-                    <img
+                    <Image
                         src={project.image}
                         alt={project.title}
                         className="w-full h-full object-cover"
@@ -710,9 +704,9 @@ export function ProjectCardDefault({ project }: ProjectCardProps) {
                         {project.title.charAt(0)}
                     </div>
                 )}
-                </div>
+            </div>
                 
-                <div className="p-6">
+            <div className="p-6">
                 <div className="flex items-start justify-between mb-2">
                     <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
                         {project.title}

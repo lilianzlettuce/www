@@ -402,7 +402,7 @@ export function NavBarMinimal({ className }: NavBarProps) {
           <LogoIcon className="w-fit h-full" />
         </Link>
         
-        <div className="w-full h-full px-4 sm:px-6 lg:px-2 hidden md:flex items-center justify-between gap-2 border-b border-border">
+        <div className="w-full h-full px-4 sm:px-6 lg:px-2 flex sm:flex items-center justify-between gap-2 border-b border-border">
           <Link
             href={"/"}
             className={` hover:text-magenta ${
@@ -415,8 +415,8 @@ export function NavBarMinimal({ className }: NavBarProps) {
               ~lettuce
             </SliceText>
           </Link>
-          <div className="w-3/4 h-full md:flex items-center justify-end gap-2">
-            <div className="w-28 h-full flex items-center justify-center">
+          <div className="md:w-3/4 h-full flex items-center justify-end gap-2">
+            <div className="w-20 sm:w-28 h-full flex items-center justify-center">
               <ThemeSlider buttonClassName="p-1" />
             </div>
             <div className="w-2/3 h-full flex items-center gap-0 font-bold lowercase text-sm capitalize">
@@ -440,7 +440,7 @@ export function NavBarMinimal({ className }: NavBarProps) {
         </div>
 
         {/* Mobile menu button */}
-        <div className="md:hidden flex items-center space-x-4">
+        <div className="hidden md:hidden flex items-center space-x-4">
           <ThemeToggle />
           <button className="text-mutedForeground hover:text-foreground">
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

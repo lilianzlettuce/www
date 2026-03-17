@@ -82,7 +82,7 @@ function WorkPageContent() {
                 || "status: 45% - - - complete rehaul in progress <br/> come forth ↓"}
             />
 
-            <div className="z-30 w-full flex flex-row items-center justify-start gap-2 mb-8">
+            <div className="z-30 w-full flex flex-col sm:flex-row items-start sm:items-center justify-start gap-2 mb-8">
               {/* List/Grid Buttons */}
               <div className="flex gap-2">
                 <button className={`p-1 flex items-center gap-1 
@@ -104,7 +104,7 @@ function WorkPageContent() {
                 </button>
               </div>
 
-              <div className="w-fit px-4">
+              <div className="w-fit sm:px-4">
                 {/* Project filter */}
                 <ProjectFilter 
                   categories={projectCategories}
@@ -135,12 +135,12 @@ function WorkPageContent() {
 
               {/* All Grid View */}
               {viewMode === "grid" && categoryFilters.length === 0 && (
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredProjects.map((project: ProjectFrontmatter) => (
                     <ProjectCardBasic
                       key={project.slug} 
                       project={project} 
-                      className="min-h-100" 
+                      className="" 
                     />
                   ))}
                 </div>
@@ -148,7 +148,7 @@ function WorkPageContent() {
 
               {/* Dev Grid View */}
               {viewMode === "grid" && categoryFilters.includes("dev") && (
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredProjects.map((project: ProjectFrontmatter) => (
                     <ProjectCardTechMono 
                       key={project.slug} 
@@ -175,7 +175,7 @@ function WorkPageContent() {
               {/* Art Grid View */}
               {viewMode === "grid" && categoryFilters.includes("art") && (
                 <>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
                     {filteredProjects.map((project: ProjectFrontmatter) => (
                       <ProjectCardMinimal key={project.slug} project={project} />
                     ))}

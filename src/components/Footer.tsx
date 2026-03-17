@@ -21,7 +21,7 @@ export function Footer() {
                     </Link>
                 ))}
             </div>
-            <div className="w-full pt-20 flex justify-between items-center border-t border-border font-medium text-xs">
+            <div className="w-full flex justify-between items-center border-t border-border font-medium text-xs">
                 &copy; {new Date().getFullYear()} LETTUCEMEAT.
             </div>
             <div className="w-full flex justify-between items-center border-t border-border font-medium text-xs">

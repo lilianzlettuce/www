@@ -1,15 +1,6 @@
 //import { SideBar3 } from "@/components/NavBar";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  console.log("work page metadata slug: ", slug)
-  
-  /*if (!project) {
-    return {
-      title: 'Project Not Found',
-    };
-  }*/
-
+export async function generateMetadata() {
   const title = `Work | Lilian Zhao`;
   const description =  "All past and in progress works across code, design, art, and more.";
 
