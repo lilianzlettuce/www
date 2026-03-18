@@ -6,7 +6,7 @@ import { useMemo, useState, useEffect, Suspense } from "react";
 import { ProjectFrontmatter } from "@/lib/mdx";
 import { projectCategories } from "@/lib/data";
 
-import { ProjectCardBasic, ProjectCardLarge, ProjectCardTechMono, ProjectCardMinimal, ProjectCardMinimal2 } from "@/components/workPage/Cards";
+import { /*ProjectCardBasic,*/ ProjectCardLarge, ProjectCardTechMono, ProjectCardMinimal, ProjectCardMinimal2 } from "@/components/workPage/Cards";
 import { /*WorkPageHeader2, WorkPageHeaderMinimal, */ WorkPageHeaderContrast } from "@/components/workPage/Header";
 import { ProjectFilter } from "@/components/workPage/ProjectFilter";
 import { GridIcon, ListIcon, SquareIcon } from "@/components/svg/Icons";
@@ -19,7 +19,7 @@ function WorkPageContent() {
   const categoryFilters = searchParams.getAll("category");
   const [projects, setProjects] = useState<ProjectFrontmatter[]>([]);
   const [loading, setLoading] = useState(true);
-  const [viewMode, setViewMode] = useState<string>("list");
+  const [viewMode, setViewMode] = useState<string>("grid");
 
   // Load projects on component mount
   useEffect(() => {
@@ -61,7 +61,7 @@ function WorkPageContent() {
   return (
     <div className="w-full">
       <NavBarMinimal className="h-8 sm:h-6 absolute inset-0 top-0 left-0"/>
-      <div className="w-full flex flex-col">
+      <div className="w-full mb-8 flex flex-col">
         <div className="w-full px-0 py-0">
           {/* Filtering */}
           <div className="hidden flex items-center gap-2 mt-4">
@@ -136,11 +136,12 @@ function WorkPageContent() {
               {viewMode === "grid" && categoryFilters.length === 0 && (
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredProjects.map((project: ProjectFrontmatter) => (
-                    <ProjectCardBasic
+                    <ProjectCardMinimal key={project.slug} project={project} />
+                    /*<ProjectCardBasic
                       key={project.slug} 
                       project={project} 
                       className="" 
-                    />
+                    />*/
                   ))}
                 </div>
               )}

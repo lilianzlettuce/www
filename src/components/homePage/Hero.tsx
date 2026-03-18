@@ -9,7 +9,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-grid-pattern opacity-50"></div>
         {/* Text */}
         <div className="relative z-10 text-left w-11/12 sm:w-1/2 h-30 sm:h-fit px-4 sm:px-6 lg:px-8">
-          <h1 className="font-ibm-plex-mono text-xs md:text-2xl font-bold text-foreground mb-6">
+          <h1 className="font-roboto-mono text-[13px] md:text-xl font-bold text-foreground mb-6">
             Hello, I&apos;m&nbsp;
               <CycleTextBlend
                 className="w-40 inline-block whitespace-nowrap font-bold italic"

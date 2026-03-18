@@ -452,7 +452,7 @@ export function NavBar({ className }: NavBarProps) {
 
   return (
     <nav className={`${className} z-100 sticky top-0 w-full py-0 bg-background`}>
-      <div className="w-full h-full px-0 sm:px-6 lg:px-2 flex flex-col sm:flex-row items-center justify-between sm:gap-2 border-b border-border">
+      <div className="w-full h-full px-0 sm:px-2 flex flex-col sm:flex-row items-center justify-between sm:gap-2 border-b border-border">
         <div className="w-full h-full sm:w-fit px-2 grow hidden sm:flex justify-between">
           <Link href="/" className="w-fit h-full text-xl font-bold text-foreground hover:text-mutedForeground transition-colors">
             <LogoIcon className="w-fit h-full" />
@@ -478,6 +478,9 @@ export function NavBar({ className }: NavBarProps) {
               </SliceText>
             </Link>
           ))}
+          <div className="h-full flex sm:hidden items-center justify-center border-l border-border">
+            <ThemeToggle buttonClassName="p-2" />
+          </div>
         </div>
       </div>
     </nav>
