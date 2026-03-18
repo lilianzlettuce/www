@@ -467,13 +467,13 @@ export function NavBar({ className }: NavBarProps) {
             <Link
               key={item.href}
               href={item.href}
-              className={`group grow w-full h-full flex items-center justify-center text-xs font-medium px-8 border-l border-border ${
+              className={`group/slice grow h-full flex items-center justify-center text-xs font-medium px-8 border-l border-border ${
                 pathname === item.href
                   ? "text-foreground decoration-1 line-through"
-                  : "text-mutedForeground hover:line-through"
+                  : "text-muted-foreground hover:text-foreground "
               }`}
             >
-              <SliceText className="font-mono text-xs font-bold tracking-[3px]">
+              <SliceText className={`font-mono text-xs font-bold tracking-[2px]`}>
                 {item.label}
               </SliceText>
             </Link>
