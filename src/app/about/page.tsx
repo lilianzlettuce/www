@@ -14,14 +14,128 @@ export default function About() {
   ];
 
   return (
-    <div className="w-full flex flex-col px-4 py-4 sm:px-6 lg:px-8">
-
-      <AboutPageHeader />
-    
+    <div className="overflow-x-hidden w-full max-w-full flex flex-col items-center justify-center px-4 py-4 sm:px-6 lg:px-8">
       {/* Header */}
-      <section className="">
-        <div className="flex py-12">
-          <div className="w-[48%] mr-4">
+      <WindowTechMono className="w-full 2xl:w-11/12">
+        <div className="w-full h-full p-4 flex flex-col gap-4">
+            <div className="w-full h-full flex flex-col md:flex-row items-center justify-between gap-4 font-ibm-plex-mono text-xs">
+                {/* Left text */}
+                <div className="w-full md:w-1/2 lg:w-fit flex flex-col gap-4">
+                    <div className="w-fit text-left">
+                        <ScrambleText
+                            text="About"
+                            className="w-fit text-4xl md:text-6xl/[0.8] font-micro5 font-bold text-foreground uppercase mb-4"
+                            replayOnHover={true}
+                        />
+                        <ScrambleText
+                            text="What are you even searching for?"
+                            className="text-xs text-muted-foreground"
+                        />
+                    </div>
+                  <GridContainer 
+                    id="work-page-header-2-grid"
+                    className="min-w-1/2 h-full pt-2 px-6 border-1 border-border flex items-center justify-center"
+                    layers={[
+                        {
+                            spacing: 30,
+                            strokeWidth: 0.9,
+                            strokeLength: 30,
+                            color: "rgba(255,255,255)",
+                            opacity: 0.1
+                        },
+                        {
+                            spacing: 30,
+                            strokeWidth: 1,
+                            strokeLength: 3,
+                            color: "rgba(255,255,255)",
+                            opacity: 0.3
+                        },
+                    ]} 
+                >
+                  <div className="h-full p-4 py-6">
+                    <p className="font-roboto-mono text-xs max-w-2xl">
+                      Hello — I&apos;m lettuce! I make stuff sometimes
+                      <br/>
+                      <br/>
+                      I&apos;m currently a senior studying Computer Science at Purdue University. I enjoy dabbling in web based solutions, human-computer interaction, data analysis/visualization, mixed reality, game development, and whatever else catches my interest.
+                      <br/>
+                      <br/>
+                      <br/>
+                      My artwork combines digital media and physical computing to explore agency, consciousness, and the interplay between the organic and the artificial in the age of intelligent machines. I utilize data-driven graphics, reprogrammed electronics, and responsive soundscapes to investigate metaphysical relationships between body and mind. 
+                      <br/>
+                      <br/>
+                      <br/>
+                      right now I am working on: finishing this website
+                    </p>
+                    <p className="hidden text-base max-w-2xl">
+                      Hello — I&apos;m Lilian! I&apos;m a student studying Computer Science at Purdue University, and I like making things, especially when it involves mixed reality, web based solutions, human-computer interaction, and game development.
+                    </p>
+                  </div>
+                </GridContainer>
+
+                </div>
+
+                {/* Right window display */}
+                <div className="relative overflow-hidden w-fit sm:w-fit sm:min-w-80 lg:min-w-fit h-120 bg-background border-1 border-border">
+                  <ShrinkCircles 
+                    className="overflow-hidden max-w-full"
+                    imageSrc="/img/lowRes/pineapple.jpg"
+                    scaleFactor={1.8}
+                    gridGap={2}
+                    attractionDistance={200}
+                    shrinkFactor={1}
+                    minRadius={0.5}
+                    maxRadius={5}
+                    delayFactor={0.85}
+                    delayCap={0.1}
+                    debounceTime={3000}
+                  />
+                  {/*<ShrinkCircles 
+                    className="w-fit h-fit"
+                    showStats={false}
+                    imageSrc="/img/lowRes/pineapple4.jpg"
+                    scaleFactor={1.8}
+                    gridGap={3}
+                    attractionDistance={200}
+                    shrinkFactor={1}
+                    minRadius={0.5}
+                    maxRadius={4}
+                    delayFactor={0.85}
+                    delayCap={0.1}
+                    debounceTime={3000}
+                    autoAnimStep={0.03}
+                  />*/}
+                </div>
+            </div>
+
+            <div className="w-full flex flex-row justify-between font-roboto-mono">
+                <div className="flex flex-col items-start gap-2">
+                    <p className="text-xs">
+                        No rest for the wicked.
+                    </p>
+                    <div className="flex flex-row items-center gap-2">
+                        <DevIcon className="w-3 h-3" strokeWidth={2} />
+                        <DesignIcon className="w-3 h-3" strokeWidth={2} />
+                        <ArtIcon className="w-3 h-3" strokeWidth={2} />
+                    </div>
+                </div>
+                <div className="flex flex-col items-end">
+                    <p className="text-[0.65rem]">
+                        IBM-X340 +++// 
+                    </p>
+                    <p className="text-sm">
+                        <span className="font-micro5 text-xl">&#91;&nbsp;</span>
+                        <span className="relative top-0.4">■■■■■□□□</span>
+                        <span className="font-micro5 text-xl">&nbsp;&#93;</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </WindowTechMono>
+
+      <section className="hidden">
+        <div className="flex flex-col sm:flex-row py-12">
+          <div className="sm:w-[48%] mr-4">
             <p className="font-mono text-sm max-w-2xl">
               Hello — I&apos;m lettuce! I make stuff sometimes
               <br/>
@@ -48,9 +162,9 @@ export default function About() {
             delayFactor={0.85}
             delayCap={0.1}
             debounceTime={3000}
-          />*/}
+          />
           
-          <div className="w-1/2">
+          <div className="sm:w-1/2">
             <ShrinkCircles 
               className="w-fit h-fit"
               interactionMode="none"
@@ -67,7 +181,7 @@ export default function About() {
               debounceTime={3000}
               autoAnimStep={0.03}
             />
-          </div>
+          </div>*/}
         </div>
       </section>
 
@@ -163,7 +277,7 @@ export default function About() {
   );
 } 
 
-function AboutPageHeader() {
+export function AboutPageHeader() {
   return (
       <div className="w-full min-h-[50vh] py-3 flex flex-row gap-4">
           <div className="relative w-full h-full">
@@ -173,11 +287,11 @@ function AboutPageHeader() {
                     fill={true}
                     className="w-full h-full object-cover" />
               </div>
-              <WindowTechMono className="w-full min-h-100">
+              <WindowTechMono className="grow min-h-100">
                   <div className="w-full h-full p-4 flex flex-col gap-4">
                       <div className="w-full h-full flex flex-row justify-between gap-2 font-ibm-plex-mono text-xs">
-                          <div className="flex flex-col gap-4">
-                              <div className="text-left">
+                          <div className="w-fit flex flex-col gap-4">
+                              <div className="w-fit text-left">
                                   <ScrambleText
                                       text="About"
                                       className="w-fit text-4xl md:text-6xl/[0.8] font-micro5 font-bold text-foreground uppercase mb-4"
