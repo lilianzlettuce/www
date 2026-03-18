@@ -35,7 +35,7 @@ export default function Hero() {
           </p>
         </div>
         {/* Graphics */}
-        <div className="h-fit relative top-1/12 sm:top-0 left-1/12">
+        <div className="h-fit relative mt-8 sm:top-0 left-1/12">
           <HeroWindow className="z-10 w-60 sm:w-[300px] h-40 sm:h-fit -translate-x-20 -translate-y-10 sm:-translate-x-10 sm:translate-y-4"
             dragHandleText="Greetings"
           >
