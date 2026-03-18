@@ -60,7 +60,7 @@ export function WindowTechMono({
                 </div>
 
                 {/* Window content */}
-                <div className="overflow-hidden flex-1 flex flex-col items-center justify-center">
+                <div className="touch-auto overflow-hidden flex-1 flex flex-col items-center justify-center">
                     {children}
                 </div>
             </div>
@@ -109,16 +109,16 @@ export function HeroWindow({
                             <MinimizeIcon className="w-3 h-3 scale-125" strokeWidth={2.5} />
                         </div>
                         <div className="w-4.5 h-4.5 box-border border-2 border-foreground flex items-center justify-center">
-                            <ExpandIcon className="w-3 h-3" strokeWidth={2.5} />
+                            <ExpandIcon className="w-3 h-3 scale-125" strokeWidth={2.5} />
                         </div>
                         <div className="w-4.5 h-4.5 box-border border-2 border-foreground flex items-center justify-center">
-                            <PixelatedXIcon className="w-3 h-3" strokeWidth={0} />
+                            <PixelatedXIcon className="w-3 h-3 scale-125" strokeWidth={0} />
                         </div>
                     </div>
                 </div>
 
                 {/* Window content */}
-                <div className="overflow-hidden flex-1 flex flex-col items-center justify-center border-2 border-foreground">
+                <div className="touch-auto overflow-hidden flex-1 flex flex-col items-center justify-center border-2 border-foreground">
                     {children}
                 </div>
             </div>
