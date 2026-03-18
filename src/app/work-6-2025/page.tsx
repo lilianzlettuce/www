@@ -7,7 +7,7 @@ import { ProjectFrontmatter } from "@/lib/mdx";
 import { projectCategories } from "@/lib/data";
 
 import { ProjectCardBasic, ProjectCardLarge, ProjectCardTechMono, ProjectCardMinimal } from "@/components/workPage/Cards";
-import { WorkPageHeader, WorkPageHeader2 } from "@/components/workPage/Header";
+import { WorkPageHeader, WorkPageHeader2 } from "@/components/Header";
 import { ProjectFilter } from "@/components/workPage/ProjectFilter";
 import { GridIcon, ListIcon } from "@/components/svg/Icons";
 import ProjectList from "@/components/workPage/ProjectList";
