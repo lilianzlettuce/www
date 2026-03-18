@@ -134,7 +134,7 @@ function WorkPageContent() {
 
               {/* All Grid View */}
               {viewMode === "grid" && categoryFilters.length === 0 && (
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="px-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredProjects.map((project: ProjectFrontmatter) => (
                     <ProjectCardMinimal key={project.slug} project={project} />
                     /*<ProjectCardBasic
