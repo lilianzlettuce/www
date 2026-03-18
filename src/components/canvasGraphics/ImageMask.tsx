@@ -157,17 +157,13 @@ const ImageMask = ({
   }, [ctx, canvasWidth, canvasHeight, isImageLoaded, pixels, imageWidth, imageHeight, gridGap, pixelSize, maskColor, imageDimensions.imgScale]);
 
   return (
-    <div
-      className="relative inline-block"
-      style={{ width: canvasWidth || 0, height: canvasHeight || 0 }}
-    >
+    <div>
       <canvas
         id={id}
         ref={canvasRef}
-        className="w-full h-full block"
+        className="w-screen h-screen"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        style={{ width: canvasWidth || 0, height: canvasHeight || 0 }}
       />
     </div>
   );

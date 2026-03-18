@@ -5,7 +5,7 @@ import { socialLinks } from "@/lib/data";
 
 export function Footer() {
   return (
-    <footer className="w-screen h-[60vh] sm:h-[80vh] px-2 py-1 flex flex-col justify-between bg-background">
+    <footer className="w-screen h-fit [60vh] sm:h-[80vh] px-2 py-1 flex flex-col justify-between bg-background">
         <div className="w-full py-8 border-t border-border ">
             <FooterLogoIcon className="w-full h-full scale-x-100 rotate-z-180 text-foreground" />
         </div>

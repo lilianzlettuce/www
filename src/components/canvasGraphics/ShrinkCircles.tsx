@@ -326,6 +326,7 @@ const ShrinkCircles = ({
   function handleMouseMove(event: React.MouseEvent<HTMLCanvasElement>) {
     if (!canvasRef.current || interactionMode === "none") return;
 
+    // Calculate mouse position relative to canvas on viewport
     const rect = canvasRef.current.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
@@ -342,6 +343,7 @@ const ShrinkCircles = ({
   function handleMouseLeave() {
     if (!canvasRef.current || interactionMode === "none") return;
 
+    // Call hover callback to indicate no hover
     if (onHoverChange) {
       onHoverChange(false, -1, -1);
     }
@@ -399,9 +401,11 @@ const ShrinkCircles = ({
     updateRadiusPoints(-100, -100);
   }
 
+  // Animation frame callback
   const animate = () => {
     if (!canvasRef.current || !ctx || interactionMode === "none") return;
-
+    
+    // Calculate mouse position relative to canvas on viewport
     const rect = canvasRef.current.getBoundingClientRect();
     const pointer = pointerPosition.current;
     let drawX = -100;
@@ -419,8 +423,8 @@ const ShrinkCircles = ({
   useAnimationFrame(animate);
 
   return (
-    <div className={`${className} relative`} style={{ width: canvasWidth || undefined, height: canvasHeight || undefined }}>
-      <div style={{ width: canvasWidth || 0, height: canvasHeight || 0, backgroundColor: bgColor === "none" ? "transparent" : bgColor }}>
+    <div className={`${className} relative`}>
+      <div style={{ backgroundColor: bgColor === "none" ? "transparent" : bgColor }}>
         <canvas
           id={id}
           ref={canvasRef}
@@ -430,7 +434,7 @@ const ShrinkCircles = ({
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          style={{ pointerEvents: interactionMode === "none" ? "none" : "auto", width: canvasWidth || 0, height: canvasHeight || 0 }}
+          style={{ pointerEvents: interactionMode === "none" ? "none" : "auto"}}
         />
       </div>
       {showStats && (

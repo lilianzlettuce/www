@@ -167,7 +167,7 @@ export default function RootLayout({
     >
       <body className="antialiased">
         <ThemeProvider>
-          <main className="min-h-screen">
+          <main className="sm:min-h-screen">
             {children}
           </main>
           <Footer />

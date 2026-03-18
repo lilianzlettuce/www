@@ -12,7 +12,7 @@ export default async function Home() {
   const featuredProjects = await getFeaturedProjects();
 
   return (
-    <div className="min-h-screen">
+    <div className="sm:min-h-screen">
       <NavBar className="h-6 hidden" />
       <NavBarMinimal className="h-6 absolute inset-0 top-0 left-0"/>    
 
