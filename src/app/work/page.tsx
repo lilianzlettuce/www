@@ -11,7 +11,7 @@ import { /*WorkPageHeader2, WorkPageHeaderMinimal, */ WorkPageHeaderContrast } f
 import { ProjectFilter } from "@/components/workPage/ProjectFilter";
 import { GridIcon, ListIcon, SquareIcon } from "@/components/svg/Icons";
 import ProjectList from "@/components/workPage/ProjectList";
-import { NavBarMinimal, SideBarMinimal } from "@/components/NavBar";
+import { NavBarMinimal } from "@/components/NavBar";
 import Spinner from "@/components/Spinner";
 
 function WorkPageContent() {
@@ -60,9 +60,8 @@ function WorkPageContent() {
 
   return (
     <div className="w-full">
-      <NavBarMinimal className="h-6 absolute inset-0 top-0 left-0"/>
+      <NavBarMinimal className="h-8 sm:h-6 absolute inset-0 top-0 left-0"/>
       <div className="w-full flex flex-col">
-        <SideBarMinimal className="hidden" />
         <div className="w-full px-0 py-0">
           {/* Filtering */}
           <div className="hidden flex items-center gap-2 mt-4">

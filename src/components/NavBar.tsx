@@ -398,16 +398,16 @@ export function NavBarMinimal({ className }: NavBarProps) {
   return (
     <nav className={`${className} z-100 sticky top-0 w-full py-0 bg-background`}>
       <div className="w-full h-full px-0 sm:px-6 lg:px-2 flex flex-col sm:flex-row items-center justify-between sm:gap-2 border-b border-border">
-        <div className="w-full sm:w-fit px-2 grow flex justify-between">
+        <div className="w-full sm:w-fit h-full px-2 grow flex justify-between">
           <Link
             href={"/"}
-            className={` hover:text-magenta ${
+            className={`group/slice h-full flex items-center justify-center ${
               pathname === "/"
-                ? "text-foreground decoration-1 line-through"
-                : "text-mutedForeground hover:line-through"
+                ? "text-foreground"
+                : "text-muted-foreground hover:text-foreground hover:bg-magenta"
             }`}
           >
-            <SliceText className="font-mono text-xs font-bold tracking-[3px]">
+            <SliceText className="font-mono text-xs font-bold tracking-[2px]">
               ~lettuce
             </SliceText>
           </Link>
@@ -420,10 +420,10 @@ export function NavBarMinimal({ className }: NavBarProps) {
             <Link
               key={item.href}
               href={item.href}
-              className={`group grow h-full flex items-center justify-center text-xs font-medium px-8 border-l border-border ${
+              className={`group/slice grow h-full flex items-center justify-center text-xs font-medium px-8 border-l border-border ${
                 pathname === item.href
                   ? "text-foreground decoration-1 line-through"
-                  : "text-muted-foreground hover:line-through"
+                  : "text-muted-foreground hover:text-foreground "
               }`}
             >
               <SliceText className={`font-mono text-xs font-bold tracking-[2px]`}>
@@ -462,7 +462,7 @@ export function NavBar({ className }: NavBarProps) {
           </div>
         </div>
 
-        <div className="bg-background w-full sm:w-1/2 min-w-fit h-full flex items-center gap-0 font-bold lowercase text-sm capitalize border-b border-border sm:border-none">
+        <div className="bg-background w-full sm:w-1/2 min-w-fit h-full flex items-center gap-0 font-bold lowercase text-sm capitalize">
           {navItems.map((item) => (
             <Link
               key={item.href}

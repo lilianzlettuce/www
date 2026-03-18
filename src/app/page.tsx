@@ -13,7 +13,7 @@ export default async function Home() {
 
   return (
     <div className="sm:min-h-screen">
-      <NavBar className="h-6" />  
+      <NavBar className="h-8 sm:h-6" />  
 
       <Hero />
 

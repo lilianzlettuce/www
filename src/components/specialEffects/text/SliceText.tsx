@@ -12,7 +12,7 @@ export function SliceText({ children, className }: SliceTextProps) {
     <div className={`relative inline-block font-bold text-4xl leading-none ${className}`}>
       {/* Top slice */}
       <span
-        className="absolute top-0 left-0 group-hover:left-[-1px] w-full overflow-hidden"
+        className="absolute top-0 left-0 group-hover/slice:left-[-1px] w-full overflow-hidden"
         style={{ clipPath: "inset(0 0 50% 0)" }}
       >
         {children}
@@ -20,7 +20,7 @@ export function SliceText({ children, className }: SliceTextProps) {
 
       {/* Bottom slice, shifted slightly */}
       <span
-        className="absolute top-0 left-0 group-hover:left-[1px] w-full overflow-hidden"
+        className="absolute top-0 left-0 group-hover/slice:left-[1px] w-full overflow-hidden"
         style={{ clipPath: "inset(50% 0 0 0)" }}
       >
         {children}
