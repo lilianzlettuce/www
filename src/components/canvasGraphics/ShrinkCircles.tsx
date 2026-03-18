@@ -1,6 +1,5 @@
 "use client";
 
-import { useMousePosition } from "@/hooks/useMousePosition";
 import { useCanvas } from "@/hooks/useCanvas";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
 import { useRef, useEffect } from "react";
@@ -66,8 +65,6 @@ const ShrinkCircles = ({
   delayCap = 0.1,
   onHoverChange,
 }: ShrinkCirclesProps) => {
-  const mousePosition = useMousePosition();
-
   // Set fill color based on dotMapMode and transparent prop
   let fillColor;
   if (dotMapMode === "shadow") {
@@ -137,6 +134,7 @@ const ShrinkCircles = ({
   const animationRadius = useRef(1);
   const animDirection = useRef(1);
   const isDragging = useRef(false);
+  const pointerPosition = useRef({ x: -1, y: -1 });
 
   const radiusPoints = useRef<RadiusPoint[]>([]); // store point grid
 
@@ -325,22 +323,18 @@ const ShrinkCircles = ({
   };
 
   // Handle mouse events
-  function handleMouseMove() {
+  function handleMouseMove(event: React.MouseEvent<HTMLCanvasElement>) {
     if (!canvasRef.current || interactionMode === "none") return;
 
-    // Calculate mouse position relative to canvas on viewport
     const rect = canvasRef.current.getBoundingClientRect();
-    const mouseX = mousePosition.x - rect.left;
-    const mouseY = mousePosition.y - rect.top;
-    
-    // Check if mouse is over non-transparent pixel
-    const isOverPixel = isPixelNonTransparent(mouseX, mouseY);
-    
-    // Call hover callback if provided
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    pointerPosition.current = { x: event.clientX, y: event.clientY };
+
     if (onHoverChange) {
-      onHoverChange(isOverPixel, mousePosition.x, mousePosition.y);
+      onHoverChange(isPixelNonTransparent(mouseX, mouseY), event.clientX, event.clientY);
     }
-    
+
     lastMouseMoveTime.current = Date.now();
     updateRadiusPoints(mouseX, mouseY);
   }
@@ -348,84 +342,99 @@ const ShrinkCircles = ({
   function handleMouseLeave() {
     if (!canvasRef.current || interactionMode === "none") return;
 
-    // Call hover callback to indicate no hover
     if (onHoverChange) {
       onHoverChange(false, -1, -1);
     }
 
+    pointerPosition.current = { x: -1, y: -1 };
     lastMouseMoveTime.current = Date.now();
     updateRadiusPoints(-100, -100);
   }
 
   // Handle touch events for mobile
   function handleTouchStart(event: React.TouchEvent<HTMLCanvasElement>) {
-    event.preventDefault();
-    lastMouseMoveTime.current = Date.now();
+    if (!canvasRef.current || interactionMode === "none") return;
+
     isDragging.current = true;
-    
     const touch = event.touches[0];
-    if (!touch || !canvasRef.current) return;
-    
+    if (!touch) return;
+
     const rect = canvasRef.current.getBoundingClientRect();
     const touchX = touch.clientX - rect.left;
     const touchY = touch.clientY - rect.top;
-    
+    pointerPosition.current = { x: touch.clientX, y: touch.clientY };
+
+    lastMouseMoveTime.current = Date.now();
+    if (onHoverChange) {
+      onHoverChange(isPixelNonTransparent(touchX, touchY), touch.clientX, touch.clientY);
+    }
     updateRadiusPoints(touchX, touchY);
   }
 
   function handleTouchMove(event: React.TouchEvent<HTMLCanvasElement>) {
-    event.preventDefault();
-    if (!isDragging.current) return;
-    lastMouseMoveTime.current = Date.now();
-    
+    if (!isDragging.current || !canvasRef.current) return;
+
     const touch = event.touches[0];
-    if (!touch || !canvasRef.current) return;
-    
+    if (!touch) return;
+
     const rect = canvasRef.current.getBoundingClientRect();
     const touchX = touch.clientX - rect.left;
     const touchY = touch.clientY - rect.top;
-    
+    pointerPosition.current = { x: touch.clientX, y: touch.clientY };
+
+    lastMouseMoveTime.current = Date.now();
+    if (onHoverChange) {
+      onHoverChange(isPixelNonTransparent(touchX, touchY), touch.clientX, touch.clientY);
+    }
     updateRadiusPoints(touchX, touchY);
   }
 
   function handleTouchEnd() {
     isDragging.current = false;
+    pointerPosition.current = { x: -1, y: -1 };
     lastMouseMoveTime.current = Date.now();
+    if (onHoverChange) {
+      onHoverChange(false, -1, -1);
+    }
     updateRadiusPoints(-100, -100);
   }
 
-  // Animation frame callback
   const animate = () => {
     if (!canvasRef.current || !ctx || interactionMode === "none") return;
-    
-    // Calculate mouse position relative to canvas on viewport
+
     const rect = canvasRef.current.getBoundingClientRect();
-    const mouseX = mousePosition.x - rect.left;
-    const mouseY = mousePosition.y - rect.top;
-    
-    updateRadiusPoints(mouseX, mouseY);
+    const pointer = pointerPosition.current;
+    let drawX = -100;
+    let drawY = -100;
+
+    if (pointer.x >= 0 && pointer.y >= 0) {
+      drawX = pointer.x - rect.left;
+      drawY = pointer.y - rect.top;
+    }
+
+    updateRadiusPoints(drawX, drawY);
     drawCircles();
   };
 
   useAnimationFrame(animate);
 
   return (
-    <div className={`${className}`}>
-      <div className={`bg-${bgColor}`}>
+    <div className={`${className} relative`} style={{ width: canvasWidth || undefined, height: canvasHeight || undefined }}>
+      <div style={{ width: canvasWidth || 0, height: canvasHeight || 0, backgroundColor: bgColor === "none" ? "transparent" : bgColor }}>
         <canvas
           id={id}
           ref={canvasRef}
-          className="w-screen h-screen"
+          className="w-full h-full block"
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          style={{ pointerEvents: interactionMode === "none" ? "none" : "auto" }}
+          style={{ pointerEvents: interactionMode === "none" ? "none" : "auto", width: canvasWidth || 0, height: canvasHeight || 0 }}
         />
       </div>
       {showStats && (
-        <div className="">
+        <div className="mt-2 text-xs text-foreground">
           <p>{imageSrc}</p>
           <p>{imageWidth} x {imageHeight}</p>
           <p>{pixels.length}</p>

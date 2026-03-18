@@ -106,13 +106,13 @@ export function HeroWindow({
                     </div>
                     <div className="flex flex-row items-center justify-between gap-2 text-foreground">
                         <div className="w-4.5 h-4.5 box-border border-2 border-foreground flex items-center justify-center">
-                            <MinimizeIcon className="scale-125" strokeWidth={2.5} />
+                            <MinimizeIcon className="w-3 h-3" strokeWidth={2.5} />
                         </div>
                         <div className="w-4.5 h-4.5 box-border border-2 border-foreground flex items-center justify-center">
-                            <ExpandIcon className="scale-125" strokeWidth={2.5} />
+                            <ExpandIcon className="w-3 h-3" strokeWidth={2.5} />
                         </div>
                         <div className="w-4.5 h-4.5 box-border border-2 border-foreground flex items-center justify-center">
-                            <PixelatedXIcon className="scale-125" strokeWidth={0} />
+                            <PixelatedXIcon className="w-3 h-3" strokeWidth={0} />
                         </div>
                     </div>
                 </div>
