@@ -14,6 +14,17 @@ export default function About() {
 
   return (
     <div className="overflow-x-hidden w-full max-w-full flex flex-col items-center justify-center px-4 py-4 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 w-2/3 h-[80vh] m-auto flex flex-col items-center justify-center border-1 border-border">
+        <WindowTechMono 
+          className="w-80"
+          dragHandleText="ALERT"
+        >
+          <div className="w-full h-full p-4 flex flex-col gap-4">
+            I&apos;m calling to reach you about your car insurance. 
+            Your warranty expires in <span>-30 days</span>. 
+          </div>
+        </WindowTechMono>
+      </div>
       {/* Header */}
       <WindowTechMono className="w-full 2xl:w-11/12">
         <div className="w-full h-full p-4 flex flex-col gap-4">
@@ -130,7 +141,7 @@ export default function About() {
                 </div>
             </div>
         </div>
-    </WindowTechMono>
+      </WindowTechMono>
 
       <section className="hidden">
         <div className="flex flex-col sm:flex-row py-12">

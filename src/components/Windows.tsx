@@ -48,7 +48,7 @@ export function WindowTechMono({
                                                     iterationCount="1"
                                                 />}
                         </div>
-                        <div className="text-sm font-tiny5 uppercase">
+                        <div className="ml-1 text-sm font-tiny5 uppercase">
                             {dragHandleText}
                         </div>
                     </div>
