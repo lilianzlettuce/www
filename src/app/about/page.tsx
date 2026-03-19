@@ -13,28 +13,42 @@ export default function About() {
   ];
 
   return (
-    <div className="overflow-x-hidden w-full max-w-full flex flex-col items-center justify-center px-4 py-4 sm:px-6 lg:px-8">
-      <div className="absolute inset-0 w-2/3 h-[80vh] m-auto flex flex-col items-center justify-center border-1 border-border">
+    <div className="overflow-x-hidden w-full max-w-full flex flex-col items-center justify-center gap-12 px-4 py-4 sm:px-6 lg:px-8">
+      {/* Secret content */}
+      <div className="absolute inset-0 w-2/3 h-[80vh] m-auto flex flex-col items-center justify-center border-0 md:border-1 border-border">
         <WindowTechMono 
-          className="w-80"
+          className="w-70 sm:w-100"
           dragHandleText="ALERT"
         >
-          <div className="w-full h-full p-4 flex flex-col gap-4">
-            I&apos;m calling to reach you about your car insurance. 
-            Your warranty expires in <span>-30 days</span>. 
+          <div className="w-full h-full p-4 flex flex-col gap-4 text-xs sm:text-sm font-roboto-mono">
+            <p>
+              We&apos;ve been calling to reach you about your car&apos;s extended warranty.
+              Your warranty expires in <span className="font-semibold">-30 days</span>. 
+              We&apos;re offering an extended warranty for the low price of <span className="font-semibold">FREE!!!</span>
+              You will need to provide your credit card details and activate a vehicle service agreement for coverage.
+              <br/><br/>
+              Call 5-800-CARS to find out more.
+            </p>
+            <button className="px-4 text-sm sm:text-base hover:scale-110 font-departure-mono font-bold uppercase border-2 border-foreground">
+              Call Now
+            </button>
           </div>
         </WindowTechMono>
       </div>
-      {/* Header */}
-      <WindowTechMono className="w-full 2xl:w-11/12">
+
+      {/* Main content */}
+      <WindowTechMono 
+        dragHandleText="lettuce.txt"
+        className="w-full 2xl:w-11/12 lg:h-[90vh]"
+      >
         <div className="w-full h-full p-4 flex flex-col gap-4">
-            <div className="w-full h-full flex flex-col md:flex-row items-center justify-between gap-4 font-ibm-plex-mono text-xs">
+            <div className="w-full h-fit flex flex-col md:flex-row items-center md:items-start justify-between gap-4 font-ibm-plex-mono text-xs">
                 {/* Left text */}
-                <div className="w-full md:w-1/2 lg:w-fit flex flex-col gap-4">
+                <div className="w-full md:w-1/2 lg:w-fit h-full flex flex-col gap-4">
                     <div className="w-fit text-left">
                         <ScrambleText
                             text="About"
-                            className="w-fit text-4xl md:text-6xl/[0.8] font-micro5 font-bold text-foreground uppercase mb-4"
+                            className="w-fit text-4xl md:text-6xl/[0.8] font-micro5 font-bold text-foreground uppercase -mt-2 sm:mt-0 mb-0 sm:mb-4"
                             replayOnHover={true}
                         />
                         <ScrambleText
@@ -44,7 +58,7 @@ export default function About() {
                     </div>
                   <GridContainer 
                     id="work-page-header-2-grid"
-                    className="min-w-1/2 h-full pt-2 px-6 border-1 border-border flex items-center justify-center"
+                    className="min-w-1/2 h-full p-0 sm:pt-2 sm:px-6 border-1 border-border flex items-center justify-center"
                     layers={[
                         {
                             spacing: 30,
@@ -74,7 +88,6 @@ export default function About() {
                       My artwork combines digital media and physical computing to explore agency, consciousness, and the interplay between the organic and the artificial in the age of intelligent machines. I utilize data-driven graphics, reprogrammed electronics, and responsive soundscapes to investigate metaphysical relationships between body and mind. 
                       <br/>
                       <br/>
-                      <br/>
                       right now I am working on: finishing this website
                     </p>
                     <p className="hidden text-base max-w-2xl">
@@ -86,7 +99,7 @@ export default function About() {
                 </div>
 
                 {/* Right window display */}
-                <div className="relative overflow-hidden w-fit sm:w-fit sm:min-w-80 lg:min-w-fit h-120 bg-background border-1 border-border">
+                <div className="hidden md:block relative overflow-hidden w-fit sm:w-fit sm:min-w-80 lg:min-w-fit h-120 bg-background border-1 border-border">
                   <ShrinkCircles 
                     className="overflow-hidden max-w-full"
                     imageSrc="/img/lowRes/pineapple.jpg"
@@ -118,9 +131,76 @@ export default function About() {
                 </div>
             </div>
 
-            <div className="w-full flex flex-row justify-between font-roboto-mono">
+            {/* Bottom */}
+            <div className="w-full h-fit flex flex-row items-start justify-between font-roboto-mono">
                 <div className="flex flex-col items-start gap-2">
-                    <p className="text-xs text-muted-foreground">
+                    <p className="hidden lg:block text-xs text-muted-foreground">
+                        No rest for the wicked.
+                    </p>
+                    <div className="flex flex-row items-center gap-2">
+                        <DevIcon className="w-3 h-3" strokeWidth={2} />
+                        <DesignIcon className="w-3 h-3" strokeWidth={2} />
+                        <ArtIcon className="w-3 h-3" strokeWidth={2} />
+                    </div>
+                </div>
+                <div className="flex flex-col items-start sm:items-end">
+                    <p className="hidden lg:block text-[0.65rem]">
+                        IBM-X340 +++// 
+                    </p>
+                    <p className="h-3 lg:h-fit text-xs lg:text-sm flex items-center">
+                        <span className="font-micro5 text-xl">&#91;&nbsp;</span>
+                        <span className="relative sm:top-0.4">■■■■■□□□</span>
+                        <span className="font-micro5 text-xl">&nbsp;&#93;</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+      </WindowTechMono>
+
+      {/* Image window */}
+      <WindowTechMono 
+        dragHandleText="self.jpg"
+        className="block md:hidden w-full 2xl:w-11/12 lg:h-[90vh]"
+      >
+        <div className="w-full h-full p-4 flex flex-col gap-4">
+            <div className="w-full h-fit flex flex-col md:flex-row items-center md:items-start justify-between gap-4 font-ibm-plex-mono text-xs">
+                {/* Right window display */}
+                <div className="relative overflow-hidden w-fit sm:w-fit sm:min-w-80 lg:min-w-fit h-100 bg-background border-1 border-border">
+                  <ShrinkCircles 
+                    className="overflow-hidden max-w-full"
+                    imageSrc="/img/lowRes/pineapple.jpg"
+                    scaleFactor={1.5}
+                    gridGap={2}
+                    attractionDistance={200}
+                    shrinkFactor={1}
+                    minRadius={0.5}
+                    maxRadius={5}
+                    delayFactor={0.85}
+                    delayCap={0.1}
+                    debounceTime={3000}
+                  />
+                  {/*<ShrinkCircles 
+                    className="w-fit h-fit"
+                    showStats={false}
+                    imageSrc="/img/lowRes/pineapple4.jpg"
+                    scaleFactor={1.8}
+                    gridGap={3}
+                    attractionDistance={200}
+                    shrinkFactor={1}
+                    minRadius={0.5}
+                    maxRadius={4}
+                    delayFactor={0.85}
+                    delayCap={0.1}
+                    debounceTime={3000}
+                    autoAnimStep={0.03}
+                  />*/}
+                </div>
+            </div>
+
+            {/* Bottom */}
+            <div className="w-full h-fit flex flex-row justify-between font-roboto-mono">
+                <div className="flex flex-col items-start gap-2">
+                    <p className="hidden text-xs text-muted-foreground">
                         No rest for the wicked.
                     </p>
                     <div className="flex flex-row items-center gap-2">
@@ -133,7 +213,7 @@ export default function About() {
                     <p className="text-[0.65rem]">
                         IBM-X340 +++// 
                     </p>
-                    <p className="text-sm">
+                    <p className="hidden text-sm">
                         <span className="font-micro5 text-xl">&#91;&nbsp;</span>
                         <span className="relative top-0.4">■■■■■□□□</span>
                         <span className="font-micro5 text-xl">&nbsp;&#93;</span>
