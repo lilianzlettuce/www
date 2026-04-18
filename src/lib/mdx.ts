@@ -98,6 +98,7 @@ export async function compileProjectMDX(content: string) {
     source: content,
     options: {
       parseFrontmatter: true,
+      blockJS: false,
     },
     components,
   });
