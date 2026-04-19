@@ -59,8 +59,8 @@ function InfoItemRow({
 ) {
 return (
     <div className="flex items-center gap-4">
-        <div className={`${labelClassName} w-30`}>{label}</div>
-        <div className="flex items-center gap-1">
+        <div className={`${labelClassName} min-w-30`}>{label}</div>
+        <div className="flex flex-wrap items-center gap-1">
             {values.map((value, i) => (
                 <span
                     key={value}
