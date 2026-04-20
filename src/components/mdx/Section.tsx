@@ -30,7 +30,7 @@ interface SectionColumnProps {
 export function SectionColumn({ children, size = 1, className = "" }: SectionColumnProps) {
   return (
     <div style={{ flex: size }} 
-        className={className}>
+        className={`${className} flex flex-col gap-2`}>
       {children}
     </div>
   );
