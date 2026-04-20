@@ -1,5 +1,5 @@
 ---
-title: "Spill Ticket Customization"
+title: "Spill Digital Ticket"
 description: "Ticket customization page for spill, a Purdue Hackers show."
 image: "/projects/spill/preview-1.png"
 tags: ["Web Development", "React"]
@@ -18,6 +18,36 @@ link: "https://www.purduehackers.com/"
     frame="mockup"
     className="w-4/5 my-10"
   />
+</Section>
+
+<Section className="mt-20 w-full md:w-[85%] lg:w-[90%] ml-0 md:ml-15 lg:ml-0 text-sm">
+  <SplitSection className="my-2 mb-8 gap-2">
+    <SectionColumn size={3}>
+      ##### Spill Digital Ticket Design and Customization Site
+      2025
+      
+    </SectionColumn>
+    <SectionColumn size={6} className="h-fit flex flex-col gap-2 text-sm">
+      <ProjectInfoRow
+        items={[
+          { label: "Medium", values: ["???"] },
+          { label: "Materials", values: ["Sears the Scholar typewriter", "Servo motors", "3D printed parts"] },
+        ]}
+        labelClassName="font-jetbrains-mono font-normal text-muted-foreground uppercase text-xs"
+        valuesClassName="text-sm"
+      />
+
+      <br/>
+
+      An ancient writing machine rewired to move with a mind of its own. Or, just an automated typewriter...
+      
+      In fall of 2025 I acquired a electric typewriter for $10 from Facebook Marketplace. It was nearly fully function— just a few stuck keys and an occasional grinding sound emitted by the motor. 
+      Naturally the next step was to take it apart and make it do something it was entirely not meant to do.
+      What follows is the two-month saga of me learning the hard way that I am not a mechanical engineer.
+      
+      This project was made with the generous support of <a href="https://purduehackers.com/" target="_blank" rel="noopener noreferrer">Purdue Hackers</a> <a href="https://grants.purduehackers.com/" target="_blank" rel="noopener noreferrer">Microgrants</a>.
+    </SectionColumn>
+  </SplitSection>
 </Section>
 
 <ProjectHeader
@@ -49,6 +79,12 @@ link: "https://www.purduehackers.com/"
 
     #### Brief
     This page is a stub... check back in 300 years!
+
+    The the main motivations for making the tickets and customization page were just to have an easy way to promote/share the event, giving people a personalizable digital token they can keep and share, and also just having a fun little easter egg for the site. We saw a lot of examples of this kind of experience for other events but particular we took inspiration from the Socratica Symposium ticket customizer, along with Nextjs event nametag cards. For the ticket designs there weren’t any specific inspos but we looked at a lot of coffee shop packaging designs and were going for sort of a “textured” feel. Overall directions were this coffee house vibe (cozy, loose/flowy, messy/imperfect) and incorporating that with digital data-encoding elements commonly seen on tickets (barcodes, pixel patterns, mono font strings). 
+
+    This design direction can be seen in the UI of the site itself as well; users can choose from 8 different ticket design variations, each corresponding to a different “drink order” such as matcha latte or cappuccino. Our main colors (green and brown) were also incorporated as 2 ticket “flavor” variations (tea vs coffee) that users could choose from. Other than that users could further personalize their ticket with little sketches through a “crayon”-like drawing functionality, along with typing a message onto a sticky note. 
+
+    We also aimed to incorporate a smooth UX flow to and from this ticket page from the main site; users would be automatically redirected after RSVPing, and can easily share a link to a page with their customized ticket image, from which viewers can RSVP and access the main site themselves. 
    </SectionColumn>
   <SectionColumn size={2}>
   </SectionColumn>

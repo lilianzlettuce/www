@@ -2,21 +2,73 @@
 title: "Interactive Halftone Tool"
 description: "Web-based interactive halftone tool."
 image: "/projects/halftone-tool/heart-closeup.png"
-tags: ["Web Development", "Node.js", "Express", "React", "PostgreSQL"]
+tags: ["Web Development"]
 categories: ["dev"]
 date: "2026-04"
 link: "https://lilianzlettuce.vercel.app/experiments/tone-canvas"
 ---
 
-Name brainstorm
-- Interactive Halftone Tool
-- 2D Image Halftone Light Simulator
-- 
+<Section className="w-full h-[90vh] flex justify-center items-center">
+  <MDXMedia 
+    src="/projects/halftone-tool/heart-closeup.png" 
+    alt="Hero video" 
+    preset="header"
+    width={2560}
+    height={1664}
+    frame="none"
+    className="shadow-lg w-3/5"
+    baseImageClassName="aspect-200/152"
+  />
+</Section>
 
-Web-based interactive halftone tool. Convert any image to halftone (dot size represented shading) and edit to your liking. 
-Cool mouse interaction that simulates light in a 3D space. 
+<Section className="mt-20 w-full md:w-[85%] lg:w-[90%] ml-0 md:ml-15 lg:ml-0 text-sm">
+    <SplitSection className="my-2 mb-8 gap-2">
+        <SectionColumn size={3}>
+        ##### Halftone Tool
+        2025
+        
+        </SectionColumn>
+        <SectionColumn size={6} className="h-fit flex flex-col gap-2 text-sm">
+            <ProjectInfoRow
+                items={[
+                    { label: "Role", values: ["Developer"] },
+                    { label: "Duration", values: ["???"] },
+                    { label: "Stack", values: ["React", "Three.js", "Shaders", "WebGL"] },
+                ]}
+                labelClassName="font-jetbrains-mono font-normal text-muted-foreground uppercase text-xs"
+                valuesClassName="text-sm"
+            />
 
-Todo:
-- Easy drop-in code snippets to add to your own site
-- Optimize with shaders/Three.js
-- More UI custom options 
+            <br/>
+
+        
+            Web-based interactive halftone tool. Convert any image to halftone (dot size represented shading) and edit to your liking. 
+            Cool mouse interaction that simulates light in a 3D space. 
+
+            I just wanted to easily make graphics like this to put on my site (as you've probably noticed), so I made this thing.
+        </SectionColumn>
+    </SplitSection>
+</Section>
+
+<Section className="mt-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-sm">
+  <Section className="mt-8 gap-2">
+    <SectionColumn size={12}>
+      <h5>Implementation Details </h5>
+
+        - Interactive Halftone Tool
+        - 2D Image Halftone Light Simulator
+        - 
+
+
+        Todo:
+        - Easy drop-in code snippets to add to your own site
+        - Optimize
+        - More UI custom options 
+      
+    </SectionColumn>
+  </Section>
+
+  <Section className="w-full flex justify-end text-xs font-medium font-roboto-mono">
+    Innards
+  </Section>
+</Section>

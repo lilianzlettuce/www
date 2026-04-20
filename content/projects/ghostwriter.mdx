@@ -2,7 +2,7 @@
 title: "Ghostwriter"
 description: ""
 image: "/projects/ghostwriter/ghostwriter-spill.jpg"
-tags: ["Physical computing", "3D printing", "Mechanics", "Arduino", "Motors", "Printing and prototyping"]
+tags: ["Physical computing", "3D printing", "Mechanics", "Arduino", "Hardware hacking", "Printing and prototyping"]
 categories: ["art"]
 date: "2025-11"
 link: ""
@@ -23,7 +23,7 @@ link: ""
   />
 </Section>
 
-<Section className="w-full h-[90vh] flex justify-center items-center">
+<Section className="hidden w-full h-[90vh] flex justify-center items-center">
   <MDXMedia 
     src="/projects/ghostwriter/ghostwriter-spill.jpg" 
     alt="Hero video" 
@@ -35,32 +35,17 @@ link: ""
   />
 </Section>
 
-  <MDXMedia 
-    isVideo
-    loop={false}
-    src="/projects/ghostwriter/front-view-1.mp4" 
-    alt="Hero video" 
-    preset="header"
-    width={2560}
-    height={1664}
-    frame="none"
-    className="shadow-lg w-4/5"
-  />
-
 <Section className="mt-20 w-full md:w-[85%] lg:w-[90%] ml-0 md:ml-15 lg:ml-0 text-sm">
   <SplitSection className="my-2 mb-8 gap-2">
     <SectionColumn size={3}>
       ##### Ghostwriter
       2025
-      <a href="" target="_blank" rel="noopener noreferrer">
-        [View Demo >>]
-      </a>
       
     </SectionColumn>
     <SectionColumn size={6} className="h-fit flex flex-col gap-2 text-sm">
       <ProjectInfoRow
         items={[
-          { label: "Medium", values: ["Interactive installation"] },
+          { label: "Medium", values: ["???"] },
           { label: "Materials", values: ["Sears the Scholar typewriter", "Servo motors", "3D printed parts"] },
         ]}
         labelClassName="font-jetbrains-mono font-normal text-muted-foreground uppercase text-xs"
@@ -69,16 +54,32 @@ link: ""
 
       <br/>
 
-      TBD: Project involves automating a typewriter to be interactive through voice transcription. The typewriter will be programmed to output a specific text/ascii image, which viewers will have the power to interrupt. 
-      Drawing/reflecting on the history the typewriter, its role in giving women more freedom, as a medium for communication outside of the patriarchy's sphere of influence, a medium for making art and political statement.
-      Making modern connections to technological influences, data, censorship, the age of misinformation.
+      An ancient writing machine rewired to move with a mind of its own. Or, just an automated typewriter...
+      
+      In fall of 2025 I acquired a electric typewriter for $10 from Facebook Marketplace. It was nearly fully function— just a few stuck keys and an occasional grinding sound emitted by the motor. 
+      Naturally the next step was to take it apart and make it do something it was entirely not meant to do.
+      What follows is the two-month saga of me learning the hard way that I am not a mechanical engineer.
+      
+      This project was made with the generous support of <a href="https://purduehackers.com/" target="_blank" rel="noopener noreferrer">Purdue Hackers</a> <a href="https://grants.purduehackers.com/" target="_blank" rel="noopener noreferrer">Microgrants</a>.
     </SectionColumn>
   </SplitSection>
 </Section>
 <br/>
 <Section className="mt-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-sm">
+  <Section className="mt-8 gap-2">
+    <SectionColumn size={12}>
+      <h5>Implementation Details </h5>
+
+      Concept: Initial idea was automating a typewriter to be interactive through voice transcription. The typewriter would be programmed to output a specific text/ascii image, which viewers will have the power to interrupt. 
+      Drawing/reflecting on the history the typewriter, its role in giving women more freedom, as a medium for communication outside of the patriarchy's sphere of influence, a medium for making art and political statement.
+      Making modern connections to technological influences, data, censorship, the age of misinformation.
+
+      
+    </SectionColumn>
+  </Section>
+
   <Section className="w-full flex justify-end text-xs font-medium font-roboto-mono">
-    
+    Innards
   </Section>
 
   <SplitSection className="my-2 gap-2">
@@ -198,12 +199,12 @@ link: ""
   </SplitSection>
 
   <Section className="w-full flex justify-end text-xs font-medium font-roboto-mono">
-    Scannable stickers
+    Showcase at spill!!
   </Section>
   <SplitSection className="my-2 gap-2">
     <SectionColumn size={12}>
       <MDXMedia 
-        src="/projects/ghostwriter/sticker-purple.webp" 
+        src="/projects/ghostwriter/ghostwriter-spill.jpg" 
         alt="Hero" 
         preset="header"
         width={3754}
@@ -228,47 +229,6 @@ link: ""
     <SectionColumn size={6}>
       <MDXMedia 
         src="/projects/ghostwriter/sticker-blue.webp" 
-        alt="Hero" 
-        preset="header"
-        width={3754}
-        height={2835}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
-  </SplitSection>
-
-  <Section className="w-full flex justify-end text-xs font-medium font-roboto-mono">
-    3D Models
-  </Section>
-  <SplitSection className="my-2 gap-2">
-    <SectionColumn size={12}>
-      <MDXMedia 
-        src="/projects/ghostwriter/3d-closeup.webp" 
-        alt="Hero" 
-        preset="header"
-        width={3754}
-        height={2835}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
-  </SplitSection>
-  <SplitSection className="my-2 gap-2">
-    <SectionColumn size={6}>
-      <MDXMedia 
-        src="/projects/ghostwriter/3d-iso-black.webp" 
-        alt="Hero" 
-        preset="header"
-        width={3754}
-        height={2835}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
-    <SectionColumn size={6}>
-      <MDXMedia 
-        src="/projects/ghostwriter/3d-front-black.webp" 
         alt="Hero" 
         preset="header"
         width={3754}

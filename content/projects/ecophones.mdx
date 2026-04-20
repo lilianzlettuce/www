@@ -16,8 +16,8 @@ link: ""
     width={2560}
     height={1600}
     frame="none"
-    className="shadow-lg w-4/5"
-    baseImageClassName="aspect-256/152"
+    className="shadow-lg w-8/12"
+    baseImageClassName="aspect-200/152"
   />
 </Section>
 
@@ -54,7 +54,7 @@ link: ""
 
       <i>Ecophones</i> is a collaborative sound installation that uses modified rotary telephones to access live and generative bird soundscapes, exploring bird song as an indicator of ecological health and cultural listening practices. The work connects audiences to remote sound streams sourced from citizen science networks and AI-generated audio, blending real-time environmental listening with mediated systems.
         
-        This work was created in collaboration with <a href="https://gardensandmachines.com/" target="_blank" rel="noopener noreferrer">Studio McMullen_Winkler</a>. I designed and implemented the software pipeline including web-based interaction, real-time audio analysis, and hardware integration. 
+        This work was created in collaboration with <a href="https://gardensandmachines.com/" target="_blank" rel="noopener noreferrer">Studio McMullen_Winkler</a>, with sound contributions from Christoph Brünggel, Patricia Jäggi, and Abinash Mallick. I designed and implemented the software pipeline including web-based interaction, real-time audio analysis, and hardware integration. 
         
         Sources: <br/>
         • Birdweather network <a href="https://www.birdweather.com" target="_blank" rel="noopener noreferrer">www.birdweather.com</a><br/> 
@@ -78,7 +78,7 @@ link: ""
 </Section>
 <br/>
 
-<Section className="flex flex-col gap-2 mt-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-sm">
+<Section className="flex flex-col gap-2 mt-20 mb-8 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-sm">
   <Section className="w-full flex justify-end text-xs font-medium font-roboto-mono">
     University of Cincinnati | 2026
   </Section>
@@ -207,7 +207,7 @@ link: ""
     </SectionColumn>
   </SplitSection>
 
-  <SplitSection className="mt-8 gap-2">
+  <Section className="mt-8 gap-2">
     <SectionColumn size={12}>
       <h5>Implementation Details </h5>
 
@@ -218,10 +218,10 @@ link: ""
       The listening experience of Ecophone 03 is based on a modified sound stream from the locus sonus sound map (https://locusonus.org/soundmap/). The phone connects to a hybrid sound space that blends AI generated bird calls and songs with the real-time sound stream of a streambox installed at the stratozero.net art space in southern Germany. In addition to the natural soundscape from a nearby forest, this streambox also captures the sound of trains passing by at regular intervals. Sonic detection of a passing train triggers a “sound particles” contributed from artists around the world, such as a chorus of AI- generated bird calls. Conceptually, we consider these collections of individual sounds as particle trails following the trains that then mix with the real-time sounds in the physical location where they are detected. 
 
     </SectionColumn>
-  </SplitSection>
+  </Section>
 
   <Section className="mt-8 w-full flex justify-end text-xs font-medium font-roboto-mono">
-    Diagram | 2025
+    Ecophones Technical Diagram | 2025
   </Section>
 
   <SplitSection className="gap-2">
@@ -237,21 +237,4 @@ link: ""
       />
     </SectionColumn>
   </SplitSection>
-  <SplitSection className="gap-2">
-    <SectionColumn size={12}>
-      <MDXMedia 
-        src="/projects/ecophones/black-phone-dial-closeup.jpg" 
-        alt="Hero" 
-        preset="header"
-        width={3840 }
-        height={2880}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
-  </SplitSection>
-  
-  <Section className="mt-8 w-full flex justify-end text-xs font-medium font-roboto-mono">
-    
-  </Section>
 </Section>
