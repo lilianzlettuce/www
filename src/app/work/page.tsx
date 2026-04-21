@@ -78,7 +78,7 @@ function WorkPageContent() {
             <WorkPageHeaderContrast
               headerText={categoryFilters.length > 0 ? categoryFilters.join(", ") : "All work"}
               subheaderText={projectCategories.find(cat => cat.name === categoryFilters[0])?.subheaderText 
-                || "status: 45% - - - complete rehaul in progress <br/> come forth ↓"}
+                || "status: 85% - - - complete rehaul in progress <br/> come forth ↓"}
             />
 
             <div className="z-30 w-full flex flex-col sm:flex-row items-start sm:items-center justify-start gap-2 mb-8">

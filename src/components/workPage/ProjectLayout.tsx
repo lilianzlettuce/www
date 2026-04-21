@@ -174,11 +174,11 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
           <div className="hidden font-bold">
             {frontmatter.title}
           </div>
-          <button className="p-0 group h-3 flex items-center font-roboto-mono font-semibold leading-none hover:rotate-x-180 hover:uppercase text-foreground"
+          <button className="p-0 group h-3 flex items-center font-roboto-mono font-semibold leading-none hover:rotate-x-0 hover:uppercase text-foreground"
               onClick={() => router.back()}>
-            <span className="inline-block group-hover:hidden">{'<<'}&nbsp;</span>
-            <span className="hidden group-hover:inline-block">{'>>'}&nbsp;</span>
-            go back
+            {'['} <span className="inline-block group-hover:hidden">{'←'}&nbsp;</span>
+            <span className="hidden group-hover:inline-block">{'→'}&nbsp;</span>
+            go back {']'}
           </button>
           <div className="hidden">
             landing page | 2025
