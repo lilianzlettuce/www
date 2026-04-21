@@ -412,8 +412,8 @@ body {
     letter-spacing: 0.05em;
     margin: 1rem 0;
     padding-left: 1rem;
-    list-style-type: disc;
-    font-size: 1rem;
+    list-style-type: circle;
+    font-size: inherit;
   }
 
   ul li {
@@ -425,7 +425,7 @@ body {
     margin: 1rem 0;
     padding-left: 1.5rem;
     list-style-type: decimal;
-    font-size: 1rem;
+    font-size: inherit;
   }
 
   ol li {

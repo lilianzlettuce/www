@@ -3,12 +3,12 @@ title: "Ghostwriter"
 description: ""
 image: "/projects/ghostwriter/ghostwriter-spill.jpg"
 tags: ["Physical computing", "3D printing", "Mechanics", "Arduino", "Hardware hacking", "Printing and prototyping"]
-categories: ["art"]
+categories: ["dev", "art"]
 date: "2025-11"
 link: ""
 ---
 
-<Section className="w-full h-[90vh] flex justify-center items-center">
+<Section className="hidden w-full h-[90vh] flex justify-center items-center">
   <MDXMedia 
     isVideo
     loop
@@ -23,7 +23,7 @@ link: ""
   />
 </Section>
 
-<Section className="hidden w-full h-[90vh] flex justify-center items-center">
+<Section className="w-full h-[90vh] flex justify-center items-center">
   <MDXMedia 
     src="/projects/ghostwriter/ghostwriter-spill.jpg" 
     alt="Hero video" 
@@ -45,7 +45,7 @@ link: ""
     <SectionColumn size={6} className="h-fit flex flex-col gap-2 text-sm">
       <ProjectInfoRow
         items={[
-          { label: "Medium", values: ["???"] },
+          { label: "Medium", values: ["Hardware"] },
           { label: "Materials", values: ["Sears the Scholar typewriter", "Servo motors", "3D printed parts"] },
         ]}
         labelClassName="font-jetbrains-mono font-normal text-muted-foreground uppercase text-xs"
@@ -54,35 +54,78 @@ link: ""
 
       <br/>
 
-      An ancient writing machine rewired to move with a mind of its own. Or, just an automated typewriter...
+      An ancient writing machine rewired to move with a mind of its own... or, just an automated typewriter.
       
-      In fall of 2025 I acquired a electric typewriter for $10 from Facebook Marketplace. It was nearly fully function— just a few stuck keys and an occasional grinding sound emitted by the motor. 
-      Naturally the next step was to take it apart and make it do something it was entirely not meant to do.
-      What follows is the two-month saga of me learning the hard way that I am not a mechanical engineer.
+      Ghostwriter is a project about hidden labor, artificial recreation, and authenticity in the age of digital recreation. 
+      The repurposed typewriter is made to print out text excerpts including ascii recreations of my artwork, and meaningless lipogrammatic poems limitted by the shape of its own keyboard.
+      It is an ode to obsolete technologies, devices rendered useless by their more progressive counterparts, as well as an examination of language and mediated communication.
+      The audience watches with glee as the machine drudges on, forced to endlessly repeat a manifesto it had no part in writing.
+
+      It was ultimately exhibited at <a href="https://spill.purduehackers.com/" target="_blank" rel="noopener noreferrer">spill</a>, Purdue Hackers’ 2025 end-of-year showcase.
       
-      This project was made with the generous support of <a href="https://purduehackers.com/" target="_blank" rel="noopener noreferrer">Purdue Hackers</a> <a href="https://grants.purduehackers.com/" target="_blank" rel="noopener noreferrer">Microgrants</a>.
+      This project was made possible with the generous support of <a href="https://purduehackers.com/" target="_blank" rel="noopener noreferrer">Purdue Hackers</a> <a href="https://grants.purduehackers.com/" target="_blank" rel="noopener noreferrer">Microgrants</a>.
     </SectionColumn>
   </SplitSection>
 </Section>
 <br/>
-<Section className="mt-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-sm">
-  <Section className="mt-8 gap-2">
-    <SectionColumn size={12}>
-      <h5>Implementation Details </h5>
-
-      Concept: Initial idea was automating a typewriter to be interactive through voice transcription. The typewriter would be programmed to output a specific text/ascii image, which viewers will have the power to interrupt. 
-      Drawing/reflecting on the history the typewriter, its role in giving women more freedom, as a medium for communication outside of the patriarchy's sphere of influence, a medium for making art and political statement.
-      Making modern connections to technological influences, data, censorship, the age of misinformation.
-
-      
-    </SectionColumn>
-  </Section>
-
+<Section className="flex flex-col gap-2 mt-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-sm">
   <Section className="w-full flex justify-end text-xs font-medium font-roboto-mono">
-    Innards
+    Ghostwriter at Spill | 2025
+  </Section>
+  
+  <MDXMedia 
+    isVideo
+    loop
+    src="/projects/ghostwriter/ghostwriter-spill-timelapse-colored-compressed.mp4" 
+    alt="Hero video" 
+    preset="header"
+    width={2560}
+    height={1600}
+    frame="none"
+    className="w-full"
+  />
+
+  <VimeoEmbed id="1185016373" title="Ecophones Video" />
+
+  <MDXMedia 
+    src="/projects/ghostwriter/exposed-iso.webp" 
+    alt="Hero" 
+    preset="header"
+    width={3754}
+    height={2835}
+    frame="none"
+    className="w-full"
+  />
+
+  <Section className="mt-8 gap-2">
+    #### Context
+
+    In fall of 2025 I acquired a electric typewriter for $10 from Facebook Marketplace. It was nearly fully functional— just a few stuck keys and an occasional ugly grinding sound emitted by the motor. 
+    Naturally the next step was to take it apart and make it do something it was entirely not meant to do.
+    What follows is the two-month saga of me learning the hard way that I am not a mechanical engineer.
+
+    I cycled through many ideas, before, during, and after its creation. The initial concept was automating the machine to be interactive through voice transcription. The typewriter would be programmed to output a specific text/ascii image, which viewers will have the power to interrupt. 
+    Upon acquiring a second typewriter off of Facebook Marketplace, I then brainstormed ideas involving networked typewriters capable of communication over Wifi.
+    I spent some time researching the history the typewriter, drawing both on its role in giving women more freedom (as a medium for communication outside of the patriarchal sphere of influence), and a medium for making a unique form of art.
+    Making modern connections to technological influences, data, censorship, the age of misinformation.
+
+    Ultimately due to time constraints I settled on a much simpler goal. Perhaps in its simplicity the message is made clearer... but I may also go back to those earlier ideas in a later iteration.
   </Section>
 
-  <SplitSection className="my-2 gap-2">
+  <Section className="mt-8 gap-2">
+    #### Implementation Details 
+
+    ... this section is still a stub. More info to come soon!
+
+    ##### Mechanical Design
+
+    Opened up the typewriter to see the innards.
+    How it works is that a motor spins really fast inside, which also makes a few other things (long metal rods) spin really fast, which powers every part of the machine in a really intricate interconnected way.
+    Basically there's no smart circuitry at all inside this thing, which meant I couldn't send an electric signal to a key to make it move. Bummer.
+
+    <Section className="w-full flex justify-end text-xs font-medium font-roboto-mono">
+      Innards
+    </Section>
     <MDXMedia 
       src="/projects/ghostwriter/exposed-bottom.webp" 
       alt="ghostwriter img 1" 
@@ -92,7 +135,40 @@ link: ""
       frame="none"
       className="w-full"
     />
-  </SplitSection>
+    <br/>
+
+    But something else I noticed was that on the inside, all the key triggers (the long thin metal bits) are lined up neatly in a nice line.
+    Moving a trigger up so that it hits the fast rotating metal rod causes a key to be activated. This motion could easily be replicated with a servor motor.
+    But how would one put together something capable of accessing multiple keys? The obvious brute force solution was to use another servo motor for every key.
+    But that would require at least 26 servo motors, neither space nor cost effective.
+
+    Contraption will rest underneath typewriter
+    Moves back and forth linearly to position itself under a specific key, then uses a servo arm to hit the metal bit that triggers that key
+
+    Rack and pinion for linear motion
+    - use modulus 1
+    - small teeth for better precision
+    - pinion gear stays in place => rotated by servo gear
+
+    Goals (in order of priority):
+    - Be able to automate typing with all normal keys 
+    - Mechanism for triggering carriage return
+    - Mechanism for space bar
+
+    Necessary parts
+    - 1-3 microservo motors (2.5kg) for triggering the keys (don't need much force at all)
+    - 1 20kg servo motor for moving the microservos into the correct position
+    - 3d printed rack and pinion parts
+    - screws and nuts/bolts to assemble it?
+
+
+    ##### 3D Printing & Assembly
+
+    ##### Wiring/Powering Servo Motors with Arduino
+
+
+  </Section>
+
 
   <SplitSection className="my-2 mb-8 gap-2">
     <SectionColumn size={6}>
