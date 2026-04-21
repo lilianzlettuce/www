@@ -68,7 +68,7 @@ link: ""
   </SplitSection>
 </Section>
 <br/>
-<Section className="flex flex-col gap-2 mt-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-sm">
+<Section className="flex flex-col gap-2 my-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-sm">
   <Section className="w-full flex justify-end text-xs font-medium font-roboto-mono">
     Ghostwriter at Spill | 2025
   </Section>
@@ -88,7 +88,7 @@ link: ""
   <VimeoEmbed id="1185016373" title="Ecophones Video" />
 
   <MDXMedia 
-    src="/projects/ghostwriter/exposed-iso.webp" 
+    src="/projects/ghostwriter/underside-2.jpg" 
     alt="Hero" 
     preset="header"
     width={3754}
@@ -107,9 +107,18 @@ link: ""
     I cycled through many ideas, before, during, and after its creation. The initial concept was automating the machine to be interactive through voice transcription. The typewriter would be programmed to output a specific text/ascii image, which viewers will have the power to interrupt. 
     Upon acquiring a second typewriter off of Facebook Marketplace, I then brainstormed ideas involving networked typewriters capable of communication over Wifi.
     I spent some time researching the history the typewriter, drawing both on its role in giving women more freedom (as a medium for communication outside of the patriarchal sphere of influence), and a medium for making a unique form of art.
-    Making modern connections to technological influences, data, censorship, the age of misinformation.
-
+    
     Ultimately due to time constraints I settled on a much simpler goal. Perhaps in its simplicity the message is made clearer... but I may also go back to those earlier ideas in a later iteration.
+
+    <MDXMedia 
+      src="/projects/ghostwriter/front-3.jpg" 
+      alt="Hero" 
+      preset="header"
+      width={3754}
+      height={2835}
+      frame="none"
+      className="w-full"
+    />
   </Section>
 
   <Section className="mt-8 gap-2">
@@ -127,8 +136,8 @@ link: ""
       Innards
     </Section>
     <MDXMedia 
-      src="/projects/ghostwriter/exposed-bottom.webp" 
-      alt="ghostwriter img 1" 
+      src="/projects/ghostwriter/underside-1.jpg" 
+      alt="Ghostwriter innards exposed from below" 
       preset="header"
       width={3754}
       height={2835}
@@ -155,166 +164,165 @@ link: ""
     - Mechanism for triggering carriage return
     - Mechanism for space bar
 
+    <Section className="w-full flex justify-end text-xs font-medium font-roboto-mono">
+      Rack and Pinion 3D Model | 2025
+    </Section>
+    <SplitSection className="my-2 mb-8 gap-2">
+      <SectionColumn size={6}>
+        <MDXMedia 
+          isVideo
+          loop
+          src="/projects/ghostwriter/rnp-top-view.mp4" 
+          alt="Hero video" 
+          preset="header"
+          width={2560}
+          height={1600}
+          frame="none"
+          className="w-full"
+        />
+      </SectionColumn>
+      <SectionColumn size={6}>
+        <MDXMedia 
+          isVideo
+          loop
+          src="/projects/ghostwriter/rnp-iso.mp4" 
+          alt="Hero video" 
+          preset="header"
+          width={2560}
+          height={1600}
+          frame="none"
+          className="w-full"
+        />
+      </SectionColumn>
+    </SplitSection>
+    
+    <SplitSection className="my-2 mb-8 gap-2">
+      <SectionColumn size={6}>
+        <MDXMedia 
+          src="/projects/ghostwriter/rnp-model-full-iso-2.jpg" 
+          alt="Hero" 
+          preset="header"
+          width={3754}
+          height={2835}
+          frame="none"
+          className="w-full"
+        />
+      </SectionColumn>
+      <SectionColumn size={6}>
+        <MDXMedia 
+          src="/projects/ghostwriter/rnp-model-full-top-view.jpg" 
+          alt="Hero" 
+          preset="header"
+          width={3754}
+          height={2835}
+          frame="none"
+          className="w-full"
+        />
+      </SectionColumn>
+    </SplitSection>
+
+    <SplitSection className="my-2 mb-8 gap-2">
+      <SectionColumn size={6}>
+        <MDXMedia 
+          src="/projects/ghostwriter/rnp-model-iso.jpg" 
+          alt="Hero" 
+          preset="header"
+          width={3754}
+          height={2835}
+          frame="none"
+          className="w-full"
+        />
+      </SectionColumn>
+      <SectionColumn size={6}>
+        <MDXMedia 
+          src="/projects/ghostwriter/rnp-model-iso-2.jpg" 
+          alt="Hero" 
+          preset="header"
+          width={3754}
+          height={2835}
+          frame="none"
+          className="w-full"
+        />
+      </SectionColumn>
+    </SplitSection>
+
+    ##### 3D Printing & Assembly
+
     Necessary parts
     - 1-3 microservo motors (2.5kg) for triggering the keys (don't need much force at all)
     - 1 20kg servo motor for moving the microservos into the correct position
     - 3d printed rack and pinion parts
-    - screws and nuts/bolts to assemble it?
+    - screws
 
+    Assemblage of the 3D-printed parts took much trial and error. 
+    Oftentimes the dowel holes would be just slightly too big/small, and sometimes this sizing would differ between prints due to filament expansion.
+    I'd reprinted around 3-4 versions of each part by the time the final prototype was assembled.
 
-    ##### 3D Printing & Assembly
+    <SplitSection className="my-2 mb-8 gap-2">
+      <SectionColumn size={6}>
+        <MDXMedia 
+          src="/projects/ghostwriter/rnp-3.jpg" 
+          alt="Hero" 
+          preset="header"
+          width={3754}
+          height={2835}
+          frame="none"
+          className="w-full"
+        />
+      </SectionColumn>
+      <SectionColumn size={6}>
+        <MDXMedia 
+          src="/projects/ghostwriter/rnp-top-view-1.jpg" 
+          alt="Hero" 
+          preset="header"
+          width={3754}
+          height={2835}
+          frame="none"
+          className="w-full"
+        />
+      </SectionColumn>
+    </SplitSection>
+
+    <SplitSection className="my-2 gap-2">
+      <MDXMedia 
+        src="/projects/ghostwriter/underside-with-rnp-3.jpg" 
+        alt="ghostwriter img 3" 
+        preset="header"
+        width={3754}
+        height={2835}
+        frame="none"
+        className="w-full"
+      />
+    </SplitSection>
+
+    <SplitSection className="my-2 mb-8 gap-2">
+      <SectionColumn size={6}>
+        <MDXMedia 
+          src="/projects/ghostwriter/underside-with-rnp-1.jpg" 
+          alt="Hero" 
+          preset="header"
+          width={3754}
+          height={2835}
+          frame="none"
+          className="w-full"
+        />
+      </SectionColumn>
+      <SectionColumn size={6}>
+        <MDXMedia 
+          src="/projects/ghostwriter/bottom-iso-3.jpg" 
+          alt="Hero" 
+          preset="header"
+          width={3754}
+          height={2835}
+          frame="none"
+          className="w-full"
+        />
+      </SectionColumn>
+    </SplitSection>
 
     ##### Wiring/Powering Servo Motors with Arduino
 
-
+    ...
   </Section>
 
-
-  <SplitSection className="my-2 mb-8 gap-2">
-    <SectionColumn size={6}>
-      <MDXMedia 
-        src="/projects/ghostwriter/exposed-iso.webp" 
-        alt="Hero" 
-        preset="header"
-        width={3754}
-        height={2835}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
-    <SectionColumn size={6}>
-      <MDXMedia 
-        src="/projects/ghostwriter/front-view-2.webp" 
-        alt="Hero" 
-        preset="header"
-        width={3754}
-        height={2835}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
-  </SplitSection>
-
-  <SplitSection className="my-2 gap-2">
-    <MDXMedia 
-      src="/projects/ghostwriter/front-view-portrait.webp" 
-      alt="ghostwriter img 3" 
-      preset="header"
-      width={3754}
-      height={2835}
-      frame="none"
-      className="w-full"
-    />
-  </SplitSection>
-
-  <SplitSection className="my-2 mb-8 gap-2">
-    <SectionColumn size={6}>
-      <MDXMedia 
-        src="/projects/ghostwriter/servo-mechanism.webp" 
-        alt="Hero" 
-        preset="header"
-        width={3754}
-        height={2835}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
-    <SectionColumn size={6}>
-      <MDXMedia 
-        src="/projects/ghostwriter/gray-black.webp" 
-        alt="Hero" 
-        preset="header"
-        width={3754}
-        height={2835}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
-  </SplitSection>
-
-  <Section className="w-full flex justify-end text-xs font-medium font-roboto-mono">
-    
-  </Section>
-
-  <SplitSection className="my-2 gap-2">
-    <SectionColumn size={12}>
-      <MDXMedia 
-        src="/projects/ghostwriter/black-blue-yellow-large-labels.webp" 
-        alt="Hero" 
-        preset="header"
-        width={3754}
-        height={2835}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
-  </SplitSection>
-  <SplitSection className="my-2 gap-2">
-    <SectionColumn size={6}>
-      <MDXMedia 
-        src="/projects/ghostwriter/ar-web-view.webp" 
-        alt="Hero" 
-        preset="header"
-        width={3754}
-        height={2835}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
-    <SectionColumn size={6}>
-      <MDXMedia 
-        src="/projects/ghostwriter/3d-iso-red.webp" 
-        alt="Hero" 
-        preset="header"
-        width={3754}
-        height={2835}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
-  </SplitSection>
-
-  <Section className="w-full flex justify-end text-xs font-medium font-roboto-mono">
-    Showcase at spill!!
-  </Section>
-  <SplitSection className="my-2 gap-2">
-    <SectionColumn size={12}>
-      <MDXMedia 
-        src="/projects/ghostwriter/ghostwriter-spill.jpg" 
-        alt="Hero" 
-        preset="header"
-        width={3754}
-        height={2835}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
-  </SplitSection>
-  <SplitSection className="my-2 gap-2">
-    <SectionColumn size={6}>
-      <MDXMedia 
-        src="/projects/ghostwriter/sticker-black.webp" 
-        alt="Hero" 
-        preset="header"
-        width={3754}
-        height={2835}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
-    <SectionColumn size={6}>
-      <MDXMedia 
-        src="/projects/ghostwriter/sticker-blue.webp" 
-        alt="Hero" 
-        preset="header"
-        width={3754}
-        height={2835}
-        frame="none"
-        className="w-full"
-      />
-    </SectionColumn>
-  </SplitSection>
-</Section>
-
-<Section className="mt-20">
 </Section>
