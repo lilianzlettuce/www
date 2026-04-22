@@ -1,7 +1,7 @@
 ---
 title: "Spill Ticket Experience"
 description: "Ticket design + interactive customization experience integrated into the RSVP flow for Purdue Hackers’ 2025 end-of-year showcase."
-image: "/projects/spill/preview-1.png"
+image: "/projects/spill/preview-matcha.jpg"
 tags: ["Web Development", "React"]
 categories: ["dev", "design"]
 date: "2025-11"
@@ -16,7 +16,7 @@ link: "https://www.purduehackers.com/"
     width={2560}
     height={1664}
     frame="mockup"
-    className="w-full sm:w-4/5 my-10"
+    className="w-full sm:w-11/12 my-10"
   />
 </Section>
 
@@ -71,6 +71,7 @@ link: "https://www.purduehackers.com/"
     height={1664}
     frame="none"
     className="w-full mt-10"
+    baseImageClassName="rounded-sm"
   />
   <MDXMedia 
     src="/projects/spill/ticket-prototypes-2.jpg" 
@@ -80,6 +81,7 @@ link: "https://www.purduehackers.com/"
     height={1664}
     frame="none"
     className="w-full mb-10"
+    baseImageClassName="rounded-sm"
   />
 
   This direction carried into the UI as well. Users choose from 8 ticket variations, framed as drink orders: matcha latte, cappuccino, etc.
@@ -92,7 +94,23 @@ link: "https://www.purduehackers.com/"
 
   The customization flow was designed to feel lightweight and fun without getting in the way.
 
-  After RSVPing, users were redirected straight into the ticket builder with their name and ticket number filled in. From there, they could:
+  After RSVPing, users were redirected straight into the ticket builder with their name and ticket number automatically filled in. 
+  
+  <MDXMedia 
+    isVideo
+    loop
+    src="/projects/spill/rsvp-short.mp4" 
+    alt="Hero video" 
+    preset="header"
+    width={2560}
+    height={1600}
+    frame="mockup"
+    className="w-full"
+    baseImageClassName="aspect-256/165"
+    baseImageClassName="rounded-sm"
+  />
+
+  From there, they could:
 
   - Choose a ticket design (“drink order”)
   - Edit their name / ticket number
@@ -103,15 +121,20 @@ link: "https://www.purduehackers.com/"
   The background includes small, tactile elements like paper textures, coffee stains, and teabags that reinforce the physical feel of the experience.
 
   <MDXMedia 
-    src="/projects/spill/page-matcha-tight.jpg" 
-    alt="Hero screenshot" 
+    isVideo
+    loop
+    src="/projects/spill/3d-interact-1.mp4" 
+    alt="Hero video" 
     preset="header"
     width={2560}
-    height={1664}
-    frame="none"
-    className="w-full my-10"
+    height={1600}
+    frame="mockup"
+    className="w-full"
+    baseImageClassName="aspect-256/165"
+    baseImageClassName="rounded-sm"
   />
-
+  <br/>
+  
   #### Sharing + Circulation
 
   A big goal was making the ticket easy to pass around.
@@ -128,7 +151,8 @@ link: "https://www.purduehackers.com/"
     width={2560}
     height={1664}
     frame="none"
-    className="w-full my-10"
+    className="w-full"
+    baseImageClassName="rounded-sm"
   />
 
   Users can:
@@ -157,26 +181,6 @@ link: "https://www.purduehackers.com/"
 
   Instead of picking one format, we included multiple options (link, image, native share), since people share differently depending on context.
 
-  <MDXMedia 
-    src="/projects/spill/rsvp.jpg" 
-    alt="Hero screenshot" 
-    preset="header"
-    width={2560}
-    height={1664}
-    frame="mockup"
-    className="w-full my-4"
-  />
-
-  <MDXMedia 
-    src="/projects/spill/rsvp-success-2.jpg" 
-    alt="Hero screenshot" 
-    preset="header"
-    width={2560}
-    height={1664}
-    frame="mockup"
-    className="w-full my-4"
-  />
-
   #### Technical Notes
 
   The most challenging part in developing the site was exporting the ticket canvas as an image reliably across devices.
@@ -197,6 +201,8 @@ link: "https://www.purduehackers.com/"
   - Heat-pressed designs onto each tag
   - Assembled tea bags by hand using loose-leaf tea
 
+  This tied back into the same “coffee/tea” theme and made the digital concept feel a bit more tangible.
+
   <MDXMedia 
     src="/projects/spill/tea-bag-w-tags.jpg" 
     alt="Hero screenshot" 
@@ -204,7 +210,8 @@ link: "https://www.purduehackers.com/"
     width={2560}
     height={1664}
     frame="none"
-    className="w-full my-10"
+    className="w-full "
+    baseImageClassName="rounded-sm"
   />
   <SplitSection className="gap-2">
     <SectionColumn size={6}>
@@ -215,7 +222,8 @@ link: "https://www.purduehackers.com/"
         width={2560}
         height={1664}
         frame="none"
-        className="w-full my-10"
+        className="w-full"
+        baseImageClassName="rounded-sm"
       />
     </SectionColumn>
     <SectionColumn size={6}>
@@ -226,12 +234,11 @@ link: "https://www.purduehackers.com/"
         width={2560}
         height={1664}
         frame="none"
-        className="w-full my-10"
+        className="w-full"
+        baseImageClassName="rounded-sm"
       />
     </SectionColumn>
   </SplitSection>
-
-  This tied back into the same “coffee/tea” theme and made the digital concept feel a bit more tangible at the event itself.
 
   #### Outcome
 
