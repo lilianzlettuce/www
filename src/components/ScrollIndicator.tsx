@@ -14,7 +14,7 @@ export function ScrollIndicator({ className, total = 6 }: { className?: string; 
 
     return (
         <div
-            className={`${className} bg-background rounded-lg p-0 flex flex-col items-end gap-2 font-roboto-mono`}
+            className={`${className} mix-blend-difference rounded-lg p-0 flex flex-col items-end gap-2 font-roboto-mono`}
             aria-label="Scroll progress indicator"
         >
             <div className="text-sm flex flex-col items-center gap-4">
@@ -26,15 +26,15 @@ export function ScrollIndicator({ className, total = 6 }: { className?: string; 
                         return (
                             <div
                                 key={index} 
-                                className={`w-[8px] h-[8px] border-[0.8px] border-secondary-foreground transition-colors duration-200 ${
-                                isFilled ? "bg-secondary-foreground" : "bg-transparent"
+                                className={`w-[8px] h-[8px] border-[0.8px] border-zinc-200 transition-colors duration-200 ${
+                                isFilled ? "bg-zinc-200" : "bg-transparent"
                             }`}
                             />
                         );
                     })}
                 </div>
-                <div className="h-6 border-r-1 border-border"></div>
-                <div className="text-[0.65rem] font-mono text-muted-foreground">FIN</div>
+                <div className="h-6 border-r-1 border-zinc-700"></div>
+                <div className="text-[0.65rem] font-mono text-zinc-400">FIN</div>
                 <div className="hidden text-center font-micro5 text-xl rotate-90 relative top-1.5">&#93;&nbsp;</div>
             </div>
         </div>

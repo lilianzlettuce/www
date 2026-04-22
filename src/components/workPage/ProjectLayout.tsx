@@ -254,7 +254,7 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
 
       {/* Main content */}
       <div className="max-w-6xl mx-auto w-full px-5 sm:px-10 sm:pr-12 py-0">
-        <ScrollIndicator className="fixed top-8 right-4" />
+        <ScrollIndicator className="z-100 fixed top-8 right-4" />
 
         {/* Project Header */}
         <ProjectHeaderMinimal frontmatter={frontmatter} />

@@ -85,8 +85,8 @@ function WorkPageContent() {
               {/* List/Grid Buttons */}
               <div className="flex items-center gap-2">
                 <button className={`px-1 py-0 h-2.5 flex items-center gap-1 rounded-none
-                          font-roboto-mono text-xs lowercase transition-colors 
-                          ${viewMode === "list" ? "text-background bg-foreground font-semibold" 
+                          font-roboto-mono text-xs lowercase
+                          ${viewMode === "list" ? "uppercase text-background bg-foreground font-semibold" 
                             : "text-muted-foreground hover:text-foreground"}`}
                   onClick={() => setViewMode("list")}
                 >
@@ -94,12 +94,12 @@ function WorkPageContent() {
                   <ListIcon className="w-3.5 h-3.5" strokeWidth={2} /> less
                 </button>
                 <button className={`px-1 py-0 h-2.5 flex items-center gap-1 rounded-none
-                          font-roboto-mono text-xs lowercase transition-colors 
-                          ${viewMode === "grid" ? "text-background bg-foreground font-semibold" 
+                          font-roboto-mono text-xs
+                          ${viewMode === "grid" ? "uppercase text-background bg-foreground font-semibold" 
                             : "text-muted-foreground hover:text-foreground"}`}
                   onClick={() => setViewMode("grid")}
                 >
-                  <GridIcon className="w-3.5 h-3.5" strokeWidth={2} /> more
+                  <GridIcon className="w-3 " strokeWidth={2} /> more
                 </button>
               </div>
 
