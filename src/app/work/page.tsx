@@ -6,7 +6,7 @@ import { useMemo, useState, useEffect, Suspense } from "react";
 import { ProjectFrontmatter } from "@/lib/mdx";
 import { projectCategories } from "@/lib/data";
 
-import { /*ProjectCardBasic,*/ ProjectCardLarge, ProjectCardTechMono, ProjectCardMinimal, ProjectCardMinimal2 } from "@/components/workPage/Cards";
+import { /*ProjectCardBasic,*/ ProjectCardLarge, ProjectCardTechMono, ProjectCardMinimal, ProjectCardMinimal2, ProjectListItemLarge } from "@/components/workPage/Cards";
 import { /*WorkPageHeader2, WorkPageHeaderMinimal, */ WorkPageHeaderContrast } from "@/components/Header";
 import { ProjectFilter } from "@/components/workPage/ProjectFilter";
 import { GridIcon, ListIcon, SquareIcon } from "@/components/svg/Icons";
@@ -83,23 +83,23 @@ function WorkPageContent() {
 
             <div className="z-30 w-full flex flex-col sm:flex-row items-start sm:items-center justify-start gap-2 mb-8">
               {/* List/Grid Buttons */}
-              <div className="flex gap-2">
-                <button className={`p-1 flex items-center gap-1 
+              <div className="flex items-center gap-2">
+                <button className={`px-1 py-0 h-2.5 flex items-center gap-1 rounded-none
                           font-roboto-mono text-xs lowercase transition-colors 
-                          ${viewMode === "list" ? "text-foreground font-semibold" 
+                          ${viewMode === "list" ? "text-background bg-foreground font-semibold" 
                             : "text-muted-foreground hover:text-foreground"}`}
                   onClick={() => setViewMode("list")}
                 >
                   
-                  <ListIcon className="w-3.5 h-3.5" strokeWidth={2} /> List
+                  <ListIcon className="w-3.5 h-3.5" strokeWidth={2} /> less
                 </button>
-                <button className={`p-1 flex items-center gap-1 
+                <button className={`px-1 py-0 h-2.5 flex items-center gap-1 rounded-none
                           font-roboto-mono text-xs lowercase transition-colors 
-                          ${viewMode === "grid" ? "text-foreground font-semibold" 
+                          ${viewMode === "grid" ? "text-background bg-foreground font-semibold" 
                             : "text-muted-foreground hover:text-foreground"}`}
                   onClick={() => setViewMode("grid")}
                 >
-                  <GridIcon className="w-3.5 h-3.5" strokeWidth={2} /> Grid
+                  <GridIcon className="w-3.5 h-3.5" strokeWidth={2} /> more
                 </button>
               </div>
 
@@ -108,7 +108,7 @@ function WorkPageContent() {
                 <ProjectFilter 
                   categories={projectCategories}
                   toggleStyle="px-1.5 py-0 font-roboto-mono font-medium text-xs leading-none lowercase rounded-none tracking-widest"
-                  toggleStyleActive="text-foreground uppercase text-magenta hover:rotate-x-180 hover:text-magenta"
+                  toggleStyleActive="text-foreground uppercase bg-magenta hover:rotate-x-180 hover:text-magenta"
                   toggleStyleInactive="border-0 border-border bg-background text-muted-foreground hover:rotate-x-180 hover:uppercase hover:border-foreground hover:text-magenta"
                   showIcons={true}
                 />
@@ -134,10 +134,11 @@ function WorkPageContent() {
 
               {/* All Grid View */}
               {viewMode === "grid" && categoryFilters.length === 0 && (
-                <div className="px-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="px-4 grid lg:grid-cols-2 gap-4">
                   {filteredProjects.map((project: ProjectFrontmatter) => (
-                    <ProjectCardMinimal key={project.slug} project={project} />
-                    /*<ProjectCardBasic
+                    <ProjectListItemLarge key={project.slug} project={project} />
+                    /*<ProjectCardMinimal key={project.slug} project={project} />
+                    <ProjectCardBasic
                       key={project.slug} 
                       project={project} 
                       className="" 

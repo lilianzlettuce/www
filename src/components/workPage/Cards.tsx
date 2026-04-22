@@ -219,12 +219,82 @@ export function ProjectListItemTechMono({ project, index = 0 }: ProjectCardProps
     );
 };
 
+export function ProjectListItemLarge({ project }: ProjectCardProps) {
+    return (
+        <Link
+            key={project.slug}
+            href={`/work/${project.slug}`}
+            className="group relative sm:h-75 rounded-none border-1 border-border hover:border-muted-foreground"
+        >
+            {/* Decorative corners */}
+            <BoxCorners
+                cornerSize="4px"
+                cornerOffset="-2px"
+                cornerColor="var(--secondaryForeground)"
+            />
+
+            {/* Project content */}
+            <div className="w-full h-full p-4 flex flex-col sm:flex-row gap-4">
+                <div className="relative grow aspect-200/152 sm:aspect-auto sm:h-60 sm:h-full flex items-center justify-center border-1 border-secondary">
+                    {project.image ? (
+                        <Image
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover"
+                            fill={true}
+                        />
+                    ) : (
+                        <div className="text-mutedForeground text-4xl font-bold">
+                            {project.title.charAt(0)}
+                        </div>
+                    )}
+                </div>
+                
+                <div className="sm:w-1/2 h-full flex flex-col justify-between gap-4">
+                    <div>
+                        <div className="flex items-start justify-between">
+                            <h3 className="font-roboto-mono text-lg sm:text-xl font-semibold text-foreground">
+                                {project.title}
+                            </h3>
+                        </div>
+                        <p className="font-ibm-plex-mono text-xs text-mutedForeground line-clamp-4">
+                            {project.description}
+                        </p>
+                    </div>
+                    
+                    <div className="flex flex-col gap-2">
+                        <div className="flex flex-wrap gap-2 font-roboto-mono text-[0.65rem] tracking-widest uppercase">
+                            {project.tags?.slice(0, 3).map((tag: string) => (
+                                <span
+                                    key={tag}
+                                    className="h-fit px-1 py-0.4 rounded-xs bg-foreground text-background"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                            {project.tags && project.tags.length > 3 && (
+                                <span className="h-fit px-1 py-0.4 rounded-xs bg-muted text-mutedForeground">
+                                    +{project.tags.length - 3}
+                                </span>
+                            )}
+                        </div>
+
+                        <p className="font-roboto-mono text-[0.6rem] tracking-widest">
+                            &#91;{project.date.split("-").reverse().join(".")}&#93;
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </Link>
+    );
+};
+
 export function ProjectCardLarge({ project }: ProjectCardProps) {
     return (
         <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className="group relative sm:h-75 rounded-none border-1 border-border hover:border-muted-foreground transition-all duration-300 hover:-translate-y-1"
+            className="group relative sm:h-75 rounded-none border-1 border-border hover:border-muted-foreground"
         >
             {/* Decorative corners */}
             <BoxCorners
@@ -375,7 +445,7 @@ export function ProjectCardTechMono({ project, className = "h-90" }: ProjectCard
         <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className={`${className} group relative rounded-none box-border border-1 border-border hover:border-muted-foreground hover:shadow-lg transition-all duration-300 hover:-translate-y-1`}
+            className={`${className} group relative rounded-none box-border border-1 border-border hover:border-muted-foreground`}
         >
             <BoxCorners
                 cornerSize="4px"
