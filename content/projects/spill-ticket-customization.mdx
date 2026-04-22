@@ -1,6 +1,6 @@
 ---
-title: "Spill Ticket Customization"
-description: "Digital ticket customization experience for spill, a Purdue Hackers show."
+title: "Spill Ticket Experience"
+description: "Ticket design + interactive customization experience integrated into the RSVP flow for Purdue Hackers’ 2025 end-of-year showcase."
 image: "/projects/spill/preview-1.png"
 tags: ["Web Development", "React"]
 categories: ["dev", "design"]
@@ -10,7 +10,7 @@ link: "https://www.purduehackers.com/"
 
 <Section className="w-full h-[90vh] flex justify-center items-center">
   <MDXMedia 
-    src="/projects/spill/preview-1.png" 
+    src="/projects/spill/page-matcha-latte-tight.jpg" 
     alt="Hero screenshot" 
     preset="header"
     width={2560}
@@ -20,35 +20,10 @@ link: "https://www.purduehackers.com/"
   />
 </Section>
 
-<Section className="mt-20 w-full md:w-[85%] lg:w-[90%] ml-0 md:ml-15 lg:ml-0 text-sm">
-  <SplitSection className="my-2 mb-8 gap-2">
-    <SectionColumn size={3}>
-      ##### Spill Ticket Customization Site
-      2025
-      
-    </SectionColumn>
-    <SectionColumn size={6} className="h-fit flex flex-col gap-2 text-sm">
-      <ProjectInfoRow
-        items={[
-          { label: "Role", values: ["Designer + Developer"] },
-          { label: "Duration", values: ["3 weeks"] },
-          { label: "Stack", values: ["Astro.js", "React"] },
-        ]}
-        labelClassName="font-jetbrains-mono font-normal text-muted-foreground uppercase text-xs"
-        valuesClassName="text-sm"
-      />
-
-      <br/>
-      Ticket design + interactive customization experience for Purdue Hackers’ 2025 end-of-year showcase, Spill
-
-       <a href="https://purduehackers.com/" target="_blank" rel="noopener noreferrer">Purdue Hackers</a> <a href="https://grants.purduehackers.com/" target="_blank" rel="noopener noreferrer">Microgrants</a>.
-    </SectionColumn>
-  </SplitSection>
-</Section>
-
 <ProjectHeader
-  title="Spill Digital Ticket Design and Customization Site"
-  description="Ticket design + interactive customization experience for Purdue Hackers’ 2025 end-of-year showcase, Spill."
+  title="Spill Ticket Experience"
+  description="Ticket design + interactive customization experience integrated into the RSVP flow for Purdue Hackers’ 2025 end-of-year showcase."
+  link="https://spill.purduehackers.com/tickets"
 >
   <ProjectInfo
     items={[
@@ -59,59 +34,53 @@ link: "https://www.purduehackers.com/"
   />
 </ProjectHeader>
 
-<SplitSection>
-  <SectionColumn size={4}>
-    ###### Background
-  </SectionColumn>
-  <SectionColumn size={12}>
-    #### Overview
-    Ticket design and online customization interface for Purdue Hacker's 2025 show, Spill.
+<Section className="flex flex-col gap-2 my-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-base">
+  #### Context
 
-    <br/><br/><br/>
-
-    #### Brief
-    a series of digital ticket designs and a corresponding digital ticket customization experience I developed for a student organiation's end of the year project showcase, "spill".
-    Purdue Hackers end of the year show— yearly showcase of cool projects that members have worked on in the past year. 
-    A lot of work went into organizing spill, by many different organizers... many were also showcasing a project at the event themselves.
-  </SectionColumn>
-  <SectionColumn size={2}>
-  </SectionColumn>
-</SplitSection>
-
-<Section className="mt-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-base">
-
-  #### Overview
-
-  A series of digital ticket designs and a corresponding customization experience I built for Spill, Purdue Hackers’ yearly showcase of projects from across the community.
-
-  A lot of work went into organizing Spill—many of the organizers were also showcasing projects themselves—so this was a small contribution meant to support that effort while adding something playful and memorable to the event.
-
-  The idea was simple: give people a personalized digital ticket they could keep, share, and use to spread the word. It also doubled as a small easter egg within the site.
-
-  [image]
+  Every year, <a href="https://purduehackers.com/" target="_blank" rel="noopener noreferrer">Purdue Hackers</a> hosts a showcase of cool passion projects from across the community, ranging anywhere from hardware hacks to hand-sewed garments to algorithmic art. 
+  The 2025 show <a href="https://spill.purduehackers.com/" target="_blank" rel="noopener noreferrer">spill</a> took place within a small, cozy coffee shop at the edge of campus, with 23 projects exhibited and over 200 attendees showing up to the 3-hour event.
 
   #### Motivation
 
-  This wasn’t solving a critical problem—it was more about amplifying the energy around the event.
-
-  Make it easy to promote and share Spill
-  Give people a personalizable digital token
-  Add something fun and slightly unexpected to the site
-
-  We had seen similar experiences for other events—especially the Socratica Symposium ticket customizer and some Next.js event card generators—and wanted to bring that same sense of personalization into this context.
+  As part of the spill task force, my goal was to make the event personable and welcoming to potential attendees by adding playful yet memorable touches that would really make the experience stand out.
+  
+  After brainstorming several ideas, we decided to give attendees personalized digital and physical tokens they could:
+  - Save as a keepsake
+  - Easily share with friends
+  - Use to spread the word about the event
+  
+  With this goal in mind, I designed series of ticket designs and a corresponding customization experience as part of the RSVP flow of the site.
+  We took inspiration from similar experiences for other events like the <a href="https://symposium.socratica.info/" target="_blank" rel="noopener noreferrer">Socratica Symposium</a>  ticket customizer, along with Nextjs event nametag cards.
+  We wanted to bring that same sense of personalization into this context.
 
   #### Visual Direction
 
-  The ticket designs started from a loose concept: coffee shop packaging meets digital ticketing.
+  The ticket designs started from the loose concept of combining coffee shop packaging with digital ticketing.
+  We were inspired by many café branding paper textures with loose/flowy ink and messy handwritten elements. 
+  
+  Overall directions were this cozy coffee house vibe incorporated with digital data-encoding elements commonly seen on tickets (barcodes, pixel patterns, mono text strings). 
+  The result leans in to contrast:
+  - soft, sketchy, slightly messy visuals
+  - paired with rigid, encoded ticket details
 
-  We looked at a lot of café branding—paper textures, imperfect ink, handwritten elements—and combined that with structured, data-like visuals you’d expect on tickets: barcodes, mono text, pixel grids.
-
-  The result leans into contrast:
-
-  soft, sketchy, slightly messy visuals
-  paired with rigid, encoded ticket details
-
-  [image]
+  <MDXMedia 
+    src="/projects/spill/ticket-prototypes-1.jpg" 
+    alt="Hero screenshot" 
+    preset="header"
+    width={2560}
+    height={1664}
+    frame="none"
+    className="w-full mt-10"
+  />
+  <MDXMedia 
+    src="/projects/spill/ticket-prototypes-2.jpg" 
+    alt="Hero screenshot" 
+    preset="header"
+    width={2560}
+    height={1664}
+    frame="none"
+    className="w-full mb-10"
+  />
 
   This direction carried into the UI as well. Users choose from 8 ticket variations, framed as drink orders: matcha latte, cappuccino, etc.
 
@@ -121,40 +90,55 @@ link: "https://www.purduehackers.com/"
   
   #### The Experience
 
-  The customization flow was designed to feel lightweight and a bit playful, without getting in the way.
+  The customization flow was designed to feel lightweight and fun without getting in the way.
 
-  After RSVPing, users are redirected straight into the ticket builder with their name and ticket number already filled in. From there, they can:
+  After RSVPing, users were redirected straight into the ticket builder with their name and ticket number filled in. From there, they could:
 
-  Choose a ticket design (“drink order”)
-  Edit their name / ticket number
-  Add a short message on a sticky note
-  Draw directly onto the canvas with a crayon-like tool
-  Interact with the ticket via subtle 3D tilt on mouse movement
+  - Choose a ticket design (“drink order”)
+  - Edit their name / ticket number
+  - Add a short message on a sticky note
+  - Draw directly onto the canvas with a crayon-like tool
+  - Interact with the ticket via subtle 3D tilt on mouse movement
 
-  [image]
+  The background includes small, tactile elements like paper textures, coffee stains, and teabags that reinforce the physical feel of the experience.
 
-  The background includes small, tactile elements—paper textures, coffee stains, teabags—that reinforce the physical feel of something that’s actually digital.
+  <MDXMedia 
+    src="/projects/spill/page-matcha-tight.jpg" 
+    alt="Hero screenshot" 
+    preset="header"
+    width={2560}
+    height={1664}
+    frame="none"
+    className="w-full my-10"
+  />
 
   #### Sharing + Circulation
 
   A big goal was making the ticket easy to pass around.
 
-  Clicking “share” generates an image of the ticket and stores it in a Cloudflare R2 bucket. Each ticket gets its own page:
+  Clicking “share” generates an image of the HTML canvas and stores it in a Cloudflare R2 bucket. Each ticket gets its own page which:
+  - Displays the customized ticket
+  - Includes a “make your own” call-to-action
+  - Links back to RSVP + the main site
 
-  Displays the customized ticket
-  Includes a “join us at Spill” call-to-action
-  Links back to RSVP + the main site
-
-  [image]
+  <MDXMedia 
+    src="/projects/spill/share-page-matcha.jpg" 
+    alt="Hero screenshot" 
+    preset="header"
+    width={2560}
+    height={1664}
+    frame="none"
+    className="w-full my-10"
+  />
 
   Users can:
 
-  Copy a shareable link
-  Download the image
-  Use native device sharing
-  Pre-fill a post on X/Twitter
+  - Copy a shareable link
+  - Download the image
+  - Use native device sharing
+  - Pre-fill a post on X/Twitter
 
-  This turned each ticket into a small entry point back into the event—less like a static asset, more like a mini landing page.
+  This turned each ticket into a small entry point back into the event, encouraging more interested viewers to sign up.
 
   #### UX Decisions
 
@@ -162,62 +146,102 @@ link: "https://www.purduehackers.com/"
 
   How should people get here?
 
-  Option A: separate page
-  Option B: gated behind RSVP
-  Option C: optional “customize ticket” button
+  - Option A: separate page
+  - Option B: gated behind RSVP
+  - Option C: optional “customize ticket” button
 
-  I landed on a hybrid:
-
-  Users are automatically redirected after RSVP
-  The page is still accessible later for editing/sharing
-
+  We landed on a hybrid where users are automatically redirected to a separate ticket page after RSVP-ing, but the page is still accessible later for editing/sharing. 
   This keeps the flow tight while not locking people out.
 
   What does “sharing” actually mean here?
-  Instead of picking one format, I included multiple options (link, image, native share), since people share differently depending on context.
+
+  Instead of picking one format, we included multiple options (link, image, native share), since people share differently depending on context.
+
+  <MDXMedia 
+    src="/projects/spill/rsvp.jpg" 
+    alt="Hero screenshot" 
+    preset="header"
+    width={2560}
+    height={1664}
+    frame="mockup"
+    className="w-full my-4"
+  />
+
+  <MDXMedia 
+    src="/projects/spill/rsvp-success-2.jpg" 
+    alt="Hero screenshot" 
+    preset="header"
+    width={2560}
+    height={1664}
+    frame="mockup"
+    className="w-full my-4"
+  />
 
   #### Technical Notes
 
-  The hardest part was exporting the ticket as an image reliably across devices.
+  The most challenging part in developing the site was exporting the ticket canvas as an image reliably across devices.
+  There were basically 2 approaches:
 
-  I explored a few approaches:
+  - canvas-based rendering (easy export, harder styling)
+  - DOM-based rendering (easy styling, harder export)
 
-  canvas-based rendering (easy export, harder styling)
-  DOM-based rendering (easy styling, harder export)
-
-  I tried tools like fabric.js, konva.js, and html2canvas. Desktop worked fine, but mobile introduced issues—missing elements, incorrect fonts, layout shifts.
-
-  I ultimately stuck with a DOM + html2canvas approach, with a workaround that exports only the ticket element instead of the full canvas.
+  I tried tools like fabric.js, konva.js, and html2canvas. Desktop worked fine, but mobile introduced issues like missing elements, incorrect fonts, and layout shifts.
+  I ultimately stuck with a DOM + html2canvas approach, with a mobile workaround that exports only the ticket element instead of the full canvas.
 
   #### Physical Extension
 
   Alongside the digital tickets, we also made custom tea bags for attendees.
 
-  Designed vector graphics for tags
-  Used a Cricut to cut paper + gold foil
-  Heat-pressed designs onto each tag
-  Assembled tea bags by hand using loose-leaf tea
+  - Designed vector graphics for tags
+  - Used a Cricut to cut paper + gold foil
+  - Heat-pressed designs onto each tag
+  - Assembled tea bags by hand using loose-leaf tea
 
-  [image]
+  <MDXMedia 
+    src="/projects/spill/tea-bag-w-tags.jpg" 
+    alt="Hero screenshot" 
+    preset="header"
+    width={2560}
+    height={1664}
+    frame="none"
+    className="w-full my-10"
+  />
+  <SplitSection className="gap-2">
+    <SectionColumn size={6}>
+      <MDXMedia 
+        src="/projects/spill/tea-tags-1.jpg" 
+        alt="Hero screenshot" 
+        preset="header"
+        width={2560}
+        height={1664}
+        frame="none"
+        className="w-full my-10"
+      />
+    </SectionColumn>
+    <SectionColumn size={6}>
+      <MDXMedia 
+        src="/projects/spill/tea-bag-bag-1.jpg" 
+        alt="Hero screenshot" 
+        preset="header"
+        width={2560}
+        height={1664}
+        frame="none"
+        className="w-full my-10"
+      />
+    </SectionColumn>
+  </SplitSection>
 
   This tied back into the same “coffee/tea” theme and made the digital concept feel a bit more tangible at the event itself.
 
   #### Outcome
 
-  This was a small project, but it ended up doing a few things well:
+  Although this was a relatively small project, it ended up doing a few things well:
 
-  Gave people something personal to share leading up to the event
-  Helped keep Spill visible within the community
-  Added a layer of interaction beyond a typical RSVP flow
-  Created a consistent visual identity across digital and physical pieces
+  - Gave people something personal to share leading up to the event
+  - Helped keep spill visible within the community
+  - Added a layer of interaction beyond a typical RSVP flow
+  - Created a consistent visual identity across digital and physical pieces
 
   It also sparked a lot of casual engagement—people comparing tickets, sharing designs, and treating them more like collectibles than just event confirmations.
-
-  #### Reflection
-
-  This project sits somewhere between design, dev, and community-building.
-
-  It’s not a “product” in the usual sense, but it still benefits from the same kind of thinking—how something feels, how it flows, and how people actually engage with it.
-
-  In this case, the goal wasn’t efficiency—it was creating a small moment of delight that people would want to pass along.
+  Although it’s not a typical product, it still benefited from the same kind of thinking about how something feels and how people actually engage with it.
 </Section>
