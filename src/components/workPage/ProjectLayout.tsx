@@ -166,6 +166,13 @@ export function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
 
 function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
   const router = useRouter();
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      router.back();
+    } else {
+      router.push('/work'); // Fallback to work page if no history
+    }
+  };
   
   return (
     <header className="z-50 sticky top-0 left-0 w-full flex flex-row items-start gap-4">
@@ -175,7 +182,7 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
             {frontmatter.title}
           </div>
           <button className="p-0 group h-3 flex items-center font-roboto-mono font-semibold leading-none hover:rotate-x-0 hover:uppercase text-foreground"
-              onClick={() => router.back()}>
+              onClick={() => handleBack()}>
             {'['} <span className="inline-block group-hover:hidden">{'←'}&nbsp;</span>
             <span className="hidden group-hover:inline-block">{'→'}&nbsp;</span>
             go back {']'}
