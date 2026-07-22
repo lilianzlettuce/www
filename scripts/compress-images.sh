@@ -6,8 +6,8 @@
 # Param 1: Input directory (default: ../public/img)
 # Param 2: Output directory (default: ../public/img/webp)
 # Param 3: Delete originals (default: false)
-INPUT_DIR="${1:-../public/img}"
-OUTPUT_DIR="${2:-../public/img/webp}"
+INPUT_DIR="${1:-./}"
+OUTPUT_DIR="${2:-./webp}"
 DELETE_ORIGINALS="${3:-false}"
 
 # Check if input directory exists

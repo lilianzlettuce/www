@@ -1,10 +1,463 @@
 ---
 title: "Purdue Hackers Events Site"
 description: "Central site for students to stay up to date with and sign up for Purdue Hackers events!!!"
-image: "/projects/phackers-events/1.jpg"
+image: "/projects/phackers-events/hero-dark-list.webp"
 tags: ["Web Development", "Student Organization"]
-categories: []
+categories: ["dev"]
 date: "2026-04"
 link: "https://events.purduehackers.com/"
 ---
 
+<Section className="w-full h-[90vh] flex justify-center items-center">
+  <MDXMedia
+    isVideo
+    loop
+    src="/projects/phackers-events/hero-dark.mp4"
+    alt="Hero video"
+    preset="header"
+    width={2560}
+    height={1664}
+    frame="mockup"
+    className="w-full sm:w-11/12 my-10"
+  />
+</Section>
+
+<ProjectHeader
+  title="Purdue Hackers Events Site"
+  description="Archive of all hosted events and hub for discovering upcoming workshops, hack nights, demos, and all sorts of other community events organized by Purdue Hackers."
+  link="https://events.purduehackers.com/"
+>
+  <ProjectInfo
+    items={[
+      { label: "Role", values: ["Designer + Developer"] },
+      { label: "Timeline", values: ["Nov–Dec 2025"] },
+      { label: "Stack", values: ["Astro.js", "React", "Figma"] },
+    ]}
+  />
+</ProjectHeader>
+
+<Section className="flex flex-col gap-2 my-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-base">
+
+#### Context
+
+Over the course of the semester, Purdue Hackers hosts a variety of events, including workshops, hack nights, tech talks, and more.
+The [Events Site](https://events.purduehackers.com/) is essential to helping students learn more about the community and get involved, serving as both an archive of past event retrospectives and a central page for students to discover and sign up for upcoming events.
+
+First created in 2022, over the years the site had eventually fallen out of use, as it'd become both difficult to navigate by viewers and difficult to manage by organizers.
+I took ownership of the project in Fall 2025 as part of Purdue Hackers' broader rebrand, redesigning the site from the ground up while building out missing core features and refactoring the underlying architecture to fit our specific needs.
+
+</Section>
+
+<Section className=" w-full mb-2">
+  <MDXMedia
+    isVideo
+    loop
+    src="/projects/phackers-events/full-demo-mid.mp4"
+    alt="Hero video"
+    preset="header"
+    width={2560}
+    height={1664}
+    frame="mockup"
+    className="w-full"
+  />
+  <Section className="w-full flex justify-center text-xs font-medium font-roboto-mono">
+    Final Shipped Site
+  </Section>
+</Section>
+
+<Section className="flex flex-col gap-2 my-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-base">
+#### Challenge
+
+Although our brand identity evolved over the years, the Events Site had largely maintained the same outdated user experience. As events accumulated, the site became out of date both visually and more difficult for visitors to navigate.
+
+On the organizer side, the site has gone through several CMS migrations, each posing its unique issues.
+In 2025, with organizers experiencing increasing friction managing the site, we mp4ed event registration entirely to Luma, an external events manager.
+The new Luma site made the workflow smoother, but it limited our functionality and interface design to whatever Luma provided, stifling our creative identity.
+
+Following this change, the [The Great Events Site Migration ](https://sig.horse/2025-postlaunch/book.pdf#page=151) was undertaken, gutting the CMS/RSVP logic entirely and rewriting the codebase as a static AstroJS site that serves Markdown files kept directly in the GitHub repository.
+This effectively reduced the old Events Site to solely an archive for past events, but the new method for writing event descriptions in Markdown proved to be a bottleneck for organizers who weren't as familiar with the format. Ultimately we fell behind on updating retrospectives, leaving many events undocumented.
+
+</Section>
+
+<SplitSection className="gap-2 mb-2">
+  <SectionColumn size={6}>
+    <MDXMedia
+      src="/projects/phackers-events/old-hero-square.webp"
+      alt="Hero screenshot"
+      preset="header"
+      width={2560}
+      height={1664}
+      frame="#252525"
+      className="w-full"
+      baseImageClassName="rounded-sm p-4"
+    />
+    <Section className="w-full flex justify-center text-xs font-medium font-roboto-mono">
+      Old Events Site
+    </Section>
+  </SectionColumn>
+  <SectionColumn size={6}>
+    <MDXMedia
+      src="/projects/phackers-events/luma-square.webp"
+      alt="Hero screenshot"
+      preset="header"
+      width={2560}
+      height={1664}
+      frame="#252525"
+      className="w-full"
+      baseImageClassName="rounded-sm p-4"
+    />
+    <Section className="w-full flex justify-center text-xs font-medium font-roboto-mono">
+      3rd-party Luma Site
+    </Section>
+  </SectionColumn>
+</SplitSection>
+
+<Section className="flex flex-col gap-2 my-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-base">
+#### Goals
+
+- Create an interface consistent with Purdue Hackers' evolving visual identity
+- Make browsing years of events feel organized instead of overwhelming
+- Incorporate a content management method that non-technical organizers could easily update
+- Replace third-party tooling with features built specifically for our workflows
+- Build reusable components and patterns that could later power other Purdue Hackers websites
+
+<br />
+
+#### Designing the experience
+
+(Our main site also needed a rebrand for Fall 2025, but it was risky to experiment there since it gets a lot more traffic. Because it's lower stakes,) the events site became a testing ground for many of the visual ideas that would eventually influence the rest of the Purdue Hackers ecosystem.
+
+I explored combinations of pixel graphics, grid systems, dithering, retro interfaces, and playful interactions while keeping in mind the functional UX constraints. The interface needed personality without making it harder to quickly find information or register for an event.
+
+As the design evolved, many of these ideas became reusable interface patterns that were later adopted across other Purdue Hackers projects.
+
+</Section>
+
+<SplitSection className="gap-2">
+  <SectionColumn size={6}>
+    <MDXMedia
+      src="/projects/phackers-events/prototypes-1.webp"
+      alt="Hero screenshot"
+      preset="header"
+      width={2560}
+      height={1664}
+      frame="#252525"
+      className="w-full"
+      baseImageClassName="rounded-sm p-4"
+    />
+  </SectionColumn>
+  <SectionColumn size={6}>
+    <MDXMedia
+      src="/projects/phackers-events/prototypes-3.webp"
+      alt="Hero screenshot"
+      preset="header"
+      width={2560}
+      height={1664}
+      frame="#252525"
+      className="w-full"
+      baseImageClassName="rounded-sm p-4"
+    />
+  </SectionColumn>
+</SplitSection>
+<Section className="w-full mt-2 flex justify-center text-xs font-medium font-roboto-mono">
+  Initial Design Explorations
+</Section>
+
+<Section className="flex flex-col gap-2 my-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-base">
+
+##### Making years of events easier to navigate
+
+One of the biggest UX challenges was organizing a growing archive of events.
+
+Early iterations displayed everything in a single grid with filters across the top. As more functionality was added (search, semester selection, categories, multiple viewing modes, and a calendar) it became increasingly difficult to fit everything into one interface.
+
+The final layout introduces a dedicated sidebar that groups filtering controls alongside a calendar visualization, while the search bar and and view toggle remain on top. On mobile, everything cleanly collapses to the top.
+
+Users can switch between a compact grid view and a larger list view depending on how much information they want at a glance, letting the interface adapt to the different ways people explore events.
+
+</Section>
+
+<SplitSection className="gap-2 mb-2">
+  <SectionColumn size={6}>
+    <MDXMedia
+      src="/projects/phackers-events/mid-light-grid.webp"
+      alt="Hero screenshot"
+      preset="header"
+      width={2560}
+      height={1664}
+      frame="#252525"
+      className="w-full"
+      baseImageClassName="rounded-sm p-4"
+    />
+    <Section className="w-full flex justify-center text-xs font-medium font-roboto-mono">
+      Grid View
+    </Section>
+  </SectionColumn>
+  <SectionColumn size={6}>
+    <MDXMedia
+      src="/projects/phackers-events/mid-light-list.webp"
+      alt="Hero screenshot"
+      preset="header"
+      width={2560}
+      height={1664}
+      frame="#252525"
+      className="w-full"
+      baseImageClassName="rounded-sm p-4"
+    />
+    <Section className="w-full flex justify-center text-xs font-medium font-roboto-mono">
+      List View
+    </Section>
+  </SectionColumn>
+</SplitSection>
+
+<Section className="flex flex-col gap-2 my-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-base">
+#### Building it out
+
+##### Yet Another CMS Migration
+
+**The site's many CMS migrations over the years were mainly caused by friction in the event content management experience for organizers.** Previous versions of the site had cycled through Airtable, Sanity, Markdown files committed directly to GitHub, and eventually Luma. While each solved part of the problem, none provided both flexibility for developers and an approachable editing experience for organizers.
+
+End of 2025 we created a new headless CMS using Payload. It was created to manage content for other collections/websites like Hack Night Sessions, Shelter projects, Microgrants, etc., and this was the perfect opportunity to integrate with Events Site as well.
+
+</Section>
+
+<SplitSection className="gap-2 mb-2">
+  <SectionColumn size={6}>
+    <MDXMedia
+      src="/projects/phackers-events/cms-events.webp"
+      alt="Hero screenshot"
+      preset="header"
+      width={2560}
+      height={1664}
+      frame="#252525"
+      className="w-full"
+      baseImageClassName="rounded-sm p-4"
+    />
+    <Section className="w-full flex justify-center text-xs font-medium font-roboto-mono">
+      Events Collection
+    </Section>
+  </SectionColumn>
+  <SectionColumn size={6}>
+    <MDXMedia
+      src="/projects/phackers-events/cms-event.webp"
+      alt="Hero screenshot"
+      preset="header"
+      width={2560}
+      height={1664}
+      frame="#252525"
+      className="w-full"
+      baseImageClassName="rounded-sm p-4"
+    />
+    <Section className="w-full flex justify-center text-xs font-medium font-roboto-mono">
+      Editing Interface
+    </Section>
+  </SectionColumn>
+</SplitSection>
+
+<Section className="flex flex-col gap-2 my-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-base">
+Implementation involved:
+
+- Adding a new Events schema to the CMS and testing it by adding events manually and running local scripts
+- Writing migration scripts to pull all existing data (images and all) out of Sanity and pushing it into the CMS through its API
+- Adding an Astro API endpoint to the Events Site to fetch events data dynamically from CMS
+- Refactoring the frontend to use this new data fetching method
+
+Organizers can now create events, upload images, publish retrospectives, and manage content through a dedicated interface without touching the codebase.
+
+##### RSVP Management & Email Blast Capabilities
+
+With the new CMS in place, I built out registration handling end-to-end, expanding the CMS to allow organizers to easily send reminder blasts to all RSVPers with just a few clicks.
+
+Visitors can RSVP directly from an upcoming event page, receiving a confirmation email once their email is successfully added to that event in the CMS database.
+
+</Section>
+
+<Section className=" w-full mb-2">
+  <MDXMedia
+    isVideo
+    loop
+    src="/projects/phackers-events/rsvp.mp4"
+    alt="Hero video"
+    preset="header"
+    width={2560}
+    height={1664}
+    frame="mockup"
+    className="w-full"
+  />
+  <Section className="w-full flex justify-center text-xs font-medium font-roboto-mono">
+    Registering for an Event
+  </Section>
+</Section>
+
+<Section className="flex flex-col gap-2 my-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-base">
+
+On the organizer side, the CMS interface lets you send a reminder blast to everyone who RSVPed for a given event straight from that event's page. This effectively eliminates the need to manually write and manage reminder emails for each event.
+
+<MDXMedia
+  src="/projects/phackers-events/reminder-email.webp"
+  alt="Hero screenshot"
+  preset="header"
+  width={2560}
+  height={1664}
+  frame="none"
+  className="w-full"
+  baseImageClassName="rounded-sm"
+/>
+<Section className="w-full mb-2 flex justify-center text-xs font-medium font-roboto-mono">
+  Reminder Email
+</Section>
+
+Designing this feature involved balancing ease of use for organizers with a
+backend architecture that avoided locking the project into any single email
+provider.
+
+Implementation involved:
+
+- Adding Emails schema to store RSVPs for each event (one-to-many relationship)
+- Connecting CMS to Resend with Payload's email adapter and adding email field to event editing interface
+- Using Payload hooks to run custom email script on save only when email checkbox is checked
+  - When the hook runs, the backend pulls the RSVP list, automatically formats message with amount of time remaining until the event, creates a styled email with React Email, and sends out batch email through Resend
+
+##### Calendar Integration
+
+One of the features I was most excited to build was a calendar widget that visualizes events across the semester and lets users subscribe to the Purdue Hackers events from an external calendar through a live iCal feed.
+
+The calendar is responsive to user filtering of events (selecting a category or semester also reflects on the calendar) and includes the ability to flip between months or jump straight to a semester.
+
+[Demo filtering with calendar, going through months]
+
+On top of that, I added iCal subscription support, so people can subscribe to Purdue Hackers events directly through Google, Apple, or Outlook calendars, and automatically receive new events as they're published.
+
+</Section>
+
+<Section className=" w-full mb-2">
+  <MDXMedia
+    isVideo
+    loop
+    src="/projects/phackers-events/ical-dark.mp4"
+    alt="Hero video"
+    preset="header"
+    width={2560}
+    height={1664}
+    frame="mockup"
+    className="w-full"
+  />
+  <Section className="w-full flex justify-center text-xs font-medium font-roboto-mono">
+    iCal Subscription
+  </Section>
+</Section>
+
+<Section className="flex flex-col gap-2 my-20 w-full md:w-[85%] lg:w-[70%] ml-0 md:ml-15 lg:ml-45 text-base">
+This took a bit of digging into how calendar subscriptions actually work under the hood: importing an `.ics` file directly will add a snapshot of all existing events at that moment, but subscribing via a live URL will also give live updates. To support the latter, I built an Astro API endpoint (`/events.ics`) that generates the file dynamically and serves it as a [webcal link](webcal://events.purduehackers.com/api/events.ics).
+
+#### Rethinking site architecture
+
+##### Incremental Static Regeneration
+
+To keep content fresh without sacrificing performance, I refactored the site to use **Incremental Static Regeneration** (ISR). All pages are pre-rendered at build time and regenerated automatically whenever content changes in the CMS. This combines the speed of static pages with the convenience of dynamic publishing.
+
+---
+
+One of the main changes that came with the most recent site migration was switching to SSG (static site generation) to improve performance. For this reason the first few iterations I worked on were statically generated, and I spent a lot of time thinking about how to implement filtering, searching, etc. to work with SSG.
+
+However, what worked with the local Markdown content management method no longer did with the new CMS. After implementing some features with this method in mind, I realized there were too many workarounds necessary that made the site difficult to maintain/scale, and needing to rebuild after every edit added friction to the publishing workflow.
+
+Dynamic rendering and ISR work better for cases like the main page when we publish new content through the CMS and want updates to be shown immediately. Pages are pre-rendered at build time, cached, and regenerated in the background once the cache expires or an organizer makes an update. This way, visitors can experience fast page loads without being stuck with stale data.
+
+##### Pagination
+
+The initial Events Site just fetched and loaded in all events at once, and since there weren't that many it wasn't really a problem. However, as years passed and events accumulated, this slowly built up performance issues that would only get worse as time passed.
+
+Normal "next/previous" pagination was the initial instinct, but it clashed with the new grouping of events by semester on the page. Splitting a semester's events unevenly across pages would feel broken, and there was already an option to filter cleanly by semester.
+
+I landed on a hybrid solution: Instead of clicking to a different page, users click a "Load more" button at the end of the list of events that pulls in the next batch without navigating away, which keeps semester grouping intact while still not overwhelming the page on load.
+
+##### Preserving years of shared links
+
+Another challenge that surfaced during the migration was maintaining compatibility with years of existing event links shared across Discord, announcements, and documentation.
+
+To prevent introducing breaking URLs, I designed a new semantic routing structure based on event categories and slugs while writing migration scripts that generated slugs for every existing event. Older links continue to function while newer URLs are significantly more descriptive and easier to share.
+
+e.g. `/events/workshop/coding-agents` rather than `/events/48392`
+
+#### Impact
+
+The redesigned Events Site is now live and serves as the foundation for Purdue Hackers' future event infrastructure. Beyond replacing the previous workflow, the project also became a foundation for the organization's broader web ecosystem.
+
+Several UI components, layout patterns, and styling decisions developed during this project are already being reused across other Purdue Hackers websites like the landing page and blog, with the long-term goal of building a shared design system that can be imported across projects.
+
+Possible future expansions include:
+
+- Building a full design system of reusable components to be used across all sites
+- Extending the calendar widget to its own view to see multiple months of events at once
+
+</Section>
+
+<Section className=" w-full mb-16">
+  <MDXMedia
+    src="/projects/phackers-events/mobile-mocks.webp"
+    alt="Hero screenshot"
+    preset="header"
+    width={2560}
+    height={1664}
+    frame="none"
+    className="w-full mb-2"
+    baseImageClassName="rounded-sm p-4"
+  />
+  <Section className="w-full flex justify-center text-xs font-medium font-roboto-mono">
+    Final Mobile Designs
+  </Section>
+</Section>
+
+<SplitSection className="hidden gap-2 mb-2">
+  <SectionColumn size={6}>
+    <MDXMedia
+      src="/projects/phackers-events/hero-dark-square.webp"
+      alt="Hero screenshot"
+      preset="header"
+      width={2560}
+      height={1664}
+      frame="#252525"
+      className="w-full"
+      baseImageClassName="rounded-sm p-4"
+    />
+  </SectionColumn>
+  <SectionColumn size={6}>
+    <MDXMedia
+      src="/projects/phackers-events/hero-light-list-square.webp"
+      alt="Hero screenshot"
+      preset="header"
+      width={2560}
+      height={1664}
+      frame="#252525"
+      className="w-full"
+      baseImageClassName="rounded-sm p-4"
+    />
+  </SectionColumn>
+</SplitSection>
+<SplitSection className="hidden gap-2">
+  <SectionColumn size={6}>
+    <MDXMedia
+      src="/projects/phackers-events/mid-dark-list.webp"
+      alt="Hero screenshot"
+      preset="header"
+      width={2560}
+      height={1664}
+      frame="#252525"
+      className="w-full"
+      baseImageClassName="rounded-sm p-4"
+    />
+  </SectionColumn>
+  <SectionColumn size={6}>
+    <MDXMedia
+      src="/projects/phackers-events/mid-light-list.webp"
+      alt="Hero screenshot"
+      preset="header"
+      width={2560}
+      height={1664}
+      frame="#252525"
+      className="w-full"
+      baseImageClassName="rounded-sm p-4"
+    />
+  </SectionColumn>
+</SplitSection>

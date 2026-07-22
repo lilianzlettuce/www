@@ -9,10 +9,8 @@ export default function WorkLayout({
     <div className="w-full min-h-screen flex flex-col">
       {/*<NavBar className="6 26" />*/}
       <div className="w-full min-h-screen flex flex-row">
-        <SideBarMinimal className="w-2 hidden sm:block" />
-        <div className="w-full">
-          {children}
-        </div>
+        <SideBarMinimal className="w-2 hidden sm:hidden" />
+        <div className="w-full">{children}</div>
       </div>
     </div>
   );

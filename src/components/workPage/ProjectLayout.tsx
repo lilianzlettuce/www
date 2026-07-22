@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { PixelatedArrowIcon, SquareIcon } from '@/components/svg/Icons';
-import { ProjectFrontmatter } from '@/lib/mdx';
-import { TagLabel, TagLabelStroke } from './Labels';
-import { IconButton, RevealButton } from '../Buttons';
-import BoxCorners from '../svg/BoxCorners';
-import { ScrollIndicator } from '../ScrollIndicator';
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { PixelatedArrowIcon, SquareIcon } from "@/components/svg/Icons";
+import { ProjectFrontmatter } from "@/lib/mdx";
+import { TagLabel, TagLabelStroke } from "./Labels";
+import { IconButton, RevealButton } from "../Buttons";
+import BoxCorners from "../svg/BoxCorners";
+import { ScrollIndicator } from "../ScrollIndicator";
 
 interface ProjectHeaderProps {
   frontmatter: ProjectFrontmatter;
@@ -42,16 +42,17 @@ export function ProjectHeaderDefault({ frontmatter }: ProjectHeaderProps) {
             <p className="text-base text-mutedForeground mb-6">
               {frontmatter.description}
             </p>
-            
+
             <div className="flex flex-wrap gap-2 mb-6">
               {frontmatter.tags.map((tag: string) => (
-                <div className="flex flex-row gap-2"
-                    key={tag} 
-                >
-                  <TagLabelStroke tag={tag} className="text-xs font-roboto-mono tracking-widest uppercase" />
+                <div className="flex flex-row gap-2" key={tag}>
+                  <TagLabelStroke
+                    tag={tag}
+                    className="text-xs font-roboto-mono tracking-widest uppercase"
+                  />
                   <span className="hidden text-xs font-roboto-mono tracking-widest uppercase text-muted-foreground">
                     •
-                  </span> 
+                  </span>
                 </div>
               ))}
             </div>
@@ -60,12 +61,12 @@ export function ProjectHeaderDefault({ frontmatter }: ProjectHeaderProps) {
           {/* Project Links */}
           <div className="flex flex-wrap gap-4">
             {frontmatter.link && (
-              <IconButton className="group text-sm px-1.5 py-0 border-1 border-muted-foreground rounded-full"
-                text="View Demo" 
+              <IconButton
+                className="group text-sm px-1.5 py-0 border-1 border-muted-foreground rounded-full"
+                text="View Demo"
                 icon={
-                <PixelatedArrowIcon 
-                  className="w-4 h-4 group-hover:-rotate-90 transition-transform duration-300" 
-                />} 
+                  <PixelatedArrowIcon className="w-4 h-4 group-hover:-rotate-90 transition-transform duration-300" />
+                }
               />
             )}
           </div>
@@ -79,7 +80,6 @@ export function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
   return (
     <header className="my-8 font-uncut-sans">
       <div className="mb-0">
-
         {/* Project Header */}
         <header className="mb-12 flex flex-row items-start gap-4">
           <div className="sticky top-0 left-0 w-50 h-10 pt-2 flex flex-col gap-1 items-start justify-start">
@@ -87,12 +87,8 @@ export function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
               &#91; 01 / 04 &#93;
             </div>
             <div className="w-full my-4 flex flex-col text-xs">
-              <div className="font-bold">
-                {frontmatter.title}
-              </div>
-              <div>
-                landing page | 2025
-              </div>
+              <div className="font-bold">{frontmatter.title}</div>
+              <div>landing page | 2025</div>
             </div>
             <div className="flex flex-col gap-2">
               {frontmatter.link && (
@@ -102,9 +98,14 @@ export function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
                   rel="noopener noreferrer"
                   className="group relative flex justify-center border-1 border-foreground bg-foreground text-background hover:bg-background hover:text-foreground transition-all duration-300"
                 >
-                  <IconButton className="relative text-sm py-0 group"
-                    text="View Site" 
-                    icon={<div className="group-hover:rotate-135 -rotate-45 transition-transform duration-300">◼</div>} 
+                  <IconButton
+                    className="relative text-sm py-0 group"
+                    text="View Site"
+                    icon={
+                      <div className="group-hover:rotate-135 -rotate-45 transition-transform duration-300">
+                        ◼
+                      </div>
+                    }
                   />
                 </Link>
               )}
@@ -116,15 +117,22 @@ export function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
                   className="group relative border-1 border-border"
                 >
                   <BoxCorners
-                    icon={<div className="w-full h-full border-t-1 border-l-1 border-foreground"></div>}
+                    icon={
+                      <div className="w-full h-full border-t-1 border-l-1 border-foreground"></div>
+                    }
                     cornerSize="5px"
                     cornerOffset="-1px"
                     cornerColor="transparent"
                     className="scale-100 group-hover:scale-x-105 group-hover:scale-y-120 transition-all duration-300"
                   />
-                  <IconButton className="relative text-sm px-1.5 py-0 rounded-sm"
-                    text="View Code" 
-                    icon={<div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">→</div>} 
+                  <IconButton
+                    className="relative text-sm px-1.5 py-0 rounded-sm"
+                    text="View Code"
+                    icon={
+                      <div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">
+                        →
+                      </div>
+                    }
                   />
                 </Link>
               )}
@@ -139,25 +147,22 @@ export function ProjectHeaderDefault2({ frontmatter }: ProjectHeaderProps) {
             <p className="text-base text-foreground mb-6">
               {frontmatter.description}
             </p>
-            <p className="text-xs text-foreground mb-6">
-              {frontmatter.award}
-            </p>
-            
+            <p className="text-xs text-foreground mb-6">{frontmatter.award}</p>
+
             <div className="flex flex-wrap gap-2 mb-6">
               {frontmatter.tags.map((tag: string) => (
-                <div className="flex flex-row gap-2"
-                    key={tag} 
-                >
-                  <TagLabel tag={tag} className="text-xs font-ibm-plex-mono tracking-wide uppercase" />
+                <div className="flex flex-row gap-2" key={tag}>
+                  <TagLabel
+                    tag={tag}
+                    className="text-xs font-ibm-plex-mono tracking-wide uppercase"
+                  />
                   <span className="text-xs font-roboto-mono tracking-widest uppercase text-muted-foreground">
                     •
-                  </span> 
+                  </span>
                 </div>
               ))}
             </div>
           </div>
-
-          
         </header>
       </div>
     </header>
@@ -170,32 +175,29 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
     if (window.history.length > 1) {
       router.back();
     } else {
-      router.push('/work'); // Fallback to work page if no history
+      router.push("/work"); // Fallback to work page if no history
     }
   };
-  
+
   return (
     <header className="z-50 sticky top-0 left-0 w-full flex flex-row items-start gap-4">
-      <div className="w-full h-10 pt-4 flex flex-row gap-1 items-start justify-start">    
-        <div className=" w-full flex flex-col text-xs text-muted-foreground">
-          <div className="hidden font-bold">
-            {frontmatter.title}
-          </div>
-          <button className="p-0 group h-3 flex items-center font-roboto-mono font-semibold leading-none hover:rotate-x-0 hover:uppercase text-foreground"
-              onClick={() => handleBack()}>
-            {'['} <span className="inline-block group-hover:hidden">{'←'}&nbsp;</span>
-            <span className="hidden group-hover:inline-block">{'→'}&nbsp;</span>
-            go back {']'}
+      <div className="w-full h-10 pt-4 flex flex-row gap-1 items-start justify-start">
+        <div className="z-100 fixed top-8 left-8 w-full flex flex-col text-xs text-muted-foreground">
+          <div className="hidden font-bold">{frontmatter.title}</div>
+          <button
+            className="p-0 group h-3 flex items-center font-roboto-mono font-semibold leading-none hover:rotate-x-0 hover:uppercase text-foreground"
+            onClick={() => handleBack()}
+          >
+            {"["}{" "}
+            <span className="inline-block group-hover:hidden">{"←"}&nbsp;</span>
+            <span className="hidden group-hover:inline-block">{"→"}&nbsp;</span>
+            go back {"]"}
           </button>
-          <div className="hidden">
-            landing page | 2025
-          </div>
+          <div className="hidden">landing page | 2025</div>
         </div>
 
-        <p className="fixed right-0 bottom-0 text-[0.65rem]">
-            DEV / ART ++/
-        </p>
-        
+        <p className="fixed right-0 bottom-0 text-[0.65rem]">DEV / ART ++/</p>
+
         <div className="hidden h-5 flex flex-row gap-2">
           {frontmatter.link && (
             <Link
@@ -204,12 +206,15 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
               rel="noopener noreferrer"
               className="group relative w-25 flex items-center justify-center border-1 border-foreground bg-foreground text-background hover:bg-background hover:text-foreground transition-all duration-300"
             >
-              <IconButton className="relative text-xs py-0"
-                text="Visit Site" 
-                icon={<SquareIcon 
-                  className="w-3 h-3 text-[10px] group-hover:rotate-135 -rotate-45 transition-all duration-300" 
-                  strokeWidth={0}
-                />} 
+              <IconButton
+                className="relative text-xs py-0"
+                text="Visit Site"
+                icon={
+                  <SquareIcon
+                    className="w-3 h-3 text-[10px] group-hover:rotate-135 -rotate-45 transition-all duration-300"
+                    strokeWidth={0}
+                  />
+                }
               />
             </Link>
           )}
@@ -221,15 +226,22 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
               className="group w-25 relative flex items-center justify-center border-1 border-border"
             >
               <BoxCorners
-                icon={<div className="w-full h-full border-t-1 border-l-1 border-foreground"></div>}
+                icon={
+                  <div className="w-full h-full border-t-1 border-l-1 border-foreground"></div>
+                }
                 cornerSize="5px"
                 cornerOffset="-1px"
                 cornerColor="transparent"
                 className="scale-100 group-hover:scale-x-105 group-hover:scale-y-120 transition-all duration-300"
               />
-              <IconButton className="relative text-xs py-0"
-                text="Visit Site" 
-                icon={<div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">→</div>} 
+              <IconButton
+                className="relative text-xs py-0"
+                text="Visit Site"
+                icon={
+                  <div className="group-hover:-rotate-45 rotate-45 transition-transform duration-300">
+                    →
+                  </div>
+                }
               />
             </Link>
           )}
@@ -239,7 +251,10 @@ function ProjectHeaderMinimal({ frontmatter }: ProjectHeaderProps) {
   );
 }
 
-export default function ProjectLayout({ frontmatter, children }: ProjectLayoutProps) {
+export default function ProjectLayout({
+  frontmatter,
+  children,
+}: ProjectLayoutProps) {
   return (
     <div className="relative min-h-screen bg-background flex gap-4 justify-between">
       {/* Sticky side info */}
@@ -249,12 +264,8 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
         </div>
         <div className="w-full my-4">
           <div className="mb-1 flex flex-col text-xs">
-            <div className="font-bold">
-              {frontmatter.title}
-            </div>
-            <div>
-              audiovisual installation | 2025
-            </div>
+            <div className="font-bold">{frontmatter.title}</div>
+            <div>audiovisual installation | 2025</div>
           </div>
         </div>
       </div>
@@ -265,7 +276,7 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
 
         {/* Project Header */}
         <ProjectHeaderMinimal frontmatter={frontmatter} />
-        
+
         {/* Project Image */}
         <div className="hidden w-full mb-1">
           {frontmatter.image && (
@@ -279,25 +290,23 @@ export default function ProjectLayout({ frontmatter, children }: ProjectLayoutPr
                 priority
               />
             </div>
-          )} 
+          )}
           <div className="relative w-11/12 aspect-3/2 mx-auto">
-              <Image
-                src={frontmatter.image}
-                alt={frontmatter.title}
-                width={1200}
-                height={675}
-                className="w-full h-full object-cover"
-                sizes="100vw"
-                priority
-              />
+            <Image
+              src={frontmatter.image}
+              alt={frontmatter.title}
+              width={1200}
+              height={675}
+              className="w-full h-full object-cover"
+              sizes="100vw"
+              priority
+            />
           </div>
         </div>
 
         {/* Project Content */}
-        <article className="mdx-content px-0 mx-auto">
-          {children}
-        </article>
+        <article className="mdx-content px-0 mx-auto">{children}</article>
       </div>
     </div>
   );
-} 
+}

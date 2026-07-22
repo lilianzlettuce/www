@@ -63,15 +63,15 @@ featured: true
 
 Your project content here...
 
-<TechStack 
+<TechStack
   technologies={["Next.js", "TypeScript", "Tailwind CSS"]}
   title="Technology Stack"
 />
 
-<ProjectStats 
+<ProjectStats
   stats={[
     { label: "Performance", value: "95+", unit: "" },
-    { label: "Load Time", value: "1.2", unit: "s" }
+    { label: "Load Time", value: "1.2", unit: "s" },
   ]}
   title="Project Metrics"
 />
@@ -84,24 +84,26 @@ Your project content here...
 The following custom components are available for use in MDX files:
 
 ### TechStack
+
 Displays a list of technologies with styled tags.
 
 ```mdx
-<TechStack 
+<TechStack
   technologies={["React", "Next.js", "TypeScript"]}
   title="Technologies Used"
 />
 ```
 
 ### ProjectStats
+
 Displays project statistics in a grid layout.
 
 ```mdx
-<ProjectStats 
+<ProjectStats
   stats={[
     { label: "Performance", value: "95+", unit: "" },
     { label: "Load Time", value: "1.2", unit: "s" },
-    { label: "Users", value: "1000+", unit: "" }
+    { label: "Users", value: "1000+", unit: "" },
   ]}
   title="Project Metrics"
 />
@@ -111,16 +113,16 @@ Displays project statistics in a grid layout.
 
 ```bash
 # Install dependencies
-npm install
+yarn install
 
 # Run development server
-npm run dev
+yarn dev
 
 # Build for production
-npm run build
+yarn build
 
 # Start production server
-npm start
+yarn start
 ```
 
 ## Technologies Used
@@ -135,15 +137,19 @@ npm start
 ## Customization
 
 ### Styling
+
 The website uses Tailwind CSS for styling. You can customize colors, fonts, and other design tokens in the `tailwind.config.js` file.
 
 ### Navigation
+
 Update the navigation links in `src/components/Navigation.tsx`.
 
 ### Project Layout
+
 Modify the project page layout in `src/components/ProjectLayout.tsx`.
 
 ### Custom Components
+
 Add new custom MDX components in `src/components/mdx/` and register them in `src/lib/mdx.ts`.
 
 ## Deployment
